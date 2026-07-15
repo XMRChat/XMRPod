@@ -4,11 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -35,6 +39,7 @@ import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.event.MessageEvent;
 import de.danoeh.antennapod.event.PlayerStatusEvent;
 import de.danoeh.antennapod.model.feed.Feed;
+import de.danoeh.antennapod.model.feed.FeedFunding;
 import de.danoeh.antennapod.playback.service.PlaybackService;
 import de.danoeh.antennapod.playback.service.PlaybackServiceStarter;
 import de.danoeh.antennapod.storage.database.DBReader;
@@ -43,6 +48,7 @@ import de.danoeh.antennapod.ui.appstartintent.MainActivityStarter;
 import de.danoeh.antennapod.ui.appstartintent.MediaButtonStarter;
 import de.danoeh.antennapod.ui.appstartintent.OnlineFeedviewActivityStarter;
 import de.danoeh.antennapod.ui.chapters.ChapterUtils;
+import de.danoeh.antennapod.ui.common.IntentUtils;
 import de.danoeh.antennapod.ui.screen.chapter.ChaptersFragment;
 import de.danoeh.antennapod.playback.service.PlaybackController;
 import de.danoeh.antennapod.ui.common.DateFormatter;
@@ -63,6 +69,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+import java.util.Locale;
 
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -107,6 +114,7 @@ public class CoverFragment extends Fragment {
         viewBinding.butNextChapter.setColorFilter(colorFilter);
         viewBinding.butPrevChapter.setColorFilter(colorFilter);
         viewBinding.descriptionIcon.setColorFilter(colorFilter);
+        viewBinding.tipButton.setColorFilter(colorFilter);
         viewBinding.chapterButton.setOnClickListener(v ->
                 new ChaptersFragment().show(getChildFragmentManager(), ChaptersFragment.TAG));
         viewBinding.butPrevChapter.setOnClickListener(v -> seekToPrevChapter());
@@ -152,9 +160,12 @@ public class CoverFragment extends Fragment {
                 + "\u00A0"
                 + StringUtils.replace(StringUtils.stripToEmpty(pubDateStr), " ", "\u00A0"));
         if (media instanceof FeedMedia) {
-            viewBinding.txtvPodcastTitle.setOnClickListener(v -> openFeed(((FeedMedia) media).getItem().getFeed()));
+            Feed feed = ((FeedMedia) media).getItem().getFeed();
+            viewBinding.txtvPodcastTitle.setOnClickListener(v -> openFeed(feed));
+            updateTipButton(feed);
         } else {
             viewBinding.txtvPodcastTitle.setOnClickListener(null);
+            updateTipButton(null);
         }
         viewBinding.txtvPodcastTitle.setOnLongClickListener(v -> copyText(media.getFeedTitle()));
         viewBinding.txtvEpisodeTitle.setText(media.getEpisodeTitle());
@@ -190,6 +201,49 @@ public class CoverFragment extends Fragment {
         displayedChapterIndex = -1;
         refreshChapterData(Chapter.getAfterPosition(media.getChapters(), media.getPosition()));
         updateChapterControlVisibility();
+    }
+
+    private void updateTipButton(@Nullable Feed feed) {
+        String tipUrl = getTipUrl(feed);
+        viewBinding.tipButton.setVisibility(tipUrl == null ? View.GONE : View.VISIBLE);
+        viewBinding.tipButton.setOnClickListener(v -> openTipUrl(tipUrl));
+    }
+
+    @Nullable
+    private String getTipUrl(@Nullable Feed feed) {
+        if (feed == null || feed.getPaymentLinks() == null) {
+            return null;
+        }
+        String xmrChatUrl = null;
+        for (FeedFunding funding : feed.getPaymentLinks()) {
+            if (TextUtils.isEmpty(funding.url)) {
+                continue;
+            }
+            String url = funding.url.trim();
+            String normalizedUrl = url.toLowerCase(Locale.US);
+            if (normalizedUrl.startsWith("monero:")) {
+                return url;
+            }
+            if (normalizedUrl.contains("xmrchat")) {
+                xmrChatUrl = url;
+            }
+        }
+        return xmrChatUrl;
+    }
+
+    private void openTipUrl(@Nullable String tipUrl) {
+        if (TextUtils.isEmpty(tipUrl)) {
+            return;
+        }
+        if (tipUrl.toLowerCase(Locale.US).startsWith("monero:")) {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(tipUrl)));
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(getContext(), R.string.tip_no_wallet, Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
+        IntentUtils.openInBrowser(getContext(), tipUrl);
     }
 
     private void openFeed(Feed feed) {
