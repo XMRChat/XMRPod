@@ -64,12 +64,12 @@ public class ImportExportPreferencesFragment extends AnimatedPreferenceFragment 
     private static final String PREF_DATABASE_EXPORT = "prefDatabaseExport";
     private static final String PREF_AUTOMATIC_DATABASE_EXPORT = "prefAutomaticDatabaseExport";
     private static final String PREF_FAVORITE_EXPORT = "prefFavoritesExport";
-    private static final String DEFAULT_OPML_OUTPUT_NAME = "antennapod-feeds-%s.opml";
+    private static final String DEFAULT_OPML_OUTPUT_NAME = "xmrpod-feeds-%s.opml";
     private static final String CONTENT_TYPE_OPML = "text/x-opml";
-    private static final String DEFAULT_HTML_OUTPUT_NAME = "antennapod-feeds-%s.html";
+    private static final String DEFAULT_HTML_OUTPUT_NAME = "xmrpod-feeds-%s.html";
     private static final String CONTENT_TYPE_HTML = "text/html";
-    private static final String DEFAULT_FAVORITES_OUTPUT_NAME = "antennapod-favorites-%s.html";
-    private static final String DATABASE_EXPORT_FILENAME = "AntennaPodBackup-%s.db";
+    private static final String DEFAULT_FAVORITES_OUTPUT_NAME = "xmrpod-favorites-%s.html";
+    private static final String DATABASE_EXPORT_FILENAME = "XMRPodBackup-%s.db";
 
     private final ActivityResultLauncher<Intent> chooseOpmlExportPathLauncher =
             registerForActivityResult(new StartActivityForResult(),

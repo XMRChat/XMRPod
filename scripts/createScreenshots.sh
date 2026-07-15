@@ -2,7 +2,7 @@
 
 ################### Create emulator ###################
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "AntennaPodScreenshots" --abi google_apis/x86_64 --package 'system-images;android-30;google_apis;x86_64'
+echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "XMRPodScreenshots" --abi google_apis/x86_64 --package 'system-images;android-30;google_apis;x86_64'
 echo "
 disk.dataPartition.size=6G
 hw.battery=yes
@@ -12,8 +12,8 @@ hw.lcd.width=1080
 hw.lcd.height=1920
 hw.ramSize=1536
 showDeviceFrame=no
-" >> $HOME/.android/avd/AntennaPodScreenshots.avd/config.ini
-nohup $ANDROID_HOME/emulator/emulator -avd AntennaPodScreenshots -no-snapshot &
+" >> $HOME/.android/avd/XMRPodScreenshots.avd/config.ini
+nohup $ANDROID_HOME/emulator/emulator -avd XMRPodScreenshots -no-snapshot &
 while [ "$(adb shell getprop sys.boot_completed)" != "1" ]
 do
     echo "Waiting for emulator"
@@ -34,7 +34,7 @@ version=$(adb shell dumpsys package de.danoeh.antennapod.debug | grep versionNam
 versionMajor=0$(echo $version | cut -d'.' -f1)
 versionMinor=0$(echo $version | cut -d'.' -f2)
 
-wget "https://github.com/AntennaPod/Branding/raw/master/Screenshots/ScreenshotsDatabaseExport.db" -O ScreenshotsDatabaseExport.db
+wget "https://github.com/XMRChat/XMRPod/raw/main/Screenshots/ScreenshotsDatabaseExport.db" -O ScreenshotsDatabaseExport.db
 
 function resetDatabase() {
     theme=$1
@@ -122,5 +122,4 @@ adb shell settings put global sysui_demo_allowed 0
 
 ################### Delete emulator ###################
 adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill && sleep 10; done
-$ANDROID_HOME/tools/bin/avdmanager delete avd -n "AntennaPodScreenshots"
-
+$ANDROID_HOME/tools/bin/avdmanager delete avd -n "XMRPodScreenshots"
