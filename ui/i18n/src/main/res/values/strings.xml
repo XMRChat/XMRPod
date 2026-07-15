@@ -37,6 +37,8 @@
     <string name="years_statistics_label">Years</string>
     <string name="notification_pref_fragment">Notifications</string>
     <string name="current_playing_episode">Current</string>
+    <string name="tip_label">Tip</string>
+    <string name="tip_no_wallet">No Monero wallet app found</string>
 
     <!-- Google Assistant -->
     <string name="app_action_not_found">\"%1$s\" not found</string>
