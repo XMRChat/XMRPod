@@ -60,12 +60,11 @@ public class RatingDialogFragment extends DialogFragment {
             dismiss();
         });
         viewBinding.rateButton.setOnClickListener(v -> {
-            IntentUtils.openInBrowser(getContext(),
-                    "https://play.google.com/store/apps/details?id=de.danoeh.antennapod");
+            IntentUtils.openInBrowser(getContext(), "https://github.com/XMRChat/XMRPod");
             new RatingDialogManager(getActivity()).saveRated();
         });
         viewBinding.contibuteButton.setOnClickListener(v -> {
-            IntentUtils.openInBrowser(getContext(), "https://antennapod.org/contribute/");
+            IntentUtils.openInBrowser(getContext(), "https://github.com/XMRChat/XMRPod");
             new RatingDialogManager(getActivity()).saveRated();
         });
         return viewBinding.getRoot();

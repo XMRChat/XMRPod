@@ -1,6 +1,6 @@
 # :playback:cast
 
-This module provides Chromecast support for the Google Play version of the app.
+This module provides Chromecast support for the play flavor of the app.
 Compiled only in the `play` build flavor (the `free` flavor contains no-op stubs).
 
 ## Active path (Media3)
