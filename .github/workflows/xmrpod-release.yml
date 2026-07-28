@@ -2,19 +2,74 @@ name: XMRPod Release
 
 on:
   push:
+    branches:
+      - develop
     tags:
       - "xmrpod-v*"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  release:
-    name: Build and publish APK
+  prepare:
+    name: Prepare release from changelog
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    outputs:
+      release_tag: ${{ steps.release.outputs.release_tag }}
+      should_release: ${{ steps.release.outputs.should_release }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Prepare changelog metadata and tag
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="$(python3 scripts/update_changelog_release.py --latest --print-version)"
+          release_tag="xmrpod-v$version"
+          echo "release_tag=$release_tag" >> "$GITHUB_OUTPUT"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/$release_tag" >/dev/null 2>&1; then
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            echo "$release_tag already exists; skipping release."
+            exit 0
+          fi
+
+          version_code="$(sed -n 's/^[[:space:]]*versionCode //p' app/build.gradle | head -n 1)"
+          python3 scripts/update_changelog_release.py \
+            --version "$version" \
+            --date "$(date -u +%F)" \
+            --write \
+            --fastlane-changelog "fastlane/metadata/android/en-US/changelogs/$version_code.txt"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add CHANGELOG.md fastlane/metadata/android/en-US/changelogs
+            git commit -m "Prepare XMRPod $version release"
+            git push origin HEAD:develop
+          fi
+
+          git tag -a "$release_tag" -m "XMRPod $version"
+          git push origin "$release_tag"
+          echo "should_release=true" >> "$GITHUB_OUTPUT"
+
+  release:
+    name: Build and publish APK
+    needs: prepare
+    if: always() && (startsWith(github.ref, 'refs/tags/xmrpod-v') || needs.prepare.outputs.should_release == 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      RELEASE_TAG: ${{ needs.prepare.outputs.release_tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ env.RELEASE_TAG }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v5
@@ -38,12 +93,20 @@ jobs:
       - name: Build Free release APK
         run: ./gradlew assembleFreeRelease
 
+      - name: Prepare release notes
+        run: |
+          version="${RELEASE_TAG#xmrpod-v}"
+          python3 scripts/update_changelog_release.py \
+            --version "$version" \
+            --release-notes /tmp/xmrpod-release-notes.md \
+            --full-changelog-url "https://github.com/$GITHUB_REPOSITORY/blob/$RELEASE_TAG/CHANGELOG.md"
+
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" \
+          gh release create "$RELEASE_TAG" \
             app/build/outputs/apk/free/release/*.apk \
             --repo "$GITHUB_REPOSITORY" \
-            --title "XMRPod $GITHUB_REF_NAME" \
-            --generate-notes
+            --title "XMRPod $RELEASE_TAG" \
+            --notes-file /tmp/xmrpod-release-notes.md

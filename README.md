@@ -40,6 +40,19 @@ Debug APKs are written under:
 app/build/outputs/apk/
 ```
 
+## Releases
+
+Release notes come from [CHANGELOG.md](CHANGELOG.md), not from generated commit summaries.
+
+To publish a new XMRPod release, add a new topmost `## [version] - TBD` section to `CHANGELOG.md` and push it to `develop`.
+GitHub Actions will date that changelog section, update the matching Fastlane changelog file, create the `xmrpod-vversion` tag, build the Free release APK, and publish a GitHub release that links back to the full changelog.
+
+You can run the release metadata step locally with:
+
+```sh
+python3 scripts/update_changelog_release.py --version version --write
+```
+
 ## License
 
 XMRPod is licensed under the GNU General Public License, version 3. See [LICENSE](LICENSE).

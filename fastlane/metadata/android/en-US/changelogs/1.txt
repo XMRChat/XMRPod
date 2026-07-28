@@ -1,0 +1,5 @@
+Initial XMRPod release:
+- Uses the com.xmrchat.xmrpod application ID.
+- Adds a playback-screen Tip action for Monero-compatible podcast funding links.
+- Supports XMRChat profile links through the existing public tips API.
+- Starts fresh XMRPod versioning at 0.1.0.
