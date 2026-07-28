@@ -79,6 +79,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -396,7 +397,12 @@ public class CoverFragment extends Fragment {
             if (!response.isSuccessful()) {
                 throw new IOException("XMRChat page search failed: " + response.code());
             }
-            JSONArray pages = new JSONObject(responseBody).optJSONArray("pages");
+            JSONArray pages;
+            try {
+                pages = new JSONObject(responseBody).optJSONArray("pages");
+            } catch (JSONException e) {
+                throw new IOException("XMRChat page search response was not valid JSON", e);
+            }
             if (pages == null) {
                 return null;
             }
