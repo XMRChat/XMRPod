@@ -13,14 +13,14 @@ page = 1
 hasMore = True
 first = True
 while hasMore:
-    nextPage = ('https://api.github.com/repos/AntennaPod/AntennaPod/contributors'
+    nextPage = ('https://api.github.com/repos/XMRChat/XMRPod/contributors'
         + '?q=contributions&order=desc&per_page=100&page=' + str(page))
     print("Loading " + nextPage)
     json = requests.get(nextPage).json()
     for contributor in json:
         role = 'Contributor'
         if contributor['login'] == 'danieloeh':
-            role = 'Original creator of AntennaPod (retired)'
+            role = 'Original creator of upstream project (retired)'
         elif contributor['login'] in MAINTAINERS:
             role = 'Maintainer'
         elif contributor['login'] in FORMER_MAINTAINERS:
@@ -91,4 +91,3 @@ csvFile.close()
 contributorsFile.close()
 
 print('Done')
-

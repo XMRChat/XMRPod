@@ -127,7 +127,7 @@ public class ShownotesWebView extends WebView implements View.OnLongClickListene
             ClipboardManager clipboardManager = ContextCompat.getSystemService(this.getContext(),
                                                                                ClipboardManager.class);
             if (clipboardManager != null) {
-                clipboardManager.setPrimaryClip(ClipData.newPlainText("AntennaPod", r.getExtra()));
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("XMRPod", r.getExtra()));
             }
             if (Build.VERSION.SDK_INT <= 32) {
                 EventBus.getDefault().post(new MessageEvent(

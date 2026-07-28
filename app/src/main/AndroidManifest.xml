@@ -100,28 +100,6 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             android:launchMode="singleTask"
             android:exported="true">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="antennapod.org"
-                    android:pathPrefix="/deeplink/main"
-                    android:scheme="https" />
-            </intent-filter>
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="antennapod.org"
-                    android:pathPrefix="/deeplink/search"
-                    android:scheme="https" />
-            </intent-filter>
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="de.danoeh.antennapod.intents.MAIN_ACTIVITY" />
@@ -229,19 +207,7 @@
                 <data android:scheme="itpc"/>
                 <data android:scheme="pcast"/>
                 <data android:scheme="feed"/>
-                <data android:scheme="antennapod-subscribe"/>
-            </intent-filter>
-
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:host="antennapod.org" />
-                <data android:pathPrefix="/deeplink/subscribe" />
-                <data android:scheme="http" />
-                <data android:scheme="https" />
+                <data android:scheme="xmrpod-subscribe"/>
             </intent-filter>
 
             <intent-filter android:autoVerify="true">
@@ -289,10 +255,6 @@
                 android:resource="@xml/provider_paths"/>
         </provider>
 
-        <meta-data
-            tools:ignore="Deprecated"
-            android:name="com.google.android.actions"
-            android:resource="@xml/actions" />
     </application>
 
 </manifest>

@@ -4,22 +4,29 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.BlendModeColorFilterCompat;
 import androidx.core.graphics.BlendModeCompat;
@@ -30,11 +37,14 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import de.danoeh.antennapod.BuildConfig;
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.event.MessageEvent;
 import de.danoeh.antennapod.event.PlayerStatusEvent;
 import de.danoeh.antennapod.model.feed.Feed;
+import de.danoeh.antennapod.model.feed.FeedFunding;
+import de.danoeh.antennapod.net.common.AntennapodHttpClient;
 import de.danoeh.antennapod.playback.service.PlaybackService;
 import de.danoeh.antennapod.playback.service.PlaybackServiceStarter;
 import de.danoeh.antennapod.storage.database.DBReader;
@@ -43,6 +53,7 @@ import de.danoeh.antennapod.ui.appstartintent.MainActivityStarter;
 import de.danoeh.antennapod.ui.appstartintent.MediaButtonStarter;
 import de.danoeh.antennapod.ui.appstartintent.OnlineFeedviewActivityStarter;
 import de.danoeh.antennapod.ui.chapters.ChapterUtils;
+import de.danoeh.antennapod.ui.common.IntentUtils;
 import de.danoeh.antennapod.ui.screen.chapter.ChaptersFragment;
 import de.danoeh.antennapod.playback.service.PlaybackController;
 import de.danoeh.antennapod.ui.common.DateFormatter;
@@ -57,10 +68,19 @@ import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.apache.commons.lang3.StringUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.Locale;
 
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -70,8 +90,10 @@ import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
  */
 public class CoverFragment extends Fragment {
     private static final String TAG = "CoverFragment";
+    private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private CoverFragmentBinding viewBinding;
     private Disposable disposable;
+    private Disposable tipDisposable;
     private int displayedChapterIndex = -1;
     private Playable media;
 
@@ -105,6 +127,7 @@ public class CoverFragment extends Fragment {
         viewBinding.butNextChapter.setColorFilter(colorFilter);
         viewBinding.butPrevChapter.setColorFilter(colorFilter);
         viewBinding.descriptionIcon.setColorFilter(colorFilter);
+        viewBinding.tipButton.setColorFilter(colorFilter);
         viewBinding.chapterButton.setOnClickListener(v ->
                 new ChaptersFragment().show(getChildFragmentManager(), ChaptersFragment.TAG));
         viewBinding.butPrevChapter.setOnClickListener(v -> seekToPrevChapter());
@@ -150,9 +173,12 @@ public class CoverFragment extends Fragment {
                 + "\u00A0"
                 + StringUtils.replace(StringUtils.stripToEmpty(pubDateStr), " ", "\u00A0"));
         if (media instanceof FeedMedia) {
-            viewBinding.txtvPodcastTitle.setOnClickListener(v -> openFeed(((FeedMedia) media).getItem().getFeed()));
+            Feed feed = ((FeedMedia) media).getItem().getFeed();
+            viewBinding.txtvPodcastTitle.setOnClickListener(v -> openFeed(feed));
+            updateTipButton(feed);
         } else {
             viewBinding.txtvPodcastTitle.setOnClickListener(null);
+            updateTipButton(null);
         }
         viewBinding.txtvPodcastTitle.setOnLongClickListener(v -> copyText(media.getFeedTitle()));
         viewBinding.txtvEpisodeTitle.setText(media.getEpisodeTitle());
@@ -188,6 +214,132 @@ public class CoverFragment extends Fragment {
         displayedChapterIndex = -1;
         refreshChapterData(Chapter.getAfterPosition(media.getChapters(), media.getPosition()));
         updateChapterControlVisibility();
+    }
+
+    private void updateTipButton(@Nullable Feed feed) {
+        TipTarget tipTarget = getTipTarget(feed);
+        viewBinding.tipButton.setVisibility(tipTarget == null ? View.GONE : View.VISIBLE);
+        viewBinding.tipButton.setOnClickListener(v -> openTipTarget(tipTarget));
+    }
+
+    @Nullable
+    private TipTarget getTipTarget(@Nullable Feed feed) {
+        if (feed == null || feed.getPaymentLinks() == null) {
+            return null;
+        }
+        TipTarget xmrChatTarget = null;
+        for (FeedFunding funding : feed.getPaymentLinks()) {
+            if (TextUtils.isEmpty(funding.url)) {
+                continue;
+            }
+            String url = funding.url.trim();
+            String normalizedUrl = url.toLowerCase(Locale.US);
+            if (normalizedUrl.startsWith("monero:")) {
+                return TipTarget.forMoneroUri(url);
+            }
+            if (normalizedUrl.contains("xmrchat")) {
+                xmrChatTarget = TipTarget.forXmrChatUrl(url);
+            }
+        }
+        return xmrChatTarget;
+    }
+
+    private void openTipTarget(@Nullable TipTarget tipTarget) {
+        if (tipTarget == null) {
+            return;
+        }
+        if (!TextUtils.isEmpty(tipTarget.moneroUri)) {
+            openMoneroUri(tipTarget.moneroUri);
+            return;
+        }
+        if (TextUtils.isEmpty(tipTarget.xmrChatPath) || TextUtils.isEmpty(tipTarget.xmrChatApiUrl)) {
+            IntentUtils.openInBrowser(getContext(), tipTarget.fallbackUrl);
+            return;
+        }
+        showXmrChatTipDialog(tipTarget);
+    }
+
+    private void showXmrChatTipDialog(@NonNull TipTarget tipTarget) {
+        LinearLayout layout = new LinearLayout(requireContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        int padding = (int) (24 * getResources().getDisplayMetrics().density);
+        layout.setPadding(padding, 0, padding, 0);
+
+        EditText nameInput = new EditText(requireContext());
+        nameInput.setHint(R.string.tip_name_hint);
+        nameInput.setSingleLine(true);
+        nameInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        layout.addView(nameInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        EditText amountInput = new EditText(requireContext());
+        amountInput.setHint(R.string.tip_amount_hint);
+        amountInput.setSingleLine(true);
+        amountInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        layout.addView(amountInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.tip_label)
+                .setView(layout)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(R.string.tip_open_wallet, null)
+                .show();
+        dialog.setOnShowListener(dialogInterface ->
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                    String name = nameInput.getText().toString().trim();
+                    String amount = amountInput.getText().toString().trim();
+                    if (name.length() < 2 || amount.length() == 0) {
+                        Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    dialog.dismiss();
+                    createXmrChatTip(tipTarget, name, amount);
+                }));
+    }
+
+    private void createXmrChatTip(@NonNull TipTarget tipTarget, @NonNull String name, @NonNull String amount) {
+        if (tipDisposable != null) {
+            tipDisposable.dispose();
+        }
+        Toast.makeText(getContext(), R.string.tip_creating, Toast.LENGTH_SHORT).show();
+        tipDisposable = Maybe.<String>create(emitter -> {
+            JSONObject payload = new JSONObject();
+            payload.put("path", tipTarget.xmrChatPath);
+            payload.put("name", name);
+            payload.put("amount", amount);
+            payload.put("private", false);
+
+            Request request = new Request.Builder()
+                    .url(tipTarget.xmrChatApiUrl)
+                    .post(RequestBody.create(payload.toString(), JSON))
+                    .build();
+            try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
+                ResponseBody body = response.body();
+                String responseBody = body == null ? "" : body.string();
+                if (!response.isSuccessful()) {
+                    throw new IOException("XMRChat tip request failed: " + response.code());
+                }
+                String paymentAddress = new JSONObject(responseBody).optString("paymentAddress");
+                if (TextUtils.isEmpty(paymentAddress)) {
+                    throw new IOException("XMRChat tip response did not include a payment address");
+                }
+                emitter.onSuccess("monero:" + paymentAddress
+                        + "?tx_amount=" + Uri.encode(amount)
+                        + "&tx_description=" + Uri.encode("XMRPod tip"));
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::openMoneroUri, error -> {
+                    Log.e(TAG, Log.getStackTraceString(error));
+                    Toast.makeText(getContext(), R.string.tip_create_failed, Toast.LENGTH_LONG).show();
+                });
+    }
+
+    private void openMoneroUri(@NonNull String moneroUri) {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(moneroUri)));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getContext(), R.string.tip_no_wallet, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void openFeed(Feed feed) {
@@ -293,7 +445,60 @@ public class CoverFragment extends Fragment {
         if (disposable != null) {
             disposable.dispose();
         }
+        if (tipDisposable != null) {
+            tipDisposable.dispose();
+        }
         viewBinding = null;
+    }
+
+    private static class TipTarget {
+        private final String moneroUri;
+        private final String fallbackUrl;
+        private final String xmrChatApiUrl;
+        private final String xmrChatPath;
+
+        private TipTarget(@Nullable String moneroUri, @Nullable String fallbackUrl,
+                          @Nullable String xmrChatApiUrl, @Nullable String xmrChatPath) {
+            this.moneroUri = moneroUri;
+            this.fallbackUrl = fallbackUrl;
+            this.xmrChatApiUrl = xmrChatApiUrl;
+            this.xmrChatPath = xmrChatPath;
+        }
+
+        private static TipTarget forMoneroUri(@NonNull String moneroUri) {
+            return new TipTarget(moneroUri, null, null, null);
+        }
+
+        @Nullable
+        private static TipTarget forXmrChatUrl(@NonNull String url) {
+            String normalizedUrl = url.contains("://") ? url : "https://" + url;
+            Uri uri = Uri.parse(normalizedUrl);
+            String host = uri.getHost();
+            if (TextUtils.isEmpty(host)) {
+                return null;
+            }
+
+            String path = null;
+            for (String segment : uri.getPathSegments()) {
+                if (!TextUtils.isEmpty(segment)) {
+                    path = segment;
+                    break;
+                }
+            }
+            if (TextUtils.isEmpty(path)) {
+                return new TipTarget(null, normalizedUrl, null, null);
+            }
+
+            String apiUrl;
+            String lowerHost = host.toLowerCase(Locale.US);
+            if ("xmrchat.com".equals(lowerHost) || "www.xmrchat.com".equals(lowerHost)) {
+                apiUrl = "https://nest.xmrchat.com/tips";
+            } else {
+                String scheme = TextUtils.isEmpty(uri.getScheme()) ? "https" : uri.getScheme();
+                apiUrl = scheme + "://" + uri.getEncodedAuthority() + "/tips";
+            }
+            return new TipTarget(null, normalizedUrl, apiUrl, path);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -369,7 +574,7 @@ public class CoverFragment extends Fragment {
     private boolean copyText(String text) {
         ClipboardManager clipboardManager = ContextCompat.getSystemService(requireContext(), ClipboardManager.class);
         if (clipboardManager != null) {
-            clipboardManager.setPrimaryClip(ClipData.newPlainText("AntennaPod", text));
+            clipboardManager.setPrimaryClip(ClipData.newPlainText("XMRPod", text));
         }
         if (Build.VERSION.SDK_INT <= 32) {
             EventBus.getDefault().post(new MessageEvent(getString(R.string.copied_to_clipboard)));
