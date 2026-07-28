@@ -104,8 +104,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          version="${RELEASE_TAG#xmrpod-v}"
           gh release create "$RELEASE_TAG" \
             app/build/outputs/apk/free/release/*.apk \
             --repo "$GITHUB_REPOSITORY" \
-            --title "XMRPod $RELEASE_TAG" \
+            --title "XMRPod $version" \
             --notes-file /tmp/xmrpod-release-notes.md
