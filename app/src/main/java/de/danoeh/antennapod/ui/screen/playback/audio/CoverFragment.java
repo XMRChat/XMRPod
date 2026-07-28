@@ -68,6 +68,7 @@ import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -77,11 +78,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
 import java.io.IOException;
+import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -92,8 +98,14 @@ import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
 public class CoverFragment extends Fragment {
     private static final String TAG = "CoverFragment";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static final Pattern MONERO_URI_PATTERN = Pattern.compile("monero:[^\\s<>'\"]+",
+            Pattern.CASE_INSENSITIVE);
+    private static final Pattern XMRCHAT_URL_PATTERN = Pattern.compile(
+            "(?:https?://)?(?:www\\.)?xmrchat\\.com/[A-Za-z0-9_-]+", Pattern.CASE_INSENSITIVE);
+    private static final int MAX_XMRCHAT_SEARCH_CANDIDATES = 4;
     private CoverFragmentBinding viewBinding;
     private Disposable disposable;
+    private Disposable tipDiscoveryDisposable;
     private Disposable tipDisposable;
     private int displayedChapterIndex = -1;
     private Playable media;
@@ -174,9 +186,10 @@ public class CoverFragment extends Fragment {
                 + "\u00A0"
                 + StringUtils.replace(StringUtils.stripToEmpty(pubDateStr), " ", "\u00A0"));
         if (media instanceof FeedMedia) {
-            Feed feed = ((FeedMedia) media).getItem().getFeed();
+            FeedMedia feedMedia = (FeedMedia) media;
+            Feed feed = feedMedia.getItem().getFeed();
             viewBinding.txtvPodcastTitle.setOnClickListener(v -> openFeed(feed));
-            updateTipButton(feed);
+            updateTipButton(feedMedia);
         } else {
             viewBinding.txtvPodcastTitle.setOnClickListener(null);
             updateTipButton(null);
@@ -217,32 +230,225 @@ public class CoverFragment extends Fragment {
         updateChapterControlVisibility();
     }
 
-    private void updateTipButton(@Nullable Feed feed) {
-        TipTarget tipTarget = getTipTarget(feed);
+    private void updateTipButton(@Nullable FeedMedia feedMedia) {
+        if (tipDiscoveryDisposable != null) {
+            tipDiscoveryDisposable.dispose();
+            tipDiscoveryDisposable = null;
+        }
+
+        TipTarget tipTarget = getTipTarget(feedMedia);
+        showTipButton(tipTarget);
+        if (tipTarget == null && feedMedia != null) {
+            discoverXmrChatTipTarget(feedMedia);
+        }
+    }
+
+    private void showTipButton(@Nullable TipTarget tipTarget) {
         viewBinding.tipButton.setVisibility(tipTarget == null ? View.GONE : View.VISIBLE);
-        viewBinding.tipButton.setOnClickListener(v -> openTipTarget(tipTarget));
+        viewBinding.tipButton.setOnClickListener(tipTarget == null ? null : v -> openTipTarget(tipTarget));
     }
 
     @Nullable
-    private TipTarget getTipTarget(@Nullable Feed feed) {
-        if (feed == null || feed.getPaymentLinks() == null) {
+    private TipTarget getTipTarget(@Nullable FeedMedia feedMedia) {
+        if (feedMedia == null || feedMedia.getItem() == null) {
             return null;
         }
+
+        TipTarget directTarget = getTipTargetFromText(feedMedia.getItem().getPaymentLink());
+        if (directTarget != null) {
+            return directTarget;
+        }
+        directTarget = getTipTargetFromText(feedMedia.getItem().getDescription());
+        if (directTarget != null) {
+            return directTarget;
+        }
+
+        Feed feed = feedMedia.getItem().getFeed();
+        if (feed == null) {
+            return null;
+        }
+        directTarget = getTipTargetFromText(feed.getDescription());
+        if (directTarget != null) {
+            return directTarget;
+        }
+        if (feed.getPaymentLinks() == null) {
+            return null;
+        }
+
         TipTarget xmrChatTarget = null;
         for (FeedFunding funding : feed.getPaymentLinks()) {
-            if (TextUtils.isEmpty(funding.url)) {
-                continue;
+            if (!TextUtils.isEmpty(funding.url)) {
+                directTarget = getTipTargetFromUrl(funding.url);
+                if (directTarget != null && !TextUtils.isEmpty(directTarget.moneroUri)) {
+                    return directTarget;
+                }
+                if (directTarget != null) {
+                    xmrChatTarget = directTarget;
+                }
             }
-            String url = funding.url.trim();
-            String normalizedUrl = url.toLowerCase(Locale.US);
-            if (normalizedUrl.startsWith("monero:")) {
-                return TipTarget.forMoneroUri(url);
+            directTarget = getTipTargetFromText(funding.content);
+            if (directTarget != null && !TextUtils.isEmpty(directTarget.moneroUri)) {
+                return directTarget;
             }
-            if (normalizedUrl.contains("xmrchat")) {
-                xmrChatTarget = TipTarget.forXmrChatUrl(url);
+            if (directTarget != null) {
+                xmrChatTarget = directTarget;
             }
         }
         return xmrChatTarget;
+    }
+
+    @Nullable
+    private TipTarget getTipTargetFromText(@Nullable String text) {
+        if (TextUtils.isEmpty(text)) {
+            return null;
+        }
+
+        Matcher moneroMatcher = MONERO_URI_PATTERN.matcher(text);
+        if (moneroMatcher.find()) {
+            return TipTarget.forMoneroUri(moneroMatcher.group());
+        }
+
+        Matcher xmrChatMatcher = XMRCHAT_URL_PATTERN.matcher(text);
+        if (xmrChatMatcher.find()) {
+            return TipTarget.forXmrChatUrl(xmrChatMatcher.group());
+        }
+        return null;
+    }
+
+    @Nullable
+    private TipTarget getTipTargetFromUrl(@Nullable String url) {
+        if (TextUtils.isEmpty(url)) {
+            return null;
+        }
+        String trimmedUrl = url.trim();
+        String normalizedUrl = trimmedUrl.toLowerCase(Locale.US);
+        if (normalizedUrl.startsWith("monero:")) {
+            return TipTarget.forMoneroUri(trimmedUrl);
+        }
+        if (normalizedUrl.contains("xmrchat")) {
+            return TipTarget.forXmrChatUrl(trimmedUrl);
+        }
+        return null;
+    }
+
+    private void discoverXmrChatTipTarget(@NonNull FeedMedia feedMedia) {
+        tipDiscoveryDisposable = Maybe.<TipTarget>create(emitter -> {
+            for (String candidate : getXmrChatSearchCandidates(feedMedia)) {
+                TipTarget target = searchXmrChatPage(candidate, feedMedia);
+                if (target != null) {
+                    emitter.onSuccess(target);
+                    return;
+                }
+            }
+            emitter.onComplete();
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showTipButton, error -> Log.e(TAG, Log.getStackTraceString(error)));
+    }
+
+    private Set<String> getXmrChatSearchCandidates(@NonNull FeedMedia feedMedia) {
+        Set<String> candidates = new LinkedHashSet<>();
+        Feed feed = feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
+        if (feed != null) {
+            addSearchCandidate(candidates, feed.getAuthor());
+            addSearchCandidate(candidates, feed.getTitle());
+            addSearchCandidate(candidates, hostLabel(feed.getLink()));
+            addSearchCandidate(candidates, hostLabel(feed.getDownloadUrl()));
+        }
+        addSearchCandidate(candidates, feedMedia.getEpisodeTitle());
+        return candidates;
+    }
+
+    private void addSearchCandidate(@NonNull Set<String> candidates, @Nullable String value) {
+        if (candidates.size() >= MAX_XMRCHAT_SEARCH_CANDIDATES) {
+            return;
+        }
+        String candidate = StringUtils.stripToEmpty(value);
+        if (candidate.length() >= 3) {
+            candidates.add(candidate);
+        }
+    }
+
+    @Nullable
+    private String hostLabel(@Nullable String value) {
+        if (TextUtils.isEmpty(value)) {
+            return null;
+        }
+        String url = value.contains("://") ? value : "https://" + value;
+        String host = Uri.parse(url).getHost();
+        if (TextUtils.isEmpty(host)) {
+            return null;
+        }
+        host = StringUtils.removeStart(host.toLowerCase(Locale.US), "www.");
+        int dot = host.indexOf('.');
+        return dot > 0 ? host.substring(0, dot) : host;
+    }
+
+    @Nullable
+    private TipTarget searchXmrChatPage(@NonNull String candidate, @NonNull FeedMedia feedMedia) throws IOException {
+        HttpUrl url = HttpUrl.parse("https://nest.xmrchat.com/pages/search").newBuilder()
+                .addQueryParameter("search", candidate)
+                .addQueryParameter("limit", "3")
+                .build();
+        Request request = new Request.Builder().url(url).get().build();
+        try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
+            ResponseBody body = response.body();
+            String responseBody = body == null ? "" : body.string();
+            if (!response.isSuccessful()) {
+                throw new IOException("XMRChat page search failed: " + response.code());
+            }
+            JSONArray pages = new JSONObject(responseBody).optJSONArray("pages");
+            if (pages == null) {
+                return null;
+            }
+            for (int i = 0; i < pages.length(); i++) {
+                JSONObject page = pages.optJSONObject(i);
+                String path = page == null ? null : page.optString("path");
+                if (page != null && isMatchingXmrChatPage(page, candidate, feedMedia) && !TextUtils.isEmpty(path)) {
+                    return TipTarget.forXmrChatUrl("https://xmrchat.com/" + path);
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean isMatchingXmrChatPage(@NonNull JSONObject page, @NonNull String candidate,
+                                          @NonNull FeedMedia feedMedia) {
+        String normalizedCandidate = normalizeSearchValue(candidate);
+        String pagePath = normalizeSearchValue(page.optString("path"));
+        String pageName = normalizeSearchValue(page.optString("name"));
+        if (normalizedCandidate.equals(pagePath) || normalizedCandidate.equals(pageName)) {
+            return true;
+        }
+
+        Feed feed = feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
+        String feedHost = feed == null ? null : hostLabel(feed.getLink());
+        String feedUrl = feed == null ? null : StringUtils.stripToEmpty(feed.getDownloadUrl());
+        JSONArray links = page.optJSONArray("links");
+        if (links == null) {
+            return false;
+        }
+        for (int i = 0; i < links.length(); i++) {
+            JSONObject link = links.optJSONObject(i);
+            if (link == null) {
+                continue;
+            }
+            String platform = link.optString("platform");
+            String value = StringUtils.stripToEmpty(link.optString("value"));
+            if ("podcast-rss".equals(platform) && !TextUtils.isEmpty(feedUrl) && feedUrl.equalsIgnoreCase(value)) {
+                return true;
+            }
+            if ("website".equals(platform) && !TextUtils.isEmpty(feedHost)
+                    && feedHost.equalsIgnoreCase(hostLabel(value))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String normalizeSearchValue(@Nullable String value) {
+        return StringUtils.stripToEmpty(value).toLowerCase(Locale.US)
+                .replaceAll("[^a-z0-9]+", "");
     }
 
     private void openTipTarget(@Nullable TipTarget tipTarget) {
@@ -446,6 +652,9 @@ public class CoverFragment extends Fragment {
         super.onDestroyView();
         if (disposable != null) {
             disposable.dispose();
+        }
+        if (tipDiscoveryDisposable != null) {
+            tipDiscoveryDisposable.dispose();
         }
         if (tipDisposable != null) {
             tipDisposable.dispose();

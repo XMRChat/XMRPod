@@ -1,0 +1,2 @@
+- Show the playback Tip action when an episode or feed description includes an XMRChat link.
+- Discover matching public XMRChat creator pages from podcast metadata when the feed does not publish funding tags.

@@ -2,6 +2,13 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.1] - 2026-07-28
+
+### Fixed
+
+- Show the playback Tip action when an episode or feed description includes an XMRChat link.
+- Discover matching public XMRChat creator pages from podcast metadata when the feed does not publish funding tags.
+
 ## [0.1.0] - 2026-07-28
 
 ### Added
