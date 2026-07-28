@@ -39,6 +39,12 @@
     <string name="current_playing_episode">Current</string>
     <string name="tip_label">Tip</string>
     <string name="tip_no_wallet">No Monero wallet app found</string>
+    <string name="tip_name_hint">Name</string>
+    <string name="tip_amount_hint">Amount in XMR</string>
+    <string name="tip_open_wallet">Open wallet</string>
+    <string name="tip_invalid_input">Enter a name and amount</string>
+    <string name="tip_creating">Creating tip address...</string>
+    <string name="tip_create_failed">Could not create XMRChat tip</string>
 
     <!-- Google Assistant -->
     <string name="app_action_not_found">\"%1$s\" not found</string>
