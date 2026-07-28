@@ -35,6 +35,8 @@ public class MainPreferencesFragment extends AnimatedPreferenceFragment {
     private static final String PREF_NOTIFICATION = "notifications";
     private static final String PREF_CONTRIBUTE = "prefContribute";
     private static final String PREF_SCREEN_PARENTAL_CONTROL = "prefScreenParentalControl";
+    private static final String RELEASE_PACKAGE = "com.xmrchat.xmrpod";
+    private static final String DEBUG_PACKAGE = "com.xmrchat.xmrpod.debug";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -44,8 +46,8 @@ public class MainPreferencesFragment extends AnimatedPreferenceFragment {
         setParentalControlsVisibility();
 
         // XMRPod is a GPL-licensed fork. Keep the project/support links below pointed at this fork.
-        int packageHash = getContext().getPackageName().hashCode();
-        if (packageHash != 1790437538 && packageHash != -1190467065) {
+        String packageName = getContext().getPackageName();
+        if (!RELEASE_PACKAGE.equals(packageName) && !DEBUG_PACKAGE.equals(packageName)) {
             findPreference(PREF_CATEGORY_PROJECT).setVisible(false);
             Preference copyrightNotice = new Preference(getContext());
             copyrightNotice.setIcon(R.drawable.ic_info_white);
@@ -54,7 +56,7 @@ public class MainPreferencesFragment extends AnimatedPreferenceFragment {
             copyrightNotice.setSummary("XMRPod is a GPL-licensed podcast app fork."
                     + " Support is provided by the XMRPod maintainers.");
             findPreference(PREF_CATEGORY_PROJECT).getParent().addPreference(copyrightNotice);
-        } else if (packageHash == -1190467065) {
+        } else if (DEBUG_PACKAGE.equals(packageName)) {
             Preference debugNotice = new Preference(getContext());
             debugNotice.setIcon(R.drawable.ic_info_white);
             debugNotice.getIcon().mutate()
