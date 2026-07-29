@@ -259,9 +259,9 @@ public class CoverFragment extends Fragment {
 
         TipTarget tipTarget = getTipTarget(media);
         Log.d(TAG, "Tip target direct lookup for media="
-                + (media == null ? "null" : media.getClass().getSimpleName())
-                + ", feedTitle=" + (media == null ? "null" : media.getFeedTitle())
-                + ", episodeTitle=" + (media == null ? "null" : media.getEpisodeTitle())
+                + media.getClass().getSimpleName()
+                + ", feedTitle=" + media.getFeedTitle()
+                + ", episodeTitle=" + media.getEpisodeTitle()
                 + ", found=" + (tipTarget != null));
         if (tipTarget != null) {
             clearTipDiscovery();
