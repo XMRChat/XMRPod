@@ -39,21 +39,6 @@ jobs:
             exit 0
           fi
 
-          version_code="$(sed -n 's/^[[:space:]]*versionCode //p' app/build.gradle | head -n 1)"
-          python3 scripts/update_changelog_release.py \
-            --version "$version" \
-            --date "$(date -u +%F)" \
-            --write \
-            --fastlane-changelog "fastlane/metadata/android/en-US/changelogs/$version_code.txt"
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet; then
-            git add CHANGELOG.md fastlane/metadata/android/en-US/changelogs
-            git commit -m "Prepare XMRPod $version release"
-            git push origin HEAD:develop
-          fi
-
           git tag -a "$release_tag" -m "XMRPod $version"
           git push origin "$release_tag"
           echo "should_release=true" >> "$GITHUB_OUTPUT"

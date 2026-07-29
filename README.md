@@ -44,8 +44,8 @@ app/build/outputs/apk/
 
 Release notes come from [CHANGELOG.md](CHANGELOG.md), not from generated commit summaries.
 
-To publish a new XMRPod release, add a new topmost `## [version] - TBD` section to `CHANGELOG.md` and push it to `develop`.
-GitHub Actions will date that changelog section, update the matching Fastlane changelog file, create the `xmrpod-vversion` tag, build the Free release APK, and publish a GitHub release that links back to the full changelog.
+To publish a new XMRPod release, add a new topmost `## [version] - TBD` section to `CHANGELOG.md`, run the release metadata step locally, commit the result, and push it to `develop`.
+GitHub Actions will read the latest changelog version, create the `xmrpod-vversion` tag if it does not exist, build the Free release APK, and publish a GitHub release that links back to the full changelog.
 
 You can run the release metadata step locally with:
 
