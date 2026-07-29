@@ -44,7 +44,7 @@ android {
                 'RestrictedApi', 'ExportedReceiver', 'NotifyDataSetChanged', 'UseCompoundDrawables', 'NestedWeights',
                 'Overdraw', 'UselessParent', 'TextFields', 'AlwaysShowAction', 'Autofill', 'ClickableViewAccessibility',
                 'KeyboardInaccessibleWidget', 'LabelFor', 'SetTextI18n', 'HardcodedText', 'RelativeOverlap',
-                'RtlHardcoded', 'RtlEnabled', 'ContentDescription'
+                'RtlHardcoded', 'RtlEnabled', 'ContentDescription', 'IconDuplicates'
     }
 
     androidResources {
