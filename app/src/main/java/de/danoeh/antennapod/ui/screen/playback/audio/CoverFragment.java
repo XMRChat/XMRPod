@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,12 +22,16 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.BlendModeColorFilterCompat;
 import androidx.core.graphics.BlendModeCompat;
@@ -37,7 +42,8 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import de.danoeh.antennapod.BuildConfig;
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.event.MessageEvent;
@@ -86,6 +92,7 @@ import java.util.List;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -108,6 +115,9 @@ public class CoverFragment extends Fragment {
     private Disposable disposable;
     private Disposable tipDiscoveryDisposable;
     private Disposable tipDisposable;
+    private Object tipDiscoveryMediaIdentifier;
+    private Object visibleTipMediaIdentifier;
+    private TipTarget visibleTipTarget;
     private int displayedChapterIndex = -1;
     private Playable media;
 
@@ -190,11 +200,10 @@ public class CoverFragment extends Fragment {
             FeedMedia feedMedia = (FeedMedia) media;
             Feed feed = feedMedia.getItem().getFeed();
             viewBinding.txtvPodcastTitle.setOnClickListener(v -> openFeed(feed));
-            updateTipButton(feedMedia);
         } else {
             viewBinding.txtvPodcastTitle.setOnClickListener(null);
-            updateTipButton(null);
         }
+        updateTipButton(media);
         viewBinding.txtvPodcastTitle.setOnLongClickListener(v -> copyText(media.getFeedTitle()));
         viewBinding.txtvEpisodeTitle.setText(media.getEpisodeTitle());
         viewBinding.txtvEpisodeTitle.setOnLongClickListener(v -> copyText(media.getEpisodeTitle()));
@@ -231,31 +240,76 @@ public class CoverFragment extends Fragment {
         updateChapterControlVisibility();
     }
 
-    private void updateTipButton(@Nullable FeedMedia feedMedia) {
-        if (tipDiscoveryDisposable != null) {
-            tipDiscoveryDisposable.dispose();
-            tipDiscoveryDisposable = null;
+    private void updateTipButton(@Nullable Playable media) {
+        if (media == null) {
+            clearTipDiscovery();
+            visibleTipMediaIdentifier = null;
+            visibleTipTarget = null;
+            showTipButton(null);
+            return;
         }
 
-        TipTarget tipTarget = getTipTarget(feedMedia);
-        showTipButton(tipTarget);
-        if (tipTarget == null && feedMedia != null) {
-            discoverXmrChatTipTarget(feedMedia);
+        Object mediaIdentifier = getTipMediaIdentifier(media);
+        if (!Objects.equals(mediaIdentifier, visibleTipMediaIdentifier)) {
+            clearTipDiscovery();
+            visibleTipMediaIdentifier = mediaIdentifier;
+            visibleTipTarget = null;
         }
+
+        TipTarget tipTarget = getTipTarget(media);
+        Log.d(TAG, "Tip target direct lookup for media="
+                + (media == null ? "null" : media.getClass().getSimpleName())
+                + ", feedTitle=" + (media == null ? "null" : media.getFeedTitle())
+                + ", episodeTitle=" + (media == null ? "null" : media.getEpisodeTitle())
+                + ", found=" + (tipTarget != null));
+        if (tipTarget != null) {
+            clearTipDiscovery();
+            visibleTipTarget = tipTarget;
+            showTipButton(tipTarget);
+            return;
+        }
+
+        if (visibleTipTarget != null) {
+            showTipButton(visibleTipTarget);
+            return;
+        }
+
+        if (tipDiscoveryDisposable != null && Objects.equals(mediaIdentifier, tipDiscoveryMediaIdentifier)) {
+            return;
+        }
+        clearTipDiscovery();
+        showTipButton(null);
+        discoverXmrChatTipTarget(media, mediaIdentifier);
     }
 
     private void showTipButton(@Nullable TipTarget tipTarget) {
+        Log.d(TAG, "Setting tip button visible=" + (tipTarget != null));
         viewBinding.tipButton.setVisibility(tipTarget == null ? View.GONE : View.VISIBLE);
         viewBinding.tipButton.setOnClickListener(tipTarget == null ? null : v -> openTipTarget(tipTarget));
     }
 
     @Nullable
-    private TipTarget getTipTarget(@Nullable FeedMedia feedMedia) {
-        if (feedMedia == null || feedMedia.getItem() == null) {
+    private TipTarget getTipTarget(@Nullable Playable media) {
+        if (media == null) {
             return null;
         }
 
-        TipTarget directTarget = getTipTargetFromText(feedMedia.getItem().getPaymentLink());
+        TipTarget directTarget = getTipTargetFromText(media.getFeedTitle());
+        if (directTarget != null) {
+            return directTarget;
+        }
+        directTarget = getTipTargetFromText(media.getEpisodeTitle());
+        if (directTarget != null) {
+            return directTarget;
+        }
+
+        if (!(media instanceof FeedMedia) || ((FeedMedia) media).getItem() == null) {
+            return null;
+        }
+
+        FeedMedia feedMedia = (FeedMedia) media;
+
+        directTarget = getTipTargetFromText(feedMedia.getItem().getPaymentLink());
         if (directTarget != null) {
             return directTarget;
         }
@@ -332,31 +386,70 @@ public class CoverFragment extends Fragment {
         return null;
     }
 
-    private void discoverXmrChatTipTarget(@NonNull FeedMedia feedMedia) {
+    private void clearTipDiscovery() {
+        if (tipDiscoveryDisposable != null) {
+            tipDiscoveryDisposable.dispose();
+            tipDiscoveryDisposable = null;
+        }
+        tipDiscoveryMediaIdentifier = null;
+    }
+
+    @NonNull
+    private Object getTipMediaIdentifier(@NonNull Playable media) {
+        Object identifier = media.getIdentifier();
+        if (identifier != null) {
+            return identifier;
+        }
+        return media.getClass().getName() + ":" + StringUtils.stripToEmpty(media.getFeedTitle())
+                + ":" + StringUtils.stripToEmpty(media.getEpisodeTitle());
+    }
+
+    private void discoverXmrChatTipTarget(@NonNull Playable media, @NonNull Object mediaIdentifier) {
+        tipDiscoveryMediaIdentifier = mediaIdentifier;
         tipDiscoveryDisposable = Maybe.<TipTarget>create(emitter -> {
-            for (String candidate : getXmrChatSearchCandidates(feedMedia)) {
-                TipTarget target = searchXmrChatPage(candidate, feedMedia);
+            for (String candidate : getXmrChatSearchCandidates(media)) {
+                Log.d(TAG, "Searching XMRChat pages for candidate=" + candidate);
+                TipTarget target = searchXmrChatPage(candidate, media);
                 if (target != null) {
+                    Log.d(TAG, "Found XMRChat tip target for candidate=" + candidate);
                     emitter.onSuccess(target);
                     return;
                 }
             }
+            Log.d(TAG, "No XMRChat tip target discovered");
             emitter.onComplete();
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::showTipButton, error -> Log.e(TAG, Log.getStackTraceString(error)));
+                .subscribe(tipTarget -> {
+                    if (!Objects.equals(mediaIdentifier, visibleTipMediaIdentifier)) {
+                        return;
+                    }
+                    tipDiscoveryDisposable = null;
+                    tipDiscoveryMediaIdentifier = null;
+                    visibleTipTarget = tipTarget;
+                    showTipButton(tipTarget);
+                }, error -> {
+                    tipDiscoveryDisposable = null;
+                    tipDiscoveryMediaIdentifier = null;
+                    Log.e(TAG, Log.getStackTraceString(error));
+                }, () -> {
+                    tipDiscoveryDisposable = null;
+                    tipDiscoveryMediaIdentifier = null;
+                });
     }
 
-    private Set<String> getXmrChatSearchCandidates(@NonNull FeedMedia feedMedia) {
+    private Set<String> getXmrChatSearchCandidates(@NonNull Playable media) {
         Set<String> candidates = new LinkedHashSet<>();
-        Feed feed = feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
+        addSearchCandidate(candidates, media.getFeedTitle());
+        FeedMedia feedMedia = media instanceof FeedMedia ? (FeedMedia) media : null;
+        Feed feed = feedMedia == null || feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
         if (feed != null) {
             addSearchCandidate(candidates, feed.getAuthor());
             addSearchCandidate(candidates, feed.getTitle());
             addSearchCandidate(candidates, hostLabel(feed.getLink()));
             addSearchCandidate(candidates, hostLabel(feed.getDownloadUrl()));
         }
-        addSearchCandidate(candidates, feedMedia.getEpisodeTitle());
+        addSearchCandidate(candidates, media.getEpisodeTitle());
         return candidates;
     }
 
@@ -366,6 +459,7 @@ public class CoverFragment extends Fragment {
         }
         String candidate = StringUtils.stripToEmpty(value);
         if (candidate.length() >= 3) {
+            Log.d(TAG, "Adding XMRChat search candidate=" + candidate);
             candidates.add(candidate);
         }
     }
@@ -386,7 +480,7 @@ public class CoverFragment extends Fragment {
     }
 
     @Nullable
-    private TipTarget searchXmrChatPage(@NonNull String candidate, @NonNull FeedMedia feedMedia) throws IOException {
+    private TipTarget searchXmrChatPage(@NonNull String candidate, @NonNull Playable media) throws IOException {
         HttpUrl url = HttpUrl.parse("https://nest.xmrchat.com/pages/search").newBuilder()
                 .addQueryParameter("search", candidate)
                 .addQueryParameter("limit", "3")
@@ -405,12 +499,16 @@ public class CoverFragment extends Fragment {
                 throw new IOException("XMRChat page search response was not valid JSON", e);
             }
             if (pages == null) {
+                Log.d(TAG, "XMRChat search response had no pages for candidate=" + candidate);
                 return null;
             }
             for (int i = 0; i < pages.length(); i++) {
                 JSONObject page = pages.optJSONObject(i);
                 String path = page == null ? null : page.optString("path");
-                if (page != null && isMatchingXmrChatPage(page, candidate, feedMedia) && !TextUtils.isEmpty(path)) {
+                Log.d(TAG, "XMRChat search result path=" + path
+                        + ", name=" + (page == null ? null : page.optString("name"))
+                        + ", matches=" + (page != null && isMatchingXmrChatPage(page, candidate, media)));
+                if (page != null && isMatchingXmrChatPage(page, candidate, media) && !TextUtils.isEmpty(path)) {
                     return TipTarget.forXmrChatUrl("https://xmrchat.com/" + path);
                 }
             }
@@ -419,7 +517,7 @@ public class CoverFragment extends Fragment {
     }
 
     private boolean isMatchingXmrChatPage(@NonNull JSONObject page, @NonNull String candidate,
-                                          @NonNull FeedMedia feedMedia) {
+                                          @NonNull Playable media) {
         String normalizedCandidate = normalizeSearchValue(candidate);
         String pagePath = normalizeSearchValue(page.optString("path"));
         String pageName = normalizeSearchValue(page.optString("name"));
@@ -427,7 +525,8 @@ public class CoverFragment extends Fragment {
             return true;
         }
 
-        Feed feed = feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
+        FeedMedia feedMedia = media instanceof FeedMedia ? (FeedMedia) media : null;
+        Feed feed = feedMedia == null || feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
         String feedHost = feed == null ? null : hostLabel(feed.getLink());
         String feedUrl = feed == null ? null : StringUtils.stripToEmpty(feed.getDownloadUrl());
         JSONArray links = page.optJSONArray("links");
@@ -473,16 +572,30 @@ public class CoverFragment extends Fragment {
     }
 
     private void showXmrChatTipDialog(@NonNull TipTarget tipTarget) {
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        ScrollView scrollView = new ScrollView(requireContext());
+        scrollView.setFillViewport(false);
+
         LinearLayout layout = new LinearLayout(requireContext());
         layout.setOrientation(LinearLayout.VERTICAL);
-        int padding = (int) (24 * getResources().getDisplayMetrics().density);
-        layout.setPadding(padding, 0, padding, 0);
+        float density = getResources().getDisplayMetrics().density;
+        int padding = (int) (24 * density);
+        int spacing = (int) (16 * density);
+        layout.setPadding(padding, padding, padding, padding);
+        scrollView.addView(layout);
+
+        TextView title = new TextView(requireContext());
+        title.setText(R.string.tip_label);
+        title.setTextAppearance(com.google.android.material.R.style.TextAppearance_Material3_TitleLarge);
+        layout.addView(title, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
         EditText nameInput = new EditText(requireContext());
         nameInput.setHint(R.string.tip_name_hint);
         nameInput.setSingleLine(true);
         nameInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        layout.addView(nameInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        LinearLayout.LayoutParams fieldParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+        fieldParams.topMargin = spacing;
+        layout.addView(nameInput, fieldParams);
 
         EditText amountInput = new EditText(requireContext());
         amountInput.setHint(R.string.tip_amount_hint);
@@ -490,26 +603,59 @@ public class CoverFragment extends Fragment {
         amountInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         layout.addView(amountInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
-        AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.tip_label)
-                .setView(layout)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(R.string.tip_open_wallet, null)
-                .show();
-        dialog.setOnShowListener(dialogInterface ->
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-                    String name = nameInput.getText().toString().trim();
-                    String amount = amountInput.getText().toString().trim();
-                    if (name.length() < 2 || amount.length() == 0) {
-                        Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    dialog.dismiss();
-                    createXmrChatTip(tipTarget, name, amount);
-                }));
+        EditText messageInput = new EditText(requireContext());
+        messageInput.setHint(R.string.tip_message_hint);
+        messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(255)});
+        messageInput.setMinLines(2);
+        messageInput.setMaxLines(4);
+        messageInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE
+                | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        layout.addView(messageInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        LinearLayout buttons = new LinearLayout(requireContext());
+        buttons.setGravity(android.view.Gravity.END);
+        buttons.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams buttonRowParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+        buttonRowParams.topMargin = spacing;
+        layout.addView(buttons, buttonRowParams);
+
+        Button cancelButton = new Button(requireContext());
+        cancelButton.setText(android.R.string.cancel);
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
+        buttons.addView(cancelButton, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+
+        Button openWalletButton = new Button(requireContext());
+        openWalletButton.setText(R.string.tip_open_wallet);
+        openWalletButton.setOnClickListener(v -> {
+            String name = nameInput.getText().toString().trim();
+            String amount = amountInput.getText().toString().trim();
+            String message = messageInput.getText().toString().trim();
+            if (name.length() < 2 || amount.length() == 0) {
+                Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
+                return;
+            }
+            dialog.dismiss();
+            createXmrChatTip(tipTarget, name, amount, message);
+        });
+        buttons.addView(openWalletButton, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+
+        dialog.setContentView(scrollView);
+        dialog.setOnShowListener(dialogInterface -> {
+            FrameLayout bottomSheet = dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+                behavior.setSkipCollapsed(true);
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            }
+        });
+        dialog.show();
     }
 
-    private void createXmrChatTip(@NonNull TipTarget tipTarget, @NonNull String name, @NonNull String amount) {
+    private void createXmrChatTip(@NonNull TipTarget tipTarget, @NonNull String name,
+                                  @NonNull String amount, @NonNull String message) {
         if (tipDisposable != null) {
             tipDisposable.dispose();
         }
@@ -518,6 +664,7 @@ public class CoverFragment extends Fragment {
             JSONObject payload = new JSONObject();
             payload.put("path", tipTarget.xmrChatPath);
             payload.put("name", name);
+            payload.put("message", message);
             payload.put("amount", amount);
             payload.put("private", false);
 

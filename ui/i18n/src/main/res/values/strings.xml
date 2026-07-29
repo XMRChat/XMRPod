@@ -41,6 +41,7 @@
     <string name="tip_no_wallet">No Monero wallet app found</string>
     <string name="tip_name_hint">Name</string>
     <string name="tip_amount_hint">Amount in XMR</string>
+    <string name="tip_message_hint">Message</string>
     <string name="tip_open_wallet">Open wallet</string>
     <string name="tip_invalid_input">Enter a name and amount</string>
     <string name="tip_creating">Creating tip address...</string>
@@ -142,7 +143,7 @@
     <string name="error_label">Error</string>
     <string name="error_msg_prefix">An error occurred:</string>
     <string name="refresh_label">Refresh</string>
-    <string name="chapters_label">Chapters</string>
+    <string name="chapters_label">Ch.</string>
     <string name="no_chapters_label">No chapters</string>
     <string name="chapter_duration">Duration: %1$s</string>
     <string name="description_label">Description</string>
