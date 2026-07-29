@@ -2,7 +2,7 @@
 
 All notable changes to XMRPod are documented in this file.
 
-## [0.1.2] - TBD
+## [0.1.2] - 2026-07-29
 
 ### Added
 
