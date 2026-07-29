@@ -573,7 +573,7 @@ public class CoverFragment extends Fragment {
     }
 
     private void showXmrChatTipDialog(@NonNull TipTarget tipTarget) {
-        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        final BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
         ScrollView scrollView = new ScrollView(requireContext());
         scrollView.setFillViewport(false);
 
@@ -581,7 +581,7 @@ public class CoverFragment extends Fragment {
         layout.setOrientation(LinearLayout.VERTICAL);
         float density = getResources().getDisplayMetrics().density;
         int padding = (int) (24 * density);
-        int spacing = (int) (16 * density);
+        final int spacing = (int) (16 * density);
         layout.setPadding(padding, padding, padding, padding);
         scrollView.addView(layout);
 
