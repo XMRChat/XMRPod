@@ -89,6 +89,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import java.util.List;
+
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
 
@@ -586,9 +588,10 @@ public class CoverFragment extends Fragment {
     }
 
     private void refreshChapterData(int chapterIndex) {
-        if (chapterIndex > -1) {
-            if (media.getPosition() > media.getDuration() || chapterIndex >= media.getChapters().size() - 1) {
-                displayedChapterIndex = media.getChapters().size() - 1;
+        List<Chapter> chapters = media.getChapters();
+        if (chapterIndex > -1 && chapters != null) {
+            if (media.getPosition() > media.getDuration() || chapterIndex >= chapters.size() - 1) {
+                displayedChapterIndex = chapters.size() - 1;
                 viewBinding.butNextChapter.setVisibility(View.INVISIBLE);
             } else {
                 displayedChapterIndex = chapterIndex;
