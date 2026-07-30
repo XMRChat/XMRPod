@@ -1,0 +1,1 @@
+- Sign release APKs with the persistent XMRPod release key.
