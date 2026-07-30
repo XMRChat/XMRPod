@@ -93,10 +93,20 @@ jobs:
             echo "releaseStorePassword=$KEYSTORE_PASSWORD"
             echo "releaseKeyAlias=$KEY_ALIAS"
             echo "releaseKeyPassword=$KEY_PASSWORD"
-          } > gradle.properties
+          } >> gradle.properties
 
       - name: Build Free release APK
         run: ./gradlew assembleFreeRelease
+
+      - name: Verify and rename APK
+        run: |
+          version="${RELEASE_TAG#xmrpod-v}"
+          release_apk="$(find app/build/outputs/apk/free/release -name '*.apk' -print -quit)"
+          test -n "$release_apk"
+          apksigner="$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -n 1)"
+          test -n "$apksigner"
+          "$apksigner" verify --verbose --print-certs "$release_apk"
+          cp "$release_apk" "/tmp/xmrpod-$version.apk"
 
       - name: Prepare release notes
         run: |
@@ -112,7 +122,7 @@ jobs:
         run: |
           version="${RELEASE_TAG#xmrpod-v}"
           gh release create "$RELEASE_TAG" \
-            app/build/outputs/apk/free/release/*.apk \
+            "/tmp/xmrpod-$version.apk" \
             --repo "$GITHUB_REPOSITORY" \
             --title "XMRPod $version" \
             --notes-file /tmp/xmrpod-release-notes.md

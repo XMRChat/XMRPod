@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.5] - 2026-07-30
+
+### Changed
+
+- Sign release APKs with the persistent XMRPod release key.
+
 ## [0.1.4] - 2026-07-30
 
 ### Added
