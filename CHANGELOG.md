@@ -2,6 +2,14 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.3] - 2026-07-30
+
+### Changed
+
+- Regenerated XMRPod launcher, splash, and notification icons from the updated JPEG artwork.
+- Added Fastlane/F-Droid icon and feature graphic assets.
+- Updated the store description for the current XMRPod tipping flow.
+
 ## [0.1.2] - 2026-07-29
 
 ### Added

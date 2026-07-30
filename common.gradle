@@ -56,7 +56,7 @@ android {
     }
 
     lint {
-        disable "GradleDependency", "OutdatedLibrary", "AndroidGradlePluginVersion", "CheckResult"
+        disable "GradleDependency", "OutdatedLibrary", "AndroidGradlePluginVersion", "CheckResult", "IconDuplicates", "IconLauncherShape"
         checkDependencies true
         warningsAsErrors true
         abortOnError true

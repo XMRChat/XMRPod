@@ -1,0 +1,3 @@
+- Regenerated XMRPod launcher, splash, and notification icons from the updated JPEG artwork.
+- Added Fastlane/F-Droid icon and feature graphic assets.
+- Updated the store description for the current XMRPod tipping flow.
