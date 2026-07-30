@@ -684,8 +684,6 @@ public class CoverFragment extends Fragment {
         openWalletButton.setOnClickListener(v -> {
             String name = nameInput.getText().toString().trim();
             String amount = amountInput.getText().toString().trim();
-            String message = messageInput.getText().toString().trim();
-            TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
             if (name.length() < 2 || amount.length() == 0) {
                 Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
                 return;
@@ -696,6 +694,8 @@ public class CoverFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
                 return;
             }
+            final String message = messageInput.getText().toString().trim();
+            final TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
             openWalletButton.setEnabled(false);
             createXmrChatTip(dialog, openWalletButton, tipTarget, name, amount, message, currency, xmrUsdPrice[0]);
         });
@@ -725,7 +725,7 @@ public class CoverFragment extends Fragment {
         }
         Toast.makeText(getContext(), R.string.tip_creating, Toast.LENGTH_SHORT).show();
         tipDisposable = Maybe.<String>create(emitter -> {
-            String xmrAmount = getTipAmountInXmr(amount, currency, cachedXmrUsdPrice);
+            final String xmrAmount = getTipAmountInXmr(amount, currency, cachedXmrUsdPrice);
             JSONObject payload = new JSONObject();
             payload.put("path", tipTarget.xmrChatPath);
             payload.put("name", name);
