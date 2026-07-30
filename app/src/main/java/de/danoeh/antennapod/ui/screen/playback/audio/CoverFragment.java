@@ -14,9 +14,11 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -27,6 +29,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,6 +94,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Objects;
@@ -106,6 +112,8 @@ import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
 public class CoverFragment extends Fragment {
     private static final String TAG = "CoverFragment";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static final String XMR_PRICE_URL = "https://nest.xmrchat.com/prices/xmr";
+    private static final int XMR_AMOUNT_SCALE = 12;
     private static final Pattern MONERO_URI_PATTERN = Pattern.compile("monero:[^\\s<>'\"]+",
             Pattern.CASE_INSENSITIVE);
     private static final Pattern XMRCHAT_URL_PATTERN = Pattern.compile(
@@ -115,6 +123,7 @@ public class CoverFragment extends Fragment {
     private Disposable disposable;
     private Disposable tipDiscoveryDisposable;
     private Disposable tipDisposable;
+    private Disposable xmrPriceDisposable;
     private Object tipDiscoveryMediaIdentifier;
     private Object visibleTipMediaIdentifier;
     private TipTarget visibleTipTarget;
@@ -597,11 +606,56 @@ public class CoverFragment extends Fragment {
         fieldParams.topMargin = spacing;
         layout.addView(nameInput, fieldParams);
 
+        RadioGroup currencyGroup = new RadioGroup(requireContext());
+        currencyGroup.setOrientation(RadioGroup.HORIZONTAL);
+        RadioButton usdButton = new RadioButton(requireContext());
+        usdButton.setId(View.generateViewId());
+        usdButton.setText(R.string.tip_currency_usd);
+        currencyGroup.addView(usdButton, new RadioGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+        RadioButton xmrButton = new RadioButton(requireContext());
+        xmrButton.setId(View.generateViewId());
+        xmrButton.setText(R.string.tip_currency_xmr);
+        currencyGroup.addView(xmrButton, new RadioGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+        currencyGroup.check(usdButton.getId());
+        layout.addView(currencyGroup, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
         EditText amountInput = new EditText(requireContext());
-        amountInput.setHint(R.string.tip_amount_hint);
+        amountInput.setHint(R.string.tip_amount_usd_hint);
         amountInput.setSingleLine(true);
         amountInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         layout.addView(amountInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        TextView amountPreview = new TextView(requireContext());
+        amountPreview.setVisibility(View.GONE);
+        layout.addView(amountPreview, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        final BigDecimal[] xmrUsdPrice = new BigDecimal[1];
+        TextWatcher amountWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateTipAmountPreview(amountInput, amountPreview, getSelectedTipCurrency(currencyGroup, usdButton),
+                        xmrUsdPrice[0]);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        amountInput.addTextChangedListener(amountWatcher);
+        currencyGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
+            amountInput.setHint(currency == TipCurrency.USD
+                    ? R.string.tip_amount_usd_hint : R.string.tip_amount_xmr_hint);
+            updateTipAmountPreview(amountInput, amountPreview, currency, xmrUsdPrice[0]);
+            if (currency == TipCurrency.USD && xmrUsdPrice[0] == null) {
+                fetchXmrUsdPrice(xmrUsdPrice, amountInput, amountPreview, currencyGroup, usdButton);
+            }
+        });
+        fetchXmrUsdPrice(xmrUsdPrice, amountInput, amountPreview, currencyGroup, usdButton);
 
         EditText messageInput = new EditText(requireContext());
         messageInput.setHint(R.string.tip_message_hint);
@@ -630,12 +684,19 @@ public class CoverFragment extends Fragment {
             String name = nameInput.getText().toString().trim();
             String amount = amountInput.getText().toString().trim();
             String message = messageInput.getText().toString().trim();
+            TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
             if (name.length() < 2 || amount.length() == 0) {
                 Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
                 return;
             }
-            dialog.dismiss();
-            createXmrChatTip(tipTarget, name, amount, message);
+            try {
+                parsePositiveDecimal(amount);
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
+                return;
+            }
+            openWalletButton.setEnabled(false);
+            createXmrChatTip(dialog, openWalletButton, tipTarget, name, amount, message, currency, xmrUsdPrice[0]);
         });
         buttons.addView(openWalletButton, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
 
@@ -654,18 +715,23 @@ public class CoverFragment extends Fragment {
         dialog.show();
     }
 
-    private void createXmrChatTip(@NonNull TipTarget tipTarget, @NonNull String name,
-                                  @NonNull String amount, @NonNull String message) {
+    private void createXmrChatTip(@NonNull BottomSheetDialog dialog, @NonNull Button openWalletButton,
+                                  @NonNull TipTarget tipTarget, @NonNull String name,
+                                  @NonNull String amount, @NonNull String message,
+                                  @NonNull TipCurrency currency, @Nullable BigDecimal cachedXmrUsdPrice) {
         if (tipDisposable != null) {
             tipDisposable.dispose();
         }
         Toast.makeText(getContext(), R.string.tip_creating, Toast.LENGTH_SHORT).show();
         tipDisposable = Maybe.<String>create(emitter -> {
+            String xmrAmount = getTipAmountInXmr(amount, currency, cachedXmrUsdPrice);
             JSONObject payload = new JSONObject();
             payload.put("path", tipTarget.xmrChatPath);
             payload.put("name", name);
-            payload.put("message", message);
-            payload.put("amount", amount);
+            if (!TextUtils.isEmpty(message)) {
+                payload.put("message", message);
+            }
+            payload.put("amount", xmrAmount);
             payload.put("private", false);
 
             Request request = new Request.Builder()
@@ -676,22 +742,165 @@ public class CoverFragment extends Fragment {
                 ResponseBody body = response.body();
                 String responseBody = body == null ? "" : body.string();
                 if (!response.isSuccessful()) {
-                    throw new IOException("XMRChat tip request failed: " + response.code());
+                    throw new IOException(getXmrChatErrorMessage(responseBody, response.code()));
                 }
                 String paymentAddress = new JSONObject(responseBody).optString("paymentAddress");
                 if (TextUtils.isEmpty(paymentAddress)) {
                     throw new IOException("XMRChat tip response did not include a payment address");
                 }
                 emitter.onSuccess("monero:" + paymentAddress
-                        + "?tx_amount=" + Uri.encode(amount)
+                        + "?tx_amount=" + Uri.encode(xmrAmount)
                         + "&tx_description=" + Uri.encode("XMRPod tip"));
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::openMoneroUri, error -> {
+                .subscribe(moneroUri -> {
+                    dialog.dismiss();
+                    openMoneroUri(moneroUri);
+                }, error -> {
+                    openWalletButton.setEnabled(true);
                     Log.e(TAG, Log.getStackTraceString(error));
-                    Toast.makeText(getContext(), R.string.tip_create_failed, Toast.LENGTH_LONG).show();
+                    String errorMessage = error.getMessage();
+                    if (TextUtils.isEmpty(errorMessage)) {
+                        Toast.makeText(getContext(), R.string.tip_create_failed, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.tip_create_failed_with_reason, errorMessage),
+                                Toast.LENGTH_LONG).show();
+                    }
                 });
+    }
+
+    private String getXmrChatErrorMessage(@NonNull String responseBody, int statusCode) {
+        String fallback = "XMRChat tip request failed: " + statusCode;
+        if (TextUtils.isEmpty(responseBody)) {
+            return fallback;
+        }
+        try {
+            JSONObject errorResponse = new JSONObject(responseBody);
+            Object message = errorResponse.opt("message");
+            if (message instanceof JSONArray) {
+                JSONArray messages = (JSONArray) message;
+                if (messages.length() > 0) {
+                    return messages.optString(0, fallback);
+                }
+            } else if (message != null && message != JSONObject.NULL) {
+                return String.valueOf(message);
+            }
+            String error = errorResponse.optString("error");
+            return TextUtils.isEmpty(error) ? fallback : error;
+        } catch (JSONException e) {
+            return responseBody;
+        }
+    }
+
+    private void fetchXmrUsdPrice(@NonNull BigDecimal[] xmrUsdPrice, @NonNull EditText amountInput,
+                                  @NonNull TextView amountPreview, @NonNull RadioGroup currencyGroup,
+                                  @NonNull RadioButton usdButton) {
+        if (xmrPriceDisposable != null) {
+            xmrPriceDisposable.dispose();
+        }
+        xmrPriceDisposable = Maybe.<BigDecimal>create(emitter -> {
+            Request request = new Request.Builder().url(XMR_PRICE_URL).get().build();
+            try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
+                ResponseBody body = response.body();
+                String responseBody = body == null ? "" : body.string();
+                if (!response.isSuccessful()) {
+                    throw new IOException("XMR price request failed: " + response.code());
+                }
+                emitter.onSuccess(parseXmrUsdPrice(responseBody));
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(price -> {
+                    xmrUsdPrice[0] = price;
+                    updateTipAmountPreview(amountInput, amountPreview,
+                            getSelectedTipCurrency(currencyGroup, usdButton), price);
+                }, error -> {
+                    Log.e(TAG, Log.getStackTraceString(error));
+                    updateTipAmountPreview(amountInput, amountPreview,
+                            getSelectedTipCurrency(currencyGroup, usdButton), null);
+                });
+    }
+
+    private String getTipAmountInXmr(@NonNull String amount, @NonNull TipCurrency currency,
+                                     @Nullable BigDecimal cachedXmrUsdPrice)
+            throws IOException, JSONException {
+        BigDecimal amountValue = parsePositiveDecimal(amount);
+        if (currency == TipCurrency.XMR) {
+            return formatXmrAmount(amountValue);
+        }
+        BigDecimal price = cachedXmrUsdPrice == null ? fetchXmrUsdPrice() : cachedXmrUsdPrice;
+        return formatXmrAmount(amountValue.divide(price, XMR_AMOUNT_SCALE, RoundingMode.HALF_UP));
+    }
+
+    private BigDecimal fetchXmrUsdPrice() throws IOException, JSONException {
+        Request request = new Request.Builder().url(XMR_PRICE_URL).get().build();
+        try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
+            ResponseBody body = response.body();
+            String responseBody = body == null ? "" : body.string();
+            if (!response.isSuccessful()) {
+                throw new IOException("XMR price request failed: " + response.code());
+            }
+            return parseXmrUsdPrice(responseBody);
+        }
+    }
+
+    private BigDecimal parseXmrUsdPrice(@NonNull String responseBody) throws JSONException, IOException {
+        String trimmedBody = responseBody.trim();
+        BigDecimal price;
+        if (trimmedBody.startsWith("{")) {
+            JSONObject response = new JSONObject(trimmedBody);
+            price = new BigDecimal(response.optString("usd", response.optString("price")));
+        } else {
+            price = new BigDecimal(trimmedBody);
+        }
+        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IOException("XMR price must be positive");
+        }
+        return price;
+    }
+
+    private void updateTipAmountPreview(@NonNull EditText amountInput, @NonNull TextView amountPreview,
+                                        @NonNull TipCurrency currency, @Nullable BigDecimal xmrUsdPrice) {
+        if (currency == TipCurrency.XMR) {
+            amountPreview.setVisibility(View.GONE);
+            return;
+        }
+        String amount = amountInput.getText().toString().trim();
+        if (TextUtils.isEmpty(amount)) {
+            amountPreview.setVisibility(View.GONE);
+            return;
+        }
+        if (xmrUsdPrice == null) {
+            amountPreview.setText(R.string.tip_price_unavailable);
+            amountPreview.setVisibility(View.VISIBLE);
+            return;
+        }
+        try {
+            BigDecimal usdAmount = parsePositiveDecimal(amount);
+            String xmrAmount = formatXmrAmount(usdAmount.divide(xmrUsdPrice, XMR_AMOUNT_SCALE,
+                    RoundingMode.HALF_UP));
+            amountPreview.setText(getString(R.string.tip_amount_conversion_preview, amount, xmrAmount));
+            amountPreview.setVisibility(View.VISIBLE);
+        } catch (NumberFormatException e) {
+            amountPreview.setVisibility(View.GONE);
+        }
+    }
+
+    private BigDecimal parsePositiveDecimal(@NonNull String amount) {
+        BigDecimal value = new BigDecimal(amount);
+        if (value.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new NumberFormatException("Amount must be positive");
+        }
+        return value;
+    }
+
+    private String formatXmrAmount(@NonNull BigDecimal amount) {
+        return amount.setScale(XMR_AMOUNT_SCALE, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString();
+    }
+
+    private TipCurrency getSelectedTipCurrency(@NonNull RadioGroup currencyGroup, @NonNull RadioButton usdButton) {
+        return currencyGroup.getCheckedRadioButtonId() == usdButton.getId() ? TipCurrency.USD : TipCurrency.XMR;
     }
 
     private void openMoneroUri(@NonNull String moneroUri) {
@@ -812,7 +1021,15 @@ public class CoverFragment extends Fragment {
         if (tipDisposable != null) {
             tipDisposable.dispose();
         }
+        if (xmrPriceDisposable != null) {
+            xmrPriceDisposable.dispose();
+        }
         viewBinding = null;
+    }
+
+    private enum TipCurrency {
+        USD,
+        XMR
     }
 
     private static class TipTarget {
