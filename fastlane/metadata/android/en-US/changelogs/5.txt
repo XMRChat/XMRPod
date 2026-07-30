@@ -1,0 +1,5 @@
+- Added a USD/XMR amount toggle to the XMRChat tip form.
+
+- Show XMRChat tip creation errors from the server instead of a generic failure message.
+- Keep the tip form open when XMRChat rejects a tip address request.
+- Omit blank optional messages from XMRChat tip requests so empty messages are accepted.

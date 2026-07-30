@@ -2,6 +2,18 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.4] - 2026-07-30
+
+### Added
+
+- Added a USD/XMR amount toggle to the XMRChat tip form.
+
+### Fixed
+
+- Show XMRChat tip creation errors from the server instead of a generic failure message.
+- Keep the tip form open when XMRChat rejects a tip address request.
+- Omit blank optional messages from XMRChat tip requests so empty messages are accepted.
+
 ## [0.1.3] - 2026-07-30
 
 ### Changed
