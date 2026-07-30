@@ -75,10 +75,25 @@ jobs:
             ~/.gradle/wrapper
           key: gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      - name: Create temporary release keystore
+      - name: Configure release signing
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          keytool -noprompt -genkey -v -keystore "app/keystore" -alias alias -storepass password -keypass password -keyalg RSA -validity 10 -dname "CN=XMRPod, OU=XMRChat, O=XMRChat, L=Internet, S=Internet, C=US"
+          test -n "$KEYSTORE_BASE64"
+          test -n "$KEYSTORE_PASSWORD"
+          test -n "$KEY_ALIAS"
+          test -n "$KEY_PASSWORD"
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > app/keystore
           cp app/keystore app-wearos/keystore
+          {
+            echo "releaseStoreFile=keystore"
+            echo "releaseStorePassword=$KEYSTORE_PASSWORD"
+            echo "releaseKeyAlias=$KEY_ALIAS"
+            echo "releaseKeyPassword=$KEY_PASSWORD"
+          } > gradle.properties
 
       - name: Build Free release APK
         run: ./gradlew assembleFreeRelease

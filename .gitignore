@@ -26,6 +26,7 @@ libs
 *.DS_Store
 gradle.properties
 *.keystore
+*.jks
 *.p12
 .vscode
 .cursor
