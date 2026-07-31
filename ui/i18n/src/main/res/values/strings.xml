@@ -45,6 +45,7 @@
     <string name="tip_currency_xmr">XMR</string>
     <string name="tip_currency_usd">USD</string>
     <string name="tip_amount_conversion_preview">$%1$s = %2$s XMR</string>
+    <string name="tip_amount_xmr_conversion_preview">%1$s XMR = $%2$s</string>
     <string name="tip_price_unavailable">Could not load XMR price</string>
     <string name="tip_message_hint">Message</string>
     <string name="tip_open_wallet">Open wallet</string>
