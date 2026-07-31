@@ -651,7 +651,7 @@ public class CoverFragment extends Fragment {
             amountInput.setHint(currency == TipCurrency.USD
                     ? R.string.tip_amount_usd_hint : R.string.tip_amount_xmr_hint);
             updateTipAmountPreview(amountInput, amountPreview, currency, xmrUsdPrice[0]);
-            if (currency == TipCurrency.USD && xmrUsdPrice[0] == null) {
+            if (xmrUsdPrice[0] == null) {
                 fetchXmrUsdPrice(xmrUsdPrice, amountInput, amountPreview, currencyGroup, usdButton);
             }
         });
@@ -862,10 +862,6 @@ public class CoverFragment extends Fragment {
 
     private void updateTipAmountPreview(@NonNull EditText amountInput, @NonNull TextView amountPreview,
                                         @NonNull TipCurrency currency, @Nullable BigDecimal xmrUsdPrice) {
-        if (currency == TipCurrency.XMR) {
-            amountPreview.setVisibility(View.GONE);
-            return;
-        }
         String amount = amountInput.getText().toString().trim();
         if (TextUtils.isEmpty(amount)) {
             amountPreview.setVisibility(View.GONE);
@@ -877,10 +873,15 @@ public class CoverFragment extends Fragment {
             return;
         }
         try {
-            BigDecimal usdAmount = parsePositiveDecimal(amount);
-            String xmrAmount = formatXmrAmount(usdAmount.divide(xmrUsdPrice, XMR_AMOUNT_SCALE,
-                    RoundingMode.HALF_UP));
-            amountPreview.setText(getString(R.string.tip_amount_conversion_preview, amount, xmrAmount));
+            BigDecimal amountValue = parsePositiveDecimal(amount);
+            if (currency == TipCurrency.XMR) {
+                String usdAmount = formatUsdAmount(amountValue.multiply(xmrUsdPrice));
+                amountPreview.setText(getString(R.string.tip_amount_xmr_conversion_preview, amount, usdAmount));
+            } else {
+                String xmrAmount = formatXmrAmount(amountValue.divide(xmrUsdPrice, XMR_AMOUNT_SCALE,
+                        RoundingMode.HALF_UP));
+                amountPreview.setText(getString(R.string.tip_amount_conversion_preview, amount, xmrAmount));
+            }
             amountPreview.setVisibility(View.VISIBLE);
         } catch (NumberFormatException e) {
             amountPreview.setVisibility(View.GONE);
@@ -897,6 +898,10 @@ public class CoverFragment extends Fragment {
 
     private String formatXmrAmount(@NonNull BigDecimal amount) {
         return amount.setScale(XMR_AMOUNT_SCALE, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString();
+    }
+
+    private String formatUsdAmount(@NonNull BigDecimal amount) {
+        return amount.setScale(2, RoundingMode.HALF_UP).toPlainString();
     }
 
     private TipCurrency getSelectedTipCurrency(@NonNull RadioGroup currencyGroup, @NonNull RadioButton usdButton) {
