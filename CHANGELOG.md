@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.7] - 2026-07-31
+
+### Changed
+
+- Removed the Shownotes info icon from the playback controls to give the action row more space.
+
 ## [0.1.6] - 2026-07-31
 
 ### Added
