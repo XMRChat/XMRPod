@@ -1,1 +1,0 @@
-- Removed the Shownotes info icon from the playback controls to give the action row more space.

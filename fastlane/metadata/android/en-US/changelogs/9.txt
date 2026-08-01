@@ -1,1 +1,0 @@
-- Validate that XMRChat tip names are at least 2 characters before opening a wallet.
