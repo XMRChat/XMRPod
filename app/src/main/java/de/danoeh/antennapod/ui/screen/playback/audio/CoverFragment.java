@@ -968,7 +968,8 @@ public class CoverFragment extends Fragment {
         }
         String query = null;
         if (queryStart >= 0) {
-            int queryEnd = fragmentStart >= 0 && fragmentStart > queryStart ? fragmentStart : schemeSpecificPart.length();
+            int queryEnd = fragmentStart >= 0 && fragmentStart > queryStart
+                    ? fragmentStart : schemeSpecificPart.length();
             query = schemeSpecificPart.substring(queryStart + 1, queryEnd);
         }
         return scheme + ":" + MONERO_SCHEME + "?address=" + address
