@@ -161,7 +161,6 @@ public class CoverFragment extends Fragment {
                 viewBinding.txtvPodcastTitle.getCurrentTextColor(), BlendModeCompat.SRC_IN);
         viewBinding.butNextChapter.setColorFilter(colorFilter);
         viewBinding.butPrevChapter.setColorFilter(colorFilter);
-        viewBinding.descriptionIcon.setColorFilter(colorFilter);
         viewBinding.tipButton.setColorFilter(colorFilter);
         viewBinding.chapterButton.setOnClickListener(v ->
                 new ChaptersFragment().show(getChildFragmentManager(), ChaptersFragment.TAG));
