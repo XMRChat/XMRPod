@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.8] - 2026-08-01
+
+### Added
+
+- Validate that XMRChat tip names are at least 2 characters before opening a wallet.
+
 ## [0.1.7] - 2026-07-31
 
 ### Changed

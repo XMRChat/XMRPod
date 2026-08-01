@@ -49,6 +49,7 @@
     <string name="tip_price_unavailable">Could not load XMR price</string>
     <string name="tip_message_hint">Message</string>
     <string name="tip_open_wallet">Open wallet</string>
+    <string name="tip_name_too_short">Name must be over 1 character</string>
     <string name="tip_invalid_input">Enter a name and amount</string>
     <string name="tip_creating">Creating tip address...</string>
     <string name="tip_create_failed">Could not create XMRChat tip</string>
