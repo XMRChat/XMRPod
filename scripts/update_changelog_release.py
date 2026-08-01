@@ -59,7 +59,7 @@ def section_body(lines, start, end):
 
 
 def release_notes(version, body, full_changelog_url):
-    notes = [f"## XMRPod {version}", "", body]
+    notes = [body]
     if full_changelog_url:
         notes.extend(["", f"Full changelog: {full_changelog_url}"])
     return "\n".join(notes).rstrip() + "\n"

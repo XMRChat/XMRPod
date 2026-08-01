@@ -2,23 +2,20 @@
 
 All notable changes to XMRPod are documented in this file.
 
-## [0.1.8] - 2026-08-01
+## [0.1.6] - 2026-08-01
 
 ### Added
 
+- Show the USD value when entering XMR amounts in the XMRChat tip form.
 - Validate that XMRChat tip names are at least 2 characters before opening a wallet.
-
-## [0.1.7] - 2026-07-31
 
 ### Changed
 
 - Removed the Shownotes info icon from the playback controls to give the action row more space.
 
-## [0.1.6] - 2026-07-31
+### Fixed
 
-### Added
-
-- Show the USD value when entering XMR amounts in the XMRChat tip form.
+- Keep the Shownotes button height consistent with the Monero Tip and Chapters controls.
 
 ## [0.1.5] - 2026-07-30
 
