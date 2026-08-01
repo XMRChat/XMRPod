@@ -115,6 +115,9 @@ public class CoverFragment extends Fragment {
     private static final String TAG = "CoverFragment";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static final String XMR_PRICE_URL = "https://nest.xmrchat.com/prices/xmr";
+    private static final String MONERO_SCHEME = "monero";
+    private static final String CAKE_WALLET_SCHEME = "cakewallet";
+    private static final String MONERO_COM_SCHEME = "monerocom";
     private static final int XMR_AMOUNT_SCALE = 12;
     private static final Pattern MONERO_URI_PATTERN = Pattern.compile("monero:[^\\s<>'\"]+",
             Pattern.CASE_INSENSITIVE);
@@ -921,11 +924,56 @@ public class CoverFragment extends Fragment {
     }
 
     private void openMoneroUri(@NonNull String moneroUri) {
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(moneroUri)));
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(getContext(), R.string.tip_no_wallet, Toast.LENGTH_LONG).show();
+        if (openWalletUri(buildCakeWalletMoneroUri(CAKE_WALLET_SCHEME, moneroUri))
+                || openWalletUri(buildCakeWalletMoneroUri(MONERO_COM_SCHEME, moneroUri))
+                || openWalletUri(moneroUri)) {
+            return;
         }
+        Toast.makeText(getContext(), R.string.tip_no_wallet, Toast.LENGTH_LONG).show();
+    }
+
+    private boolean openWalletUri(@Nullable String walletUri) {
+        if (TextUtils.isEmpty(walletUri)) {
+            return false;
+        }
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(walletUri)));
+            return true;
+        } catch (ActivityNotFoundException e) {
+            return false;
+        }
+    }
+
+    @Nullable
+    private String buildCakeWalletMoneroUri(@NonNull String scheme, @NonNull String moneroUri) {
+        Uri uri = Uri.parse(moneroUri);
+        if (!MONERO_SCHEME.equalsIgnoreCase(uri.getScheme())) {
+            return null;
+        }
+        String schemeSpecificPart = uri.getEncodedSchemeSpecificPart();
+        if (TextUtils.isEmpty(schemeSpecificPart)) {
+            return null;
+        }
+        int addressEnd = schemeSpecificPart.length();
+        int queryStart = schemeSpecificPart.indexOf('?');
+        int fragmentStart = schemeSpecificPart.indexOf('#');
+        if (queryStart >= 0) {
+            addressEnd = queryStart;
+        }
+        if (fragmentStart >= 0 && fragmentStart < addressEnd) {
+            addressEnd = fragmentStart;
+        }
+        String address = schemeSpecificPart.substring(0, addressEnd);
+        if (TextUtils.isEmpty(address)) {
+            return null;
+        }
+        String query = null;
+        if (queryStart >= 0) {
+            int queryEnd = fragmentStart >= 0 && fragmentStart > queryStart ? fragmentStart : schemeSpecificPart.length();
+            query = schemeSpecificPart.substring(queryStart + 1, queryEnd);
+        }
+        return scheme + ":" + MONERO_SCHEME + "?address=" + address
+                + (TextUtils.isEmpty(query) ? "" : "&" + query);
     }
 
     private void openFeed(Feed feed) {

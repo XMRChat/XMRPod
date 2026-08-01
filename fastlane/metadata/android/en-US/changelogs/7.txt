@@ -3,4 +3,5 @@
 
 - Removed the Shownotes info icon from the playback controls to give the action row more space.
 
+- Open XMRChat tips in Cake Wallet and Monero.com using their app-specific Monero send URI formats.
 - Keep the Shownotes button height consistent with the Monero Tip and Chapters controls.
