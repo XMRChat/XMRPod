@@ -15,6 +15,7 @@ All notable changes to XMRPod are documented in this file.
 
 ### Fixed
 
+- Open XMRChat tips in Cake Wallet and Monero.com using their app-specific Monero send URI formats.
 - Keep the Shownotes button height consistent with the Monero Tip and Chapters controls.
 
 ## [0.1.5] - 2026-07-30
