@@ -9,6 +9,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -680,10 +681,20 @@ public class CoverFragment extends Fragment {
 
         Button openWalletButton = new Button(requireContext());
         openWalletButton.setText(R.string.tip_open_wallet);
+        TextView nameError = new TextView(requireContext());
+        nameError.setText(R.string.tip_name_too_short);
+        nameError.setTextColor(Color.RED);
+        nameError.setGravity(android.view.Gravity.END);
+        nameError.setVisibility(View.GONE);
         openWalletButton.setOnClickListener(v -> {
             String name = nameInput.getText().toString().trim();
             String amount = amountInput.getText().toString().trim();
-            if (name.length() < 2 || amount.length() == 0) {
+            if (name.length() < 2) {
+                nameError.setVisibility(View.VISIBLE);
+                return;
+            }
+            nameError.setVisibility(View.GONE);
+            if (amount.length() == 0) {
                 Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -699,6 +710,7 @@ public class CoverFragment extends Fragment {
             createXmrChatTip(dialog, openWalletButton, tipTarget, name, amount, message, currency, xmrUsdPrice[0]);
         });
         buttons.addView(openWalletButton, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+        layout.addView(nameError, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
         dialog.setContentView(scrollView);
         dialog.setOnShowListener(dialogInterface -> {
