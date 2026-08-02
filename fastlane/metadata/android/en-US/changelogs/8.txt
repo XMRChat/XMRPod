@@ -1,1 +1,2 @@
 - Disable generated ART profiles in release builds so release APKs can be reproduced reliably.
+- Make the displayed commit hash deterministic across release and reproducible builds.
