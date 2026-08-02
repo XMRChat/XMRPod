@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.7] - 2026-08-02
+
+### Changed
+
+- Disable generated ART profiles in release builds so release APKs can be reproduced reliably.
+
 ## [0.1.6] - 2026-08-01
 
 ### Added

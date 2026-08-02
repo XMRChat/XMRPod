@@ -8,6 +8,8 @@ import sys
 
 
 HEADING_RE = re.compile(r"^## \[(?P<version>[^\]]+)\](?: - (?P<date>\d{4}-\d{2}-\d{2}|TBD|Unreleased))?\s*$")
+VERSION_CODE_RE = re.compile(r"(?m)^(\s*versionCode\s+)\d+\s*$")
+VERSION_NAME_RE = re.compile(r'(?m)^(\s*versionName\s+")[^"]+("\s*)$')
 
 
 def read_text(path):
@@ -72,6 +74,20 @@ def fastlane_text(body):
     return body + "\n"
 
 
+def replace_once(pattern, replacement, content, path):
+    content, count = pattern.subn(replacement, content, count=1)
+    if count != 1:
+        raise ValueError(f"Expected exactly one match in {path}")
+    return content
+
+
+def update_android_version(path, version, version_code):
+    content = read_text(path)
+    content = replace_once(VERSION_CODE_RE, rf"\g<1>{version_code}", content, path)
+    content = replace_once(VERSION_NAME_RE, rf"\g<1>{version}\2", content, path)
+    write_text(path, content)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Prepare changelog release metadata.")
     parser.add_argument("--version", help="Version section to release, for example 0.1.0")
@@ -79,10 +95,13 @@ def main():
     parser.add_argument("--print-version", action="store_true", help="Print the resolved version and exit")
     parser.add_argument("--date", default=datetime.date.today().isoformat())
     parser.add_argument("--changelog", default="CHANGELOG.md")
+    parser.add_argument("--app-build-gradle", default="app/build.gradle")
+    parser.add_argument("--version-code", type=int, help="Android versionCode to write to app/build.gradle")
     parser.add_argument("--write", action="store_true", help="Write the release date back to CHANGELOG.md")
     parser.add_argument("--release-notes", help="Write release notes markdown for GitHub Releases")
     parser.add_argument("--full-changelog-url", default="")
     parser.add_argument("--fastlane-changelog", help="Write Fastlane changelog text for this version code")
+    parser.add_argument("--fastlane-changelogs-dir", default="fastlane/metadata/android/en-US/changelogs")
     args = parser.parse_args()
 
     changelog_path = pathlib.Path(args.changelog)
@@ -93,15 +112,22 @@ def main():
     if args.print_version:
         print(version)
         return 0
+    if args.write and args.version_code is None:
+        parser.error("--version-code is required with --write")
 
     start, end = find_version_section(lines, version)
 
     if args.write:
         update_section_date(lines, start, args.date)
         write_text(changelog_path, "\n".join(lines).rstrip() + "\n")
-        start, end = find_version_section(lines, args.version)
+        lines = read_text(changelog_path).splitlines()
+        start, end = find_version_section(lines, version)
+        if args.version_code is not None:
+            update_android_version(pathlib.Path(args.app_build_gradle), version, args.version_code)
 
     body = section_body(lines, start, end)
+    if args.write and args.version_code is not None and not args.fastlane_changelog:
+        args.fastlane_changelog = str(pathlib.Path(args.fastlane_changelogs_dir) / f"{args.version_code}.txt")
     if args.release_notes:
         write_text(pathlib.Path(args.release_notes), release_notes(version, body, args.full_changelog_url))
     if args.fastlane_changelog:

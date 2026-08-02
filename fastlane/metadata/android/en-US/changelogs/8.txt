@@ -1,0 +1,1 @@
+- Disable generated ART profiles in release builds so release APKs can be reproduced reliably.

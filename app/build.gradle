@@ -11,8 +11,8 @@ android {
     defaultConfig {
         applicationId "com.xmrchat.xmrpod"
 
-        versionCode 7
-        versionName "0.1.6"
+        versionCode 8
+        versionName "0.1.7"
     }
 
     signingConfigs {
@@ -49,6 +49,12 @@ android {
 
     androidResources {
         additionalParameters += ["--no-version-vectors"]
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("ArtProfile")) {
+        enabled = false
     }
 }
 
