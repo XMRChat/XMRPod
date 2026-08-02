@@ -8,6 +8,10 @@ All notable changes to XMRPod are documented in this file.
 
 - Disable generated ART profiles in release builds so release APKs can be reproduced reliably.
 
+### Fixed
+
+- Make the displayed commit hash deterministic across release and reproducible builds.
+
 ## [0.1.6] - 2026-08-01
 
 ### Added

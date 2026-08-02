@@ -50,6 +50,11 @@ android {
     androidResources {
         additionalParameters += ["--no-version-vectors"]
     }
+
+    dependenciesInfo {
+        includeInApk false
+        includeInBundle false
+    }
 }
 
 tasks.configureEach {
