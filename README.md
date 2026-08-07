@@ -16,30 +16,6 @@ The only network calls XMRPod makes:
 - A public Monero price fetch when you open the tip form.
 - The tip request — only when you explicitly send a tip. It carries just the tip details plus a `source=xmrpod` marker.
 
-### XMRChat Discovery and Network Requests
-
-To discover a matching XMRChat tip page, XMRPod automatically sends HTTPS
-search requests to the public XMRChat instance at `nest.xmrchat.com`.
-
-Up to four requests may use the following podcast metadata as search terms:
-
-- podcast title
-- podcast author
-- podcast feed hostname
-- episode title
-
-In the current release, this lookup can occur automatically, including during
-app startup before the playback screen or Tip action is opened. It can also
-occur for a podcast that does not publish a Monero or XMRChat funding link.
-
-The lookup is used to find an XMRChat creator page that can be offered through
-the Tip action.
-
-The XMRChat web client and server/API are free and open-source software licensed
-under Apache-2.0. The source code and self-hosting configuration are available at:
-
-https://github.com/XMRChat/xmrchat
-
 ## Package Name
 
 Release builds use:

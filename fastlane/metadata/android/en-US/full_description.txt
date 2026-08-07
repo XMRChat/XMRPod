@@ -4,14 +4,4 @@ The playback screen includes a Tip action for podcasts whose creators have an XM
 
 Sending a tip is the only user-initiated call to XMRChat. XMRPod creates a tip payment address with the listener name, amount, and optional message, then hands the payment URI to a Monero wallet such as Cake Wallet.
 
-Network disclosure:
-
-To discover a matching XMRChat tip page, XMRPod automatically sends HTTPS search requests to nest.xmrchat.com. Up to four requests may use the podcast title, podcast author, podcast feed hostname, and episode title as search terms.
-
-In the current release, this lookup can occur automatically, including during app startup before the playback screen or Tip action is opened. It can also occur for podcasts that do not publish a Monero or XMRChat funding link.
-
-The XMRChat web client and server/API are free and open-source software licensed under Apache-2.0. The source code and self-hosting configuration are available at:
-
-https://github.com/XMRChat/xmrchat
-
 XMRPod is based on AntennaPod and is released under the GNU General Public License version 3.
