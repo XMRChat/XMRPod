@@ -2,6 +2,18 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.8] - 2026-08-06
+
+### Changed
+
+- Replaced podcast-metadata-based XMRChat search with privacy-preserving local matching. XMRPod now downloads a generic list of public XMRChat creator pages that have a registered podcast RSS link and matches your subscribed feeds against it on your device. The app no longer makes any search requests that send podcast titles, authors, feed hosts, or episode titles to the server.
+- Creator discovery now also matches subscribed podcasts by their declared website URL (full URL, path-aware), in addition to RSS feed URL, so creators who registered a website link on XMRChat are also discoverable. Website URLs claimed by more than one creator are skipped rather than guessed.
+
+### Added
+
+- Send a `source=xmrpod` marker when creating an XMRChat tip so the server can distinguish tips sent from XMRPod, without tracking what you listen to.
+- First-launch privacy disclosure explaining how XMRChat creator discovery works and that no podcast metadata leaves the device.
+
 ## [0.1.7] - 2026-08-02
 
 ### Changed

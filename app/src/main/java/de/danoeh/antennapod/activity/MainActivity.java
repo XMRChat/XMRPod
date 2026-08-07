@@ -75,6 +75,7 @@ import de.danoeh.antennapod.ui.screen.episode.ItemPagerFragment;
 import de.danoeh.antennapod.ui.screen.feed.FeedItemlistFragment;
 import de.danoeh.antennapod.ui.screen.home.HomeFragment;
 import de.danoeh.antennapod.ui.screen.playback.audio.AudioPlayerFragment;
+import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatDisclosureManager;
 import de.danoeh.antennapod.ui.screen.preferences.PreferenceActivity;
 import de.danoeh.antennapod.ui.screen.queue.QueueFragment;
 import de.danoeh.antennapod.ui.screen.rating.RatingDialogManager;
@@ -126,6 +127,7 @@ public class MainActivity extends CastEnabledActivity implements NavigationToolb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         checkFirstLaunch();
+        new XmrChatDisclosureManager(this).showIfNeeded();
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navDrawer = findViewById(R.id.navDrawerFragment);

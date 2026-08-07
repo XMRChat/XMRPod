@@ -54,6 +54,9 @@
     <string name="tip_creating">Creating tip address...</string>
     <string name="tip_create_failed">Could not create XMRChat tip</string>
     <string name="tip_create_failed_with_reason">Could not create XMRChat tip: %1$s</string>
+    <string name="xmrchat_disclosure_title">XMRChat creator discovery</string>
+    <string name="xmrchat_disclosure_message">XMRPod can show a Tip action for podcasts with an XMRChat creator page. It downloads a generic list of creator pages and matches your subscribed feeds locally — no information about your podcasts is ever sent to any server. Tipping sends only the tip details plus a marker that it came from XMRPod.</string>
+    <string name="xmrchat_disclosure_button">Got it</string>
 
     <!-- Google Assistant -->
     <string name="app_action_not_found">\"%1$s\" not found</string>
