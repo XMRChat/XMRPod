@@ -53,8 +53,8 @@ import de.danoeh.antennapod.BuildConfig;
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.event.MessageEvent;
 import de.danoeh.antennapod.event.PlayerStatusEvent;
+import de.danoeh.antennapod.event.XmrChatDirectoryUpdateEvent;
 import de.danoeh.antennapod.model.feed.Feed;
-import de.danoeh.antennapod.model.feed.FeedFunding;
 import de.danoeh.antennapod.net.common.AntennapodHttpClient;
 import de.danoeh.antennapod.playback.service.PlaybackService;
 import de.danoeh.antennapod.playback.service.PlaybackServiceStarter;
@@ -79,7 +79,6 @@ import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -97,12 +96,7 @@ import java.util.List;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.LinkedHashSet;
 import java.util.Locale;
-import java.util.Objects;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -118,19 +112,11 @@ public class CoverFragment extends Fragment {
     private static final String CAKE_WALLET_SCHEME = "cakewallet";
     private static final String MONERO_COM_SCHEME = "monerocom";
     private static final int XMR_AMOUNT_SCALE = 12;
-    private static final Pattern MONERO_URI_PATTERN = Pattern.compile("monero:[^\\s<>'\"]+",
-            Pattern.CASE_INSENSITIVE);
-    private static final Pattern XMRCHAT_URL_PATTERN = Pattern.compile(
-            "(?:https?://)?(?:www\\.)?xmrchat\\.com/[A-Za-z0-9_-]+", Pattern.CASE_INSENSITIVE);
-    private static final int MAX_XMRCHAT_SEARCH_CANDIDATES = 4;
+    private static final String TIP_SOURCE = "xmrpod";
     private CoverFragmentBinding viewBinding;
     private Disposable disposable;
-    private Disposable tipDiscoveryDisposable;
     private Disposable tipDisposable;
     private Disposable xmrPriceDisposable;
-    private Object tipDiscoveryMediaIdentifier;
-    private Object visibleTipMediaIdentifier;
-    private TipTarget visibleTipTarget;
     private int displayedChapterIndex = -1;
     private Playable media;
 
@@ -254,318 +240,34 @@ public class CoverFragment extends Fragment {
 
     private void updateTipButton(@Nullable Playable media) {
         if (media == null) {
-            clearTipDiscovery();
-            visibleTipMediaIdentifier = null;
-            visibleTipTarget = null;
             showTipButton(null);
             return;
         }
-
-        Object mediaIdentifier = getTipMediaIdentifier(media);
-        if (!Objects.equals(mediaIdentifier, visibleTipMediaIdentifier)) {
-            clearTipDiscovery();
-            visibleTipMediaIdentifier = mediaIdentifier;
-            visibleTipTarget = null;
-        }
-
-        TipTarget tipTarget = getTipTarget(media);
-        Log.d(TAG, "Tip target direct lookup for media="
-                + media.getClass().getSimpleName()
-                + ", feedTitle=" + media.getFeedTitle()
-                + ", episodeTitle=" + media.getEpisodeTitle()
-                + ", found=" + (tipTarget != null));
-        if (tipTarget != null) {
-            clearTipDiscovery();
-            visibleTipTarget = tipTarget;
-            showTipButton(tipTarget);
-            return;
-        }
-
-        if (visibleTipTarget != null) {
-            showTipButton(visibleTipTarget);
-            return;
-        }
-
-        if (tipDiscoveryDisposable != null && Objects.equals(mediaIdentifier, tipDiscoveryMediaIdentifier)) {
-            return;
-        }
-        clearTipDiscovery();
-        showTipButton(null);
-        discoverXmrChatTipTarget(media, mediaIdentifier);
-    }
-
-    private void showTipButton(@Nullable TipTarget tipTarget) {
-        Log.d(TAG, "Setting tip button visible=" + (tipTarget != null));
-        viewBinding.tipButton.setVisibility(tipTarget == null ? View.GONE : View.VISIBLE);
-        viewBinding.tipButton.setOnClickListener(tipTarget == null ? null : v -> openTipTarget(tipTarget));
+        showTipButton(resolveTipTarget(media));
     }
 
     @Nullable
-    private TipTarget getTipTarget(@Nullable Playable media) {
-        if (media == null) {
-            return null;
-        }
-
-        TipTarget directTarget = getTipTargetFromText(media.getFeedTitle());
-        if (directTarget != null) {
-            return directTarget;
-        }
-        directTarget = getTipTargetFromText(media.getEpisodeTitle());
-        if (directTarget != null) {
-            return directTarget;
-        }
-
+    private TipTarget resolveTipTarget(@NonNull Playable media) {
         if (!(media instanceof FeedMedia) || ((FeedMedia) media).getItem() == null) {
             return null;
         }
-
-        FeedMedia feedMedia = (FeedMedia) media;
-
-        directTarget = getTipTargetFromText(feedMedia.getItem().getPaymentLink());
-        if (directTarget != null) {
-            return directTarget;
-        }
-        directTarget = getTipTargetFromText(feedMedia.getItem().getDescription());
-        if (directTarget != null) {
-            return directTarget;
-        }
-
-        Feed feed = feedMedia.getItem().getFeed();
+        Feed feed = ((FeedMedia) media).getItem().getFeed();
         if (feed == null) {
             return null;
         }
-        directTarget = getTipTargetFromText(feed.getDescription());
-        if (directTarget != null) {
-            return directTarget;
+        String path = XmrChatPageDirectory.getInstance().pathForFeed(feed);
+        if (TextUtils.isEmpty(path)) {
+            path = XmrChatPageDirectory.getInstance().pathForFeedWebsite(feed);
         }
-        if (feed.getPaymentLinks() == null) {
+        if (TextUtils.isEmpty(path)) {
             return null;
         }
-
-        TipTarget xmrChatTarget = null;
-        for (FeedFunding funding : feed.getPaymentLinks()) {
-            if (!TextUtils.isEmpty(funding.url)) {
-                directTarget = getTipTargetFromUrl(funding.url);
-                if (directTarget != null && !TextUtils.isEmpty(directTarget.moneroUri)) {
-                    return directTarget;
-                }
-                if (directTarget != null) {
-                    xmrChatTarget = directTarget;
-                }
-            }
-            directTarget = getTipTargetFromText(funding.content);
-            if (directTarget != null && !TextUtils.isEmpty(directTarget.moneroUri)) {
-                return directTarget;
-            }
-            if (directTarget != null) {
-                xmrChatTarget = directTarget;
-            }
-        }
-        return xmrChatTarget;
+        return TipTarget.forXmrChatUrl("https://xmrchat.com/" + path);
     }
 
-    @Nullable
-    private TipTarget getTipTargetFromText(@Nullable String text) {
-        if (TextUtils.isEmpty(text)) {
-            return null;
-        }
-
-        Matcher moneroMatcher = MONERO_URI_PATTERN.matcher(text);
-        if (moneroMatcher.find()) {
-            return TipTarget.forMoneroUri(moneroMatcher.group());
-        }
-
-        Matcher xmrChatMatcher = XMRCHAT_URL_PATTERN.matcher(text);
-        if (xmrChatMatcher.find()) {
-            return TipTarget.forXmrChatUrl(xmrChatMatcher.group());
-        }
-        return null;
-    }
-
-    @Nullable
-    private TipTarget getTipTargetFromUrl(@Nullable String url) {
-        if (TextUtils.isEmpty(url)) {
-            return null;
-        }
-        String trimmedUrl = url.trim();
-        String normalizedUrl = trimmedUrl.toLowerCase(Locale.US);
-        if (normalizedUrl.startsWith("monero:")) {
-            return TipTarget.forMoneroUri(trimmedUrl);
-        }
-        if (normalizedUrl.contains("xmrchat")) {
-            return TipTarget.forXmrChatUrl(trimmedUrl);
-        }
-        return null;
-    }
-
-    private void clearTipDiscovery() {
-        if (tipDiscoveryDisposable != null) {
-            tipDiscoveryDisposable.dispose();
-            tipDiscoveryDisposable = null;
-        }
-        tipDiscoveryMediaIdentifier = null;
-    }
-
-    @NonNull
-    private Object getTipMediaIdentifier(@NonNull Playable media) {
-        Object identifier = media.getIdentifier();
-        if (identifier != null) {
-            return identifier;
-        }
-        return media.getClass().getName() + ":" + StringUtils.stripToEmpty(media.getFeedTitle())
-                + ":" + StringUtils.stripToEmpty(media.getEpisodeTitle());
-    }
-
-    private void discoverXmrChatTipTarget(@NonNull Playable media, @NonNull Object mediaIdentifier) {
-        tipDiscoveryMediaIdentifier = mediaIdentifier;
-        tipDiscoveryDisposable = Maybe.<TipTarget>create(emitter -> {
-            for (String candidate : getXmrChatSearchCandidates(media)) {
-                Log.d(TAG, "Searching XMRChat pages for candidate=" + candidate);
-                TipTarget target = searchXmrChatPage(candidate, media);
-                if (target != null) {
-                    Log.d(TAG, "Found XMRChat tip target for candidate=" + candidate);
-                    emitter.onSuccess(target);
-                    return;
-                }
-            }
-            Log.d(TAG, "No XMRChat tip target discovered");
-            emitter.onComplete();
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(tipTarget -> {
-                    if (!Objects.equals(mediaIdentifier, visibleTipMediaIdentifier)) {
-                        return;
-                    }
-                    tipDiscoveryDisposable = null;
-                    tipDiscoveryMediaIdentifier = null;
-                    visibleTipTarget = tipTarget;
-                    showTipButton(tipTarget);
-                }, error -> {
-                    tipDiscoveryDisposable = null;
-                    tipDiscoveryMediaIdentifier = null;
-                    Log.e(TAG, Log.getStackTraceString(error));
-                }, () -> {
-                    tipDiscoveryDisposable = null;
-                    tipDiscoveryMediaIdentifier = null;
-                });
-    }
-
-    private Set<String> getXmrChatSearchCandidates(@NonNull Playable media) {
-        Set<String> candidates = new LinkedHashSet<>();
-        addSearchCandidate(candidates, media.getFeedTitle());
-        FeedMedia feedMedia = media instanceof FeedMedia ? (FeedMedia) media : null;
-        Feed feed = feedMedia == null || feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
-        if (feed != null) {
-            addSearchCandidate(candidates, feed.getAuthor());
-            addSearchCandidate(candidates, feed.getTitle());
-            addSearchCandidate(candidates, hostLabel(feed.getLink()));
-            addSearchCandidate(candidates, hostLabel(feed.getDownloadUrl()));
-        }
-        addSearchCandidate(candidates, media.getEpisodeTitle());
-        return candidates;
-    }
-
-    private void addSearchCandidate(@NonNull Set<String> candidates, @Nullable String value) {
-        if (candidates.size() >= MAX_XMRCHAT_SEARCH_CANDIDATES) {
-            return;
-        }
-        String candidate = StringUtils.stripToEmpty(value);
-        if (candidate.length() >= 3) {
-            Log.d(TAG, "Adding XMRChat search candidate=" + candidate);
-            candidates.add(candidate);
-        }
-    }
-
-    @Nullable
-    private String hostLabel(@Nullable String value) {
-        if (TextUtils.isEmpty(value)) {
-            return null;
-        }
-        String url = value.contains("://") ? value : "https://" + value;
-        String host = Uri.parse(url).getHost();
-        if (TextUtils.isEmpty(host)) {
-            return null;
-        }
-        host = StringUtils.removeStart(host.toLowerCase(Locale.US), "www.");
-        int dot = host.indexOf('.');
-        return dot > 0 ? host.substring(0, dot) : host;
-    }
-
-    @Nullable
-    private TipTarget searchXmrChatPage(@NonNull String candidate, @NonNull Playable media) throws IOException {
-        HttpUrl url = HttpUrl.parse("https://nest.xmrchat.com/pages/search").newBuilder()
-                .addQueryParameter("search", candidate)
-                .addQueryParameter("limit", "3")
-                .build();
-        Request request = new Request.Builder().url(url).get().build();
-        try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
-            ResponseBody body = response.body();
-            String responseBody = body == null ? "" : body.string();
-            if (!response.isSuccessful()) {
-                throw new IOException("XMRChat page search failed: " + response.code());
-            }
-            JSONArray pages;
-            try {
-                pages = new JSONObject(responseBody).optJSONArray("pages");
-            } catch (JSONException e) {
-                throw new IOException("XMRChat page search response was not valid JSON", e);
-            }
-            if (pages == null) {
-                Log.d(TAG, "XMRChat search response had no pages for candidate=" + candidate);
-                return null;
-            }
-            for (int i = 0; i < pages.length(); i++) {
-                JSONObject page = pages.optJSONObject(i);
-                String path = page == null ? null : page.optString("path");
-                Log.d(TAG, "XMRChat search result path=" + path
-                        + ", name=" + (page == null ? null : page.optString("name"))
-                        + ", matches=" + (page != null && isMatchingXmrChatPage(page, candidate, media)));
-                if (page != null && isMatchingXmrChatPage(page, candidate, media) && !TextUtils.isEmpty(path)) {
-                    return TipTarget.forXmrChatUrl("https://xmrchat.com/" + path);
-                }
-            }
-        }
-        return null;
-    }
-
-    private boolean isMatchingXmrChatPage(@NonNull JSONObject page, @NonNull String candidate,
-                                          @NonNull Playable media) {
-        String normalizedCandidate = normalizeSearchValue(candidate);
-        String pagePath = normalizeSearchValue(page.optString("path"));
-        String pageName = normalizeSearchValue(page.optString("name"));
-        if (normalizedCandidate.equals(pagePath) || normalizedCandidate.equals(pageName)) {
-            return true;
-        }
-
-        FeedMedia feedMedia = media instanceof FeedMedia ? (FeedMedia) media : null;
-        Feed feed = feedMedia == null || feedMedia.getItem() == null ? null : feedMedia.getItem().getFeed();
-        String feedHost = feed == null ? null : hostLabel(feed.getLink());
-        String feedUrl = feed == null ? null : StringUtils.stripToEmpty(feed.getDownloadUrl());
-        JSONArray links = page.optJSONArray("links");
-        if (links == null) {
-            return false;
-        }
-        for (int i = 0; i < links.length(); i++) {
-            JSONObject link = links.optJSONObject(i);
-            if (link == null) {
-                continue;
-            }
-            String platform = link.optString("platform");
-            String value = StringUtils.stripToEmpty(link.optString("value"));
-            if ("podcast-rss".equals(platform) && !TextUtils.isEmpty(feedUrl) && feedUrl.equalsIgnoreCase(value)) {
-                return true;
-            }
-            if ("website".equals(platform) && !TextUtils.isEmpty(feedHost)
-                    && feedHost.equalsIgnoreCase(hostLabel(value))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private String normalizeSearchValue(@Nullable String value) {
-        return StringUtils.stripToEmpty(value).toLowerCase(Locale.US)
-                .replaceAll("[^a-z0-9]+", "");
+    private void showTipButton(@Nullable TipTarget tipTarget) {
+        viewBinding.tipButton.setVisibility(tipTarget == null ? View.GONE : View.VISIBLE);
+        viewBinding.tipButton.setOnClickListener(tipTarget == null ? null : v -> openTipTarget(tipTarget));
     }
 
     private void openTipTarget(@Nullable TipTarget tipTarget) {
@@ -747,6 +449,7 @@ public class CoverFragment extends Fragment {
             }
             payload.put("amount", xmrAmount);
             payload.put("private", false);
+            payload.put("source", TIP_SOURCE);
 
             Request request = new Request.Builder()
                     .url(tipTarget.xmrChatApiUrl)
@@ -1080,9 +783,6 @@ public class CoverFragment extends Fragment {
         if (disposable != null) {
             disposable.dispose();
         }
-        if (tipDiscoveryDisposable != null) {
-            tipDiscoveryDisposable.dispose();
-        }
         if (tipDisposable != null) {
             tipDisposable.dispose();
         }
@@ -1150,6 +850,11 @@ public class CoverFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPlayerStatusEvent(PlayerStatusEvent event) {
         loadMediaInfo(false);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onXmrChatDirectoryUpdateEvent(XmrChatDirectoryUpdateEvent event) {
+        updateTipButton(media);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

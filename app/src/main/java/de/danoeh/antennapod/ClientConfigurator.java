@@ -24,6 +24,7 @@ import de.danoeh.antennapod.net.ssl.SslProviderInstaller;
 import de.danoeh.antennapod.storage.database.PodDBAdapter;
 
 import de.danoeh.antennapod.ui.notifications.NotificationUtils;
+import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
 import java.io.File;
 
 public class ClientConfigurator {
@@ -55,6 +56,8 @@ public class ClientConfigurator {
         AntennapodHttpClient.setProxyConfig(UserPreferences.getProxyConfig());
         SleepTimerPreferences.init(context);
         NotificationUtils.createChannels(context);
+        XmrChatPageDirectory.getInstance().init(context);
+        XmrChatPageDirectory.getInstance().refreshIfNeeded();
         initialized = true;
     }
 }
