@@ -1,6 +1,6 @@
 # XMRPod
 
-XMRPod is an open-source podcast app for Android with Monero tipping support for creators on XMRChat. It contains no tracking, no analytics, and no advertising.
+XMRPod is an open-source podcast app for Android with Monero tipping support for creators on XMRChat. No tracking, no analytics, no ads.
 
 ## Monero Tipping
 
@@ -8,13 +8,13 @@ XMRPod adds a `Tip` action to the playback screen for podcasts whose creators ha
 
 ## Privacy
 
-XMRChat creator discovery is privacy-preserving and happens entirely on your device. XMRPod downloads a single generic list of public XMRChat creator pages and matches your subscribed feeds against that list locally — no information about which podcasts you listen to or are subscribed to is ever sent to any server. The app never transmits your podcast titles, feed URLs, episode titles, or listening activity.
+Discovery happens entirely on your device. XMRPod downloads a single generic list of public XMRChat creator pages and matches your subscribed feeds against it locally. Your podcast titles, feed URLs, and listening activity are never transmitted.
 
 The only network calls XMRPod makes:
 
-- One generic download of the public XMRChat creator page list (cached, refreshed at most once per day).
+- One generic download of the public creator page list (cached, refreshed at most daily).
 - A public Monero price fetch when you open the tip form.
-- The tip creation request itself — and only when you explicitly choose to send a tip. This carries only the tip details (name, amount, message) plus a `source=xmrpod` marker so the server can attribute the tip, with no information about your listening habits.
+- The tip request — only when you explicitly send a tip. It carries just the tip details plus a `source=xmrpod` marker.
 
 ### XMRChat Discovery and Network Requests
 
