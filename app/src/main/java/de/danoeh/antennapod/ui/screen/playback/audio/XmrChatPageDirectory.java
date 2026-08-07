@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -127,7 +128,7 @@ public final class XmrChatPageDirectory {
             }
             Log.d(TAG, "Loaded " + rssDirectory.size() + " RSS and " + websiteDirectory.size()
                     + " website link mappings from disk");
-        } catch (Exception e) {
+        } catch (IOException | JSONException e) {
             Log.w(TAG, "Could not load XMRChat directory cache, starting empty", e);
             rssDirectory.clear();
             websiteDirectory.clear();
@@ -160,7 +161,7 @@ public final class XmrChatPageDirectory {
             root.put(CACHE_KEY_UPDATED_AT, lastUpdatedAt);
             File file = new File(context.getFilesDir(), CACHE_FILE_NAME);
             FileUtils.writeStringToFile(file, root.toString(), StandardCharsets.UTF_8);
-        } catch (Exception e) {
+        } catch (IOException | JSONException e) {
             Log.w(TAG, "Could not save XMRChat directory cache", e);
         }
     }
@@ -200,7 +201,7 @@ public final class XmrChatPageDirectory {
                             + " RSS and " + fetched.websites.size() + " website link mappings");
                     EventBus.getDefault().post(new XmrChatDirectoryUpdateEvent());
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 Log.e(TAG, "XMRChat directory refresh failed", e);
             } finally {
                 synchronized (this) {
