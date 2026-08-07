@@ -52,6 +52,7 @@ public final class XmrChatPageDirectory {
     private static final long REFRESH_INTERVAL_MS = 24L * 60L * 60L * 1000L;
     private static final int PAGE_SIZE = 100;
 
+    @android.annotation.SuppressLint("StaticFieldLeak")
     private static volatile XmrChatPageDirectory instance;
 
     private final Map<String, String> rssDirectory = new HashMap<>();
