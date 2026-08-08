@@ -60,7 +60,7 @@ GitHub Actions will read the latest changelog version, create the `xmrpod-vversi
 You can run the release metadata step locally with:
 
 ```sh
-python3 scripts/update_changelog_release.py --version version --version-code code --date YYYY-MM-DD --write
+python3 scripts/update_changelog_release.py
 ```
 
 ## License

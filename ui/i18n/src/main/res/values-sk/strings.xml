@@ -47,7 +47,7 @@
     <string name="home_continue_title">Pokračovať v počúvaní</string>
     <string name="home_new_title">Pozrite sa, čo je nové</string>
     <string name="home_downloads_title">Správca sťahovania</string>
-    <string name="home_welcome_title">Vitajte v aplikácii AntennaPod!</string>
+    <string name="home_welcome_title">Vitajte v aplikácii XMRPod!</string>
     <string name="home_welcome_text">Zatiaľ nie ste ešte prihlásený na odber žiadneho podcastu. Otvorte bočné menu a pridajte podcast.</string>
     <string name="notification_permission_denied">Odmietli ste oprávnenie.</string>
     <string name="configure_home">Nastavenie domácej obrazovky</string>
@@ -249,10 +249,10 @@
     <string name="download_log_title_unknown">Neznámy názov</string>
     <string name="download_type_feed">Kanál</string>
     <string name="download_type_media">Mediálny súbor</string>
-    <string name="no_feed_url_podcast_found_by_search">Navrhovaný podcast nemal RSS odkaz, AntennaPod našiel podcast, ktorý by sa mohol zhodovať</string>
+    <string name="no_feed_url_podcast_found_by_search">Navrhovaný podcast nemal RSS odkaz, XMRPod našiel podcast, ktorý by sa mohol zhodovať</string>
     <string name="authentication_notification_title">Vyžaduje sa overenie</string>
     <string name="confirm_mobile_download_dialog_title">Potvrdiť sťahovanie cez mobilné dáta</string>
-    <string name="confirm_mobile_download_dialog_message">Sťahovanie cez mobilné dáta je zakázané v nastaveniach. AntennaPod môže automaticky stiahnuť epizódu neskôr, keď bude k dispozícii Wi-Fi pripojenie.</string>
+    <string name="confirm_mobile_download_dialog_message">Sťahovanie cez mobilné dáta je zakázané v nastaveniach. XMRPod môže automaticky stiahnuť epizódu neskôr, keď bude k dispozícii Wi-Fi pripojenie.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Používate VPN? Vaša aplikácia VPN predstiera, že je mobilná sieť (merané pripojenie). Ak chcete tento problém vyriešiť, kontaktujte tvorcov vašej aplikácie VPN.\n- Nepoužívate VPN? Otvorte nastavenia Wi-Fi systému Android a zmeňte typ siete Wi-Fi tak, aby sa nemerala.</string>
     <string name="confirm_mobile_download_dialog_download_later">Stiahnuť neskôr</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Napriek tomu stiahnuť</string>
@@ -263,7 +263,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Mediálny súbor sa nepodarilo prehrať.\n\n- Skúste epizódu zmazať a znova stiahnuť.\n- Skontrolujte svoje sieťové pripojenie a uistite sa, že prístup neblokuje žiadna VPN ani prihlasovacia stránka.\n- Skúste dlho stlačiť a zdieľať „Adresu médií“ vo svojom webovom prehliadači, aby ste zistili, či sa tam dá prehrať. Ak nie, kontaktujte tvorcov podcastov.</string>
     <string name="no_media_playing_label">Neprebieha žiadne prehrávanie</string>
-    <string name="unknown_media_key">AntennaPod - Neznámy kľúč médií: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Neznámy kľúč médií: %1$d</string>
     <string name="error_file_not_found">Súbor nenájdený</string>
     <string name="no_media_label">Položka neobsahuje mediálny súbor</string>
     <!--Queue operations-->
@@ -342,7 +342,7 @@
     <string name="pref_auto_delete_sum">Odstránenie epizódy po prehratí alebo keď automatické sťahovanie potrebuje miesto</string>
     <string name="pref_auto_local_delete_title">Automatické odstraňovanie z lokálnych priečinkov</string>
     <string name="pref_auto_local_delete_sum">Zahrnúť lokálne priečinky do funkcie Automatického odstraňovania</string>
-    <string name="pref_auto_local_delete_dialog_body">Vezmite na vedomie, že táto akcia pre lokálne priečinky odstráni epizódy z aplikácie AntennaPod a zmaže ich mediálne súbory z úložiska vášho zariadenia. Tie sa nedajú znova stiahnuť cez AntennaPod. Prajete si povoliť automatické odstraňovanie?</string>
+    <string name="pref_auto_local_delete_dialog_body">Vezmite na vedomie, že táto akcia pre lokálne priečinky odstráni epizódy z aplikácie XMRPod a zmaže ich mediálne súbory z úložiska vášho zariadenia. Tie sa nedajú znova stiahnuť cez XMRPod. Prajete si povoliť automatické odstraňovanie?</string>
     <string name="pref_smart_mark_as_played_sum">Označiť epizódy ako vypočuté aj pokiaľ ešte zostáva určitý počet sekúnd prehrávania do ich konca</string>
     <string name="pref_smart_mark_as_played_title">Označiť ako vypočuté, ak zostáva čas</string>
     <string name="pref_skip_keeps_episodes_sum">Neodstraňovať epizódy pri ich preskočení</string>
@@ -354,7 +354,7 @@
     <string name="downloads_pref">Sťahovanie</string>
     <string name="downloads_pref_sum">Interval aktualizácie,mobilné dáta, automatické sťahovanie, automatické odstraňovanie</string>
     <string name="feed_refresh_title">Aktualizovať podcasty</string>
-    <string name="feed_refresh_sum">Zvoliť interval alebo čas v ktorom aplikácia AntennaPod automaticky vyhľadá nové epizódy</string>
+    <string name="feed_refresh_sum">Zvoliť interval alebo čas v ktorom aplikácia XMRPod automaticky vyhľadá nové epizódy</string>
     <string name="feed_refresh_never">Nikdy</string>
     <string name="feed_every_hour">Každú hodinu</string>
     <string name="feed_every_2_hours">Každé 2 hodiny</string>
@@ -436,7 +436,7 @@
     <string name="pref_skip_silence_title">Preskočiť ticho vo zvuku</string>
     <string name="behavior">Správanie</string>
     <string name="pref_default_page">Predvolená stránka</string>
-    <string name="pref_default_page_sum">Obrazovka, ktorá sa otvorí pri spúšťaní aplikácie AntennaPod</string>
+    <string name="pref_default_page_sum">Obrazovka, ktorá sa otvorí pri spúšťaní aplikácie XMRPod</string>
     <string name="pref_back_button_opens_drawer">Tlačidlom späť otvoriť navigačný panel</string>
     <string name="pref_back_button_opens_drawer_summary">Stlačením tlačidla späť na predvolenej stránke sa otvorí navigačný panel</string>
     <string name="remember_last_page">Pamätať poslednú kartu</string>
@@ -457,15 +457,15 @@
     <string name="episode_information">Informácie o epizóde</string>
     <!--About screen-->
   <string name="about_pref">O aplikácii</string>
-    <string name="antennapod_version">Verzia aplikácie AntennaPod</string>
+    <string name="xmrpod_version">Verzia aplikácie XMRPod</string>
     <string name="contributors">Prispievatelia</string>
-    <string name="contributors_summary">Každý môže pomôcť zlepšiť AntennaPod - kódom, prekladmi alebo radami používateľom na našom fóre</string>
+    <string name="contributors_summary">Každý môže pomôcť zlepšiť XMRPod - kódom, prekladmi alebo radami používateľom na našom fóre</string>
     <string name="developers">Vývojári</string>
     <string name="translators">Prekladatelia</string>
     <string name="special_thanks">Špeciálne poďakovanie</string>
     <string name="privacy_policy">Zásady ochrany osobných údajov</string>
     <string name="licenses">Licencie</string>
-    <string name="licenses_summary">AntennaPod používa ďalší skvelý softvér</string>
+    <string name="licenses_summary">XMRPod používa ďalší skvelý softvér</string>
     <!--Search-->
   <string name="search_status_no_results">Neboli nájdené žiadne výsledky</string>
     <string name="type_to_search">Zadajte výraz, ktorý chcete vyhľadať</string>
@@ -488,8 +488,8 @@
     <string name="html_export_summary">Ukážte svoje odbery priateľom</string>
     <string name="opml_export_summary">Prenesie vaše odbery do inej podcastovej aplikácie</string>
     <string name="opml_import_summary">Importujte vaše odbery z inej podcastovej aplikácie</string>
-    <string name="database_export_summary">Preneste odbery, počúvané epizódy a poradie do aplikácie AntennaPod v inom zariadení</string>
-    <string name="database_import_summary">Importuje databázu AntennaPod z iného zariadenia</string>
+    <string name="database_export_summary">Preneste odbery, počúvané epizódy a poradie do aplikácie XMRPod v inom zariadení</string>
+    <string name="database_import_summary">Importuje databázu XMRPod z iného zariadenia</string>
     <string name="opml_import_label">Import OPML</string>
     <string name="opml_add_podcast_label">Importovať zoznam podcastov (OPML)</string>
     <string name="opml_reader_error">Pri čítaní súboru sa vyskytla chyba. Uistite sa, že ste skutočne vybrali súbor OPML a že je platný.</string>
@@ -500,7 +500,7 @@
     <string name="html_export_label">Exportovať ako HTML</string>
     <string name="database_export_label">Export databázy</string>
     <string name="automatic_database_export_label">Automatický export databázy</string>
-    <string name="automatic_database_export_summary">Raz za 3 dni sa vytvorí záloha databázy AntennaPod. Ponechá sa iba 5 najnovších záloh.</string>
+    <string name="automatic_database_export_summary">Raz za 3 dni sa vytvorí záloha databázy XMRPod. Ponechá sa iba 5 najnovších záloh.</string>
     <string name="automatic_database_export_error">Chyba pri automatickom zálohovaní databázy</string>
     <string name="database_import_label">Import databázy</string>
     <string name="database_import_warning">Import databázy prepíše všetky vaše aktuálne odbery a históriu prehrávania. Aktuálnu databázu by ste mali exportovať ako zálohu. Chcete ju prepísať?</string>
@@ -509,8 +509,8 @@
     <string name="export_success_title">Export bol úspešný</string>
     <string name="opml_import_ask_read_permission">Na načítanie súboru OPML je potrebný prístup k externému úložisku</string>
     <string name="successful_import_label">Import úspešný</string>
-    <string name="import_ok">Reštartujte AntennaPod stlačením tlačidla OK</string>
-    <string name="import_no_downgrade">Táto databáza bola exportovaná s novšou verziou programu AntennaPod. Vaša aktuálna inštalácia zatiaľ nevie, ako s týmto súborom zaobchádzať.</string>
+    <string name="import_ok">Reštartujte XMRPod stlačením tlačidla OK</string>
+    <string name="import_no_downgrade">Táto databáza bola exportovaná s novšou verziou programu XMRPod. Vaša aktuálna inštalácia zatiaľ nevie, ako s týmto súborom zaobchádzať.</string>
     <string name="favorites_export_label">Export obľúbených položiek</string>
     <string name="favorites_export_summary">Exportovať obľúbené položky do súboru</string>
     <!--Sleep timer-->
@@ -553,12 +553,12 @@
   <string name="synchronization_choose_title">Vyberte si poskytovateľa synchronizácie</string>
     <string name="synchronization_summary_unchoosen">Môžete si vybrať viacerých poskytovateľov na synchronizáciu vašich odberov a stavu prehrávania epizódy</string>
     <string name="dialog_choose_sync_service_title">Vyberte si poskytovateľa synchronizácie</string>
-    <string name="gpodnet_description">Gpodder.net je open-source služba na synchronizáciu podcastov, ktorú si môžete nainštalovať na váš vlastný server. Gpodder.net je samostatný projekt a nezávisí na projekte AntennaPod.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync je open-source Nexcloud aplikácia, ktorú si viete ľahko nainštalovať na Váš vlastný server. Aplikácia je nezávislá od projektu AntennaPod.</string>
+    <string name="gpodnet_description">Gpodder.net je open-source služba na synchronizáciu podcastov, ktorú si môžete nainštalovať na váš vlastný server. Gpodder.net je samostatný projekt a nezávisí na projekte XMRPod.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync je open-source Nexcloud aplikácia, ktorú si viete ľahko nainštalovať na Váš vlastný server. Aplikácia je nezávislá od projektu XMRPod.</string>
     <string name="synchronization_host_explanation">Môžete si vybrať svoj vlastný server na synchronizáciu. Keď budete mať identifikovaný preferovaný server na synchronizáciu, tak prosím napíšte jeho adresu sem.</string>
     <string name="synchronization_host_label">Adresa servera</string>
     <string name="proceed_to_login_butLabel">Pokračujte na prihlásenie</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Udeľte prístup použitím otvoreného webového prehliadača a vráťte sa späť k aplikácii AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Udeľte prístup použitím otvoreného webového prehliadača a vráťte sa späť k aplikácii XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Prihlásiť sa</string>
     <string name="synchronization_credentials_explanation">Prosím, poskytnite prihlasovacie údaje vášho účtu na synchronizačnom serveri.</string>
     <string name="gpodnetauth_encryption_warning">Heslo a údaje nie sú šifrované!</string>
@@ -567,10 +567,10 @@
     <string name="synchronization_login_butLabel">Prihlásiť sa</string>
     <string name="synchronization_selectDevice_explanation">Tu vyberte zariadenie, ktoré ste vytvorili na synchronizačnom serveri alebo vytvorte nové.</string>
     <string name="gpodnetauth_device_name">Názov zariadenia</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod na %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod na %1$s</string>
     <string name="gpodnetauth_existing_devices">Existujúce zariadenia</string>
     <string name="gpodnetauth_create_device">Vytvoriť zariadenie</string>
-    <string name="gpodnetauth_finish_descr">Gratulujeme! Váš gpodder.net účet je teraz prepojený s vašim zariadením. AntennaPod bude odteraz automaticky synchronizovať odbery vo vašom zariadení s vašim gpodder.net účtom.</string>
+    <string name="gpodnetauth_finish_descr">Gratulujeme! Váš gpodder.net účet je teraz prepojený s vašim zariadením. XMRPod bude odteraz automaticky synchronizovať odbery vo vašom zariadení s vašim gpodder.net účtom.</string>
     <string name="pref_gpodnet_setlogin_information_title">Zmena prihlasovacích údajov</string>
     <string name="pref_gpodnet_setlogin_information_sum">Zmení prihlasovacie údaje k vášmu gpodder.net účtu.</string>
     <string name="synchronization_sync_changes_title">Synchronizovať teraz</string>
@@ -587,14 +587,14 @@
     <string name="gpodnetsync_username_characters_error">Používateľské mená môžu obsahovať iba písmena, číslice, spojovníky a podčiarkovníky.</string>
     <!--Directory chooser-->
   <string name="choose_data_directory">Zvoľte priečinok na ukladanie</string>
-    <string name="choose_data_directory_message">Vyberte hlavný priečinok pre ukladanie súborov. Aplikácia AntennaPod vytvorí ďalšie príslušné podpriečinky.</string>
+    <string name="choose_data_directory_message">Vyberte hlavný priečinok pre ukladanie súborov. Aplikácia XMRPod vytvorí ďalšie príslušné podpriečinky.</string>
     <string name="choose_data_directory_available_space">%1$s voľných z %2$s</string>
     <!--Rating dialog-->
   <string name="rating_tagline">Od %1$s ste si prehrali %2$s%3$d%4$s hodín podcastov.</string>
     <string name="rating_contribute_label">Chcieť sa pridať? Či už chcete prekladať, podporovať, navrhovať alebo programovať, radi vás privítame!</string>
     <string name="rating_contribute_button">Objavte spôsoby, ako môžete prispieť</string>
-    <string name="rating_volunteers_label">AntennaPod vyvíjajú dobrovoľníci vo svojom voľnom čase. Podeľte sa o svoje ocenenie ich práce zanechaním pekného hodnotenia.</string>
-    <string name="rating_rate">Ohodnoťte AntennaPod</string>
+    <string name="rating_volunteers_label">XMRPod vyvíjajú dobrovoľníci vo svojom voľnom čase. Podeľte sa o svoje ocenenie ich práce zanechaním pekného hodnotenia.</string>
+    <string name="rating_rate">Ohodnoťte XMRPod</string>
     <string name="rating_later">Neskôr</string>
     <!--Online feed view-->
   <string name="subscribe_label">Odoberať</string>
@@ -672,7 +672,7 @@
     <string name="local_folder">Lokálny priečinok</string>
     <string name="reconnect_local_folder">Znova pripojiť lokálny priečinok</string>
     <string name="reconnect_local_folder_warning">V prípade zamietnutia povolenia môžete použiť na opätovné pripojenie k rovnakému priečinku. Nevyberajte iný priečinok.</string>
-    <string name="local_feed_description">Tento virtuálny podcast bol vytvorený pridaním priečinka do aplikácie AntennaPod.</string>
+    <string name="local_feed_description">Tento virtuálny podcast bol vytvorený pridaním priečinka do aplikácie XMRPod.</string>
     <string name="unable_to_start_system_file_manager">Nepodarilo sa spustiť systémového správcu súborov</string>
     <string name="filter">Filter</string>
     <string name="hide_is_favorite_label">Je v obľúbených</string>
@@ -823,7 +823,7 @@
     <string name="echo_thanks_we_are_glad_new">za to, že ste sa k nám tento rok pridali!\n\nČi už ste prešli z inej aplikácie alebo ste s nami začali svoje podcastové dobrodružstvo: sme radi, že vás máme!</string>
     <string name="echo_thanks_now_favorite">Teraz sa pozrime na vaše obľúbené podcasty…</string>
     <string name="echo_share_heading">Moje obľúbené podcasty</string>
-    <string name="echo_share">Môj rok %d v podcastoch. #AntennaPodEcho</string>
+    <string name="echo_share">Môj rok %d v podcastoch. #XMRPodEcho</string>
     <string name="echo_hoarder_comment_clean">Tento rok ste prehrali epizódy z %1$d%% vašich %2$d aktívnych odberov. Stavíme sa, že aj vy budete udržiavať svoj pracovný stôl čistý!</string>
     <string name="notification_channel_refreshing">Obnovujem podcasty</string>
     <string name="notification_channel_refreshing_description">Zobrazuje sa pri kontrole nových epizód.</string>
@@ -840,7 +840,7 @@
     <string name="removed_from_inbox_message">Odstránené z Noviniek</string>
     <string name="mark_as_played_label">Označiť ako prehrané</string>
     <string name="no_items_selected_message">Žiadne vybrané položky</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Odstránením sa epizóda odstráni z AntennaPod a mediálny súbor sa vymaže z úložiska vášho zariadenia. Nedá sa znova stiahnuť cez AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Odstránením sa epizóda odstráni z XMRPod a mediálny súbor sa vymaže z úložiska vášho zariadenia. Nedá sa znova stiahnuť cez XMRPod.</string>
     <string name="reset_playback_position_label">Obnoviť pozíciu prehrávania</string>
     <string name="no_queue_items_inbox_has_items_button_label">Prejsť do Noviniek</string>
     <string name="no_queue_items_inbox_has_items_label">Žiadne epizódy nie sú zaradené, ale čakajú na vás nové epizódy!</string>
@@ -856,7 +856,7 @@
         <item quantity="other">%d epizód bolo presunutých na koniec.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Sledovať zvuk</string>
-    <string name="visit_social_interact_confirm_dialog_title">Opúšťate AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Opúšťate XMRPod</string>
     <plurals name="removed_from_queue_message">
         <item quantity="one">%d epizóda odstránená z poradia.</item>
         <item quantity="few">%d epizódy odstránené z poradia.</item>

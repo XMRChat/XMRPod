@@ -133,7 +133,7 @@
     <string name="statistics_to">Đến</string>
     <string name="statistics_today">Hôm nay</string>
     <string name="home_continue_title">Tiếp tục nghe</string>
-    <string name="home_welcome_title">Chào mừng tới AntennaPod!</string>
+    <string name="home_welcome_title">Chào mừng tới XMRPod!</string>
     <string name="clear_history_label">Xoá lịch sử nghe</string>
     <string name="open_in_browser_label">Mở trong trình duyệt</string>
     <string name="support_podcast">Hỗ trợ podcast này</string>
@@ -184,7 +184,7 @@
     <string name="confirm_mobile_streaming_button_always">Luôn luôn</string>
     <string name="checkbox_do_not_show_again">Không hiện lại</string>
     <string name="visit_social_interact_label">Hiện bình luận</string>
-    <string name="visit_social_interact_confirm_dialog_title">Bạn đang rời AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Bạn đang rời XMRPod</string>
     <string name="tag_all">Tất cả</string>
     <string name="time_hours">tiếng</string>
     <string name="time_seconds">giây</string>

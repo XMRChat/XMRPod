@@ -81,7 +81,7 @@
     <string name="gpodnetauth_login_butLabel">Керү</string>
     <string name="username_label">Кулланучы исеме</string>
     <string name="password_label">Серсүз</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod %1$s-да</string>
+    <string name="gpodnetauth_device_name_default">XMRPod %1$s-да</string>
     <string name="gpodnetsync_pref_report_successful">Уңышлы</string>
     <string name="gpodnetsync_pref_report_failed">Уңышсыз</string>
     <string name="choose_data_directory_available_space">%1$s / %2$s буш</string>

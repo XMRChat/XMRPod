@@ -415,7 +415,7 @@
     <string name="pref_new_episodes_action_sum">새 에피소드에 대해 할 동작</string>
     <!--About screen-->
   <string name="about_pref">정보</string>
-    <string name="antennapod_version">안테나팟 버전</string>
+    <string name="xmrpod_version">안테나팟 버전</string>
     <string name="contributors">기여한 분들</string>
     <string name="contributors_summary">코드, 번역, 포럼에서 사용자를 돕는 일 등, 안테나팟을 더 좋게 만드는데 누구나 도움을 주실 수 있습니다.</string>
     <string name="developers">개발자</string>

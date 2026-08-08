@@ -44,7 +44,7 @@
     <string name="home_downloads_title">Управљајте преузимањима</string>
     <string name="home_new_empty_text">Нове епизоде ће се појавити овде. Тада можете одлучити да ли сте заинтересовани за њих.</string>
     <string name="home_downloads_empty_text">Можете преузети било коју епизоду да бисте је слушали офлајн.</string>
-    <string name="home_welcome_title">Добро дошли у AntennaPod!</string>
+    <string name="home_welcome_title">Добро дошли у XMRPod!</string>
     <string name="section_hidden">Скривено</string>
     <string name="configure_home">Подешавање почетног екрана</string>
     <string name="drawer_open">Отвори мени</string>
@@ -177,7 +177,7 @@
     <string name="download_log_title_unknown">Непознати наслов</string>
     <string name="download_type_feed">Фид</string>
     <string name="null_value_podcast_error">Линк који сте додирнули не садржи важећу URL адресу подкаста. Проверите линк и покушајте поново или ручно претражите подкаст.</string>
-    <string name="no_feed_url_podcast_found_by_search">Предложени подкаст није имао RSS линк, AntennaPod је пронашао подкаст који би могао да се подудара</string>
+    <string name="no_feed_url_podcast_found_by_search">Предложени подкаст није имао RSS линк, XMRPod је пронашао подкаст који би могао да се подудара</string>
     <string name="authentication_notification_title">Потребна је аутентификација</string>
     <string name="confirm_mobile_download_dialog_title">Потврда преузимања преко мобилних података</string>
     <string name="download_type_media">Фајл медија</string>
@@ -192,7 +192,7 @@
     <string name="confirm_mobile_streaming_button_once">Једном</string>
     <string name="error_file_not_found">Фајл није пронађен</string>
     <string name="no_media_playing_label">Ништа се не репродукује</string>
-    <string name="unknown_media_key">AntennaPod – Непознати кључ медија: %1$d</string>
+    <string name="unknown_media_key">XMRPod – Непознати кључ медија: %1$d</string>
     <string name="no_media_label">Предмет не садржи фајл медија</string>
     <string name="queue_unlocked">Редослед откључан</string>
     <string name="checkbox_do_not_show_again">Не приказуј поново</string>
@@ -245,7 +245,7 @@
     <string name="pref_favorite_keeps_episodes_title">Задржи омиљене епизоде</string>
     <string name="downloads_pref">Преузимања</string>
     <string name="downloads_pref_sum">Интервал ажурирања, мобилни подаци, аутоматско преузимање, аутоматско брисање</string>
-    <string name="feed_refresh_sum">Одредите интервал у којем AntennaPod аутоматски тражи нове епизоде</string>
+    <string name="feed_refresh_sum">Одредите интервал у којем XMRPod аутоматски тражи нове епизоде</string>
     <string name="feed_every_hour">Сваки час</string>
     <string name="feed_every_2_hours">Свака 2 часа</string>
     <string name="feed_every_4_hours">Свака 4 часа</string>
@@ -312,7 +312,7 @@
     <string name="pref_skip_silence_title">Прескочи тишину</string>
     <string name="episode_lists">Листе епизода</string>
     <string name="pref_default_page">Подразумевана страница</string>
-    <string name="pref_default_page_sum">Екран који се отвара приликом покретања AntennaPod-а</string>
+    <string name="pref_default_page_sum">Екран који се отвара приликом покретања XMRPod-а</string>
     <string name="pref_delete_removes_from_queue_title">Избрисати уклоњено из редоследа</string>
     <string name="pref_downloads_button_action_title">Репродукција са екрана за преузимање</string>
     <string name="pref_downloads_button_action_sum">Прикажите дугме за репродукцију уместо дугмета за брисање на екрану за преузимање</string>
@@ -325,15 +325,15 @@
     <string name="pref_new_episodes_action_sum">Радње које треба предузети за нове епизоде</string>
     <string name="episode_information">Информације о епизоди</string>
     <string name="about_pref">О програму</string>
-    <string name="antennapod_version">Верзија AntennaPod-а</string>
+    <string name="xmrpod_version">Верзија XMRPod-а</string>
     <string name="contributors">Сарадници</string>
-    <string name="contributors_summary">Свако може помоћи да AntennaPod буде бољи - кодом, преводима или помажући корисницима на нашем форуму</string>
+    <string name="contributors_summary">Свако може помоћи да XMRPod буде бољи - кодом, преводима или помажући корисницима на нашем форуму</string>
     <string name="developers">Програмери</string>
     <string name="translators">Преводиоци</string>
     <string name="special_thanks">Посебно хвала</string>
     <string name="privacy_policy">Политика приватности</string>
     <string name="licenses">Лиценце</string>
-    <string name="licenses_summary">AntennaPod користи други одличан софтвер</string>
+    <string name="licenses_summary">XMRPod користи други одличан софтвер</string>
     <string name="search_status_no_results">Није пронађен ниједан резултат</string>
     <string name="type_to_search">Унесите упит за претрагу</string>
     <string name="search_label">Претрага</string>
@@ -354,8 +354,8 @@
     <string name="html_export_summary">Покажите своје претплате пријатељу</string>
     <string name="opml_export_summary">Пренесите своје претплате у другу апликацију за подкасте</string>
     <string name="opml_import_summary">Увезите своје претплате из друге апликације за подкасте</string>
-    <string name="database_export_summary">Пренесите претплате, слушане епизоде и редослед у AntennaPod на другом уређају</string>
-    <string name="database_import_summary">Увезите базу података AntennaPod-а са другог уређаја</string>
+    <string name="database_export_summary">Пренесите претплате, слушане епизоде и редослед у XMRPod на другом уређају</string>
+    <string name="database_import_summary">Увезите базу података XMRPod-а са другог уређаја</string>
     <string name="opml_add_podcast_label">Увоз листе подкаста (OPML)</string>
     <string name="opml_import_label">Увоз OPML</string>
     <string name="opml_reader_error">Дошло је до грешке при читању фајла. Уверите се да сте заиста изабрали OPML фајла и да ли је он важећи.</string>
@@ -370,8 +370,8 @@
     <string name="export_success_title">Извоз успешан</string>
     <string name="opml_import_ask_read_permission">За читање OPML фајла, потребан је приступ спољној меморији</string>
     <string name="successful_import_label">Увоз успешан</string>
-    <string name="import_ok">Додирните ОК, како бисте рестартовали AntennaPod</string>
-    <string name="import_no_downgrade">Ова база података је извезена са новијом верзијом AntennaPod-а. Ваша тренутна инсталација још увек не зна како да рукује овим фајлом.</string>
+    <string name="import_ok">Додирните ОК, како бисте рестартовали XMRPod</string>
+    <string name="import_no_downgrade">Ова база података је извезена са новијом верзијом XMRPod-а. Ваша тренутна инсталација још увек не зна како да рукује овим фајлом.</string>
     <string name="favorites_export_label">Извоз омиљених</string>
     <string name="favorites_export_summary">Извезите сачуване омиљене у фајл</string>
     <string name="set_sleeptimer_label">Подешавање тајмера за спавање</string>
@@ -404,8 +404,8 @@
     <string name="synchronization_choose_title">Избор пружаоца синхронизације</string>
     <string name="synchronization_summary_unchoosen">Можете бирати између више пружалаца са којима ћете синхронизовати своје претплате и стање репродукције епизоде</string>
     <string name="dialog_choose_sync_service_title">Избор пружаоца синхронизације</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync је Nextcloud апликација отвореног кода коју можеш лако да инсталирате на сопствени сервер. Апликација је независна од пројекта AntennaPod.</string>
-    <string name="gpodnet_description">Gpodder.net је услуга синхронизације подкаста отвореног кода коју можете да инсталирате на сопствени сервер. Gpodder.net је независан од пројекта AntennaPod.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync је Nextcloud апликација отвореног кода коју можеш лако да инсталирате на сопствени сервер. Апликација је независна од пројекта XMRPod.</string>
+    <string name="gpodnet_description">Gpodder.net је услуга синхронизације подкаста отвореног кода коју можете да инсталирате на сопствени сервер. Gpodder.net је независан од пројекта XMRPod.</string>
     <string name="synchronization_host_explanation">Можете изабрати сопствени сервер за синхронизацију. Када се идентификује жељени сервер за синхронизацију, унесите његову адресу овде.</string>
     <string name="synchronization_host_label">Адреса сервера</string>
     <string name="proceed_to_login_butLabel">Настави за пријаву</string>
@@ -414,10 +414,10 @@
     <string name="password_label">Лозинка</string>
     <string name="synchronization_login_butLabel">Пријава</string>
     <string name="synchronization_selectDevice_explanation">Изаберите уређај који сте направили на серверу за синхронизацију или направите нови.</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod на %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod на %1$s</string>
     <string name="gpodnetauth_existing_devices">Постојећи уређаји</string>
     <string name="gpodnetauth_create_device">Направи уређај</string>
-    <string name="gpodnetauth_finish_descr">Честитамо! Ваш gpodder.net налог је сада повезан са вашим уређајем. AntennaPod ће од сада аутоматски синхронизовати претплате на вашем уређају са вашим gpodder.net налогом.</string>
+    <string name="gpodnetauth_finish_descr">Честитамо! Ваш gpodder.net налог је сада повезан са вашим уређајем. XMRPod ће од сада аутоматски синхронизовати претплате на вашем уређају са вашим gpodder.net налогом.</string>
     <string name="pref_gpodnet_setlogin_information_sum">Промените информације за пријављивање за свој gpodder.net налог.</string>
     <string name="pref_gpodnet_setlogin_information_title">Промена информација за пријављивање</string>
     <string name="synchronization_sync_changes_title">Синхронизуј сада</string>
@@ -430,7 +430,7 @@
     <string name="gpodnetsync_pref_report_failed">Неуспешно</string>
     <string name="gpodnetsync_username_characters_error">Корисничка имена могу да садрже само слова, цифре, цртице и доње црте.</string>
     <string name="choose_data_directory">Избор фолдера података</string>
-    <string name="choose_data_directory_message">Изаберите базу фолдера података. AntennaPod ће направити одговарајуће потфолдере.</string>
+    <string name="choose_data_directory_message">Изаберите базу фолдера података. XMRPod ће направити одговарајуће потфолдере.</string>
     <string name="choose_data_directory_available_space">Слободно: %1$s од %2$s</string>
     <string name="rating_tagline">Од %1$s, слушали сте %2$s%3$d%4$s часова подкаста.</string>
     <string name="rating_contribute_label">Желите да се придружите? Било да желите да преводите, подржите, дизајнирате или кодирате, били бисмо срећни да вас имамо!</string>
@@ -491,7 +491,7 @@
     <string name="echo_hoarder_subtitle_medium">Проверено. Нема скупљања овде.</string>
     <string name="echo_thanks_large">Хвала</string>
     <string name="echo_thanks_we_are_glad_old">што сте остали са нама ове године!\n\nСлушали сте своју прву епизоду са нама у %1$s. Част нам је да вам служимо од тада.</string>
-    <string name="echo_share">Моја %d. у подкастима. #AntennaPodEcho</string>
+    <string name="echo_share">Моја %d. у подкастима. #XMRPodEcho</string>
     <string name="home_continue_empty_text">Можете да додате епизоде тако што ћете их преузети или дуго додирнути и изабрати „Додај у редослед“.</string>
     <plurals name="total_size_downloaded_podcasts">
         <item quantity="one">Укупна величина %d епизоде на уређају</item>
@@ -594,9 +594,9 @@
     <string name="playback_pref_sum">Контроле слушалица, интервали прескакања, редослед</string>
     <string name="bottom_navigation_summary">Приступите најважнијим екранима са свих страна, једним додиром</string>
     <string name="playback_pref">Репродукција</string>
-    <string name="pref_auto_local_delete_dialog_body">Имајте на уму да ће за локалне фолдере ово уклонити епизоде са AntennaPod-а и избрисати њихове фајлове медија из меморије вашег уређаја. Не могу се поново преузети преко AntennaPod-а. Омогућити аутоматско брисање?</string>
+    <string name="pref_auto_local_delete_dialog_body">Имајте на уму да ће за локалне фолдере ово уклонити епизоде са XMRPod-а и избрисати њихове фајлове медија из меморије вашег уређаја. Не могу се поново преузети преко XMRPod-а. Омогућити аутоматско брисање?</string>
     <string name="no_items_label">Додајте епизоду тако што ћете је преузети или дуго додирните епизоду и изаберите „Додај у редослед“.</string>
-    <string name="confirm_mobile_download_dialog_message">Преузимање преко мобилних података је онемогућено у подешавањима. AntennaPod може касније аутоматски преузети епизоду када Wi-Fi буде доступан.</string>
+    <string name="confirm_mobile_download_dialog_message">Преузимање преко мобилних података је онемогућено у подешавањима. XMRPod може касније аутоматски преузети епизоду када Wi-Fi буде доступан.</string>
     <string name="random">Насумично</string>
     <string name="pref_hardware_forward_button_summary">Прилагодите понашање дугмета „Напред“</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Користите VPN? Ваша VPN апликација се претвара да је мобилна мрежа (веза са ограничењем). Ако желите да се овај проблем реши, контактирајте креаторе своје VPN апликације.\n- Не користите VPN? Отворите подешавања Wi-Fi-ја система Android и промените тип своје Wi-Fi мреже да се не мери.</string>
@@ -653,7 +653,7 @@
     <string name="opml_import_error_no_file">Није изабран ниједан фајл!</string>
     <string name="select_all_label">Изабери све</string>
     <string name="opml_export_label">Извоз OPML</string>
-    <string name="automatic_database_export_summary">Направите резервну копију базе података AntennaPod-а свака 3 дана. Задржите само 5 најновијих резервних копија.</string>
+    <string name="automatic_database_export_summary">Направите резервну копију базе података XMRPod-а свака 3 дана. Задржите само 5 најновијих резервних копија.</string>
     <string name="disable_sleeptimer_label">Онемогући тајмер за спавање</string>
     <string name="timer_vibration_label">Вибрација мало пре краја</string>
     <plurals name="time_days_quantified">
@@ -674,7 +674,7 @@
     <string name="nextcloud_login_error_generic">Није могуће пријавити се на ваш Nextcloud.\n\n- Проверите своју мрежну везу.\n- Потврдите да користите исправну адресу сервера.\n- Уверите се да је Gpodder Sync Nextcloud додатак инсталиран.</string>
     <string name="notification_channel_user_action_description">Приказује се ако је потребна ваша радња, на пример ако треба да унесете лозинку.</string>
     <string name="select_country">Избор државе</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Одобрите приступ помоћу отвореног веб-прегледача и вратите се у AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Одобрите приступ помоћу отвореног веб-прегледача и вратите се у XMRPod.</string>
     <string name="synchronization_force_sync_summary">Поново синхронизујте све претплате и стања епизода</string>
     <string name="gpodnetauth_encryption_warning">Лозинка и подаци нису шифровани!</string>
     <string name="gpodnetauth_login_butLabel">Пријава</string>
@@ -690,9 +690,9 @@
     <string name="proxy_checking">Провера…</string>
     <string name="rating_contribute_button">Откриј начине за допринос</string>
     <string name="feed_folders_include_root">Прикажи овај подкаст изнад тагова (само стражња навигација)</string>
-    <string name="rating_volunteers_label">AntennaPod развијају волонтери у слободно време. Поделите своју захвалност за њихов рад остављајући лепу оцену.</string>
+    <string name="rating_volunteers_label">XMRPod развијају волонтери у слободно време. Поделите своју захвалност за њихов рад остављајући лепу оцену.</string>
     <string name="episode_filters_description">Листа термина који се користе за одлучивање да ли епизоду треба обухватити или изоставити приликом аутоматског преузимања</string>
-    <string name="rating_rate">Оцени AntennaPod</string>
+    <string name="rating_rate">Оцени XMRPod</string>
     <string name="subscribe_label">Претплати се</string>
     <string name="statistics_release_next">следећа епизода (процењено)</string>
     <string name="no_media">Не садржи медије</string>
@@ -717,7 +717,7 @@
     <string name="share_starting_position_label">Почевши од</string>
     <string name="echo_hoarder_comment_clean">Слушали сте епизоде са %1$d%% ваших %2$d активних претплата ове године. Кладимо се да и ви одржавате свој сто чистим!</string>
     <string name="add_local_folder">Додај локални фолдер</string>
-    <string name="local_feed_description">Овај виртуелни подкаст је направљен додавањем фолдера у AntennaPod.</string>
+    <string name="local_feed_description">Овај виртуелни подкаст је направљен додавањем фолдера у XMRPod.</string>
     <string name="hide_played_episodes_label">Слушано</string>
     <string name="discover">Откриј</string>
     <string name="release_schedule_wednesday">Сре</string>
@@ -837,11 +837,11 @@
         <item quantity="other">%d епизода је уклоњено из редоследа.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Прати аудио</string>
-    <string name="visit_social_interact_confirm_dialog_title">Напуштате AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Напуштате XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Уверите се да верујете веб-сајту „%1$s“.</string>
     <string name="reset_playback_position_label">Ресетуј позицију репродукције</string>
     <string name="no_items_selected_message">Ниједан предмет није изабран</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Брисање уклања епизоду са AntennaPod-а и брише медијски фајл из меморије вашег уређаја. Не може се поново преузети путем AntennaPod-а.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Брисање уклања епизоду са XMRPod-а и брише медијски фајл из меморије вашег уређаја. Не може се поново преузети путем XMRPod-а.</string>
     <plurals name="move_to_top_message">
         <item quantity="one">%d епизода је премештена на врх.</item>
         <item quantity="few">%d епизоде су премештене на врх.</item>
@@ -893,7 +893,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Подразумевани редослед за сортирање</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Одаберите подразумевани редослед за епизоде на екрану за поткасте</string>
     <string name="report_bug_title">Пријави грешку</string>
-    <string name="report_bug_message">Жао нам је да чујемо да нешто не ради. Волели бисмо твоју помоћ у побољшању AntennaPod-a. Молимо те да посетиш наш форум или GitHub како би проверио да ли је проблем већ пријављен. Уколико није, јави нам и ми ћемо да истражимо.</string>
+    <string name="report_bug_message">Жао нам је да чујемо да нешто не ради. Волели бисмо твоју помоћ у побољшању XMRPod-a. Молимо те да посетиш наш форум или GitHub како би проверио да ли је проблем већ пријављен. Уколико није, јави нам и ми ћемо да истражимо.</string>
     <string name="report_bug_device_info_title">Уређај</string>
     <string name="report_bug_attrib_app_version">Верзија апликације</string>
     <string name="report_bug_attrib_android_version">Верзија Android-a</string>

@@ -47,7 +47,7 @@
     <string name="home_continue_title">Sighi a ascurtare</string>
     <string name="home_new_title">Càstia is novidades</string>
     <string name="home_downloads_title">Gesti is iscarrigamentos</string>
-    <string name="home_welcome_title">Ti donamus su benebènnidu a AntennaPod!</string>
+    <string name="home_welcome_title">Ti donamus su benebènnidu a XMRPod!</string>
     <string name="home_welcome_text">Non tenes ancora sutiscritziones a nissunu podcast. Aberi su menù pro nd\'agiùnghere unu.</string>
     <string name="notification_permission_denied">No as donadu permissu.</string>
     <string name="configure_home">Cunfigura s\'ischermu printzipale</string>
@@ -239,10 +239,10 @@
     <string name="download_log_title_unknown">Tìtulu disconnotu</string>
     <string name="download_type_feed">Canale</string>
     <string name="download_type_media">Archìviu multimediale</string>
-    <string name="no_feed_url_podcast_found_by_search">Su podcast sugeridu non tenet unu ligòngiu RSS, ma AntennaPod at agatadu unu podcast chi podet corrispòndere</string>
+    <string name="no_feed_url_podcast_found_by_search">Su podcast sugeridu non tenet unu ligòngiu RSS, ma XMRPod at agatadu unu podcast chi podet corrispòndere</string>
     <string name="authentication_notification_title">Autenticatzione netzessària</string>
     <string name="confirm_mobile_download_dialog_title">Cunfirma s\'iscarrigamentu mòbile</string>
-    <string name="confirm_mobile_download_dialog_message">S\'iscarrigamentu cun datos mòbiles est disativadu in sa cunfiguratzione. AntennaPod podet iscarrigare s\'episòdiu luego in automàticu cando su Wi-Fi siat a disponimentu.</string>
+    <string name="confirm_mobile_download_dialog_message">S\'iscarrigamentu cun datos mòbiles est disativadu in sa cunfiguratzione. XMRPod podet iscarrigare s\'episòdiu luego in automàticu cando su Wi-Fi siat a disponimentu.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Ses impreende una VPN? S\'aplicatzione VPN tua narat de èssere una rete mòbile (connessione de pagamentu). Si boles chi custu problema siat isòrvidu, cuntata is creadores de s\'aplicatzione VPN tua.\n- Non ses impreende una VPN? Aberi sa cunfiguratzione de Wi-Fi in Android e passa a unu tipu de Wi-Fi chi non siat a pagamentu.</string>
     <string name="confirm_mobile_download_dialog_download_later">Iscàrriga luego</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Iscàrriga su pròpiu</string>
@@ -253,7 +253,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Impossìbile riproduire s\'archìviu multimediale.\n\n— Proa a cantzellare e torrare a iscarrigare s\'episòdiu.\n— Controlla sa connessione a internet, e assegura·ti chi s\'atzessu non siat blocadu dae unu VPN o dae una pàgina de identificatzione.\n— Toca e mantene \"Media address\" e aberi s\'indiritzu cun unu navigadore web pro bìdere si s\'episòdiu potzat èssere riproduidu in cue. Si non funtzionat, iscrie a chie apat creadu su podcast.</string>
     <string name="no_media_playing_label">Nissunu elementu multimediale in riprodutzione</string>
-    <string name="unknown_media_key">AntennaPod - Crae de elementu multimediale disconnota: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Crae de elementu multimediale disconnota: %1$d</string>
     <string name="error_file_not_found">Archìviu no agatadu</string>
     <string name="no_media_label">S\'elementu non cuntenet nissunu archìviu multimediale</string>
     <!--Queue operations-->
@@ -332,7 +332,7 @@
     <string name="pref_auto_delete_sum">Cantzella is episòdios a pustis de sa riprodutzione o cando s\'iscarrigamentu in automàticu tenet bisòngiu de ispàtziu</string>
     <string name="pref_auto_local_delete_title">Cantzella in automàticu dae is cartellas locales</string>
     <string name="pref_auto_local_delete_sum">Include is cartellas locales in sa funtzionalidade de cantzelladura in automàticu</string>
-    <string name="pref_auto_local_delete_dialog_body">Tene contu chi pro is cartellas in locale custu at a bogare episòdios dae AntennaPod e at a cantzellare is archìvios multimediales chi currispondant dae su dispositivu de archiviatzione. No ant a pòdere èssere torrados a iscarrigare pro mèdiu de AntennaPod. Boles ativare sa cantzelladura automàtica?</string>
+    <string name="pref_auto_local_delete_dialog_body">Tene contu chi pro is cartellas in locale custu at a bogare episòdios dae XMRPod e at a cantzellare is archìvios multimediales chi currispondant dae su dispositivu de archiviatzione. No ant a pòdere èssere torrados a iscarrigare pro mèdiu de XMRPod. Boles ativare sa cantzelladura automàtica?</string>
     <string name="pref_smart_mark_as_played_sum">Sinna episòdios comente riproduidos fintzas si abarrant ancora prus pagu de una cantidade determinada de segundos</string>
     <string name="pref_smart_mark_as_played_title">Sinnalatzione inteligente de episòdios riproduidos</string>
     <string name="pref_skip_keeps_episodes_sum">Mantene episòdios brincados</string>
@@ -344,7 +344,7 @@
     <string name="downloads_pref">Iscarrigamentos</string>
     <string name="downloads_pref_sum">Atualizatzione intervallos, Datos mòbiles, Iscarrigamentos automàticos, Cantzelladura automàtica</string>
     <string name="feed_refresh_title">Atualiza is podcast</string>
-    <string name="feed_refresh_sum">Ispetzìfica s\'intervallu de chirca automàtica de episòdios dae parte de AntennaPod</string>
+    <string name="feed_refresh_sum">Ispetzìfica s\'intervallu de chirca automàtica de episòdios dae parte de XMRPod</string>
     <string name="feed_refresh_never">Mai</string>
     <string name="feed_every_hour">Onni ora</string>
     <string name="feed_every_2_hours">Onni 2 oras</string>
@@ -426,7 +426,7 @@
     <string name="pref_skip_silence_title">Omite is silèntzios in s\'àudio</string>
     <string name="behavior">Cumportamentu</string>
     <string name="pref_default_page">Pàgina predefinida</string>
-    <string name="pref_default_page_sum">Pàgina chi s\'at a abèrrere a s\'aviu de AntennaPod</string>
+    <string name="pref_default_page_sum">Pàgina chi s\'at a abèrrere a s\'aviu de XMRPod</string>
     <string name="pref_back_button_opens_drawer">Su butone de \"In segus\" aberit sa barra de navigatzione</string>
     <string name="pref_back_button_opens_drawer_summary">Su butone \"In segus\" in sa pàgina printzipale aberit sa barra de navigatzione</string>
     <string name="remember_last_page">Regorda s\'ùrtima pàgina</string>
@@ -447,15 +447,15 @@
     <string name="episode_information">Informatziones de s\'episòdiu</string>
     <!--About screen-->
   <string name="about_pref">Informatziones</string>
-    <string name="antennapod_version">Versione de AntennaPod</string>
+    <string name="xmrpod_version">Versione de XMRPod</string>
     <string name="contributors">Contributziones</string>
-    <string name="contributors_summary">Chie si siat podet agiudare a megiorare AntennaPod, iscriende còdighe, traduende o agiudende àtere in su forum</string>
+    <string name="contributors_summary">Chie si siat podet agiudare a megiorare XMRPod, iscriende còdighe, traduende o agiudende àtere in su forum</string>
     <string name="developers">Iscuadra de isvilupu</string>
     <string name="translators">Tradutzione</string>
     <string name="special_thanks">Ringratziamentu ispetziale</string>
     <string name="privacy_policy">Polìtica de riservadesa</string>
     <string name="licenses">Lissèntzias</string>
-    <string name="licenses_summary">AntennaPod impreat puru àteros programmas bellos meda</string>
+    <string name="licenses_summary">XMRPod impreat puru àteros programmas bellos meda</string>
     <!--Search-->
   <string name="search_status_no_results">Nissunu resurtadu agatadu</string>
     <string name="type_to_search">Faghe una chirca</string>
@@ -478,8 +478,8 @@
     <string name="html_export_summary">Ammustra a àtere is sutiscritziones tuas</string>
     <string name="opml_export_summary">Tràmuda is sutiscritziones a un\'àtera aplicatzione de podcast</string>
     <string name="opml_import_summary">Importa is sutiscritziones dae un\'àtera aplicatzione de podcast</string>
-    <string name="database_export_summary">Trasferimentu de sutiscritziones, de is episòdios ascurtados e de sa lista de AntennaPod a un\'àteru dispositivu</string>
-    <string name="database_import_summary">Importa una base de datos de AntennaPod dae un\'àteru dispositivu</string>
+    <string name="database_export_summary">Trasferimentu de sutiscritziones, de is episòdios ascurtados e de sa lista de XMRPod a un\'àteru dispositivu</string>
+    <string name="database_import_summary">Importa una base de datos de XMRPod dae un\'àteru dispositivu</string>
     <string name="opml_import_label">Importatzione OPML</string>
     <string name="opml_add_podcast_label">Importa una lista de podcasts (OPML)</string>
     <string name="opml_reader_error">Errore in sa letura de s\'archìviu. Assegura·ti chi siat istadu seletzionadu un\'archìviu OPML e chi s\'archìviu siat bàlidu.</string>
@@ -490,7 +490,7 @@
     <string name="html_export_label">Esportatzione HTML</string>
     <string name="database_export_label">Esportatzione de base de datos</string>
     <string name="automatic_database_export_label">Esportatzione de sa base de datos in automàticu</string>
-    <string name="automatic_database_export_summary">Crea una còpia de seguresa de sa base de datos de AntennaPod onni 3 dies. Cunserva isceti is ùrtimas 5 còpias prus reghentes.</string>
+    <string name="automatic_database_export_summary">Crea una còpia de seguresa de sa base de datos de XMRPod onni 3 dies. Cunserva isceti is ùrtimas 5 còpias prus reghentes.</string>
     <string name="automatic_database_export_error">Errore in sa còpia de seguresa automàtica de sa base de datos</string>
     <string name="database_import_label">Importatzione de base de datos</string>
     <string name="database_import_warning">S\'importatzione de una base de datos at a sostituire is sutiscritziones tuas atuales e sa cronologia de riprodutziones. Dias dèpere esportare sa base de datos tua atuale comente còpia de seguresa. Boles sighire cun sa sostitutzione?</string>
@@ -499,8 +499,8 @@
     <string name="export_success_title">Esportatzione cumpletada</string>
     <string name="opml_import_ask_read_permission">Sa letura de s\'archìviu OPML rechedet atzessu a s\'archiviatzione esterna</string>
     <string name="successful_import_label">Importatzione cumpletada</string>
-    <string name="import_ok">Preme AB pro torrare a aviare AntennaPod</string>
-    <string name="import_no_downgrade">Custa base de datos est istada esportada cun una versione prus reghente de AntennaPod. S\'installatzione tua atuale non iscit comente gestire custu archìviu.</string>
+    <string name="import_ok">Preme AB pro torrare a aviare XMRPod</string>
+    <string name="import_no_downgrade">Custa base de datos est istada esportada cun una versione prus reghente de XMRPod. S\'installatzione tua atuale non iscit comente gestire custu archìviu.</string>
     <string name="favorites_export_label">Esportatzione preferidos</string>
     <string name="favorites_export_summary">Esporta is preferidos sarvados a un\'archìviu</string>
     <!--Sleep timer-->
@@ -539,12 +539,12 @@
   <string name="synchronization_choose_title">Sèbera frunidore de sincronizatzione</string>
     <string name="synchronization_summary_unchoosen">Podes seberare intre unos cantos frunidores pro sa sincronizatzione de is sutiscritziones e de s\'istadu de riprodutzione</string>
     <string name="dialog_choose_sync_service_title">Sèbera unu frunidore de sincronizatzione</string>
-    <string name="gpodnet_description">Gpodder.net est unu servìtziu de còdighe abertu de sincronizatzione de podcasts chi podes installare in unu serbidore pròpiu. Gpodder.net est indipendente de su progetu AntennaPod.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync est un\'aplicatzione de Nextcloud de còdighe abertu chi podes installare in unu serbidore pròpiu in manera simpre. Gpodder Sync est indipendente de su progetu AntennaPod.</string>
+    <string name="gpodnet_description">Gpodder.net est unu servìtziu de còdighe abertu de sincronizatzione de podcasts chi podes installare in unu serbidore pròpiu. Gpodder.net est indipendente de su progetu XMRPod.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync est un\'aplicatzione de Nextcloud de còdighe abertu chi podes installare in unu serbidore pròpiu in manera simpre. Gpodder Sync est indipendente de su progetu XMRPod.</string>
     <string name="synchronization_host_explanation">Podes seletzionare su serbidore tuo de sincronizare. Cando apas identificadu su serbidore de sincronizatzione chi preferis, inserta·nce s\'indiritzu inoghe.</string>
     <string name="synchronization_host_label">Indiritzu de su serbidore</string>
     <string name="proceed_to_login_butLabel">Sighi a s\'identificatzione</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Dona atzessu impreende su navigadore web chi tenes abertu e torra a AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Dona atzessu impreende su navigadore web chi tenes abertu e torra a XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Intra</string>
     <string name="synchronization_credentials_explanation">Fruni is credentziales de su contu tuo in su serbidore de sincronizatzione.</string>
     <string name="gpodnetauth_encryption_warning">Sa crae e is datos non sunt tzifrados!</string>
@@ -553,10 +553,10 @@
     <string name="synchronization_login_butLabel">Intra</string>
     <string name="synchronization_selectDevice_explanation">Seletziona su dispositivu chi as creadu in su serbidore de sincronizatzione o crea·nde unu nou.</string>
     <string name="gpodnetauth_device_name">Nòmine de su dispositivu</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod in %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod in %1$s</string>
     <string name="gpodnetauth_existing_devices">Dispositivos giai cunfigurados</string>
     <string name="gpodnetauth_create_device">Crea unu dispositivu</string>
-    <string name="gpodnetauth_finish_descr">Augùrios. As connètidu su dispositivu tuo cun su contu de gpodder.net. AntennaPod at a sincronizare in automàticu totu is sutiscritziones de su dispositivu tuo cun su contu de gpodder.net tuo.</string>
+    <string name="gpodnetauth_finish_descr">Augùrios. As connètidu su dispositivu tuo cun su contu de gpodder.net. XMRPod at a sincronizare in automàticu totu is sutiscritziones de su dispositivu tuo cun su contu de gpodder.net tuo.</string>
     <string name="pref_gpodnet_setlogin_information_title">Modìfica s\'informatzione de identificatzione</string>
     <string name="pref_gpodnet_setlogin_information_sum">Modìfica s\'informatzione de identificatzione a su contu gpodder.net tuo.</string>
     <string name="synchronization_sync_changes_title">Sincroniza immoe</string>
@@ -573,14 +573,14 @@
     <string name="gpodnetsync_username_characters_error">Is nòmines de utente podent cuntènnere isceti lìteras, nùmeros, tratigheddos e linieddas bàscias.</string>
     <!--Directory chooser-->
   <string name="choose_data_directory">Sèbera sa cartella de datos</string>
-    <string name="choose_data_directory_message">Sèbera sa base de sa cartella de datos tua. AntennaPod at a creare is sutacartellas netzessàrias.</string>
+    <string name="choose_data_directory_message">Sèbera sa base de sa cartella de datos tua. XMRPod at a creare is sutacartellas netzessàrias.</string>
     <string name="choose_data_directory_available_space">%1$s de %2$s liberos</string>
     <!--Rating dialog-->
   <string name="rating_tagline">Dae su %1$s, as riproduidu %2$s%3$d%4$s oras de podcasts.</string>
     <string name="rating_contribute_label">Ti boles aunire a nois? Si boles agiudare in sa tradutzione, su disinnu o su còdighe, t\'amus a acòllere cun praghere!</string>
     <string name="rating_contribute_button">Iscoberi àteras maneras de contribuire</string>
-    <string name="rating_volunteers_label">AntennaPod est isvilupadu dae un\'iscuadra de voluntàrios in su tempus lìberu. Ammustra·ddis chi aprètzias su traballu issoro cun una valutatzione positiva.</string>
-    <string name="rating_rate">Lassa una valutatzione de AntennaPod</string>
+    <string name="rating_volunteers_label">XMRPod est isvilupadu dae un\'iscuadra de voluntàrios in su tempus lìberu. Ammustra·ddis chi aprètzias su traballu issoro cun una valutatzione positiva.</string>
+    <string name="rating_rate">Lassa una valutatzione de XMRPod</string>
     <string name="rating_later">A pustis</string>
     <!--Online feed view-->
   <string name="subscribe_label">Sutascrie·mi</string>
@@ -658,7 +658,7 @@
     <string name="local_folder">Cartella locale</string>
     <string name="reconnect_local_folder">Torra a connètere sa cartella locale</string>
     <string name="reconnect_local_folder_warning">Si is permissos benint refudados, podes impreare custu pro ti torrare a connètere a sa pròpiu cartella. Non nde seletziones un\'àtera.</string>
-    <string name="local_feed_description">Custu podcast virtuale est istadu creadu agiunghende una cartella a AntennaPod.</string>
+    <string name="local_feed_description">Custu podcast virtuale est istadu creadu agiunghende una cartella a XMRPod.</string>
     <string name="unable_to_start_system_file_manager">Impossìbile aviare su gestore de archìvios de su sistema</string>
     <string name="filter">Filtru</string>
     <string name="hide_is_favorite_label">Est preferidu</string>
@@ -795,7 +795,7 @@
     <string name="echo_hoarder_comment_clean">Ocannu as riproduidu episòdios dae su %1$d%% de is %2$d sutiscritziones ativas tuas. De seguru tenes in òrdine fintzas s\'iscrivania!</string>
     <string name="echo_thanks_we_are_glad_new">de nos àere seberadu ocannu!\n\nSiat chi benes dae un\'àtera aplicatzione o chi semus sa prima aventura tua in contu de podcast, est unu praghere chi sias inoghe!</string>
     <string name="echo_thanks_large">Gràtzias</string>
-    <string name="echo_share">Su %d miu in podcast. #AntennaPodEcho</string>
+    <string name="echo_share">Su %d miu in podcast. #XMRPodEcho</string>
     <string name="echo_thanks_now_favorite">Immoe, castiemus pagu pagu is podcasts preferidos tuos…</string>
     <string name="echo_share_heading">Is podcast preferidos mios</string>
     <string name="pref_downloads_button_action_title">Riprodui dae s\'ischermu de is iscarrigamentos</string>
@@ -826,7 +826,7 @@
     <string name="deleting_podcast_progress">Cantzellende podcast %1$d de %2$d…</string>
     <string name="reset_playback_position_label">Ripristina sa positzione de riprodutzione</string>
     <string name="no_items_selected_message">Nissunu elementu seletzionadu</string>
-    <string name="delete_local_feed_confirmation_dialog_message">A cantzellare un\'episòdiu ddu bogat dae AntennaPod e cantzellat s\'archìviu multimediale dae s\'ispàtziu de archiviatzione de su dispositivu. Non podet èssere torradu a iscarrigare pro mèdiu de AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">A cantzellare un\'episòdiu ddu bogat dae XMRPod e cantzellat s\'archìviu multimediale dae s\'ispàtziu de archiviatzione de su dispositivu. Non podet èssere torradu a iscarrigare pro mèdiu de XMRPod.</string>
     <string name="download_log_details_human_readable_reason_title">Istadu</string>
     <string name="download_log_details_technical_reason_title">Caraterìsticas tècnicas</string>
     <string name="download_log_details_file_url_title">URL de s\'archìviu</string>
@@ -854,7 +854,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Critèriu de assentadura predefinidu</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Sèbera su critèriu predefinidu pro s\'assentadura de is episòdios dae s\'ischermu de su podcast</string>
     <string name="report_bug_title">Sinnala una faddina</string>
-    <string name="report_bug_message">Nos dispraghet chi calicuna cosa non siat funtzionende comente si depet. Ti torramus gràtzias de s\'agiudu tuo pro megiorare AntennaPod. Controlla si sa faddina est istada giai sinnalada in su fòrum nostru o in GitHub. Si nono, faghe·nos ischire e amus a controllare.</string>
+    <string name="report_bug_message">Nos dispraghet chi calicuna cosa non siat funtzionende comente si depet. Ti torramus gràtzias de s\'agiudu tuo pro megiorare XMRPod. Controlla si sa faddina est istada giai sinnalada in su fòrum nostru o in GitHub. Si nono, faghe·nos ischire e amus a controllare.</string>
     <string name="report_bug_device_info_title">Dispositivu</string>
     <string name="report_bug_attrib_app_version">Versione de s\'app</string>
     <string name="report_bug_attrib_android_version">Versione de Android</string>
@@ -926,7 +926,7 @@
     </plurals>
     <string name="transcript_follow_audio_label">Sighi s\'àudio</string>
     <string name="visit_social_interact_label">Mustra is cummentos</string>
-    <string name="visit_social_interact_confirm_dialog_title">Ses essende dae AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Ses essende dae XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Assegura·ti chi su situ web «%1$s» siat fidadu.</string>
     <string name="sleep_timer_without_continuous_playback_message">Imbetzes de ativare semper in automàticu su temporizadore de istudada cun un\'episòdiu, disativa sa riprodutzione continuada in is cunfiguratziones.</string>
     <string name="cover_as_background">Coberta comente isfundu</string>

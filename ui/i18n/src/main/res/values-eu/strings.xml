@@ -47,7 +47,7 @@
     <string name="home_continue_title">Jarraitu entzuten</string>
     <string name="home_new_title">Ikusi berriak</string>
     <string name="home_downloads_title">Kudeatu deskargak</string>
-    <string name="home_welcome_title">Ongi etorri AntennaPod-era!</string>
+    <string name="home_welcome_title">Ongi etorri XMRPod-era!</string>
     <string name="home_welcome_text">Oraindik ez zara harpidetu podcast bakar batera ere. Ireki menua podcast bat gehitzeko.</string>
     <string name="notification_permission_denied">Baimena ukatu duzu.</string>
     <string name="configure_home">Konfiguratu hasierako pantaila</string>
@@ -227,10 +227,10 @@
     <string name="download_log_title_unknown">Izenburu ezezaguna</string>
     <string name="download_type_feed">Jarioa</string>
     <string name="download_type_media">Multimedia fitxategia</string>
-    <string name="no_feed_url_podcast_found_by_search">Iradokitako podcastak ez zuen RSS estekarik, AntennaPodek bat etor daitekeen podcast bat aurkitu du</string>
+    <string name="no_feed_url_podcast_found_by_search">Iradokitako podcastak ez zuen RSS estekarik, XMRPodek bat etor daitekeen podcast bat aurkitu du</string>
     <string name="authentication_notification_title">Autentifikazioa beharrezkoa da</string>
     <string name="confirm_mobile_download_dialog_title">Baieztatu sare mugikor bidezko deskarga</string>
-    <string name="confirm_mobile_download_dialog_message">Datu mugikorreko konexioan podcastak eguneratzea desgaituta dago ezarpenetan. Saioa beranduago deskargatu dezake AntennaPodek, wifia erabilgarri dagoenean.</string>
+    <string name="confirm_mobile_download_dialog_message">Datu mugikorreko konexioan podcastak eguneratzea desgaituta dago ezarpenetan. Saioa beranduago deskargatu dezake XMRPodek, wifia erabilgarri dagoenean.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- VPN bat erabiltzen? Zure VPN aplikazioak sare mugikor bat dela dirudi (konexio neurtua). Arazo hau konpondu nahi baduzu, jarri harremanetan VPN aplikazioaren sortzaileekin.\n- Ez duzu VPNrik erabiltzen? Ireki Androiden Wi-Fi ezarpenak eta aldatu zure Wi-Fi mota, neurtua izan ez dadin.</string>
     <string name="confirm_mobile_download_dialog_download_later">Deskargatu beranduago</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Deskargatu hala ere</string>
@@ -241,7 +241,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Ezin izan da multimedia-fitxategia erreproduzitu.\n\n-Saiatu atala ezabatzen eta berriro deskargatzen.\n-Egiaztatu sareko konexioa eta ziurtatu VPN edo saioa hasteko orririk ez dagoela sarbidea blokeatzen.\n-Saiatu luze sakatuz eta partekatuz \"Media helbidea\" zure web-arakatzailean, bertan erreproduzitu daitekeen ikusteko. Hala ez bada, jarri harremanetan podcasten sortzaileekin.</string>
     <string name="no_media_playing_label">Ez da ezer erreproduzitzen ari</string>
-    <string name="unknown_media_key">AntennaPod - Multimedia tekla ezezaguna: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Multimedia tekla ezezaguna: %1$d</string>
     <string name="error_file_not_found">Ez da fitxategirik aurkitu</string>
     <string name="no_media_label">Elementuak ez du multimedia fitxategirik</string>
     <!--Queue operations-->
@@ -311,8 +311,8 @@
     <string name="button_action_restart_episode">Hasi berriz saioa</string>
     <string name="pref_followQueue_sum">Jauzi ilarako hurrengo elementura erreprodukzioa amaitzean</string>
     <string name="pref_auto_local_delete_title">Ezabatu automatikoki tokiko karpetetatik</string>
-    <string name="pref_auto_local_delete_sum">Ezabatu \"tokiko karpeta gehitu\" bidez gehitutako fitxategiak ere. Kontuan izan hauek ez dituela AntennaPod-ek deskargatzen eta ezin direla berriro deskargatu</string>
-    <string name="pref_auto_local_delete_dialog_body">Kontuan izan, tokiko karpeten kasuan honek saioak AntennaPod-etik kenduko dituela eta haien multimedia fitxategiak ezabatuko dituela gailuaren biltegiratzetik. Ezingo dira berriz deskargatu AntennaPod bidez. Automatikoki ezabatzea gaitu nahi duzu?</string>
+    <string name="pref_auto_local_delete_sum">Ezabatu \"tokiko karpeta gehitu\" bidez gehitutako fitxategiak ere. Kontuan izan hauek ez dituela XMRPod-ek deskargatzen eta ezin direla berriro deskargatu</string>
+    <string name="pref_auto_local_delete_dialog_body">Kontuan izan, tokiko karpeten kasuan honek saioak XMRPod-etik kenduko dituela eta haien multimedia fitxategiak ezabatuko dituela gailuaren biltegiratzetik. Ezingo dira berriz deskargatu XMRPod bidez. Automatikoki ezabatzea gaitu nahi duzu?</string>
     <string name="pref_smart_mark_as_played_sum">Markatu saioak erreproduzituta bezala, amaitzeko segundo kopuru jakin bat baino gutxiago falta bada</string>
     <string name="pref_smart_mark_as_played_title">Erreproduzituta marka adimendua</string>
     <string name="pref_skip_keeps_episodes_sum">Mantendu saioak saltatzen direnean</string>
@@ -324,7 +324,7 @@
     <string name="downloads_pref">Deskargak</string>
     <string name="downloads_pref_sum">Eguneratze-maiztasuna, Mugikorreko datuak, Deskarga automatikoa, Ezabatze automatikoa</string>
     <string name="feed_refresh_title">Eguneratu podcastak</string>
-    <string name="feed_refresh_sum">Zehaztu tarte bat AntennaPod-ek saio berriak automatikoki bilatzeko</string>
+    <string name="feed_refresh_sum">Zehaztu tarte bat XMRPod-ek saio berriak automatikoki bilatzeko</string>
     <string name="feed_refresh_never">Inoiz ez</string>
     <string name="feed_every_hour">Orduero</string>
     <string name="feed_every_2_hours">2 ordutik behin</string>
@@ -402,7 +402,7 @@
     <string name="pref_skip_silence_title">Saltatu audioko isiluneak</string>
     <string name="behavior">Portaera</string>
     <string name="pref_default_page">Orri lehenetsia</string>
-    <string name="pref_default_page_sum">AntennaPod abiaraztean irekitzen den pantaila</string>
+    <string name="pref_default_page_sum">XMRPod abiaraztean irekitzen den pantaila</string>
     <string name="pref_back_button_opens_drawer">Atzera botoiak tiradera irekitzen du</string>
     <string name="pref_back_button_opens_drawer_summary">Orri lehenetsian atzera botoia sakatzeak nabigazioko tiradera irekitzen du</string>
     <string name="remember_last_page">Gogoratu azken orria</string>
@@ -421,15 +421,15 @@
     <string name="pref_new_episodes_action_sum">Saio berriak daudenean egin beharreko ekintza</string>
     <!--About screen-->
   <string name="about_pref">Honi buruz</string>
-    <string name="antennapod_version">AntennaPod bertsioa</string>
+    <string name="xmrpod_version">XMRPod bertsioa</string>
     <string name="contributors">Laguntzaileak</string>
-    <string name="contributors_summary">Denek lagun dezakete AntennaPod hobetzen: kodearekin, itzulpenekin edo gure foroan erabiltzaileei laguntza emanez</string>
+    <string name="contributors_summary">Denek lagun dezakete XMRPod hobetzen: kodearekin, itzulpenekin edo gure foroan erabiltzaileei laguntza emanez</string>
     <string name="developers">Garatzaileak</string>
     <string name="translators">Itzultzaileak</string>
     <string name="special_thanks">Esker bereziak</string>
     <string name="privacy_policy">Pribatutasun politika</string>
     <string name="licenses">Baimenak</string>
-    <string name="licenses_summary">AntennaPod-ek beste software ezin hobeak erabiltzen ditu</string>
+    <string name="licenses_summary">XMRPod-ek beste software ezin hobeak erabiltzen ditu</string>
     <!--Search-->
   <string name="search_status_no_results">Ez da emaitzarik aurkitu</string>
     <string name="type_to_search">Idatzi kontsulta bilatzeko</string>
@@ -452,8 +452,8 @@
     <string name="html_export_summary">Erakutsi harpidetzak lagun bati</string>
     <string name="opml_export_summary">Eraman zure harpidetzak podcast-en beste aplikazio batera</string>
     <string name="opml_import_summary">Ekarri zure harpidetzak podcast-en beste aplikazio batetik</string>
-    <string name="database_export_summary">Bidali beste gailu bateko AntennaPod-era harpidetzak, entzundako saioak eta ilara</string>
-    <string name="database_import_summary">Ekarri AntennaPoden datu-basea beste gailu batetik</string>
+    <string name="database_export_summary">Bidali beste gailu bateko XMRPod-era harpidetzak, entzundako saioak eta ilara</string>
+    <string name="database_import_summary">Ekarri XMRPoden datu-basea beste gailu batetik</string>
     <string name="opml_import_label">OPML inportazioa</string>
     <string name="opml_add_podcast_label">Inportatu podcasten zerrenda (OPML)</string>
     <string name="opml_reader_error">Errore bat gertatu da fitxategia irakurtzean. Ziurtatu OPML fitxategi bat hautatu duzula eta fitxategi hori baliozkoa dela.</string>
@@ -464,7 +464,7 @@
     <string name="html_export_label">HTML esportazioa</string>
     <string name="database_export_label">Datu-basearen esportazioa</string>
     <string name="automatic_database_export_label">Datu-basearen esportazio automatikoa</string>
-    <string name="automatic_database_export_summary">Sortu AntennaPod datu-basearen babeskopia bat 3 egunetik behin. Gorde soilik azken 5 babeskopiak.</string>
+    <string name="automatic_database_export_summary">Sortu XMRPod datu-basearen babeskopia bat 3 egunetik behin. Gorde soilik azken 5 babeskopiak.</string>
     <string name="automatic_database_export_error">Errorea datu-basearen babeskopia automatikoa egitean</string>
     <string name="database_import_label">Datu-basearen inportazioa</string>
     <string name="database_import_warning">Datu-base bat inportatzeak egungo harpidetza guztiak eta erreprodukzio-historia ordezkatuko ditu. Egungo datu-basea esportatu behar duzu segurtasun-kopia gisa. Ordezkatu nahi duzu?</string>
@@ -473,8 +473,8 @@
     <string name="export_success_title">Esportatzea ongi burutu da</string>
     <string name="opml_import_ask_read_permission">Kanpoko biltegiratzerako sarbidea behar duzu OPML fitxategia irakurtzeko</string>
     <string name="successful_import_label">Inportazio arrakastatsua</string>
-    <string name="import_ok">Sakatu Ados AntennaPod berrabiarazteko</string>
-    <string name="import_no_downgrade">Datu-base hau AntennaPod-en bertsio berriago batekin esportatu zen. Uneko instalazioak ez daki fitxategi hori nola inportatu.</string>
+    <string name="import_ok">Sakatu Ados XMRPod berrabiarazteko</string>
+    <string name="import_no_downgrade">Datu-base hau XMRPod-en bertsio berriago batekin esportatu zen. Uneko instalazioak ez daki fitxategi hori nola inportatu.</string>
     <string name="favorites_export_label">Gogokoen esportazioa</string>
     <string name="favorites_export_summary">Esportatu gordetako gogokoak fitxategian</string>
     <!--Sleep timer-->
@@ -497,12 +497,12 @@
   <string name="synchronization_choose_title">Aukeratu sinkronizazio-hornitzailea</string>
     <string name="synchronization_summary_unchoosen">Hainbat hornitzaileren artean hauta dezakezu zure harpidetzak eta saioen erreprodukzioaren egoera sinkronizatzeko</string>
     <string name="dialog_choose_sync_service_title">Aukeratu sinkronizazio-hornitzailea</string>
-    <string name="gpodnet_description">Gpodder.net kode irekiko podcastak sinkronizatzeko zerbitzu bat da, zure zerbitzarian bertan instala dezakezuna. Gpodder.net AntennaPod proiektutik independentea da.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync Nextcloud aplikazio kode irekikoa da, zure zerbitzarian erraz instala dezakezuna. Gpodder Sync AntennaPod proiektutik independentea da.</string>
+    <string name="gpodnet_description">Gpodder.net kode irekiko podcastak sinkronizatzeko zerbitzu bat da, zure zerbitzarian bertan instala dezakezuna. Gpodder.net XMRPod proiektutik independentea da.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync Nextcloud aplikazio kode irekikoa da, zure zerbitzarian erraz instala dezakezuna. Gpodder Sync XMRPod proiektutik independentea da.</string>
     <string name="synchronization_host_explanation">Zure zerbitzari propioa aukeratu dezakezu sinkronizatzeko. Zure gustuko sinkronizazio-zerbitzaria hautatu ondoren, sartu bere helbidea hemen.</string>
     <string name="synchronization_host_label">Zerbitzariaren helbidea</string>
     <string name="proceed_to_login_butLabel">Jarraitu saio hasierara</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Eman sarbidea irekitako web nabigatzailearen bidez eta itzuli AntennaPodera.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Eman sarbidea irekitako web nabigatzailearen bidez eta itzuli XMRPodera.</string>
     <string name="gpodnetauth_login_butLabel">Hasi saioa</string>
     <string name="synchronization_credentials_explanation">Eman sinkronizazio-zerbitzariko zure kontuaren kredentzialak.</string>
     <string name="gpodnetauth_encryption_warning">Pasahitza eta datuak ez daude enkriptaturik!</string>
@@ -511,10 +511,10 @@
     <string name="synchronization_login_butLabel">Hasi saioa</string>
     <string name="synchronization_selectDevice_explanation">Hautatu sinkronizazio-zerbitzarian sortu zenuen gailua edo sortu berri bat.</string>
     <string name="gpodnetauth_device_name">Gailuaren izena</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod hemen: %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod hemen: %1$s</string>
     <string name="gpodnetauth_existing_devices">Dauden gailuak</string>
     <string name="gpodnetauth_create_device">Sortu gailua</string>
-    <string name="gpodnetauth_finish_descr">Zorionak! Zure gpodder.net kontua zure gailuarekin lotuta dago orain. Hemendik aurrera, AntennaPodek automatikoki sinkronizatuko ditu zure gailuaren harpidetzak zure gpodder.net kontuarekin.</string>
+    <string name="gpodnetauth_finish_descr">Zorionak! Zure gpodder.net kontua zure gailuarekin lotuta dago orain. Hemendik aurrera, XMRPodek automatikoki sinkronizatuko ditu zure gailuaren harpidetzak zure gpodder.net kontuarekin.</string>
     <string name="pref_gpodnet_setlogin_information_title">Aldatu saio hasieraren informazioa</string>
     <string name="pref_gpodnet_setlogin_information_sum">Aldatu saio hasierako datuak zure gpodder.net-en kontuan.</string>
     <string name="synchronization_sync_changes_title">Sinkronizatu orain</string>
@@ -536,7 +536,7 @@
   <string name="rating_tagline">%1$s(e)tik %2$s%3$d%4$s podcast ordu erreproduzitu dituzu.</string>
     <string name="rating_contribute_label">Bat egin nahi duzu? Pozik hartuko zaitugu, egiten duzuna egiten duzula: itzuli, laguntza eskaini, diseinatu edo programatu!</string>
     <string name="rating_contribute_button">Aurkitu laguntzeko moduak</string>
-    <string name="rating_rate">Baloratu AntennaPod</string>
+    <string name="rating_rate">Baloratu XMRPod</string>
     <string name="rating_later">Geroago</string>
     <!--Online feed view-->
   <string name="subscribe_label">Harpidetu</string>
@@ -608,7 +608,7 @@
     <string name="local_folder">Tokiko karpeta</string>
     <string name="reconnect_local_folder">Birkonektatu tokiko karpeta</string>
     <string name="reconnect_local_folder_warning">Baimenik izan ezean, hau erabil dezakezu karpeta berdinera birkonektatzeko. Ez aukeratu beste karpetarik.</string>
-    <string name="local_feed_description">Podcast birtual hau AntennaPod-i karpeta bat gehituta sortu da.</string>
+    <string name="local_feed_description">Podcast birtual hau XMRPod-i karpeta bat gehituta sortu da.</string>
     <string name="unable_to_start_system_file_manager">Ezin da sistemaren fitxategi-kudeatzailea abiarazi</string>
     <string name="filter">Iragazkia</string>
     <string name="hide_is_favorite_label">Gogokoa da</string>
@@ -676,7 +676,7 @@
     <string name="add_shortcut">Gehitu lasterbidea</string>
     <string name="pref_nav_drawer_items_title">Nabigazioa pertsonalizatu</string>
     <string name="pref_nav_drawer_items_sum">Aldatu zein elementu agertzen diren nabigazio-tiraderan edo beheko nabigazioan</string>
-    <string name="choose_data_directory_message">Mesedez, aukeratu zure datu-karpetaren oinarria. AntennaPod-ek azpidirektorio egokiak sortuko ditu.</string>
+    <string name="choose_data_directory_message">Mesedez, aukeratu zure datu-karpetaren oinarria. XMRPod-ek azpidirektorio egokiak sortuko ditu.</string>
     <string name="subscription_display_list">Zerrenda</string>
     <string name="delete_downloads_played">Ezabatu erreproduzitutakoa</string>
     <string name="theming">Gaiak</string>
@@ -743,7 +743,7 @@
         <item quantity="one">%d segundo</item>
         <item quantity="other">%d segundo</item>
     </plurals>
-    <string name="rating_volunteers_label">AntennaPod boluntarioek garatzen dute beren denbora librean. Partekatu haien lanari buruzko iritzia balorazio polita utziz.</string>
+    <string name="rating_volunteers_label">XMRPod boluntarioek garatzen dute beren denbora librean. Partekatu haien lanari buruzko iritzia balorazio polita utziz.</string>
     <string name="preview_episodes">Atalen aurreikustaldiak</string>
     <string name="download_started_talkback">Deskarga hasi da %1$s-entzat</string>
     <string name="download_completed_talkback">Deskarga osatu da %1$s-entzat</string>
@@ -805,7 +805,7 @@
     <string name="echo_queue_hours_much">Egunero %1$s inguru da %2$d hasten den arte. Zaude, zer?</string>
     <string name="echo_hoarder_subtitle_medium">Egiaztatuta. Hemen ez dago gordetzerik.</string>
     <string name="echo_hoarder_subtitle_clean">Garbituta!</string>
-    <string name="echo_share">Nire %d urtea podcastetan. #AntennaPodEcho</string>
+    <string name="echo_share">Nire %d urtea podcastetan. #XMRPodEcho</string>
     <string name="home_label_short">Menu nagusia</string>
     <string name="queue_label_short">Ilara</string>
     <string name="disabled">Desgaituta</string>
@@ -844,11 +844,11 @@
         <item quantity="other">%d atal ilaratik kendu dira.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Jarraitu audioa</string>
-    <string name="visit_social_interact_confirm_dialog_title">Antenna Pod-etik ateratzen ari zara</string>
+    <string name="visit_social_interact_confirm_dialog_title">XMRPod-etik ateratzen ari zara</string>
     <string name="visit_social_interact_confirm_dialog_message">Mesedez, ziurtatu \"%1$s\" webgunea fidagarria dela.</string>
     <string name="reset_playback_position_label">Berrezarri erreprodukzio-posizioa</string>
     <string name="no_items_selected_message">Ez da elementurik hautatu</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Atala ezabatzean, azken hau AntennaPod-etik eta multimedia fitxategia gailuaren biltegitik ezabatzen dira. Ezin da berriro deskargatu AntennaPod bidez.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Atala ezabatzean, azken hau XMRPod-etik eta multimedia fitxategia gailuaren biltegitik ezabatzen dira. Ezin da berriro deskargatu XMRPod bidez.</string>
     <plurals name="move_to_top_message">
         <item quantity="one">Atal %d goian ezarri da.</item>
         <item quantity="other">%d atal goian ezarri dira.</item>
@@ -908,7 +908,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Ordenazio-ordena lehenetsia</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Aukeratu podcastaren pantailan atalen ordena lehenetsia</string>
     <string name="report_bug_title">Akatsaren berri eman</string>
-    <string name="report_bug_message">Sentitzen dugu zerbaitek huts egiten duela entzutea. Zure laguntza eskertuko genuke AntennaPod hobetzeko. Mesedez, begiratu gure foroa edo GitHub-a arazoa jakinarazi den ikusteko. Hala ez bada, jakinarazi iezaguzu eta ikertuko dugu.</string>
+    <string name="report_bug_message">Sentitzen dugu zerbaitek huts egiten duela entzutea. Zure laguntza eskertuko genuke XMRPod hobetzeko. Mesedez, begiratu gure foroa edo GitHub-a arazoa jakinarazi den ikusteko. Hala ez bada, jakinarazi iezaguzu eta ikertuko dugu.</string>
     <string name="report_bug_device_info_title">Gailua</string>
     <string name="report_bug_attrib_app_version">App-aren bertsioa</string>
     <string name="report_bug_attrib_android_version">Androiden bertsioa</string>
@@ -950,7 +950,7 @@
     <string name="queue_time_left_label">%1$s • %2$s geratzen dira</string>
     <string name="no_fav_episodes_head_label">Gustokoenik ez</string>
     <string name="no_fav_episodes_label">Markatu atalak gogoko gisa izarraren ikonoa sakatuz.</string>
-    <string name="bottom_navigation_deprecation_warning">Zoritxarrez, alboko nabigazioa kendu beharko dugu etorkizuneko eguneratze batean. AntennaPod boluntario talde txiki batek garatu du, eta bi nabigazio estiloak urteetan mantendu ondoren, gehiegizko lan bihurtu da.\n\nAlboko nabigazioaren menpe bazaude, desgaitu AntennaPod-en eguneraketak zure aplikazio dendan.</string>
+    <string name="bottom_navigation_deprecation_warning">Zoritxarrez, alboko nabigazioa kendu beharko dugu etorkizuneko eguneratze batean. XMRPod boluntario talde txiki batek garatu du, eta bi nabigazio estiloak urteetan mantendu ondoren, gehiegizko lan bihurtu da.\n\nAlboko nabigazioaren menpe bazaude, desgaitu XMRPod-en eguneraketak zure aplikazio dendan.</string>
     <string name="pref_advanced">Aurreratua</string>
     <string name="pref_display">Bistaratu</string>
     <string name="import_error_label">Inportatu akatsa</string>
@@ -958,9 +958,9 @@
     <string name="rss_address_invalid">Idatzi duzun RSS helbidea ez da zuzena.</string>
     <string name="wearos_connected_to" tools:ignore="UnusedResources">%sra konektatuta</string>
     <string name="wearos_version" tools:ignore="UnusedResources">%s bertsioa</string>
-    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">Telefonoa ez da bateragarria. Ziurtatu Google Play-ko AntennaPod-en azken bertsioa erabiltzen ari zarela zure telefonoan.</string>
+    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">Telefonoa ez da bateragarria. Ziurtatu Google Play-ko XMRPod-en azken bertsioa erabiltzen ari zarela zure telefonoan.</string>
     <string name="wearos_no_items" tools:ignore="UnusedResources">Elementurik ez</string>
-    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">Ezin izan da telefonora iritsi. Ziurtatu telefonoa gertu dagoela eta AntennaPod instalatuta dagoela.</string>
+    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">Ezin izan da telefonora iritsi. Ziurtatu telefonoa gertu dagoela eta XMRPod instalatuta dagoela.</string>
     <string name="wearos_play_on_phone" tools:ignore="UnusedResources">Mugikorrean erreproduzitu</string>
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">Mugikorra arakatu</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">Mugikorrean ireki</string>

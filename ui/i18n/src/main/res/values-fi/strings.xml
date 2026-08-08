@@ -46,7 +46,7 @@
     <string name="home_continue_title">Jatka kuuntelua</string>
     <string name="home_new_title">Katso mitä uutta</string>
     <string name="home_downloads_title">Hallinnoi latauksia</string>
-    <string name="home_welcome_title">Tervetuloa AntennaPodiin!</string>
+    <string name="home_welcome_title">Tervetuloa XMRPodiin!</string>
     <string name="home_welcome_text">Et ole vielä tilannut yhtään podcastia. Avaa valikko lisätäksesi podcastin.</string>
     <string name="notification_permission_denied">Et antanut lupaa.</string>
     <string name="configure_home">Määritä kotinäyttö</string>
@@ -221,10 +221,10 @@
     <string name="download_log_title_unknown">Tuntematon otsikko</string>
     <string name="download_type_feed">Syöte</string>
     <string name="download_type_media">Mediatiedosto</string>
-    <string name="no_feed_url_podcast_found_by_search">Ehdotetulla podcastilla ei ollut RSS-linkkiä, AntennaPod löysi mahdollisesti vastaavan podcastin</string>
+    <string name="no_feed_url_podcast_found_by_search">Ehdotetulla podcastilla ei ollut RSS-linkkiä, XMRPod löysi mahdollisesti vastaavan podcastin</string>
     <string name="authentication_notification_title">Todentaminen vaaditaan</string>
     <string name="confirm_mobile_download_dialog_title">Vahvista mobiililataus</string>
-    <string name="confirm_mobile_download_dialog_message">Lataaminen mobiilidatayhteydellä on poissa päältä asetuksissa. AntennaPod voi ladata jakson myöhemmin automaattisesti, kun Wi-Fi-yhteys on käytettävissä.</string>
+    <string name="confirm_mobile_download_dialog_message">Lataaminen mobiilidatayhteydellä on poissa päältä asetuksissa. XMRPod voi ladata jakson myöhemmin automaattisesti, kun Wi-Fi-yhteys on käytettävissä.</string>
     <string name="confirm_mobile_download_dialog_download_later">Lataa myöhemmin</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Lataa silti</string>
     <string name="confirm_mobile_streaming_notification_title">Vahvista suoratoisto mobiilidatayhteydellä</string>
@@ -232,7 +232,7 @@
     <string name="confirm_mobile_streaming_button_always">Aina</string>
     <string name="confirm_mobile_streaming_button_once">Kerran</string>
     <string name="no_media_playing_label">Mediaa ei toisteta</string>
-    <string name="unknown_media_key">AntennaPod - Tuntematon media-avain: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Tuntematon media-avain: %1$d</string>
     <string name="error_file_not_found">Tiedostoa ei löytynyt</string>
     <string name="no_media_label">Kohde ei sisällä mediatiedostoa</string>
     <!--Queue operations-->
@@ -383,7 +383,7 @@
     <string name="pref_skip_silence_title">Ohita hiljaisuus</string>
     <string name="behavior">Toiminta</string>
     <string name="pref_default_page">Oletusnäkymä</string>
-    <string name="pref_default_page_sum">Näkymä, joka avataan AntennaPodin käynnistyessä</string>
+    <string name="pref_default_page_sum">Näkymä, joka avataan XMRPodin käynnistyessä</string>
     <string name="remember_last_page">Muista viimeisin näkymä</string>
     <string name="pref_delete_removes_from_queue_title">Deletointi poistaa jonosta</string>
     <string name="subscriptions_counter_greater_zero">Laskurin arvo suurempi kuin nolla</string>
@@ -397,15 +397,15 @@
     <string name="pref_contribute">Osallistu</string>
     <!--About screen-->
   <string name="about_pref">Tietoja</string>
-    <string name="antennapod_version">AntennaPod versio</string>
+    <string name="xmrpod_version">XMRPod versio</string>
     <string name="contributors">Osallistujat</string>
-    <string name="contributors_summary">Kuka tahansa voi auttaa tekemään AntennaPodista paremman - koodilla, käännöksillä, tai avustamalla käyttäjiä foorumilla</string>
+    <string name="contributors_summary">Kuka tahansa voi auttaa tekemään XMRPodista paremman - koodilla, käännöksillä, tai avustamalla käyttäjiä foorumilla</string>
     <string name="developers">Kehittäjät</string>
     <string name="translators">Kääntäjät</string>
     <string name="special_thanks">Erityiskiitokset</string>
     <string name="privacy_policy">Tietosuojakäytäntö</string>
     <string name="licenses">Lisenssit</string>
-    <string name="licenses_summary">AntennaPod käyttää muita hienoja ohjelmistoja</string>
+    <string name="licenses_summary">XMRPod käyttää muita hienoja ohjelmistoja</string>
     <!--Search-->
   <string name="search_status_no_results">Ei löydetty tuloksia</string>
     <string name="type_to_search">Kirjoita hakulause etsiäksesi</string>
@@ -427,8 +427,8 @@
     <string name="html_export_summary">Näytä tilauksesi ystävälle</string>
     <string name="opml_export_summary">Siirrä tilauksesi toiseen podcast-sovellukseen</string>
     <string name="opml_import_summary">Tuo tilauksesi toisesta podcast-sovelluksesta</string>
-    <string name="database_export_summary">Siirrä tilaukset, kuunnellut jaksot ja jono toisella laitteella olevaan AntennaPodiin</string>
-    <string name="database_import_summary">Tuo AntennaPod-tietokanta toiselta laitteelta</string>
+    <string name="database_export_summary">Siirrä tilaukset, kuunnellut jaksot ja jono toisella laitteella olevaan XMRPodiin</string>
+    <string name="database_import_summary">Tuo XMRPod-tietokanta toiselta laitteelta</string>
     <string name="opml_import_label">OPML-tuonti</string>
     <string name="opml_add_podcast_label">Tuo podcastien lista (OPML)</string>
     <string name="opml_import_error_no_file">Ei tiedostoa valittuna!</string>
@@ -444,8 +444,8 @@
     <string name="export_success_title">Vienti onnistunut</string>
     <string name="opml_import_ask_read_permission">Pääsy ulkoiseen solvellukseen tarvitaan OPML tiedoston lukemiseen</string>
     <string name="successful_import_label">Tuonti onnistui</string>
-    <string name="import_ok">Valitse OK käynnistääksesi AntennaPodin uudelleen</string>
-    <string name="import_no_downgrade">Tämä tietokanta on viety AntennaPodin uudemmalla versiolla. Tämänhetkinen versiosi ei vielä osaa käsitellä sitä.</string>
+    <string name="import_ok">Valitse OK käynnistääksesi XMRPodin uudelleen</string>
+    <string name="import_no_downgrade">Tämä tietokanta on viety XMRPodin uudemmalla versiolla. Tämänhetkinen versiosi ei vielä osaa käsitellä sitä.</string>
     <string name="favorites_export_label">Suosikkien vienti</string>
     <string name="favorites_export_summary">Vie tallennetut suosikit tiedostoon</string>
     <!--Sleep timer-->
@@ -465,12 +465,12 @@
   <string name="synchronization_choose_title">Valitse synkronointipalveluntarjoaja</string>
     <string name="synchronization_summary_unchoosen">Voit valita useista palveluntarjoajista, joiden kanssa voit synkronoida tilauksesi ja jaksojen toistotilan</string>
     <string name="dialog_choose_sync_service_title">Valitse synkronointipalveluntarjoaja</string>
-    <string name="gpodnet_description">Gpodder.net on avoimen lähdekoodin podcast-synkronointipalvelu, jonka voit asentaa omalle palvelimellesi. Gpodder.net on riippumaton AntennaPod-projektista.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync on avoimen lähdekoodin Nextcloud-sovellus, jonka voit helposti asentaa omalle palvelimellesi. Gpodder Sync on riippumaton AntennaPod-projektista.</string>
+    <string name="gpodnet_description">Gpodder.net on avoimen lähdekoodin podcast-synkronointipalvelu, jonka voit asentaa omalle palvelimellesi. Gpodder.net on riippumaton XMRPod-projektista.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync on avoimen lähdekoodin Nextcloud-sovellus, jonka voit helposti asentaa omalle palvelimellesi. Gpodder Sync on riippumaton XMRPod-projektista.</string>
     <string name="synchronization_host_explanation">Voit valita oman synkronointipalvelimesi. Kun olet tunnistanut mieluisen synkronointipalvelimesi, anna sen osoite tässä.</string>
     <string name="synchronization_host_label">Palvelimen osoite</string>
     <string name="proceed_to_login_butLabel">Jatka kirjautumaan</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Myönnä käyttöoikeus avatun verkkoselaimen avulla ja palaa AntennaPodiin.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Myönnä käyttöoikeus avatun verkkoselaimen avulla ja palaa XMRPodiin.</string>
     <string name="gpodnetauth_login_butLabel">Sisäänkirjautuminen</string>
     <string name="synchronization_credentials_explanation">Anna synkronointipalvelimen tilisi kirjautumistiedot.</string>
     <string name="gpodnetauth_encryption_warning">Salasanaa ja tietoja ei salata!</string>
@@ -479,10 +479,10 @@
     <string name="synchronization_login_butLabel">Kirjaudu</string>
     <string name="synchronization_selectDevice_explanation">Valitse laite, jonka loit synkronointipalvelimella, tai luo uusi.</string>
     <string name="gpodnetauth_device_name">Laitteen nimi</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod laitteella %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod laitteella %1$s</string>
     <string name="gpodnetauth_existing_devices">Olemassaolevat laitteet</string>
     <string name="gpodnetauth_create_device">Luo laite</string>
-    <string name="gpodnetauth_finish_descr">Onneksi olkoon! Sinun gpodder.net tili on liitetty laitteeseesi. AntennaPod alkaa automaattisesti synkronoimaan gpodder.net tiliisi.</string>
+    <string name="gpodnetauth_finish_descr">Onneksi olkoon! Sinun gpodder.net tili on liitetty laitteeseesi. XMRPod alkaa automaattisesti synkronoimaan gpodder.net tiliisi.</string>
     <string name="pref_gpodnet_setlogin_information_title">Vaihda kirjautumistietoja</string>
     <string name="pref_gpodnet_setlogin_information_sum">Vaihda kirjautumistietoja gpodder.net tiliisi.</string>
     <string name="synchronization_sync_changes_title">Synkronoi nyt</string>
@@ -500,7 +500,7 @@
     <!--Directory chooser-->
   <string name="choose_data_directory">Valitse datahakemisto</string>
     <string name="choose_data_directory_available_space">%1$s / %2$s vapaana</string>
-    <string name="rating_rate">Arvostele AntennaPod</string>
+    <string name="rating_rate">Arvostele XMRPod</string>
     <string name="rating_later">Myöhemmin</string>
     <!--Online feed view-->
   <string name="subscribe_label">Tilaa</string>
@@ -564,7 +564,7 @@
     <string name="local_folder">Paikallinen kansio</string>
     <string name="reconnect_local_folder">Yhdistä paikallinen kansio uudelleen</string>
     <string name="reconnect_local_folder_warning">Jos lupa evätään, voit käyttää tätä yhteyden muodostamiseen uudelleen täsmälleen samaan kansioon. Älä valitse toista kansiota.</string>
-    <string name="local_feed_description">Tämä virtuaalinen podcast luotiin lisäämällä kansio AntennaPodiin.</string>
+    <string name="local_feed_description">Tämä virtuaalinen podcast luotiin lisäämällä kansio XMRPodiin.</string>
     <string name="unable_to_start_system_file_manager">Järjestelmän tiedostonhallintaa ei voi käynnistää</string>
     <string name="filter">Suodatin</string>
     <string name="hide_is_favorite_label">On suosikki</string>
@@ -634,18 +634,18 @@
     <string name="sync_status_wait_for_downloads">Odotetaan tilausten päivitystä…</string>
     <string name="automatic_database_export_label">Automaattinen tietokannan vienti</string>
     <string name="automatic_database_export_error">Virhe automaattisen tietokannan varmuuskopioinnin aikana</string>
-    <string name="choose_data_directory_message">Valitse tietokansiosi perusta. AntennaPod luo asianmukaiset alihakemistot.</string>
+    <string name="choose_data_directory_message">Valitse tietokansiosi perusta. XMRPod luo asianmukaiset alihakemistot.</string>
     <string name="rating_contribute_button">Tutustu tapoihin osallistua</string>
     <string name="statistics_expected_next_episode_unknown">Tuntematon</string>
     <string name="statistics_view_all">Kaikki podcastit »</string>
     <string name="subscription_display_list">Lista</string>
-    <string name="rating_volunteers_label">AntennaPodia kehittävät vapaaehtoiset vapaa-ajallaan. Jaa arvostuksesi heidän työstään jättämällä hyvä arvosana.</string>
+    <string name="rating_volunteers_label">XMRPodia kehittävät vapaaehtoiset vapaa-ajallaan. Jaa arvostuksesi heidän työstään jättämällä hyvä arvosana.</string>
     <string name="pref_episode_cleanup_title">Poista ennen automaattista lataamista</string>
     <string name="pref_new_episodes_action_title">Uusien jaksojen toiminta</string>
     <string name="shuffle_suggestions">Sekoitusehdotukset</string>
     <string name="search_online">Etsi verkossa</string>
     <string name="pref_new_episodes_action_sum">Ryhdyttävät toimet uusien jaksojen suhteen</string>
-    <string name="automatic_database_export_summary">Luo AntennaPod-tietokannasta varmuuskopio kolmen päivän välein. Säilytä vain viisi viimeisintä varmuuskopiota.</string>
+    <string name="automatic_database_export_summary">Luo XMRPod-tietokannasta varmuuskopio kolmen päivän välein. Säilytä vain viisi viimeisintä varmuuskopiota.</string>
     <string name="search_podcastindex_label">Etsi Podcast-hakemisto</string>
     <string name="statistics_expected_next_episode_any_day">Nyt minä päivänä tahansa</string>
     <string name="pref_rewind">Kelaa ohittamisaikaa taaksepäin</string>
@@ -685,7 +685,7 @@
     <string name="pref_auto_delete_playback_title">Poista toistamisen jälkeen</string>
     <string name="pref_auto_local_delete_title">Poista automaattisesti paikallisista kansioista</string>
     <string name="pref_auto_local_delete_sum">Sisällytä paikalliset kansiot Poista automaattisesti -toimintoon</string>
-    <string name="pref_auto_local_delete_dialog_body">Huomaa, että tämä poistaa paikallisten kansioiden jaksot AntennaPodista ja niiden mediatiedostot laitteen tallennustilasta. Niitä ei voi ladata uudelleen AntennaPodin kautta. Otetaanko automaattinen poisto käyttöön?</string>
+    <string name="pref_auto_local_delete_dialog_body">Huomaa, että tämä poistaa paikallisten kansioiden jaksot XMRPodista ja niiden mediatiedostot laitteen tallennustilasta. Niitä ei voi ladata uudelleen XMRPodin kautta. Otetaanko automaattinen poisto käyttöön?</string>
     <string name="downloads_pref_sum">Päivitysväli, Mobiilidata, Automaattinen lataus, Automaattinen poisto</string>
     <string name="pref_black_theme_title">Täysmusta</string>
     <string name="pref_black_theme_message">Käytä täysmustaa tummaa teemaa varten</string>
@@ -807,7 +807,7 @@
     <string name="echo_thanks_we_are_glad_new">että liityit joukkoomme tänä vuonna!\n\nOletpa sitten siirtynyt toisesta sovelluksesta tai aloittanut podcast-seikkailusi kanssamme: olemme iloisia, että olemme saaneet sinut!</string>
     <string name="echo_thanks_now_favorite">Nyt otetaan katsaus suosikkipodcasteistasi…</string>
     <string name="echo_share_heading">Suosikki podcastini</string>
-    <string name="echo_share">Vuodeni %d podcasteissa. #AntennaPodEcho</string>
+    <string name="echo_share">Vuodeni %d podcasteissa. #XMRPodEcho</string>
     <string name="global_default_with_value">Laajamittainen oletus (%1$s)</string>
     <string name="delete_tag_label">Poista tunniste</string>
     <string name="feed_new_episodes_action_summary_autodownload">Automaattinen lataus kytketty päälle. Episodit lisätään viestilaatikkoon, josta ne siirretään jonoon, kun lataus on valmis.</string>
@@ -842,11 +842,11 @@
         <item quantity="other">%d jaksoa poistettu jonosta.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Seuraa ääntä</string>
-    <string name="visit_social_interact_confirm_dialog_title">Olet poistumassa AntennaPodista</string>
+    <string name="visit_social_interact_confirm_dialog_title">Olet poistumassa XMRPodista</string>
     <string name="visit_social_interact_confirm_dialog_message">Varmista, että luotat verkkosivustoon \"%1$s\".</string>
     <string name="reset_playback_position_label">Palauta toistokohta</string>
     <string name="no_items_selected_message">Ei valittuja kohteita</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Poistaminen poistaa jakson AntennaPodista ja poistaa mediatiedoston laitteen tallennustilasta. Sitä ei voi ladata uudelleen AntennaPodin kautta.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Poistaminen poistaa jakson XMRPodista ja poistaa mediatiedoston laitteen tallennustilasta. Sitä ei voi ladata uudelleen XMRPodin kautta.</string>
     <plurals name="move_to_top_message">
         <item quantity="one">%d jakso siirretty ylimpään kohtaan.</item>
         <item quantity="other">%d jaksoa siirretty ylimpään kohtaan.</item>
@@ -906,7 +906,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Oletusjärjestys</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Valitse jaksojen oletusjärjestys podcastit-näytöllä</string>
     <string name="report_bug_title">Ilmoita ongelmasta</string>
-    <string name="report_bug_message">Harmi kuulla, että jokin ei toimi. Me otamme mielellämme vastaan apuasi AntennaPodin kehityksessä. Käy katsomassa meidän foorumissa tai GitHubissa ja katso onko kohtaamastasi virheestä jo ilmoitettu. Jos ei, kerro meille ja me tutkimme asian.</string>
+    <string name="report_bug_message">Harmi kuulla, että jokin ei toimi. Me otamme mielellämme vastaan apuasi XMRPodin kehityksessä. Käy katsomassa meidän foorumissa tai GitHubissa ja katso onko kohtaamastasi virheestä jo ilmoitettu. Jos ei, kerro meille ja me tutkimme asian.</string>
     <string name="report_bug_device_info_title">Laite</string>
     <string name="report_bug_attrib_app_version">Sovelluksen versio</string>
     <string name="report_bug_attrib_android_version">Android-versio</string>

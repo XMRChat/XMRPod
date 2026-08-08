@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.9] - 2026-08-08
+
+### Changed
+
+- Replaced remaining localized inherited brand mentions with XMRPod.
+
 ## [0.1.8] - 2026-08-07
 
 ### Changed

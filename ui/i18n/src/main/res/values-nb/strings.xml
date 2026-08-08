@@ -47,7 +47,7 @@
     <string name="home_continue_title">Forsett å lytte</string>
     <string name="home_new_title">Se hva som er nytt</string>
     <string name="home_downloads_title">Behandle nedlastinger</string>
-    <string name="home_welcome_title">Velkommen til AntennaPod!</string>
+    <string name="home_welcome_title">Velkommen til XMRPod!</string>
     <string name="home_welcome_text">Du har ikke abonnert på noen podkaster enda. Åpne menyen for å legge til en podkast.</string>
     <string name="notification_permission_denied">Du avslo tillatelsen.</string>
     <string name="configure_home">Konfigurer startskjermen</string>
@@ -227,10 +227,10 @@
     <string name="download_log_title_unknown">Ukjent tittel</string>
     <string name="download_type_feed">Strøm</string>
     <string name="download_type_media">Mediefil</string>
-    <string name="no_feed_url_podcast_found_by_search">Foreslått podkast hadde ingen RSS-lenke, AntennaPod fant en podkast som kan samsvare</string>
+    <string name="no_feed_url_podcast_found_by_search">Foreslått podkast hadde ingen RSS-lenke, XMRPod fant en podkast som kan samsvare</string>
     <string name="authentication_notification_title">Autentisering påkreves</string>
     <string name="confirm_mobile_download_dialog_title">Bekreft nedlasting over mobildata</string>
-    <string name="confirm_mobile_download_dialog_message">Nedlasting via mobildata har blitt slått av i innstillingene. AntennaPod kan automatisk laste ned episoden senere, når trådløst nett er tilgjengelig.</string>
+    <string name="confirm_mobile_download_dialog_message">Nedlasting via mobildata har blitt slått av i innstillingene. XMRPod kan automatisk laste ned episoden senere, når trådløst nett er tilgjengelig.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Bruker du VPN? VPN-appen din utgir seg for å være er mobilt nettverk (mengdebetalt forbindelse). Hvis du vil at dette problemet skal fikses må du kontakte de som lagde VPN-appen.\n- Bruker du ikke VPN? Åpne Androids wifi-innstillinger og velg at wifi-forbindelsen ikke skal være mengdebetalt.</string>
     <string name="confirm_mobile_download_dialog_download_later">Last ned senere</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Last ned likevel</string>
@@ -241,7 +241,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Mediafilen kunne ikke spilles av.\n\n- Prøv å slette og laste ned episoden på nytt.\n- Sjekk nettverkstilkoblingen din og forsikre deg om at verken VPN eller innloggingsside blokkerer tilgangen\n- Prøv å trykke og holde og dele medieaddressen til nettleseren din for å se om den kan spilles av der. Hvis det feiler, ta kontakt med de som lagde podkasten.</string>
     <string name="no_media_playing_label">Ingen media spilles av</string>
-    <string name="unknown_media_key">AntennaPod – Ukjent medienøkkel: %1$d</string>
+    <string name="unknown_media_key">XMRPod – Ukjent medienøkkel: %1$d</string>
     <string name="error_file_not_found">Fil ikke funnet</string>
     <string name="no_media_label">Element inneholder ingen mediefil</string>
     <!--Queue operations-->
@@ -312,7 +312,7 @@
     <string name="pref_followQueue_sum">Hopp til neste element i køen når avspillingen er ferdig</string>
     <string name="pref_auto_local_delete_title">Slett automatisk fra lokale mapper</string>
     <string name="pref_auto_local_delete_sum">Ta med lokale mapper i autoslettfunksjonen</string>
-    <string name="pref_auto_local_delete_dialog_body">Merk at for lokale mapper vil dette fjerne episoden fra AntennaPod og slette mediefilen fra enhetslagringen. De kan ikke lastes ned på ny gjennom AntennaPod. Aktivere Autoslett?</string>
+    <string name="pref_auto_local_delete_dialog_body">Merk at for lokale mapper vil dette fjerne episoden fra XMRPod og slette mediefilen fra enhetslagringen. De kan ikke lastes ned på ny gjennom XMRPod. Aktivere Autoslett?</string>
     <string name="pref_smart_mark_as_played_sum">Marker episoder som avspilt selv om det er et antall sekunder igjen av avspillingen</string>
     <string name="pref_smart_mark_as_played_title">Smart markering som avspilt</string>
     <string name="pref_skip_keeps_episodes_sum">Behold episoder når de hoppes over</string>
@@ -324,7 +324,7 @@
     <string name="downloads_pref">Nedlastinger</string>
     <string name="downloads_pref_sum">Oppdateringsintervall, mobildata, automatisk nedlasting, automatisk sletting</string>
     <string name="feed_refresh_title">Oppdater podkaster</string>
-    <string name="feed_refresh_sum">Angi et intervall der AntennaPod ser etter nye episoder automatisk</string>
+    <string name="feed_refresh_sum">Angi et intervall der XMRPod ser etter nye episoder automatisk</string>
     <string name="feed_refresh_never">Aldri</string>
     <string name="feed_every_hour">Hver time</string>
     <string name="feed_every_2_hours">Hver 2. time</string>
@@ -402,7 +402,7 @@
     <string name="pref_skip_silence_title">Hopp over stillhet i lyden</string>
     <string name="behavior">Funksjon</string>
     <string name="pref_default_page">Standardside</string>
-    <string name="pref_default_page_sum">Startskjerm når AntennaPod åpnes</string>
+    <string name="pref_default_page_sum">Startskjerm når XMRPod åpnes</string>
     <string name="pref_back_button_opens_drawer">Tilbakeknappen åpner sidemenyen</string>
     <string name="pref_back_button_opens_drawer_summary">Å trykke tilbakeknappen på startsiden åpner sidemenyen</string>
     <string name="remember_last_page">Husk siste side</string>
@@ -421,15 +421,15 @@
     <string name="pref_new_episodes_action_sum">Handling som utføres for nye episoder</string>
     <!--About screen-->
   <string name="about_pref">Om</string>
-    <string name="antennapod_version">AntennaPod-versjon</string>
+    <string name="xmrpod_version">XMRPod-versjon</string>
     <string name="contributors">Bidragsytere</string>
-    <string name="contributors_summary">Alle kan hjelpe med å forbedre AntennaPod – med kode, oversettelser eller med å hjelpe brukere i forumet vårt</string>
+    <string name="contributors_summary">Alle kan hjelpe med å forbedre XMRPod – med kode, oversettelser eller med å hjelpe brukere i forumet vårt</string>
     <string name="developers">Utviklere</string>
     <string name="translators">Oversettere</string>
     <string name="special_thanks">Tusen takk</string>
     <string name="privacy_policy">Personvern</string>
     <string name="licenses">Lisenser</string>
-    <string name="licenses_summary">AntennaPod bruker annen flott programvare</string>
+    <string name="licenses_summary">XMRPod bruker annen flott programvare</string>
     <!--Search-->
   <string name="search_status_no_results">Ingen resultater ble funnet</string>
     <string name="type_to_search">Skriv noe her for å søke</string>
@@ -452,8 +452,8 @@
     <string name="html_export_summary">Vis abonnementene dine til en venn</string>
     <string name="opml_export_summary">Overfør abonnementene dine til en annen podkast-app</string>
     <string name="opml_import_summary">Importer abonnementene dine fra en annen podkast-app</string>
-    <string name="database_export_summary">Overfør abonnementer, avspilte episoder og kø til AntennaPod på en annen enhet</string>
-    <string name="database_import_summary">Importer AntennaPod-database fra en annen enhet</string>
+    <string name="database_export_summary">Overfør abonnementer, avspilte episoder og kø til XMRPod på en annen enhet</string>
+    <string name="database_import_summary">Importer XMRPod-database fra en annen enhet</string>
     <string name="opml_import_label">Importer OPML</string>
     <string name="opml_add_podcast_label">Importer podkastliste (OPML)</string>
     <string name="opml_reader_error">En feil oppstod under lesing av filen. Sørg for at du faktisk har valgt en OPML-fil og at filen er i orden.</string>
@@ -464,7 +464,7 @@
     <string name="html_export_label">Eksporter HTML</string>
     <string name="database_export_label">Eksporter database</string>
     <string name="automatic_database_export_label">Automatisk eksport av database</string>
-    <string name="automatic_database_export_summary">Opprett en sikkerhetskopi av AntennaPods database hver 3. dag. Behold kun de 5 siste sikkerhetskopiene.</string>
+    <string name="automatic_database_export_summary">Opprett en sikkerhetskopi av XMRPods database hver 3. dag. Behold kun de 5 siste sikkerhetskopiene.</string>
     <string name="automatic_database_export_error">Feil under automatisk sikkerhetskopiering</string>
     <string name="database_import_label">Importer database</string>
     <string name="database_import_warning">Importering av en database erstatter alle nåværende abonnementer og avspillingshistorikk. Det er anbefalt å eksportere den gjeldende databasen din som sikkerhetskopi først. Vil du erstatte?</string>
@@ -473,8 +473,8 @@
     <string name="export_success_title">Eksport vellykket</string>
     <string name="opml_import_ask_read_permission">Tilgang til ekstern lagring er nødvendig for å lese OPML-filen</string>
     <string name="successful_import_label">Eksportering vellykket</string>
-    <string name="import_ok">Trykk OK for å starte AntennaPod på nytt</string>
-    <string name="import_no_downgrade">Denne databasen ble eksportert fra en nyere versjon av AntennaPod. Din versjon av AntennaPod kan ikke lese denne filen enda.</string>
+    <string name="import_ok">Trykk OK for å starte XMRPod på nytt</string>
+    <string name="import_no_downgrade">Denne databasen ble eksportert fra en nyere versjon av XMRPod. Din versjon av XMRPod kan ikke lese denne filen enda.</string>
     <string name="favorites_export_label">Eksport av favoritter</string>
     <string name="favorites_export_summary">Eksporter lagrede favoritter som en fil</string>
     <!--Sleep timer-->
@@ -497,12 +497,12 @@
   <string name="synchronization_choose_title">Velg synkroniseringstjeneste</string>
     <string name="synchronization_summary_unchoosen">Du kan velge mellom forskjellige tilbydere for å synkronisere abonnementene og avspillingsstatus</string>
     <string name="dialog_choose_sync_service_title">Velg synkroniseringstjeneste</string>
-    <string name="gpodnet_description">Gpodder.net er en synkroniseringstjeneste for podkaster basert på åpen kildekode som du kan installere på en egen tjener. Gpodder.net er ikke tilknyttet AntennaPod-prosjektet.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync er en app i Nextcloud-appen basert på åpen kildekode som du enkelt kan installere på din egen tjener. Gpodder Sync er ikke tilknyttet AntennaPod-prosjektet.</string>
+    <string name="gpodnet_description">Gpodder.net er en synkroniseringstjeneste for podkaster basert på åpen kildekode som du kan installere på en egen tjener. Gpodder.net er ikke tilknyttet XMRPod-prosjektet.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync er en app i Nextcloud-appen basert på åpen kildekode som du enkelt kan installere på din egen tjener. Gpodder Sync er ikke tilknyttet XMRPod-prosjektet.</string>
     <string name="synchronization_host_explanation">Du kan velge din egen tjener for å synkronisere med. Når du har valgt din foretrukne tjener for synkronisering, angi adressen her.</string>
     <string name="synchronization_host_label">Tjeneradresse</string>
     <string name="proceed_to_login_butLabel">Fortsett til innlogging</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Gi tilgang ved å bruke en nettleser og kom tilbake til AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Gi tilgang ved å bruke en nettleser og kom tilbake til XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Innlogging</string>
     <string name="synchronization_credentials_explanation">Legg til innloggingsinformasjon for kontoen din på synkroniseringsserveren.</string>
     <string name="gpodnetauth_encryption_warning">Passord og data er ikke kryptert!</string>
@@ -511,10 +511,10 @@
     <string name="synchronization_login_butLabel">Logg inn</string>
     <string name="synchronization_selectDevice_explanation">Velg enheten du la til på synkroniseringstjeneren eller lag en ny enhet.</string>
     <string name="gpodnetauth_device_name">Navn på enhet</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod på %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod på %1$s</string>
     <string name="gpodnetauth_existing_devices">Eksisterende enheter</string>
     <string name="gpodnetauth_create_device">Lag en ny enhet</string>
-    <string name="gpodnetauth_finish_descr">Gratulerer! Din gpodder.net-konto er nå koblet sammen med din enhet. AntennaPod kommer nå til å automatisk synkronisere abonnementer på din enhet med din gpodder.net-konto.</string>
+    <string name="gpodnetauth_finish_descr">Gratulerer! Din gpodder.net-konto er nå koblet sammen med din enhet. XMRPod kommer nå til å automatisk synkronisere abonnementer på din enhet med din gpodder.net-konto.</string>
     <string name="pref_gpodnet_setlogin_information_title">Endre innloggingsinformasjon</string>
     <string name="pref_gpodnet_setlogin_information_sum">Endre innlogginsinformasjonen til din gpodder.net-konto.</string>
     <string name="synchronization_sync_changes_title">Synkroniser nå</string>
@@ -536,7 +536,7 @@
   <string name="rating_tagline">Siden %1$s har du spilt %2$s%3$d%4$s timer med podkaster.</string>
     <string name="rating_contribute_label">Vil du være med? Enten du vil oversette, støtte, designe eller kode er vi glade for å få deg med på laget!</string>
     <string name="rating_contribute_button">Oppdag måter å bidra på</string>
-    <string name="rating_rate">Vurder AntennaPod</string>
+    <string name="rating_rate">Vurder XMRPod</string>
     <string name="rating_later">Senere</string>
     <!--Online feed view-->
   <string name="subscribe_label">Abonner</string>
@@ -608,7 +608,7 @@
     <string name="local_folder">Lokal mappe</string>
     <string name="reconnect_local_folder">Tilkoble lokal mappe på nytt</string>
     <string name="reconnect_local_folder_warning">Hvis rettighetene er ikke godkjent, kan du bruke denne tilkoblingen til akkurat samme mappen. Ikke velg en annen mappe.</string>
-    <string name="local_feed_description">Denne virtuelle podkasten ble laget ved å legge til en mappe i AntennaPod.</string>
+    <string name="local_feed_description">Denne virtuelle podkasten ble laget ved å legge til en mappe i XMRPod.</string>
     <string name="unable_to_start_system_file_manager">Kan ikke starte systemets filutforsker</string>
     <string name="filter">Filter</string>
     <string name="hide_is_favorite_label">Er favoritt</string>
@@ -705,7 +705,7 @@
         <item quantity="one">%d dag</item>
         <item quantity="other">%d dager</item>
     </plurals>
-    <string name="choose_data_directory_message">Velg basen for datamappen din. AntennaPod vil lage de nødvendige undermappene.</string>
+    <string name="choose_data_directory_message">Velg basen for datamappen din. XMRPod vil lage de nødvendige undermappene.</string>
     <string name="pref_fast_forward">Tidshopp for framoverspoling</string>
     <plurals name="time_hours_quantified">
         <item quantity="one">%d time</item>
@@ -736,7 +736,7 @@
         <item quantity="one">%d minutt</item>
         <item quantity="other">%d minutter</item>
     </plurals>
-    <string name="rating_volunteers_label">AntennaPod er utviklet av frivillige på fritiden deres. Del din takknemlighet for arbeidet deres ved å legge igjen en fin tilbakemelding.</string>
+    <string name="rating_volunteers_label">XMRPod er utviklet av frivillige på fritiden deres. Del din takknemlighet for arbeidet deres ved å legge igjen en fin tilbakemelding.</string>
     <string name="preview_episodes">Smakebit av episode</string>
     <string name="state_deleted_not_subscribed">Du abonnerer ikke på denne podkasten ennå. Abonner gratis for å få enklere tilgang og ta vare på avspillingshistorikken.</string>
     <string name="fast_forward_label">Spol fram</string>
@@ -811,7 +811,7 @@
     <string name="echo_hoarder_subtitle_clean">Ryddig!</string>
     <string name="echo_thanks_now_favorite">La oss nå ta en titt på favorittpodkastene dine …</string>
     <string name="echo_share_heading">Mine favorittpodkaster</string>
-    <string name="echo_share">Mitt %d. år med podkaster. #AntennaPodEcho</string>
+    <string name="echo_share">Mitt %d. år med podkaster. #XMRPodEcho</string>
     <string name="echo_queue_hours_clean">Det er omtrent %1$s hver dag fram til %2$d starter.</string>
     <string name="echo_hoarder_comment_medium">Du har spilt av episoder fra %1$d%% av de %2$d aktive abonnementene dine dette året. Hva med å sjekke ut «%3$s» igjen?</string>
     <string name="download_error_unsupported_type_html_manual">Adressen du skrev inn er en nettside, ikke en RSS-adresse for podkast.</string>
@@ -870,11 +870,11 @@
         <item quantity="other">%d episoder fjernet fra køen.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Følg lyd</string>
-    <string name="visit_social_interact_confirm_dialog_title">Du forlater AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Du forlater XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Pass på at du stoler på nettsiden «%1$s».</string>
     <string name="reset_playback_position_label">Tilbakestill avspillingsposisjon</string>
     <string name="no_items_selected_message">Ingenting er valgt</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Sletting fjerner episoden fra AntennaPod og sletter mediefilen fra lagringsplassen på din enhet. Den kan ikke lastes ned på nytt gjennom AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Sletting fjerner episoden fra XMRPod og sletter mediefilen fra lagringsplassen på din enhet. Den kan ikke lastes ned på nytt gjennom XMRPod.</string>
     <string name="please_wait_before_refreshing">Vent litt før du oppdaterer podkaster igjen.</string>
     <string name="already_downloaded">Episoden er lastet ned allerede</string>
     <string name="tag_all">Alle</string>
@@ -907,7 +907,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Standard sorteringsrekkefølge</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Velg standardrekkefølgen for episoder på podkastskjermen</string>
     <string name="report_bug_title">Rapporter programvarefeil</string>
-    <string name="report_bug_message">Beklager for at noe ikke fungerer. Vi hadde satt pris på din hjelp til å forbedre AntennaPod. Sjekk om feilen allerede er rapporter på forumet eller GitHub. Om det ikke er det, si ifra, så tar vi en titt.</string>
+    <string name="report_bug_message">Beklager for at noe ikke fungerer. Vi hadde satt pris på din hjelp til å forbedre XMRPod. Sjekk om feilen allerede er rapporter på forumet eller GitHub. Om det ikke er det, si ifra, så tar vi en titt.</string>
     <string name="report_bug_device_info_title">Enhet</string>
     <string name="report_bug_attrib_app_version">App-versjon</string>
     <string name="report_bug_attrib_android_version">Android-versjon</string>

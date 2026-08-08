@@ -175,7 +175,7 @@
     <string name="pref_gpodnet_setlogin_information_title">লগইন তথ্য পরিবর্তন করুন</string>
     <!--Rating dialog-->
   <string name="rating_tagline">%1$s থেকে, আপনি %2$s%3$d%4$s ঘন্টা পডকাস্ট শুনেছেন।</string>
-    <string name="rating_rate">AntennaPod রেটিং করুন</string>
+    <string name="rating_rate">XMRPod রেটিং করুন</string>
     <string name="rating_later">পরে শুনুন</string>
     <!--Online feed view-->
   <string name="subscribe_label">সদস্যতা নিন</string>

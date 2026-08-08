@@ -35,7 +35,7 @@
     <string name="home_continue_title">Lanjut dengarkan</string>
     <string name="home_new_title">Lihat apa yang baru</string>
     <string name="home_downloads_title">Atur unduhan</string>
-    <string name="home_welcome_title">Selamat datang di AntennaPod!</string>
+    <string name="home_welcome_title">Selamat datang di XMRPod!</string>
     <string name="home_welcome_text">Anda belum melanggani siniar apa pun. Buka menu di samping untuk menambahkan siniar.</string>
     <string name="configure_home">Konfigurasi layar utama</string>
     <!--Main activity-->
@@ -163,16 +163,16 @@
     <string name="download_notification_title_episodes">Mengunduh episode</string>
     <string name="download_type_feed">Umpan</string>
     <string name="download_type_media">Berkas edia</string>
-    <string name="no_feed_url_podcast_found_by_search">Siniar yang disarankan tidak memiliki tautan RSS. AntennaPod menemukan siniaryang mungkin sesuai</string>
+    <string name="no_feed_url_podcast_found_by_search">Siniar yang disarankan tidak memiliki tautan RSS. XMRPod menemukan siniaryang mungkin sesuai</string>
     <string name="authentication_notification_title">Autentikasi dibutuhkan</string>
-    <string name="confirm_mobile_download_dialog_message">Penyegaran siniar dengan jaringan data seluler dinonaktifkan pada pengaturan. AntennaPod dapat mengunduh episode secara otomatis saat jaringan Wi-Fi tersedia.</string>
+    <string name="confirm_mobile_download_dialog_message">Penyegaran siniar dengan jaringan data seluler dinonaktifkan pada pengaturan. XMRPod dapat mengunduh episode secara otomatis saat jaringan Wi-Fi tersedia.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Anda menggunakan VPN? Aplikasi VPN Anda bertindak sebagai jaringan data seluler (koneksi terukur). Jika Anda ingin menyelesaikan masalah ini, hubungi pembuat aplikasi VPN Anda.\n- Anda tidak menggunakan VPN? Buka pengaturan Wi-Fi pada perangkat Anda dan ganti tipe koneksi Wi-FI agar tidak sebagai koneksi terukur.</string>
     <string name="confirm_mobile_streaming_notification_title">Konfirmasikan jalir dengan data seluler</string>
     <string name="confirm_mobile_streaming_notification_message">Penjaliran lewat jaringan data seluler dimatikan di pengaturan. Ketuk jika tetap ingin streaming.</string>
     <string name="confirm_mobile_streaming_button_always">Selalu</string>
     <string name="confirm_mobile_streaming_button_once">Sekali</string>
     <string name="no_media_playing_label">Tidak ada media terputar</string>
-    <string name="unknown_media_key">AntennaPod - Kunci media tak diketahui: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Kunci media tak diketahui: %1$d</string>
     <string name="error_file_not_found">Berkas tidak ditemukan</string>
     <string name="no_media_label">Item yang dipilih tidak berisi berkas media</string>
     <string name="queue_locked">Antrean terkunci</string>
@@ -239,7 +239,7 @@
     <string name="playback_pref_sum">Kontrol headphone, Interval loncat, Antrean</string>
     <string name="downloads_pref_sum">Selang pemutakhiran, Jaringan seluler, Pengunduhan otomatis, Penghapusan otomatis</string>
     <string name="feed_refresh_title">Segarkan siniar</string>
-    <string name="feed_refresh_sum">Tentukan selang ketika AntennaPod secara otomatis mencari episode baru</string>
+    <string name="feed_refresh_sum">Tentukan selang ketika XMRPod secara otomatis mencari episode baru</string>
     <string name="feed_refresh_never">Jangan pernah</string>
     <string name="feed_every_hour">Setiap jam</string>
     <string name="feed_every_2_hours">Setiap 2 jam</string>
@@ -315,15 +315,15 @@
     <string name="pref_contribute">Berkontribusi</string>
     <!--About screen-->
   <string name="about_pref">Tentang</string>
-    <string name="antennapod_version">Versi AntennaPod</string>
+    <string name="xmrpod_version">Versi XMRPod</string>
     <string name="contributors">Para Kontributor</string>
-    <string name="contributors_summary">Semua orang dapat membuat AntennaPod menjadi lebih baik: kontribusi kode, penambahan terjemahan, atau membantu satu sama lain di forum kami</string>
+    <string name="contributors_summary">Semua orang dapat membuat XMRPod menjadi lebih baik: kontribusi kode, penambahan terjemahan, atau membantu satu sama lain di forum kami</string>
     <string name="developers">Para Pengembang</string>
     <string name="translators">Para Penerjemah</string>
     <string name="special_thanks">Ucapan terima kasih</string>
     <string name="privacy_policy">Kebijakan privasi</string>
     <string name="licenses">Lisensi</string>
-    <string name="licenses_summary">AntennaPod menggunakan perangkat lunak hebat lainnya</string>
+    <string name="licenses_summary">XMRPod menggunakan perangkat lunak hebat lainnya</string>
     <!--Search-->
   <string name="search_status_no_results">Hasil tidak ditemukan</string>
     <string name="type_to_search">Cari dengan mengetik pertanyaan</string>
@@ -345,8 +345,8 @@
     <string name="html_export_summary">Tunjukkan langganan siniar kepada teman Anda</string>
     <string name="opml_export_summary">Transfer langganan ke aplikasi siniar lainnya</string>
     <string name="opml_import_summary">Impor langganan dari aplikasi siniar lainnya</string>
-    <string name="database_export_summary">Transfer langganan, episode terputar, dan antrean ke AntennaPod di perangkat lain</string>
-    <string name="database_import_summary">Impor pangkalan data AntennaPod dari perangkat lain</string>
+    <string name="database_export_summary">Transfer langganan, episode terputar, dan antrean ke XMRPod di perangkat lain</string>
+    <string name="database_import_summary">Impor pangkalan data XMRPod dari perangkat lain</string>
     <string name="opml_import_label">Impor OPML</string>
     <string name="opml_add_podcast_label">Impor daftar podcast (OPML)</string>
     <string name="opml_import_error_no_file">Tidak ada berkas yang dipilih!</string>
@@ -362,8 +362,8 @@
     <string name="export_success_title">Ekspor berhasil</string>
     <string name="opml_import_ask_read_permission">Akses ke penyimpanan eksternal diperlukan untuk membaca berkas OPML</string>
     <string name="successful_import_label">Impor berhasil</string>
-    <string name="import_ok">Mohon tekan OK untuk mengulang kembali AntennaPod</string>
-    <string name="import_no_downgrade">Pangkalan data ini diekspor pada versi AntennaPod yang lebih baru. Versi AntennaPod yang Anda miliki belum dapat menangani berkas ini.</string>
+    <string name="import_ok">Mohon tekan OK untuk mengulang kembali XMRPod</string>
+    <string name="import_no_downgrade">Pangkalan data ini diekspor pada versi XMRPod yang lebih baru. Versi XMRPod yang Anda miliki belum dapat menangani berkas ini.</string>
     <string name="favorites_export_label">Ekspor daftar favorit</string>
     <string name="favorites_export_summary">Ekspor daftar favorit disimpan ke berkas</string>
     <!--Sleep timer-->
@@ -384,12 +384,12 @@
   <string name="synchronization_choose_title">Pilih layanan penyedia penyinkronan</string>
     <string name="synchronization_summary_unchoosen">Anda dapat memilih dari beberapa penyedia untuk menyinkronkan langganan dan status pemutaran episode Anda dengan</string>
     <string name="dialog_choose_sync_service_title">Pilih layanan penyedia penyinkronan</string>
-    <string name="gpodnet_description">Gpodder.net adalah layanan penyinkronan siniar bersumber terbuka yang bisa Anda pasang pada peladen Anda sendiri. Gpodder.net tidak bergantung kepada proyek AntennaPod.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync adalah aplikasi Nextcloud sumber terbuka yang dapat Anda instal dengan mudah di server Anda sendiri. Gpodder Sync tidak terkait dengan proyek AntennaPod.</string>
+    <string name="gpodnet_description">Gpodder.net adalah layanan penyinkronan siniar bersumber terbuka yang bisa Anda pasang pada peladen Anda sendiri. Gpodder.net tidak bergantung kepada proyek XMRPod.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync adalah aplikasi Nextcloud sumber terbuka yang dapat Anda instal dengan mudah di server Anda sendiri. Gpodder Sync tidak terkait dengan proyek XMRPod.</string>
     <string name="synchronization_host_explanation">Anda dapat memilih peladen sendiri untuk menyinkronkan siniar. Saat sudah memilih peladen yang diinginkan, masukkan alamat pelanden Anda di sini.</string>
     <string name="synchronization_host_label">Alamat peladen</string>
     <string name="proceed_to_login_butLabel">Masuk</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Berikan akses untuk membuka peramban dan kembali ke AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Berikan akses untuk membuka peramban dan kembali ke XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Masuk</string>
     <string name="synchronization_credentials_explanation">Mohon sediakan kredensial dari akun Anda pada peladen penyinkronan yang dipilih.</string>
     <string name="gpodnetauth_encryption_warning">Kata sandi dan data tidak terenkripsi!</string>
@@ -398,10 +398,10 @@
     <string name="synchronization_login_butLabel">Masuk</string>
     <string name="synchronization_selectDevice_explanation">Mohon pilih perangkat yang Anda buat di peladen penyinkronan atau buat yang baru.</string>
     <string name="gpodnetauth_device_name">Nama perangkat</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod pada %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod pada %1$s</string>
     <string name="gpodnetauth_existing_devices">Perangkat yang sudah ada</string>
     <string name="gpodnetauth_create_device">Buat perangkat</string>
-    <string name="gpodnetauth_finish_descr">Selamat! Akun gpodder.net Anda sekarang terhubung dengan perangkat Anda. AntennaPod sekarang akan secara otomatis menyinkronkan langganan pada perangkat Anda dengan akun gpodder.net Anda.</string>
+    <string name="gpodnetauth_finish_descr">Selamat! Akun gpodder.net Anda sekarang terhubung dengan perangkat Anda. XMRPod sekarang akan secara otomatis menyinkronkan langganan pada perangkat Anda dengan akun gpodder.net Anda.</string>
     <string name="pref_gpodnet_setlogin_information_title">Ubah informasi masuk</string>
     <string name="pref_gpodnet_setlogin_information_sum">Ubah informasi masuk akun gpodder.net Anda.</string>
     <string name="synchronization_sync_changes_title">Sinkronkan sekarang</string>
@@ -460,7 +460,7 @@
     <string name="local_folder">Folder lokal</string>
     <string name="reconnect_local_folder">Hubungkan kembali folder lokal</string>
     <string name="reconnect_local_folder_warning">Jika terjadi penolakan izin, Anda dapat menggunakan ini untuk menghubungkan kembali ke folder yang sama. Jangan pilih folder yang berbeda.</string>
-    <string name="local_feed_description">Siniar virtual ini dibuat dengan menambahkan folder ke AntennaPod.</string>
+    <string name="local_feed_description">Siniar virtual ini dibuat dengan menambahkan folder ke XMRPod.</string>
     <string name="unable_to_start_system_file_manager">Tidak dapat memulai pengelola berkas sistem</string>
     <string name="filter">Penapis</string>
     <string name="hide_is_favorite_label">Favorit</string>
@@ -636,7 +636,7 @@
     </plurals>
     <string name="rating_contribute_button">Telusuri cara agar dapat berkontribusi</string>
     <string name="rating_contribute_label">Ingin berkontribusi? Kami sangat terbuka dengan bantuan penerjemahan, pemberian dukungan, desain, kode, atau bantuan dalam bentuk apa pun!</string>
-    <string name="rating_rate">Nilai AntennaPod</string>
+    <string name="rating_rate">Nilai XMRPod</string>
     <string name="multi_feed_common_tags_info">Hanya penanda umum dari langganan terpilih yang ditampilkan. Penanda lainnya tidak terpengaruhi.</string>
     <string name="statistics_expected_next_episode_unknown">Tak diketahui</string>
     <string name="release_schedule_friday">Jum</string>
@@ -653,7 +653,7 @@
     <string name="button_action_skip_episode">Lewati episode</string>
     <string name="button_action_restart_episode">Mulai ulang episode</string>
     <string name="pref_auto_delete_playback_sum">Hapus episode ketika pemutaran selesai</string>
-    <string name="pref_auto_local_delete_dialog_body">Perhatikan bahwa folder lokal ini akan menghapus episode-episode dari AntennaPod dan menghapus berkas media dari penyimpanan perangkan Anda. Episode-episode ini tidak akan dapat diundur kembali melalui AntennaPod. Anda yakin ingin menyalakan penghapusan otomatis?</string>
+    <string name="pref_auto_local_delete_dialog_body">Perhatikan bahwa folder lokal ini akan menghapus episode-episode dari XMRPod dan menghapus berkas media dari penyimpanan perangkan Anda. Episode-episode ini tidak akan dapat diundur kembali melalui XMRPod. Anda yakin ingin menyalakan penghapusan otomatis?</string>
     <string name="pref_skip_keeps_episodes_title">Jangan hapus episode \"terlewati\"</string>
     <string name="pref_mobileUpdate_title">Mutakhirkan melalui koneksi data seluler</string>
     <string name="pref_nav_drawer_feed_counter_title">Penghitung</string>
@@ -703,7 +703,7 @@
     <string name="theming">Penemaan</string>
     <string name="pref_auto_delete_playback_title">Hapus setelah putar</string>
     <string name="pref_hardware_previous_button_title">Tombol Sebelumnya</string>
-    <string name="pref_auto_local_delete_sum">Hapus juga file yang ditambahkan melalui \"tambahkan folder lokal\". Perlu diketahui bahwa file-file ini tidak diunduh oleh AntennaPod dan tidak dapat diunduh ulang</string>
+    <string name="pref_auto_local_delete_sum">Hapus juga file yang ditambahkan melalui \"tambahkan folder lokal\". Perlu diketahui bahwa file-file ini tidak diunduh oleh XMRPod dan tidak dapat diunduh ulang</string>
     <string name="pref_auto_local_delete_title">Hapus secara otomatis dari folder lokal</string>
     <string name="downloads_pref">Unduhan</string>
     <string name="bottom_navigation_summary">Akses layar-layar terpenting dari mana saja, hanya dengan satu ketukan</string>
@@ -714,7 +714,7 @@
     <string name="episode_lists">Senarai episode</string>
     <string name="pref_default_page">Laman asali</string>
     <string name="pref_enqueue_downloaded_title">Unduhan diantrekan</string>
-    <string name="pref_default_page_sum">Layar pertama yang ditampilkan ketika membuka AntennaPod</string>
+    <string name="pref_default_page_sum">Layar pertama yang ditampilkan ketika membuka XMRPod</string>
     <string name="pref_back_button_opens_drawer_summary">Membuka laci navigasi ketika menekan tombol kembali pada laman asali</string>
     <string name="pref_delete_removes_from_queue_sum">Singkirkan episode dari antrean secara otomatis ketika episode tersebut dihapus</string>
     <string name="pref_downloads_button_action_title">Putar episode dari layar pengunduhan</string>
@@ -722,7 +722,7 @@
     <string name="pref_new_episodes_action_title">Tindakan pada episode-episode baru</string>
     <string name="opml_reader_error">Terdapat galat ketika sedang membaca berkas. Pastikan Anda benar-benar telah memilih berkas OPML dan berkas terkait valid.</string>
     <string name="auto_enable_label_with_times">Nyalakan pewaktu tidur saat menekan tombol putar antara %1$s dan %2$s</string>
-    <string name="rating_volunteers_label">AntennaPod dikembangkan oleh para sukarelawan. Berikan penghargaan kepada mereka dengan memberikan ulasan dan penilaian yang bersifat membangun dan menghargai.</string>
+    <string name="rating_volunteers_label">XMRPod dikembangkan oleh para sukarelawan. Berikan penghargaan kepada mereka dengan memberikan ulasan dan penilaian yang bersifat membangun dan menghargai.</string>
     <string name="rating_tagline">Sejak %1$s, Anda telah memutar siniar selama %2$s%3$d%4$s jam.</string>
     <string name="fast_forward_label">Maju-lekaskan</string>
     <string name="in_queue_label">Di dalam antrean putar</string>
@@ -762,7 +762,7 @@
     <string name="pref_automatic_download_queue_description">Unduh episode terantre secara otomatis</string>
     <string name="documentation_support">Dokumentasi &amp; dukungan</string>
     <string name="pref_new_episodes_action_sum">Tindakan yang dilakukan pada episode-episode baru</string>
-    <string name="automatic_database_export_summary">Buat cadangan pangkalan data AntennaPod setiap tiga hari sekali. Pilihan ini hanya menyimpan lima pencadangan terakhir.</string>
+    <string name="automatic_database_export_summary">Buat cadangan pangkalan data XMRPod setiap tiga hari sekali. Pilihan ini hanya menyimpan lima pencadangan terakhir.</string>
     <string name="automatic_database_export_error">Terdapat galat ketika mencadangkan pangkalan data secara otomatis</string>
     <string name="is_inbox_label">Di dalam kotak masuk</string>
     <string name="is_played">Terputar</string>
@@ -777,7 +777,7 @@
     <string name="echo_home_header">Ulasan Tahun Ini</string>
     <string name="echo_intro_locally">dibuat secara khusus pada perangkat Anda</string>
     <string name="echo_hours_this_year">Tahun ini Anda memutar</string>
-    <string name="echo_share">Tahun gue %d dalam siniar. #AntennaPodEcho</string>
+    <string name="echo_share">Tahun gue %d dalam siniar. #XMRPodEcho</string>
     <string name="preference_search_clear_input">Hapus</string>
     <string name="pref_auto_delete_sum">Hapus episode setelah diputar atau ketika pengunduhan otomatis membutuhkan ruang memori</string>
     <plurals name="echo_hours_podcasts">
@@ -794,7 +794,7 @@
     <string name="feed_new_episodes_action_summary_autodownload">Pengunduhan otomatis diaktifkan. Episode ditambahkan ke kotak masuk lalu dipindahkan ke antrean setelah diunduh.</string>
     <string name="visit_social_interact_label">Tampilkan komentar</string>
     <string name="overflow_more">Lebih banyak</string>
-    <string name="choose_data_directory_message">Silakan pilih dasar folder data Anda. AntennaPod akan membuat subdirektori yang sesuai.</string>
+    <string name="choose_data_directory_message">Silakan pilih dasar folder data Anda. XMRPod akan membuat subdirektori yang sesuai.</string>
     <string name="rss_address">Alamat RSS</string>
     <string name="statistics_expected_next_episode_any_day">Segera tiba</string>
     <string name="pref_back_button_opens_drawer">Tombol kembali membuka laci</string>
@@ -836,11 +836,11 @@
         <item quantity="other">%d episode dihapus dari antrean.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Ikuti audio</string>
-    <string name="visit_social_interact_confirm_dialog_title">Anda sedang meninggalkan AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Anda sedang meninggalkan XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Harap pastikan bahwa Anda mempercayai situs web “%1$s”.</string>
     <string name="reset_playback_position_label">Atur ulang posisi pemutaran</string>
     <string name="no_items_selected_message">Tidak ada item yang dipilih</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Menghapus akan menghapus episode dari AntennaPod dan menghapus berkas media dari penyimpanan perangkat Anda. Episode tersebut tidak dapat diunduh kembali melalui AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Menghapus akan menghapus episode dari XMRPod dan menghapus berkas media dari penyimpanan perangkat Anda. Episode tersebut tidak dapat diunduh kembali melalui XMRPod.</string>
     <string name="already_downloaded">Episode sudah diunduh</string>
     <plurals name="move_to_top_message">
         <item quantity="other">%d episode dipindahkan ke bagian atas.</item>
@@ -871,7 +871,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Urutan pengurutan default</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Pilih urutan default untuk episode di layar podcast</string>
     <string name="report_bug_title">Laporkan bug</string>
-    <string name="report_bug_message">Kami turut menyesal mendengar ada yang tidak berfungsi. Kami ingin bantuan Anda untuk meningkatkan AntennaPod. Silakan periksa forum kami atau GitHub untuk melihat apakah masalah ini sudah pernah dilaporkan. Jika belum, beri tahu kami dan kami akan menyelidikinya.</string>
+    <string name="report_bug_message">Kami turut menyesal mendengar ada yang tidak berfungsi. Kami ingin bantuan Anda untuk meningkatkan XMRPod. Silakan periksa forum kami atau GitHub untuk melihat apakah masalah ini sudah pernah dilaporkan. Jika belum, beri tahu kami dan kami akan menyelidikinya.</string>
     <string name="report_bug_device_info_title">Perangkat</string>
     <string name="report_bug_attrib_app_version">Versi aplikasi</string>
     <string name="report_bug_attrib_android_version">Versi Android</string>
@@ -901,7 +901,7 @@
     </plurals>
     <string name="no_fav_episodes_head_label">Tidak ada favorit</string>
     <string name="no_fav_episodes_label">Tandai episode sebagai favorit dengan mengetuk ikon bintang.</string>
-    <string name="bottom_navigation_deprecation_warning">Sayangnya kami harus menghapus navigasi samping pada pembaruan mendatang. AntennaPod dikembangkan oleh sekelompok kecil sukarelawan, dan setelah bertahun-tahun memelihara kedua gaya navigasi, hal itu menjadi beban yang terlalu besar. \n\nJika Anda benar-benar bergantung pada navigasi samping, silakan nonaktifkan pembaruan untuk AntennaPod di toko aplikasi Anda.</string>
+    <string name="bottom_navigation_deprecation_warning">Sayangnya kami harus menghapus navigasi samping pada pembaruan mendatang. XMRPod dikembangkan oleh sekelompok kecil sukarelawan, dan setelah bertahun-tahun memelihara kedua gaya navigasi, hal itu menjadi beban yang terlalu besar. \n\nJika Anda benar-benar bergantung pada navigasi samping, silakan nonaktifkan pembaruan untuk XMRPod di toko aplikasi Anda.</string>
     <string name="pref_advanced">Lanjutan</string>
     <string name="pref_display">Tampilan</string>
     <string name="import_error_label">Kesalahan impor</string>
@@ -915,9 +915,9 @@
     <string name="rss_address_invalid">Alamat RSS yang Anda masukkan tidak valid.</string>
     <string name="wearos_connected_to" tools:ignore="UnusedResources">Terhubung ke %s</string>
     <string name="wearos_version" tools:ignore="UnusedResources">Versi %s</string>
-    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">Ponsel tidak kompatibel. Pastikan Anda menjalankan AntennaPod versi terbaru dari Google Play di ponsel Anda.</string>
+    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">Ponsel tidak kompatibel. Pastikan Anda menjalankan XMRPod versi terbaru dari Google Play di ponsel Anda.</string>
     <string name="wearos_no_items" tools:ignore="UnusedResources">Tidak ada item</string>
-    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">Tidak dapat menjangkau ponsel. Pastikan ponsel Anda berada di dekat dan AntennaPod terpasang.</string>
+    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">Tidak dapat menjangkau ponsel. Pastikan ponsel Anda berada di dekat dan XMRPod terpasang.</string>
     <string name="wearos_play_on_phone" tools:ignore="UnusedResources">Putar di ponsel</string>
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">Jelajahi ponsel</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">Buka di ponsel</string>

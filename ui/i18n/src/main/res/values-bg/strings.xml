@@ -47,7 +47,7 @@
     <string name="home_continue_title">Продължи да слушаш</string>
     <string name="home_new_title">Виж какво е ново</string>
     <string name="home_downloads_title">Управлявай изтеглените</string>
-    <string name="home_welcome_title">Добре дошли в AntennaPod!</string>
+    <string name="home_welcome_title">Добре дошли в XMRPod!</string>
     <string name="home_welcome_text">Все още не сте се абонирали към никакви подкасти. Отворете страничното менюто, за да добавите подкасти.</string>
     <string name="notification_permission_denied">Отхвърли разрешението.</string>
     <string name="configure_home">Настрой началния екран</string>
@@ -249,7 +249,7 @@
     <string name="local_folder">Локална папка</string>
     <string name="reconnect_local_folder">Свържи наново локална папка</string>
     <string name="reconnect_local_folder_warning">В случай на отхвърлени привилегии, можеш да използваш това, за да се свържеш наново към същата папка. Не избирай друга папка.</string>
-    <string name="local_feed_description">Този виртуален подкаст беше създаден чрез добавяне на папка към AntennaPod,</string>
+    <string name="local_feed_description">Този виртуален подкаст беше създаден чрез добавяне на папка към XMRPod,</string>
     <string name="unable_to_start_system_file_manager">Не беше възможно да стартираме системния файлов мениджър.</string>
     <string name="filter">Филтър</string>
     <string name="hide_is_favorite_label">Е в любими</string>

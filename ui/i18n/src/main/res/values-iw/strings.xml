@@ -456,9 +456,9 @@
     <string name="episode_information">פרטי פרק</string>
     <!--About screen-->
   <string name="about_pref">על אודות</string>
-    <string name="antennapod_version">גרסת AntennaPod</string>
+    <string name="xmrpod_version">גרסת XMRPod</string>
     <string name="contributors">מתנדבים</string>
-    <string name="contributors_summary">כל אחד ואחת יכולים לסייע בשיפור AntennaPod באמצעות תרומת קוד, תרגום או באמצעות סיוע למשתמשים שלנו בפורום</string>
+    <string name="contributors_summary">כל אחד ואחת יכולים לסייע בשיפור XMRPod באמצעות תרומת קוד, תרגום או באמצעות סיוע למשתמשים שלנו בפורום</string>
     <string name="developers">מפתחים</string>
     <string name="translators">מתרגמים</string>
     <string name="special_thanks">תודות מיוחדות</string>
@@ -509,7 +509,7 @@
     <string name="opml_import_ask_read_permission">נדרשת גישה לאחסון חיצוני כדי לקרוא את קובץ ה־OPML</string>
     <string name="successful_import_label">הייבוא הצליח</string>
     <string name="import_ok">נא ללחוץ על אישור כדי להפעיל את אנטנה־פּוֹד מחדש</string>
-    <string name="import_no_downgrade">מסד נתונים זה ייוצא עם גרסה עדכנית יותר של AntennaPod. ההתקנה הנוכחית שלך לא יודעת עדיין איך לטפל בקובץ הזה.</string>
+    <string name="import_no_downgrade">מסד נתונים זה ייוצא עם גרסה עדכנית יותר של XMRPod. ההתקנה הנוכחית שלך לא יודעת עדיין איך לטפל בקובץ הזה.</string>
     <string name="favorites_export_label">ייצוא מועדפים</string>
     <string name="favorites_export_summary">ייצור המועדפים השמורים לקובץ</string>
     <!--Sleep timer-->
@@ -557,7 +557,7 @@
     <string name="synchronization_host_explanation">אפשר לבחור שרת משלך להסתנכרן מולו. כשזיהית את שרת הסנכרון המועדף עליך, נא למלא את הכתובת שלו כאן.</string>
     <string name="synchronization_host_label">כתובת שרת</string>
     <string name="proceed_to_login_butLabel">המשך לכניסה</string>
-    <string name="synchronization_nextcloud_authenticate_browser">יש להעניק גישה באמצעות הדפדפן שנפתח ולחזור ל־AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">יש להעניק גישה באמצעות הדפדפן שנפתח ולחזור ל־XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">כניסה</string>
     <string name="synchronization_credentials_explanation">נא לספק את פרטי הגישה לחשבון שלך בשרת הסנכרון.</string>
     <string name="gpodnetauth_encryption_warning">הססמה והנתונים אינם מוצפנים!</string>
@@ -814,7 +814,7 @@
     <string name="episode_lists">רשימת הפרקים</string>
     <string name="inbox_label_short">דואר נכנס</string>
     <string name="echo_thanks_large">תודה רבה</string>
-    <string name="echo_share">שנת %d שלי בהסכתים. ‎#AntennaPodEcho</string>
+    <string name="echo_share">שנת %d שלי בהסכתים. ‎#XMRPodEcho</string>
     <string name="pref_downloads_button_action_title">נגינה ממסך ההורדות</string>
     <string name="echo_thanks_we_are_glad_new">שהצטרפת אלינו השנה!\n\nבין אם עברת מיישומון אחר או שהתחלת את מסע ההסתכים שלך איתנו: אנחנו שמחים לראות אותך איתנו!</string>
     <string name="echo_intro_in_podcasts">בהסכתים</string>
