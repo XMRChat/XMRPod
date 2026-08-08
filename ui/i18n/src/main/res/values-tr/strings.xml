@@ -658,7 +658,7 @@
     <string name="local_folder">Yerel klasör</string>
     <string name="reconnect_local_folder">Yerel klasöre tekrar bağlan</string>
     <string name="reconnect_local_folder_warning">İzin reddi durumunda, aynı klasöre yeniden bağlanmak için bunu kullanabilirsiniz. Başka bir klasör seçmeyin.</string>
-    <string name="local_feed_description">Bu sanal podcast, XMRPod'a bir klasör eklenerek oluşturulmuştur.</string>
+    <string name="local_feed_description">Bu sanal podcast, XMRPod\'a bir klasör eklenerek oluşturulmuştur.</string>
     <string name="unable_to_start_system_file_manager">Sistem dosya yöneticisi başlatılamıyor</string>
     <string name="filter">Filtre</string>
     <string name="hide_is_favorite_label">Favori</string>
