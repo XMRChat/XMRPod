@@ -47,7 +47,7 @@
     <string name="home_continue_title">繼續收聽</string>
     <string name="home_new_title">查看最新內容</string>
     <string name="home_downloads_title">管理下載</string>
-    <string name="home_welcome_title">歡迎來到 AntennaPod！</string>
+    <string name="home_welcome_title">歡迎來到 XMRPod！</string>
     <string name="home_welcome_text">你還沒有訂閱任何 Podcast。 請開啟選單以新增 Podcast。</string>
     <string name="notification_permission_denied">你拒絕了授權。</string>
     <string name="configure_home">設定主頁面</string>
@@ -230,10 +230,10 @@
     <string name="download_log_title_unknown">未知的標題</string>
     <string name="download_type_feed">資料來源</string>
     <string name="download_type_media">媒體檔案</string>
-    <string name="no_feed_url_podcast_found_by_search">建議的 Podcast 沒有 RSS 連結，但 AntennaPod 找到了一個可能符合的 Podcast</string>
+    <string name="no_feed_url_podcast_found_by_search">建議的 Podcast 沒有 RSS 連結，但 XMRPod 找到了一個可能符合的 Podcast</string>
     <string name="authentication_notification_title">需要認證</string>
     <string name="confirm_mobile_download_dialog_title">確認手機下載</string>
-    <string name="confirm_mobile_download_dialog_message">在設定中已停用透過行動數據連線下載。AntennaPod 稍後可在有 Wi-Fi 時自動下載集數。</string>
+    <string name="confirm_mobile_download_dialog_message">在設定中已停用透過行動數據連線下載。XMRPod 稍後可在有 Wi-Fi 時自動下載集數。</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- 有使用 VPN 嗎？你的 VPN 應用程式偽裝成行動網路 (按流量計費的連線)。如果你希望解決這個問題，請聯繫你的 VPN 應用程式開發者。\n- 沒有使用 VPN 嗎？請開啟 Android Wi-Fi 設定，將你的 Wi-Fi 類型更改為非計量付費。</string>
     <string name="confirm_mobile_download_dialog_download_later">稍後下載</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">仍然下載</string>
@@ -244,7 +244,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">媒體檔案無法播放。\n\n- 請嘗試刪除並重新下載該集。\n- 檢查你的網路連線，並確認沒有 VPN 或登入頁面阻擋存取。\n- 嘗試長按並分享「媒體位址」到你的網頁瀏覽器，看看是否能在瀏覽器中播放。如果不行，請聯繫 Podcast 創作者。</string>
     <string name="no_media_playing_label">播放完畢</string>
-    <string name="unknown_media_key">AntennaPod - 媒體按鍵無法辨識：%1$d</string>
+    <string name="unknown_media_key">XMRPod - 媒體按鍵無法辨識：%1$d</string>
     <string name="error_file_not_found">找不到檔案</string>
     <string name="no_media_label">項目不包含媒體檔案</string>
     <!--Queue operations-->
@@ -322,8 +322,8 @@
     <string name="pref_auto_delete_title">自動刪除</string>
     <string name="pref_auto_delete_sum">播放後或自動下載需要空間時刪除集數</string>
     <string name="pref_auto_local_delete_title">自動從本機資料夾刪除</string>
-    <string name="pref_auto_local_delete_sum">同時刪除透過「新增本機資料夾」加入的檔案。請注意，這些檔案不是由 AntennaPod 下載的，因此無法重新下載</string>
-    <string name="pref_auto_local_delete_dialog_body">請注意，對於本機資料夾，這操作會從 AntennaPod 移除劇集，並從你的裝置儲存空間刪除其媒體檔案。無法再透過 AntennaPod 下載這些檔案。啟用自動刪除？</string>
+    <string name="pref_auto_local_delete_sum">同時刪除透過「新增本機資料夾」加入的檔案。請注意，這些檔案不是由 XMRPod 下載的，因此無法重新下載</string>
+    <string name="pref_auto_local_delete_dialog_body">請注意，對於本機資料夾，這操作會從 XMRPod 移除劇集，並從你的裝置儲存空間刪除其媒體檔案。無法再透過 XMRPod 下載這些檔案。啟用自動刪除？</string>
     <string name="pref_smart_mark_as_played_sum">若離開時還剩下特定秒數以內，也將該集標記為已播放</string>
     <string name="pref_smart_mark_as_played_title">智慧標記為已播放</string>
     <string name="pref_skip_keeps_episodes_sum">當跳過某集不播放時，仍於清單中保留該集</string>
@@ -335,7 +335,7 @@
     <string name="downloads_pref">下載</string>
     <string name="downloads_pref_sum">更新間隔、行動數據、自動下載、自動刪除</string>
     <string name="feed_refresh_title">更新 Podcasts</string>
-    <string name="feed_refresh_sum">指定 AntennaPod 自動尋找新單集的時間間隔</string>
+    <string name="feed_refresh_sum">指定 XMRPod 自動尋找新單集的時間間隔</string>
     <string name="feed_refresh_never">不使用</string>
     <string name="feed_every_hour">每 1 小時</string>
     <string name="feed_every_2_hours">每 2 小時</string>
@@ -417,7 +417,7 @@
     <string name="pref_skip_silence_title">跳過沒有聲音的部分</string>
     <string name="behavior">操作行為</string>
     <string name="pref_default_page">預設頁面</string>
-    <string name="pref_default_page_sum">啟動 AntennaPod 時開啟的畫面</string>
+    <string name="pref_default_page_sum">啟動 XMRPod 時開啟的畫面</string>
     <string name="pref_back_button_opens_drawer">返回鍵開啟側邊欄</string>
     <string name="pref_back_button_opens_drawer_summary">按下預設頁面上的返回鍵可開啟側邊欄</string>
     <string name="remember_last_page">記住上次頁面</string>
@@ -438,15 +438,15 @@
     <string name="episode_information">單集訊息</string>
     <!--About screen-->
   <string name="about_pref">關於</string>
-    <string name="antennapod_version">AntennaPod 版本</string>
+    <string name="xmrpod_version">XMRPod 版本</string>
     <string name="contributors">貢獻者</string>
-    <string name="contributors_summary">大家都可以協助讓 AntennaPod 變得更好 - 無論是程式設計、翻譯，或是到我們的論壇協助其他人</string>
+    <string name="contributors_summary">大家都可以協助讓 XMRPod 變得更好 - 無論是程式設計、翻譯，或是到我們的論壇協助其他人</string>
     <string name="developers">開發人員</string>
     <string name="translators">譯者</string>
     <string name="special_thanks">特別感謝</string>
     <string name="privacy_policy">隱私條款</string>
     <string name="licenses">授權條款</string>
-    <string name="licenses_summary">AntennaPod 中也用了其他很棒的軟體</string>
+    <string name="licenses_summary">XMRPod 中也用了其他很棒的軟體</string>
     <!--Search-->
   <string name="search_status_no_results">搜尋無結果</string>
     <string name="type_to_search">輸入要搜尋的內容</string>
@@ -469,8 +469,8 @@
     <string name="html_export_summary">顯示你的訂閱給朋友</string>
     <string name="opml_export_summary">將你的訂閱清單移到另一個 Podcast 軟體</string>
     <string name="opml_import_summary">從其他 Podcast 軟體匯入訂閱清單</string>
-    <string name="database_export_summary">將訂閱、聆聽紀錄、待播清單等資訊傳送到其他設備上的 AntennaPod</string>
-    <string name="database_import_summary">自其他設備匯入 AntennaPod 資料庫</string>
+    <string name="database_export_summary">將訂閱、聆聽紀錄、待播清單等資訊傳送到其他設備上的 XMRPod</string>
+    <string name="database_import_summary">自其他設備匯入 XMRPod 資料庫</string>
     <string name="opml_import_label">OPML 匯入</string>
     <string name="opml_add_podcast_label">自 OPML 匯入 Podcast 清單</string>
     <string name="opml_reader_error">讀取檔案時發生錯誤。請確認你確實選擇了 OPML 檔案，且該檔案有效。</string>
@@ -481,7 +481,7 @@
     <string name="html_export_label">匯出 HTML</string>
     <string name="database_export_label">資料庫匯出</string>
     <string name="automatic_database_export_label">自動匯出資料庫</string>
-    <string name="automatic_database_export_summary">每 3 天建立一份 AntennaPod 資料庫備份。只保留最近的 5 個備份。</string>
+    <string name="automatic_database_export_summary">每 3 天建立一份 XMRPod 資料庫備份。只保留最近的 5 個備份。</string>
     <string name="automatic_database_export_error">自動資料庫備份時發生錯誤</string>
     <string name="database_import_label">資料庫匯入</string>
     <string name="database_import_warning">匯入的資料將取代你目前的訂閱清單與播放紀錄，你最好先匯出當前的資料庫以便備份。要取代目前的資料嗎？</string>
@@ -490,8 +490,8 @@
     <string name="export_success_title">匯出成功</string>
     <string name="opml_import_ask_read_permission">讀取 OPML 檔需要存取外部儲存空間的權限</string>
     <string name="successful_import_label">匯入完畢</string>
-    <string name="import_ok">請按下 OK 重新啟動 AntennaPod</string>
-    <string name="import_no_downgrade">此資料庫是以新版 AntennaPod 匯出的，你目前使用的版本無法使用這份資料。</string>
+    <string name="import_ok">請按下 OK 重新啟動 XMRPod</string>
+    <string name="import_no_downgrade">此資料庫是以新版 XMRPod 匯出的，你目前使用的版本無法使用這份資料。</string>
     <string name="favorites_export_label">匯出我的最愛</string>
     <string name="favorites_export_summary">將儲存的我的最愛清單匯出為檔案</string>
     <!--Sleep timer-->
@@ -526,12 +526,12 @@
   <string name="synchronization_choose_title">選擇同步提供者</string>
     <string name="synchronization_summary_unchoosen">你可以選擇多個提供者，以同步你的訂閱和集數播放狀態</string>
     <string name="dialog_choose_sync_service_title">選擇同步提供者</string>
-    <string name="gpodnet_description">Gpodder.net 是一個開放原始碼的 Podcast 同步服務，你可以安裝在自己的伺服器上。Gpodder.net 獨立於 AntennaPod 專案。</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync 是一個開放原始碼的 Nextcloud 應用程式，你可以輕鬆安裝在自己的伺服器上。Gpodder Sync 獨立於 AntennaPod 專案。</string>
+    <string name="gpodnet_description">Gpodder.net 是一個開放原始碼的 Podcast 同步服務，你可以安裝在自己的伺服器上。Gpodder.net 獨立於 XMRPod 專案。</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync 是一個開放原始碼的 Nextcloud 應用程式，你可以輕鬆安裝在自己的伺服器上。Gpodder Sync 獨立於 XMRPod 專案。</string>
     <string name="synchronization_host_explanation">你可以選擇與自己的伺服器同步。當你確定你的首選同步伺服器後，請在此輸入其位址。</string>
     <string name="synchronization_host_label">伺服器位址</string>
     <string name="proceed_to_login_butLabel">繼續登入</string>
-    <string name="synchronization_nextcloud_authenticate_browser">使用開啟的網頁瀏覽器授予存取權，然後再回到 AntennaPod。</string>
+    <string name="synchronization_nextcloud_authenticate_browser">使用開啟的網頁瀏覽器授予存取權，然後再回到 XMRPod。</string>
     <string name="gpodnetauth_login_butLabel">登入</string>
     <string name="synchronization_credentials_explanation">請提供你在同步伺服器上的帳號憑證。</string>
     <string name="gpodnetauth_encryption_warning">密碼與資料都沒有加密！</string>
@@ -540,10 +540,10 @@
     <string name="synchronization_login_butLabel">登入</string>
     <string name="synchronization_selectDevice_explanation">請選擇你在同步處理伺服器上建立的裝置，或建立新裝置。</string>
     <string name="gpodnetauth_device_name">裝置名稱</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod 於 %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod 於 %1$s</string>
     <string name="gpodnetauth_existing_devices">現存裝置</string>
     <string name="gpodnetauth_create_device">新增裝置</string>
-    <string name="gpodnetauth_finish_descr">恭喜，你的 gpodder.net 帳號已經成功連結到當前的設備！AntennaPod 今後將自動與 gpodder.net 同步此設備的訂閱清單。</string>
+    <string name="gpodnetauth_finish_descr">恭喜，你的 gpodder.net 帳號已經成功連結到當前的設備！XMRPod 今後將自動與 gpodder.net 同步此設備的訂閱清單。</string>
     <string name="pref_gpodnet_setlogin_information_title">變更登入資訊</string>
     <string name="pref_gpodnet_setlogin_information_sum">修改你的 gpodder.net 帳號登入資訊。</string>
     <string name="synchronization_sync_changes_title">立即同步</string>
@@ -560,14 +560,14 @@
     <string name="gpodnetsync_username_characters_error">帳號中只能包含英文字母、數字、橫線及底線。</string>
     <!--Directory chooser-->
   <string name="choose_data_directory">選擇儲存資料夾</string>
-    <string name="choose_data_directory_message">請選擇你儲存檔案用的資料夾，AntennaPod 會自動建立相應的子資料夾。</string>
+    <string name="choose_data_directory_message">請選擇你儲存檔案用的資料夾，XMRPod 會自動建立相應的子資料夾。</string>
     <string name="choose_data_directory_available_space">可用空間 %1$s/%2$s</string>
     <!--Rating dialog-->
   <string name="rating_tagline">自 %1$s 以來，你累計播放 podcast 的時間總長 %2$s %3$d %4$s。</string>
     <string name="rating_contribute_label">想要加入嗎？無論你是想翻譯、支援、設計或編碼，我們都非常歡迎你的加入！</string>
     <string name="rating_contribute_button">瞭解貢獻方式</string>
-    <string name="rating_volunteers_label">AntennaPod 是由志工利用空閒時間開發的。請留下好評，分享你對他們工作的欣賞。</string>
-    <string name="rating_rate">評分 AntennaPod</string>
+    <string name="rating_volunteers_label">XMRPod 是由志工利用空閒時間開發的。請留下好評，分享你對他們工作的欣賞。</string>
+    <string name="rating_rate">評分 XMRPod</string>
     <string name="rating_later">稍後</string>
     <!--Online feed view-->
   <string name="subscribe_label">訂閱</string>
@@ -645,7 +645,7 @@
     <string name="local_folder">本機資料夾</string>
     <string name="reconnect_local_folder">重新連接本機資料夾</string>
     <string name="reconnect_local_folder_warning">若因權限問題被拒絕連接，你可以用此方法重新連上同一個資料夾。此時請勿選擇其他的資料夾。</string>
-    <string name="local_feed_description">此虛擬 Podcast 是在 AntennaPod 裡增加資料夾而產生的。</string>
+    <string name="local_feed_description">此虛擬 Podcast 是在 XMRPod 裡增加資料夾而產生的。</string>
     <string name="unable_to_start_system_file_manager">無法啟用系統的檔案管理工具</string>
     <string name="filter">篩選</string>
     <string name="hide_is_favorite_label">為最愛</string>
@@ -786,7 +786,7 @@
     <string name="echo_hours_this_year">這一年你播放了</string>
     <string name="echo_hoarder_title">我們也一直在想：你會聽那些你訂閱的 Podcast 嗎？</string>
     <string name="echo_hoarder_subtitle_clean">乾淨俐落！</string>
-    <string name="echo_share">我在 Podcast 中的 %d 年。#AntennaPodEcho</string>
+    <string name="echo_share">我在 Podcast 中的 %d 年。#XMRPodEcho</string>
     <string name="subscriptions_label_short">訂閱清單</string>
     <string name="playback_history_label_short">播放紀錄</string>
     <string name="delete_tag_label">刪除標籤</string>
@@ -833,11 +833,11 @@
     <plurals name="removed_from_queue_message">
         <item quantity="other">已從待播清單移除 %d 集。</item>
     </plurals>
-    <string name="visit_social_interact_confirm_dialog_title">你正在離開 AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">你正在離開 XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">請確定你信任網站「%1$s」。</string>
     <string name="reset_playback_position_label">重置播放位置</string>
     <string name="no_items_selected_message">未選擇任何項目</string>
-    <string name="delete_local_feed_confirmation_dialog_message">刪除操作會將該集從 AntennaPod 中移除，並從你的裝置儲存中刪除對應的媒體檔案。該檔案無法透過 AntennaPod 再次下載。</string>
+    <string name="delete_local_feed_confirmation_dialog_message">刪除操作會將該集從 XMRPod 中移除，並從你的裝置儲存中刪除對應的媒體檔案。該檔案無法透過 XMRPod 再次下載。</string>
     <plurals name="move_to_top_message">
         <item quantity="other">%d 集已移至頂端。</item>
     </plurals>
@@ -879,7 +879,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">預設排序</string>
     <string name="pref_global_default_episode_list_sort_order_sum">選擇 Podcast 頁面單集的預設順序</string>
     <string name="report_bug_title">回報錯誤</string>
-    <string name="report_bug_message">很遺憾聽到有些功能無法正常運作，我們希望能得到你的幫助來改進 AntennaPod。請查看我們的論壇或 GitHub，看看該問題是否已經被回報，如果沒有，請告訴我們以進行後續調查。</string>
+    <string name="report_bug_message">很遺憾聽到有些功能無法正常運作，我們希望能得到你的幫助來改進 XMRPod。請查看我們的論壇或 GitHub，看看該問題是否已經被回報，如果沒有，請告訴我們以進行後續調查。</string>
     <string name="report_bug_device_info_title">裝置</string>
     <string name="report_bug_attrib_app_version">應用版本</string>
     <string name="report_bug_attrib_android_version">Android 版本</string>
@@ -916,7 +916,7 @@
     <string name="queue_time_left_label">剩餘 %1$s • %2$s</string>
     <string name="no_fav_episodes_head_label">沒有最愛</string>
     <string name="no_fav_episodes_label">點擊星形圖示將單集標記為最愛。</string>
-    <string name="bottom_navigation_deprecation_warning">很遺憾，我們必須在未來的更新中移除側邊導覽列功能。AntennaPod 是由少數志工在閒暇時間開發，同時維護兩種導覽方式多年來負擔已經變得沉重。\n\n如果您完全依賴側邊導覽列來操作，請在應用商店中停用 AntennaPod 的自動更新。</string>
+    <string name="bottom_navigation_deprecation_warning">很遺憾，我們必須在未來的更新中移除側邊導覽列功能。XMRPod 是由少數志工在閒暇時間開發，同時維護兩種導覽方式多年來負擔已經變得沉重。\n\n如果您完全依賴側邊導覽列來操作，請在應用商店中停用 XMRPod 的自動更新。</string>
     <string name="pref_advanced">高級</string>
     <string name="pref_display">顯示</string>
     <string name="import_error_label">匯入錯誤</string>
@@ -924,9 +924,9 @@
     <string name="rss_address_invalid">您輸入的 RSS 地址無效。</string>
     <string name="wearos_connected_to" tools:ignore="UnusedResources">已連接到 %s</string>
     <string name="wearos_version" tools:ignore="UnusedResources">版本 %s</string>
-    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">手機不相容。請確保您的手機上運行的是 Google Play 上最新版本的 AntennaPod。</string>
+    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">手機不相容。請確保您的手機上運行的是 Google Play 上最新版本的 XMRPod。</string>
     <string name="wearos_no_items" tools:ignore="UnusedResources">沒有項目</string>
-    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">無法連接手機。請確保您的手機在附近並已安裝 AntennaPod。</string>
+    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">無法連接手機。請確保您的手機在附近並已安裝 XMRPod。</string>
     <string name="wearos_play_on_phone" tools:ignore="UnusedResources">在手機上播放</string>
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">瀏覽手機</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">在手機上打開</string>

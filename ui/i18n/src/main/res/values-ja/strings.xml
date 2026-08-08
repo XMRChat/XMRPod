@@ -47,7 +47,7 @@
     <string name="home_continue_title">続きを聴く</string>
     <string name="home_new_title">新着の確認</string>
     <string name="home_downloads_title">ダウンロードの管理</string>
-    <string name="home_welcome_title">ようこそ、AntennaPod へ！</string>
+    <string name="home_welcome_title">ようこそ、XMRPod へ！</string>
     <string name="home_welcome_text">現在、購読しているポッドキャストがありません。メニューを開いてポッドキャストを追加してください。</string>
     <string name="notification_permission_denied">権限を拒否しました。</string>
     <string name="configure_home">ホーム画面の設定</string>
@@ -220,10 +220,10 @@
     <string name="download_log_title_unknown">タイトル不明</string>
     <string name="download_type_feed">フィード</string>
     <string name="download_type_media">メディアファイル</string>
-    <string name="no_feed_url_podcast_found_by_search">提案されたポッドキャストにはRSSリンクがありませんでしたが、AntennaPodは一致する可能性のあるポッドキャストを見つけました</string>
+    <string name="no_feed_url_podcast_found_by_search">提案されたポッドキャストにはRSSリンクがありませんでしたが、XMRPodは一致する可能性のあるポッドキャストを見つけました</string>
     <string name="authentication_notification_title">認証が必要です</string>
     <string name="confirm_mobile_download_dialog_title">モバイルダウンロードの確認</string>
-    <string name="confirm_mobile_download_dialog_message">モバイルデータ接続でのポッドキャストの更新は設定で無効になっています。AntennaPod では Wi-FI 接続時にエピソードを自動的にダウンロードすることができます。</string>
+    <string name="confirm_mobile_download_dialog_message">モバイルデータ接続でのポッドキャストの更新は設定で無効になっています。XMRPod では Wi-FI 接続時にエピソードを自動的にダウンロードすることができます。</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- VPN を使用している場合、VPN アプリがモバイルネットワーク (従量制接続) のように振る舞っています。この問題を解決したい場合、VPN アプリの開発者に問い合わせてください。\n- VPN を使用していない場合、Android の Wi-Fi 設定を開き、Wi-Fi が従量制接続の設定にならないように変更してください。</string>
     <string name="confirm_mobile_download_dialog_download_later">後からダウンロードする</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">それでもダウンロードする</string>
@@ -234,7 +234,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">メディアファイルが再生できませんでした。\n\n- エピソードを削除して再度ダウンロードしてみてください。\n- ネットワーク接続を確認して、VPN やログインページによりアクセスがブロックされていないことを確認してください。\n- 長押ししてメディアアドレスをウェブブラウザーに共有して、そこで再生できるか確認してください。できなければポッドキャストの製作者にお問い合わせください。</string>
     <string name="no_media_playing_label">再生するメディアがありません</string>
-    <string name="unknown_media_key">AntennaPod - 不明なメディアキー: %1$d</string>
+    <string name="unknown_media_key">XMRPod - 不明なメディアキー: %1$d</string>
     <string name="error_file_not_found">ファイルが見つかりません</string>
     <string name="no_media_label">アイテムにメディアファイルが含まれていません</string>
     <!--Queue operations-->
@@ -305,7 +305,7 @@
     <string name="pref_followQueue_sum">再生が完了した時に次のキューのアイテムに移動します</string>
     <string name="pref_auto_local_delete_title">ローカルフォルダーから自動削除</string>
     <string name="pref_auto_local_delete_sum">ローカルフォルダーに自動削除機能を適用</string>
-    <string name="pref_auto_local_delete_dialog_body">これにより AntennaPod のエピソードがローカルフォルダーから削除され、デバイスのストレージからメディアファイルが削除されます。AntennaPod により再度ダウンロードされることはありません。自動削除を有効にしますか?</string>
+    <string name="pref_auto_local_delete_dialog_body">これにより XMRPod のエピソードがローカルフォルダーから削除され、デバイスのストレージからメディアファイルが削除されます。XMRPod により再度ダウンロードされることはありません。自動削除を有効にしますか?</string>
     <string name="pref_smart_mark_as_played_sum">一定の秒数未満の再生時間がまだ残っている場合でも、エピソードを再生済みとしてマークします</string>
     <string name="pref_smart_mark_as_played_title">再生済みとしてスマートマーク</string>
     <string name="pref_skip_keeps_episodes_sum">スキップしたエピソードを残しておきます</string>
@@ -317,7 +317,7 @@
     <string name="downloads_pref">ダウンロード</string>
     <string name="downloads_pref_sum">更新の間隔、モバイルデータ、自動ダウンロード、自動削除</string>
     <string name="feed_refresh_title">ポッドキャストの更新</string>
-    <string name="feed_refresh_sum">AntennaPod が新規エピソードを確認する間隔を指定します</string>
+    <string name="feed_refresh_sum">XMRPod が新規エピソードを確認する間隔を指定します</string>
     <string name="feed_refresh_never">しない</string>
     <string name="feed_every_hour">1 時間おき</string>
     <string name="feed_every_2_hours">2 時間おき</string>
@@ -395,7 +395,7 @@
     <string name="pref_skip_silence_title">無音の音声部分をスキップ</string>
     <string name="behavior">動作</string>
     <string name="pref_default_page">デフォルトページ</string>
-    <string name="pref_default_page_sum">AntennaPodの起動時に表示される画面</string>
+    <string name="pref_default_page_sum">XMRPodの起動時に表示される画面</string>
     <string name="pref_back_button_opens_drawer">戻るボタンによりドロワーを開く</string>
     <string name="pref_back_button_opens_drawer_summary">デフォルトページで戻るボタンを押し続けることでナビゲーションドロワーを開く</string>
     <string name="remember_last_page">最後のページを記憶</string>
@@ -413,16 +413,16 @@
     <string name="pref_new_episodes_action_title">新規エピソードのアクション</string>
     <string name="pref_new_episodes_action_sum">新規エピソードに対して行う動作</string>
     <!--About screen-->
-  <string name="about_pref">AntennaPod について</string>
-    <string name="antennapod_version">AntennaPod バージョン</string>
+  <string name="about_pref">XMRPod について</string>
+    <string name="xmrpod_version">XMRPod バージョン</string>
     <string name="contributors">貢献者</string>
-    <string name="contributors_summary">すべての人が AntennaPod をより良いものにするために協力できます。たとえば、コードの貢献、翻訳、フォーラムでのユーザー支援などがあります</string>
+    <string name="contributors_summary">すべての人が XMRPod をより良いものにするために協力できます。たとえば、コードの貢献、翻訳、フォーラムでのユーザー支援などがあります</string>
     <string name="developers">開発者</string>
     <string name="translators">翻訳者</string>
     <string name="special_thanks">スペシャルサンクス</string>
     <string name="privacy_policy">プライバシーポリシー</string>
     <string name="licenses">ライセンス</string>
-    <string name="licenses_summary">AntennaPod は他の優れたソフトウェアを使用しています</string>
+    <string name="licenses_summary">XMRPod は他の優れたソフトウェアを使用しています</string>
     <!--Search-->
   <string name="search_status_no_results">見つかりませんでした</string>
     <string name="type_to_search">検索ワードを入力してください</string>
@@ -445,8 +445,8 @@
     <string name="html_export_summary">あなたの購読を友だちに見せる</string>
     <string name="opml_export_summary">購読を別のポッドキャストアプリに転送する</string>
     <string name="opml_import_summary">別のポッドキャストアプリから購読をインポートする</string>
-    <string name="database_export_summary">購読、再生したエピソード、キューを別のデバイスのAntennaPodに転送する</string>
-    <string name="database_import_summary">AntennaPodデータベースを別のデバイスからインポートする</string>
+    <string name="database_export_summary">購読、再生したエピソード、キューを別のデバイスのXMRPodに転送する</string>
+    <string name="database_import_summary">XMRPodデータベースを別のデバイスからインポートする</string>
     <string name="opml_import_label">OPML インポート</string>
     <string name="opml_add_podcast_label">ポッドキャストリストのインポート (OPML)</string>
     <string name="opml_reader_error">ファイルの読み込み中にエラーが発生しました。実際に OPML ファイルを選択し、ファイルが有効なことを確認してください。</string>
@@ -457,7 +457,7 @@
     <string name="html_export_label">HTML エクスポート</string>
     <string name="database_export_label">データベースのエクスポート</string>
     <string name="automatic_database_export_label">自動データベースエクスポート</string>
-    <string name="automatic_database_export_summary">AntennaPod データベースのバックアップを 3 日毎に行います。最新 5 つのバックアップが保持されます。</string>
+    <string name="automatic_database_export_summary">XMRPod データベースのバックアップを 3 日毎に行います。最新 5 つのバックアップが保持されます。</string>
     <string name="automatic_database_export_error">自動データベースバックアップ中のエラー</string>
     <string name="database_import_label">データベースのインポート</string>
     <string name="database_import_warning">データベースをインポートすると、現在の購読と再生履歴がすべて置き換えられます。現在のデータベースをバックアップとしてエクスポートする必要があります。それでも置き換えしますか？</string>
@@ -466,8 +466,8 @@
     <string name="export_success_title">エクスポートしました</string>
     <string name="opml_import_ask_read_permission">OPML ファイルを読み込むために、外部ストレージへのアクセスが必要です</string>
     <string name="successful_import_label">インポートしました</string>
-    <string name="import_ok">OKを押してAntennaPodを再起動してください</string>
-    <string name="import_no_downgrade">このデータベースは、AntennaPodの新しいバージョンでエクスポートされました。 現在インストールされたアプリでは、このファイルの処理方法がまだわかりません。</string>
+    <string name="import_ok">OKを押してXMRPodを再起動してください</string>
+    <string name="import_no_downgrade">このデータベースは、XMRPodの新しいバージョンでエクスポートされました。 現在インストールされたアプリでは、このファイルの処理方法がまだわかりません。</string>
     <string name="favorites_export_label">お気に入り エクスポート</string>
     <string name="favorites_export_summary">保存したお気に入りをファイルにエクスポートする</string>
     <!--Sleep timer-->
@@ -490,12 +490,12 @@
   <string name="synchronization_choose_title">同期プロバイダーを選択</string>
     <string name="synchronization_summary_unchoosen">複数のプロバイダーから選択して、購読とエピソードの再生状態を同期できます</string>
     <string name="dialog_choose_sync_service_title">同期プロバイダーの選択</string>
-    <string name="gpodnet_description">Gpodder.netは、自身のサーバーにインストールできるオープンソースのポッドキャスト同期サービスです。Gpodder.netは、AntennaPodプロジェクトから独立しています。</string>
-    <string name="synchronization_summary_nextcloud">Gpoddersyncは、自身のサーバーに簡単にインストールできるオープンソースのNextcloudアプリです。このアプリは、AntennaPodプロジェクトから独立しています。</string>
+    <string name="gpodnet_description">Gpodder.netは、自身のサーバーにインストールできるオープンソースのポッドキャスト同期サービスです。Gpodder.netは、XMRPodプロジェクトから独立しています。</string>
+    <string name="synchronization_summary_nextcloud">Gpoddersyncは、自身のサーバーに簡単にインストールできるオープンソースのNextcloudアプリです。このアプリは、XMRPodプロジェクトから独立しています。</string>
     <string name="synchronization_host_explanation">同期するサーバーを自分で選ぶことができます。同期したいサーバーが決まりましたら、そのアドレスをここに入力してください。</string>
     <string name="synchronization_host_label">サーバーアドレス</string>
     <string name="proceed_to_login_butLabel">ログインに進む</string>
-    <string name="synchronization_nextcloud_authenticate_browser">開いた Web ブラウザーを使用してアクセスを許可し、AntennaPod に戻ります。</string>
+    <string name="synchronization_nextcloud_authenticate_browser">開いた Web ブラウザーを使用してアクセスを許可し、XMRPod に戻ります。</string>
     <string name="gpodnetauth_login_butLabel">ログイン</string>
     <string name="synchronization_credentials_explanation">同期サーバー用のアカウント情報を提供してください。</string>
     <string name="gpodnetauth_encryption_warning">パスワードやデータは暗号化されません！</string>
@@ -504,10 +504,10 @@
     <string name="synchronization_login_butLabel">ログイン</string>
     <string name="synchronization_selectDevice_explanation">同期サーバーで作成したデバイスを選択するか、新しいデバイスを作成してください。</string>
     <string name="gpodnetauth_device_name">デバイス名</string>
-    <string name="gpodnetauth_device_name_default">%1$s の AntennaPod</string>
+    <string name="gpodnetauth_device_name_default">%1$s の XMRPod</string>
     <string name="gpodnetauth_existing_devices">既存のデバイス</string>
     <string name="gpodnetauth_create_device">デバイスの作成</string>
-    <string name="gpodnetauth_finish_descr">おめでとうございます！gpodder.netアカウントが今お使いのデバイスとリンクされました。 AntennaPodは今から自動的にgpodder.netアカウントを使用してデバイスの購読を同期します。</string>
+    <string name="gpodnetauth_finish_descr">おめでとうございます！gpodder.netアカウントが今お使いのデバイスとリンクされました。 XMRPodは今から自動的にgpodder.netアカウントを使用してデバイスの購読を同期します。</string>
     <string name="pref_gpodnet_setlogin_information_title">ログイン情報を変更</string>
     <string name="pref_gpodnet_setlogin_information_sum">gpodder.netアカウントのログイン情報を変更します。</string>
     <string name="synchronization_sync_changes_title">今すぐ同期する</string>
@@ -529,7 +529,7 @@
   <string name="rating_tagline">%1$s から、%2$s%3$d%4$s 時間のポッドキャストを再生しました。</string>
     <string name="rating_contribute_label">翻訳、サポート、デザイン、またはコーディングといった形で貢献してくれると嬉しいです!</string>
     <string name="rating_contribute_button">貢献する方法</string>
-    <string name="rating_rate">AntennaPod を評価</string>
+    <string name="rating_rate">XMRPod を評価</string>
     <string name="rating_later">後で</string>
     <!--Online feed view-->
   <string name="subscribe_label">購読</string>
@@ -601,7 +601,7 @@
     <string name="local_folder">ローカルフォルダー</string>
     <string name="reconnect_local_folder">ローカルフォルダーの再接続</string>
     <string name="reconnect_local_folder_warning">権限が拒否された場合、これを使用して同じフォルダーに再接続できます。別のフォルダーを選択しないでください。</string>
-    <string name="local_feed_description">この仮想ポッドキャストは、AntennaPodにフォルダーを追加することによって作成されました。</string>
+    <string name="local_feed_description">この仮想ポッドキャストは、XMRPodにフォルダーを追加することによって作成されました。</string>
     <string name="unable_to_start_system_file_manager">システムのファイルマネージャーを起動できません</string>
     <string name="filter">フィルター</string>
     <string name="hide_is_favorite_label">お気に入り</string>
@@ -736,7 +736,7 @@
     <plurals name="time_hours_quantified">
         <item quantity="other">%d 時間</item>
     </plurals>
-    <string name="rating_volunteers_label">AntennaPod は、ボランティアの人たちが自由時間に開発しています。素晴らしい評価を付けて、彼らの仕事に対する感謝を共有してください。</string>
+    <string name="rating_volunteers_label">XMRPod は、ボランティアの人たちが自由時間に開発しています。素晴らしい評価を付けて、彼らの仕事に対する感謝を共有してください。</string>
     <string name="preview_episodes">エピソードプレビュー</string>
     <string name="state_deleted_not_subscribed">このポッドキャストはまだ購読していません。簡単に無料でアクセスし、再生履歴を保存できるように購読してください。</string>
     <plurals name="statistics_episodes_downloaded">
@@ -761,10 +761,10 @@
     <string name="pref_downloads_button_action_sum">ダウンロード画面で削除ボタンの代わりに再生ボタンを表示する</string>
     <string name="pref_show_subscription_title">タイトルを表示</string>
     <string name="sync_status_wait_for_downloads">購読の更新を待機中…</string>
-    <string name="choose_data_directory_message">データフォルダのベースを選択してください。AntennaPod が適切なサブディレクトリを作成します。</string>
+    <string name="choose_data_directory_message">データフォルダのベースを選択してください。XMRPod が適切なサブディレクトリを作成します。</string>
     <string name="subscription_display_list">リスト</string>
     <string name="notification_channel_refreshing">ポッドキャストの更新中</string>
-    <string name="edit_url_confirmation_msg">RSS アドレスを変更すると、再生状態やポッドキャストのエピソードリストが簡単に壊れてしまう可能性があります。変更はおすすめしません。これにより何か問題が発生したとしても、AntennaPod からはいかなるサポートも提供できません。この動作は二度と元に戻すことはできません。購読が壊れた場合、アドレスを戻すだけでは修復することは不可能です。継続する前にバックアップを作成することをおすすめします。</string>
+    <string name="edit_url_confirmation_msg">RSS アドレスを変更すると、再生状態やポッドキャストのエピソードリストが簡単に壊れてしまう可能性があります。変更はおすすめしません。これにより何か問題が発生したとしても、XMRPod からはいかなるサポートも提供できません。この動作は二度と元に戻すことはできません。購読が壊れた場合、アドレスを戻すだけでは修復することは不可能です。継続する前にバックアップを作成することをおすすめします。</string>
     <string name="delete_downloads_played">再生済みを削除</string>
     <string name="no_transcript_label">書き起こしなし</string>
     <string name="delete_downloads_played_confirmation">すべての再生済みダウンロードを削除してもいいか確認してください。</string>

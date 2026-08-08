@@ -47,7 +47,7 @@
     <string name="home_continue_title">Kontynuuj słuchanie</string>
     <string name="home_new_title">Sprawdź nowości</string>
     <string name="home_downloads_title">Zarządzaj pobranymi</string>
-    <string name="home_welcome_title">Witamy w AntennaPod!</string>
+    <string name="home_welcome_title">Witamy w XMRPod!</string>
     <string name="home_welcome_text">Nie subskrybujesz jeszcze żadnych podcastów. Otwórz menu, aby dodać podcasty.</string>
     <string name="notification_permission_denied">Nie udzielono zgody.</string>
     <string name="configure_home">Konfiguruj stronę główną</string>
@@ -243,10 +243,10 @@
     <string name="download_log_title_unknown">Nieznany tytuł</string>
     <string name="download_type_feed">Kanał</string>
     <string name="download_type_media">Plik multimedialny</string>
-    <string name="no_feed_url_podcast_found_by_search">Zasugerowany podcast nie ma linku RSS, aplikacja AntennaPod znalazła inny podcast, który może pasować</string>
+    <string name="no_feed_url_podcast_found_by_search">Zasugerowany podcast nie ma linku RSS, aplikacja XMRPod znalazła inny podcast, który może pasować</string>
     <string name="authentication_notification_title">Wymagana autoryzacja</string>
     <string name="confirm_mobile_download_dialog_title">Potwierdź pobieranie przez sieć komórkową</string>
-    <string name="confirm_mobile_download_dialog_message">Pobieranie za pomocą sieci komórkowej jest wyłączone w ustawieniach. AntennaPod może później pobrać odcinek automatycznie, kiedy będzie dostępna sieć Wi-Fi.</string>
+    <string name="confirm_mobile_download_dialog_message">Pobieranie za pomocą sieci komórkowej jest wyłączone w ustawieniach. XMRPod może później pobrać odcinek automatycznie, kiedy będzie dostępna sieć Wi-Fi.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Korzystasz z VPN? Twoja aplikacja VPN udaje sieć komórkową (połączenie taryfowe). Jeśli chcesz naprawić ten problem, skontaktuj się z twórcami aplikacji VPN.\n- Nie korzystasz z VPN? Otwórz ustawienia Wi-Fi w systemie Android i zmień typ sieci Wi-Fi, aby nie była mierzona.</string>
     <string name="confirm_mobile_download_dialog_download_later">Pobierz później</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Pobierz mimo to</string>
@@ -257,7 +257,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Nie można odtworzyć pliku.\n\n- Spróbuj usunąć i pobrać ponownie odcinek.\n- Sprawdź połączenie sieciowe i upewnij się, że VPN lub strona logowania nie blokują dostępu.\n- Spróbuj przytrzymać dłużej i udostępnić \"Adres URL\" przeglądarce internetowej, aby sprawdzić, czy może być tam odtworzony. Jeśli nie, skontaktuj się z twórcami podcastu.</string>
     <string name="no_media_playing_label">Żadne media nie odtwarzane</string>
-    <string name="unknown_media_key">AntennaPod - Nieznany klawisz: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Nieznany klawisz: %1$d</string>
     <string name="error_file_not_found">Nie znaleziono pliku</string>
     <string name="no_media_label">Element nie zawiera pliku multimedialnego</string>
     <!--Queue operations-->
@@ -335,7 +335,7 @@
     <string name="pref_auto_delete_sum">Usuń odcinki kiedy ich odtwarzanie zostanie zakończone lub gdy automatyczne pobieranie wymaga dodatkowej przestrzeni</string>
     <string name="pref_auto_local_delete_title">Automatyczne usuwanie z folderów lokalnych</string>
     <string name="pref_auto_local_delete_sum">Uwzględnij lokalne foldery w funkcji automatycznego usuwania</string>
-    <string name="pref_auto_local_delete_dialog_body">Uwaga! W przypadku folderów lokalnych usunięcie spowoduje skasowanie odcinków z AntennaPod oraz plików z twojego urządzenia. Nie można będzie ich pobrać ponownie za pomocą AntennaPod. Aktywować automatyczne usuwanie?</string>
+    <string name="pref_auto_local_delete_dialog_body">Uwaga! W przypadku folderów lokalnych usunięcie spowoduje skasowanie odcinków z XMRPod oraz plików z twojego urządzenia. Nie można będzie ich pobrać ponownie za pomocą XMRPod. Aktywować automatyczne usuwanie?</string>
     <string name="pref_smart_mark_as_played_sum">Oznacz odcinek jako odtworzony, jeśli do końca pozostało mniej niż określona ilość czasu</string>
     <string name="pref_smart_mark_as_played_title">Inteligentnie oznacz jako odtworzone</string>
     <string name="pref_skip_keeps_episodes_sum">Zachowuje pominięte odcinki w kolejce</string>
@@ -426,7 +426,7 @@
     <string name="pref_skip_silence_title">Pomiń ciszę w plikach audio</string>
     <string name="behavior">Zachowanie</string>
     <string name="pref_default_page">Domyślna strona</string>
-    <string name="pref_default_page_sum">Ekran wyświetlany po uruchomieniu AntennaPod</string>
+    <string name="pref_default_page_sum">Ekran wyświetlany po uruchomieniu XMRPod</string>
     <string name="pref_back_button_opens_drawer">Przycisk „Wstecz” otwiera panel nawigacyjny</string>
     <string name="pref_back_button_opens_drawer_summary">Naciśnięcie przycisku „Wstecz” na ekranie głównym otwiera panel nawigacyjny</string>
     <string name="remember_last_page">Zapiętaj ostatnią stronę</string>
@@ -447,15 +447,15 @@
     <string name="episode_information">Informacje o odcinku</string>
     <!--About screen-->
   <string name="about_pref">O aplikacji</string>
-    <string name="antennapod_version">Wersja AntennaPod</string>
+    <string name="xmrpod_version">Wersja XMRPod</string>
     <string name="contributors">Kontrybutorzy</string>
-    <string name="contributors_summary">Każdy może pomóc ulepszyć AntennaPod - pisząc kod, tłumacząc lub pomagając użytkownikom na forum</string>
+    <string name="contributors_summary">Każdy może pomóc ulepszyć XMRPod - pisząc kod, tłumacząc lub pomagając użytkownikom na forum</string>
     <string name="developers">Twórcy</string>
     <string name="translators">Tłumacze</string>
     <string name="special_thanks">Specjalne podziękowania</string>
     <string name="privacy_policy">Polityka prywatności</string>
     <string name="licenses">Licencje</string>
-    <string name="licenses_summary">AntennaPod używa różnego świetnego oprogramowania/bibliotek</string>
+    <string name="licenses_summary">XMRPod używa różnego świetnego oprogramowania/bibliotek</string>
     <!--Search-->
   <string name="search_status_no_results">Brak wyników</string>
     <string name="type_to_search">Wpisz szukaną frazę</string>
@@ -478,8 +478,8 @@
     <string name="html_export_summary">Pokaż swoje subskrypcje znajomym</string>
     <string name="opml_export_summary">Przenieś swoje subskrypcje do innej aplikacji</string>
     <string name="opml_import_summary">Przenieś swoje subskrypcje z innej aplikacji</string>
-    <string name="database_export_summary">Przenieś subskrypcje, listę odsłuchanych odcinków i kolejkę do AntennaPod na innym urządzeniu</string>
-    <string name="database_import_summary">Importuj bazę danych AntennaPod z innego urządzenia</string>
+    <string name="database_export_summary">Przenieś subskrypcje, listę odsłuchanych odcinków i kolejkę do XMRPod na innym urządzeniu</string>
+    <string name="database_import_summary">Importuj bazę danych XMRPod z innego urządzenia</string>
     <string name="opml_import_label">Import pliku OMPL</string>
     <string name="opml_add_podcast_label">Importuj listę podcastów (OPML)</string>
     <string name="opml_import_error_no_file">Nie wbrano pliku!</string>
@@ -489,7 +489,7 @@
     <string name="html_export_label">Eksport HTML</string>
     <string name="database_export_label">Eksport bazy danych</string>
     <string name="automatic_database_export_label">Automatyczne eksportowanie bazy danych</string>
-    <string name="automatic_database_export_summary">Stwórz kopię zapasową bazy danych AntennaPod co 3 dni. Zachowaj tylko 5 najnowszych kopii.</string>
+    <string name="automatic_database_export_summary">Stwórz kopię zapasową bazy danych XMRPod co 3 dni. Zachowaj tylko 5 najnowszych kopii.</string>
     <string name="database_import_label">Import bazy danych</string>
     <string name="database_import_warning">Import bazy danych nadpisze wszystkie twoje aktualne subskrypcje i historię odtworzeń. Zalecany jest eksport aktualnej bazy danych jako kopia zapasowa. Czy chcesz zamienić?</string>
     <string name="please_wait">Prosimy poczekać…</string>
@@ -497,8 +497,8 @@
     <string name="export_success_title">Eksport zakończony powodzeniem</string>
     <string name="opml_import_ask_read_permission">Dostęp do zewnętrznej pamięci jest potrzebny do odczytywania plików OPML</string>
     <string name="successful_import_label">Import udany</string>
-    <string name="import_ok">Naciśnij OK, aby zrestartować AntennaPod</string>
-    <string name="import_no_downgrade">Baza danych została eksportowana z nowszej wersji AntennaPod. Twoja wersja nie potrafi obsłużyć tego pliku.</string>
+    <string name="import_ok">Naciśnij OK, aby zrestartować XMRPod</string>
+    <string name="import_no_downgrade">Baza danych została eksportowana z nowszej wersji XMRPod. Twoja wersja nie potrafi obsłużyć tego pliku.</string>
     <string name="favorites_export_label">Eksport ulubionych</string>
     <string name="favorites_export_summary">Wyeksportuj ulubione do pliku</string>
     <!--Sleep timer-->
@@ -520,12 +520,12 @@
   <string name="synchronization_choose_title">Wybierz dostawcę synchronizacji</string>
     <string name="synchronization_summary_unchoosen">Możesz wybrać synchronizację subskrypcji i stanu odtwarzania odcinków z pomocą kilku dostawców</string>
     <string name="dialog_choose_sync_service_title">Wybierz dostawcę synchronizacji</string>
-    <string name="gpodnet_description">Gpodder.net to serwis open-source do synchronizacji podcastów, który możesz zainstalować na własnym serwerze. Gpodder.net nie jest powiązany z projektem AntennaPod.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync to aplikacja Nextcloud typu open-source, którą możesz łatwo zainstalować na swój serwer. Aplikacja nie jest powiązana z projektem AntennaPod.</string>
+    <string name="gpodnet_description">Gpodder.net to serwis open-source do synchronizacji podcastów, który możesz zainstalować na własnym serwerze. Gpodder.net nie jest powiązany z projektem XMRPod.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync to aplikacja Nextcloud typu open-source, którą możesz łatwo zainstalować na swój serwer. Aplikacja nie jest powiązana z projektem XMRPod.</string>
     <string name="synchronization_host_explanation">Możesz wybrać swój własny serwer do synchronizacji. Po zidentyfikowaniu preferowanego serwera synchronizacji, wpisz tutaj jego adres.</string>
     <string name="synchronization_host_label">Adres serwera</string>
     <string name="proceed_to_login_butLabel">Przejdź do logowania</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Zezwól na dostęp w otwartym oknie przeglądarki i wróć do aplikacji AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Zezwól na dostęp w otwartym oknie przeglądarki i wróć do aplikacji XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Login</string>
     <string name="synchronization_credentials_explanation">Podaj dane uwierzytelniające swojego konta na serwerze synchronizacji.</string>
     <string name="gpodnetauth_encryption_warning">Hasło i dane nie są zaszyfrowane!</string>
@@ -534,10 +534,10 @@
     <string name="synchronization_login_butLabel">Zaloguj się</string>
     <string name="synchronization_selectDevice_explanation">Wybierz urządzenie, które zostało utworzone na serwerze synchronizacji lub utwórz nowe.</string>
     <string name="gpodnetauth_device_name">Nazwa urządzenia</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod na %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod na %1$s</string>
     <string name="gpodnetauth_existing_devices">Istniejące urządzenia</string>
     <string name="gpodnetauth_create_device">Utwórz urządzenie</string>
-    <string name="gpodnetauth_finish_descr">Gratulacje! Twoje konto na gpodder.net jest połączone z urządzeniem. AntennaPod będzie automatycznie synchronizować subskrypcje na urządzeniu z kontem na gpodder.net.</string>
+    <string name="gpodnetauth_finish_descr">Gratulacje! Twoje konto na gpodder.net jest połączone z urządzeniem. XMRPod będzie automatycznie synchronizować subskrypcje na urządzeniu z kontem na gpodder.net.</string>
     <string name="pref_gpodnet_setlogin_information_title">Zmień informacje logowania</string>
     <string name="pref_gpodnet_setlogin_information_sum">Zmień dane logowania konta gpodder.net.</string>
     <string name="synchronization_sync_changes_title">Synchronizuj teraz</string>
@@ -557,8 +557,8 @@
     <string name="choose_data_directory_available_space">%1$s z %2$s wolnych</string>
     <string name="rating_contribute_label">Chcesz do nas dołączyć? Bez względu na to, czy chcesz wspomóc projekt tłumaczeniem, designem, kodem lub finansowo, z chęcią przyjmiemy każdą pomoc!</string>
     <string name="rating_contribute_button">Odkryj jak możesz pomóc</string>
-    <string name="rating_volunteers_label">AntennaPod jest rozwijany przez wolontariuszy w ich wolnym czasie. Podziel się swoją wdzięcznością za ich pracę, zostawiając miłą ocenę.</string>
-    <string name="rating_rate">Oceń AntennaPod</string>
+    <string name="rating_volunteers_label">XMRPod jest rozwijany przez wolontariuszy w ich wolnym czasie. Podziel się swoją wdzięcznością za ich pracę, zostawiając miłą ocenę.</string>
+    <string name="rating_rate">Oceń XMRPod</string>
     <string name="rating_later">Później</string>
     <!--Online feed view-->
   <string name="subscribe_label">Subskrybuj</string>
@@ -629,7 +629,7 @@
     <string name="local_folder">Lokalny folder</string>
     <string name="reconnect_local_folder">Połącz ponownie lokalny folder</string>
     <string name="reconnect_local_folder_warning">W przypadku odmowy uprawnień, możesz użyć tej opcji do ponownego połączenia do tego samego folderu lokalnego. Nie wybieraj innego folderu.</string>
-    <string name="local_feed_description">Ten wirtualny podcast został stworzony przez dodanie lokalnego folderu do AntennaPod.</string>
+    <string name="local_feed_description">Ten wirtualny podcast został stworzony przez dodanie lokalnego folderu do XMRPod.</string>
     <string name="unable_to_start_system_file_manager">Nie można uruchomić menedżera plików</string>
     <string name="filter">Filtruj</string>
     <string name="hide_is_favorite_label">Ulubione</string>
@@ -741,7 +741,7 @@
         <item quantity="other">%d dni</item>
     </plurals>
     <string name="auto_enable_label_with_times">Automatycznie aktywuj wyłącznik czasowy kiedy włączysz odtwarzanie pomiędzy %1$s i %2$s</string>
-    <string name="choose_data_directory_message">Wybierz, proszę, bazowy folder dla twoich danych. AntennaPod utworzy konieczne podkatalogi.</string>
+    <string name="choose_data_directory_message">Wybierz, proszę, bazowy folder dla twoich danych. XMRPod utworzy konieczne podkatalogi.</string>
     <string name="state_deleted_not_subscribed">Jeszcze nie zasubskrybowałeś tego podcastu. Zasubskrybuj za darmo, aby mieć do niego łatwiejszy dostęp i zachować jego historię odtwarzania.</string>
     <string name="download_completed_talkback">Zakończono pobieranie dla %1$s</string>
     <string name="multi_feed_common_tags_info">Tylko zwykłe tagi ze wszystkich zaznaczonych subskrypcji są pokazane. Inne tagi pozostają ukryte.</string>
@@ -833,7 +833,7 @@
     <string name="echo_intro_locally">wygenerowane prywatnie na Twoim urządzeniu</string>
     <string name="echo_hoarder_title">Zastanawialiśmy się również: czy słuchasz podcastów, które subskrybujesz?</string>
     <string name="echo_thanks_now_favorite">Przyjrzyjmy się teraz Twoim ulubionym podcastom…</string>
-    <string name="echo_share">Mój rok %d w podcastach. #AntennaPodEcho</string>
+    <string name="echo_share">Mój rok %d w podcastach. #XMRPodEcho</string>
     <string name="echo_queue_title_clean">I teraz jest czas na wejście w nowy rok z czystą kartą. Obecnie masz</string>
     <string name="echo_hoarder_subtitle_hoarder">Patrząc na liczby, jest osobą, która lubi chomikować rzeczy</string>
     <string name="echo_thanks_we_are_glad_new">za dołączenie do nas w tym roku!\n\nNiezależnie od tego, czy przeniosłeś się z innej aplikacji, czy zacząłeś swoją przygodę z podcastami z nami: cieszymy się, że Cię mamy!</string>
@@ -874,7 +874,7 @@
         <item quantity="other">Usunięto %d odcinków z kolejki.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Dopasuj do dźwięku</string>
-    <string name="visit_social_interact_confirm_dialog_title">Wychodzisz z aplikacji AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Wychodzisz z aplikacji XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Upewnij się, że strona \"%1$s\" jest bezpieczna.</string>
     <string name="reset_playback_position_label">Zresetuj pozycję odtwarzania</string>
     <string name="no_items_selected_message">Nie zaznaczono żadnego elementu</string>
@@ -919,7 +919,7 @@
         <item quantity="many">%d odcinków oznaczonych jako nieodtworzone.</item>
         <item quantity="other">%d odcinków oznaczonych jako nieodtworzone.</item>
     </plurals>
-    <string name="delete_local_feed_confirmation_dialog_message">Kasowanie usuwa odcinek z AntennaPod i usuwa plik z pamięci urządzenia. Nie można go ponownie pobrać za pomocą AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Kasowanie usuwa odcinek z XMRPod i usuwa plik z pamięci urządzenia. Nie można go ponownie pobrać za pomocą XMRPod.</string>
     <plurals name="mobile_download_notice">
         <item quantity="one">Pobieranie za pomocą danych mobilnych przez następną %d minutę</item>
         <item quantity="few">Pobieranie za pomocą danych mobilnych przez następne %d minuty</item>
@@ -965,7 +965,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">Domyślne sortowanie</string>
     <string name="pref_global_default_episode_list_sort_order_sum">Wybierz domyślne sortowanie odcinków na ekranie podcastu</string>
     <string name="report_bug_title">Zgłoś błąd</string>
-    <string name="report_bug_message">Przykro słyszeć, że coś nie działa. Doceniamy twój wkład w rozwój AntennaPod. Możesz sprawdzić, na forum lub GitHubie, czy został zaraportowany już ten błąd. Jeżeli nie, daj nam znać, i zajmiemy się tym.</string>
+    <string name="report_bug_message">Przykro słyszeć, że coś nie działa. Doceniamy twój wkład w rozwój XMRPod. Możesz sprawdzić, na forum lub GitHubie, czy został zaraportowany już ten błąd. Jeżeli nie, daj nam znać, i zajmiemy się tym.</string>
     <string name="report_bug_device_info_title">Urządzenie</string>
     <string name="report_bug_attrib_app_version">Wersja aplikacji</string>
     <string name="report_bug_attrib_android_version">Wersja systemu Android</string>

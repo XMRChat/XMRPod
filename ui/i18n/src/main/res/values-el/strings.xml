@@ -47,7 +47,7 @@
     <string name="home_continue_title">Συνέχιση ακρόασης</string>
     <string name="home_new_title">Δες τι νέο υπάρχει</string>
     <string name="home_downloads_title">Διαχείριση λήψεων</string>
-    <string name="home_welcome_title">Καλωσήρθατε στο Antennapod!</string>
+    <string name="home_welcome_title">Καλωσήρθατε στο XMRPod!</string>
     <string name="home_welcome_text">Δεν έχετε εγγραφεί ακόμα σε κανένα podcast. Ανοίξτε το μενού για να προσθέσετε ένα podcast.</string>
     <string name="notification_permission_denied">Αρνηθήκατε τη πρόσβαση.</string>
     <string name="configure_home">Διαμόρφωση αρχικής οθόνης</string>
@@ -239,10 +239,10 @@
     <string name="download_log_title_unknown">Άγνωστος τίτλος</string>
     <string name="download_type_feed">Τροφοδοσία</string>
     <string name="download_type_media">Αρχείο πολυμέσων</string>
-    <string name="no_feed_url_podcast_found_by_search">Το προτεινόμενο podast δεν διαθέτει κάποιον σύνδεσμο RSS, το AntennaPod βρήκε ένα podcast που θα μπορούσε να ταιριάζει</string>
+    <string name="no_feed_url_podcast_found_by_search">Το προτεινόμενο podast δεν διαθέτει κάποιον σύνδεσμο RSS, το XMRPod βρήκε ένα podcast που θα μπορούσε να ταιριάζει</string>
     <string name="authentication_notification_title">Απαιτείται έλεγχος ταυτότητας</string>
     <string name="confirm_mobile_download_dialog_title">Επιβεβαίωση λήψης μέσω δεδομένων κινητής τηλεφωνίας</string>
-    <string name="confirm_mobile_download_dialog_message">Η λήψη μέσω δεδομένων κινητής τηλεφωνίας είναι απενεργοποιημένη στις ρυθμίσεις. Το AntennaPod θα κατεβάσει αυτόματα το επεισόδιο αργότερα, όταν συνδεθείτε σε κάποιο δίκτυο Wi-Fi.</string>
+    <string name="confirm_mobile_download_dialog_message">Η λήψη μέσω δεδομένων κινητής τηλεφωνίας είναι απενεργοποιημένη στις ρυθμίσεις. Το XMRPod θα κατεβάσει αυτόματα το επεισόδιο αργότερα, όταν συνδεθείτε σε κάποιο δίκτυο Wi-Fi.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Χρησιμοποιείτε VPN; Η εφαρμογή VPN προσποιείται ότι είναι ένα δίκτυο κινητής τηλεφωνίας (μετρημένη σύνδεση). Αν θέλετε να διορθωθεί αυτό το πρόβλημα, επικοινωνήστε με τους δημιουργούς της εφαρμογής VPN σας.\n- Δεν χρησιμοποιείτε VPN; Ανοίξτε τις ρυθμίσεις Wi-Fi του Android και αλλάξτε τον τύπο του Wi-Fi σας ώστε να μην είναι μετρημένο.</string>
     <string name="confirm_mobile_download_dialog_download_later">Λήψη αργότερα</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Λήψη τώρα</string>
@@ -253,7 +253,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Δεν ήταν δυνατή η αναπαραγωγή του αρχείου πολυμέσων.\n\n- Δοκιμάστε να διαγράψετε και να κατεβάσετε ξανά το επεισόδιο.\n- Ελέγξτε τη σύνδεσή σας στο δίκτυο και βεβαιωθείτε ότι κανένα VPN ή σελίδα σύνδεσης δεν εμποδίζει την πρόσβαση.\n- Δοκιμάστε να πατήσετε παρατεταμένα και να μοιραστείτε τη «Διεύθυνση πολυμέσων» στο πρόγραμμα περιήγησης στο διαδίκτυο για να δείτε αν μπορεί να αναπαραχθεί εκεί. Αν όχι, επικοινωνήστε με τους δημιουργούς του podcast.</string>
     <string name="no_media_playing_label">Δεν αναπαράγονται πολυμέσα</string>
-    <string name="unknown_media_key">AntennaPod - Άγνωστο πλήκτρο πολυμέσων: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Άγνωστο πλήκτρο πολυμέσων: %1$d</string>
     <string name="error_file_not_found">Αρχείο δε βρέθηκε</string>
     <string name="no_media_label">Το αντικείμενο δεν περιλαμβάνει ένα αρχείο πολυμέσων</string>
     <!--Queue operations-->
@@ -332,7 +332,7 @@
     <string name="pref_auto_delete_sum">Διαγραφή επεισοδιών μετά την αναπαραγωγή ή όταν η αυτόματη λήψη χρειάζεται χώρο</string>
     <string name="pref_auto_local_delete_title">Αυτόματη διαγραφή από τοπικούς φάκελους</string>
     <string name="pref_auto_local_delete_sum">Συμπεριλάβετε τοπικούς φακέλους στη λειτουργία αυτόματης διαγραφής</string>
-    <string name="pref_auto_local_delete_dialog_body">Λάβετε υπόψη ότι για τους τοπικούς φακέλους αυτό θα αφαιρέσει τα επεισόδια από το AntennaPod και θα διαγράψει τα αρχεία πολυμέσων από τον αποθηκευτικό χώρο της συσκευής σας. Δεν μπορούν να ληφθούν ξανά μέσω του AntennaPod. Ενεργοποίηση αυτόματης διαγραφής;</string>
+    <string name="pref_auto_local_delete_dialog_body">Λάβετε υπόψη ότι για τους τοπικούς φακέλους αυτό θα αφαιρέσει τα επεισόδια από το XMRPod και θα διαγράψει τα αρχεία πολυμέσων από τον αποθηκευτικό χώρο της συσκευής σας. Δεν μπορούν να ληφθούν ξανά μέσω του XMRPod. Ενεργοποίηση αυτόματης διαγραφής;</string>
     <string name="pref_smart_mark_as_played_sum">Επισήμανση επεισοδίων ως αναπαραγμένα εάν απομένουν λιγότερα από συγκεκριμένα δευτερόλεπτα</string>
     <string name="pref_smart_mark_as_played_title">Έξυπνη επισήμανση ως αναπαραχθέν</string>
     <string name="pref_skip_keeps_episodes_sum">Διατήρηση επεισοδίων όταν παραλείπονται</string>
@@ -344,7 +344,7 @@
     <string name="downloads_pref">Λήψεις</string>
     <string name="downloads_pref_sum">Ενημέρωση μεσοδιαστημάτων, Δεδομένα κινητής τηλεφωνίας, Αυτόματη λήψη, Αυτόματη διαγραφή</string>
     <string name="feed_refresh_title">Ανανέωση των podcast</string>
-    <string name="feed_refresh_sum">Προσδιορίστε ένα μεσοδιάστημα κατά το οποίο το AntennaPod θα ψάξει αυτόματα για νέα επεισόδια</string>
+    <string name="feed_refresh_sum">Προσδιορίστε ένα μεσοδιάστημα κατά το οποίο το XMRPod θα ψάξει αυτόματα για νέα επεισόδια</string>
     <string name="feed_refresh_never">Ποτέ</string>
     <string name="feed_every_hour">Κάθε ώρα</string>
     <string name="feed_every_2_hours">Κάθε 2 ώρες</string>
@@ -426,7 +426,7 @@
     <string name="pref_skip_silence_title">Παράλειψη σιωπών ήχου</string>
     <string name="behavior">Συμπεριφορά</string>
     <string name="pref_default_page">Προεπιλεγμένη Σελίδα</string>
-    <string name="pref_default_page_sum">Οθόνη που ανοίγει κατά την εκκίνηση του AntennaPod</string>
+    <string name="pref_default_page_sum">Οθόνη που ανοίγει κατά την εκκίνηση του XMRPod</string>
     <string name="pref_back_button_opens_drawer">Το κουμπί «Πίσω» ανοίγει το συρτάρι</string>
     <string name="pref_back_button_opens_drawer_summary">Η επιλογή του κουμπιού «Πίσω» στην προεπιλεγμένη σελίδα ανοίγει το συαρτάρι πλοήγησης</string>
     <string name="remember_last_page">Μνημόνευση της τελευταίας σελίδας</string>
@@ -447,15 +447,15 @@
     <string name="episode_information">Πληροφορίες επεισοδίου</string>
     <!--About screen-->
   <string name="about_pref">Σχετικά</string>
-    <string name="antennapod_version">Έκδοση του AntennaPod</string>
+    <string name="xmrpod_version">Έκδοση του XMRPod</string>
     <string name="contributors">Συνεισφέροντες</string>
-    <string name="contributors_summary">Ο καθένας μπορεί να βοηθήσει το AntennaPod να γίνει καλύτερο - με κώδικα, μεταφράσεις ή βοηθώντας χρήστες στο forum μας</string>
+    <string name="contributors_summary">Ο καθένας μπορεί να βοηθήσει το XMRPod να γίνει καλύτερο - με κώδικα, μεταφράσεις ή βοηθώντας χρήστες στο forum μας</string>
     <string name="developers">Προγραμματιστές</string>
     <string name="translators">Μεταφραστές</string>
     <string name="special_thanks">Θερμές ευχαριστίες</string>
     <string name="privacy_policy">Πολιτική απορρήτου</string>
     <string name="licenses">Άδειες</string>
-    <string name="licenses_summary">Το AntennaPod χρησιμοποιεί άλλο εξαιρετικό λογισμικό</string>
+    <string name="licenses_summary">Το XMRPod χρησιμοποιεί άλλο εξαιρετικό λογισμικό</string>
     <!--Search-->
   <string name="search_status_no_results">Δεν βρέθηκαν αποτελέσματα</string>
     <string name="type_to_search">Εισάγετε έναν όρο για αναζήτηση</string>
@@ -478,8 +478,8 @@
     <string name="html_export_summary">Δείξτε τις συνδρομές σας σε έναν φίλο</string>
     <string name="opml_export_summary">Μεταφορά των συνδρομών σε άλλη εφαρμογή podcast</string>
     <string name="opml_import_summary">Εισαγωγή συνδρομών από άλλη εφαρμογή podcast</string>
-    <string name="database_export_summary">Μεταφορά συνδρομών, αναπαραχθέντων επεισοδίων και ουράς στο AntennaPod άλλης συσκευής</string>
-    <string name="database_import_summary">Εισαγωγή βάσης δεδομένων του AntennaPod από άλλη συσκευή</string>
+    <string name="database_export_summary">Μεταφορά συνδρομών, αναπαραχθέντων επεισοδίων και ουράς στο XMRPod άλλης συσκευής</string>
+    <string name="database_import_summary">Εισαγωγή βάσης δεδομένων του XMRPod από άλλη συσκευή</string>
     <string name="opml_import_label">Εισαγωγή OPML</string>
     <string name="opml_add_podcast_label">Εισαγωγή λίστας podcast (OPML)</string>
     <string name="opml_reader_error">Παρουσιάστηκε σφάλμα κατά την ανάγνωση του αρχείου. Βεβαιωθείτε ότι έχετε πράγματι επιλέξει ένα αρχείο OPML και ότι το αρχείο είναι έγκυρο.</string>
@@ -490,7 +490,7 @@
     <string name="html_export_label">Εξαγωγή HTML</string>
     <string name="database_export_label">Εξαγωγή βάσης δεδομένων</string>
     <string name="automatic_database_export_label">Αυτόματη εξαγωγή βάσης δεδομένων</string>
-    <string name="automatic_database_export_summary">Δημιουργήστε αντίγραφο ασφαλείας της βάσης δεδομένων του AntennaPod κάθε 3 ημέρες. Κρατήστε μόνο τα 5 πιο πρόσφατα αντίγραφα ασφαλείας.</string>
+    <string name="automatic_database_export_summary">Δημιουργήστε αντίγραφο ασφαλείας της βάσης δεδομένων του XMRPod κάθε 3 ημέρες. Κρατήστε μόνο τα 5 πιο πρόσφατα αντίγραφα ασφαλείας.</string>
     <string name="automatic_database_export_error">Σφάλμα κατά την αυτόματη δημιουργία αντιγράφου ασφαλείας της βάσης δεδομένων</string>
     <string name="database_import_label">Εισαγωγή βάσης δεδομένων</string>
     <string name="database_import_warning">Η εισαγωγή βάσης δεδομένων θα αντικαταστήσει όλες τις τρέχουσες συνδρομές και το ιστορικό αναπαραγωγής. Συνίσταται η εξαγωγή της τρέχουσας βάσης δεδομένων ως backup. Επιθυμείτε την αντικατάσταση;</string>
@@ -499,8 +499,8 @@
     <string name="export_success_title">Επιτυχημένη εξαγωγή</string>
     <string name="opml_import_ask_read_permission">Απαιτείται πρόσβαση στον εξωτερικό αποθηκευτικό χώρο για να διαβαστεί το αρχείο OPML</string>
     <string name="successful_import_label">Επιτυχημένη εισαγωγή</string>
-    <string name="import_ok">Πατήστε ΟΚ για να επανεκκινήσετε το AntennaPod</string>
-    <string name="import_no_downgrade">Η βάση δεδομένων εξήχθη από μία νεότερη έκδοση του AntennaPod. Η τρέχουσα εγκατεστημένη έκδοση δεν μπορεί, ακόμα, να διαχειριστεί το αρχείο.</string>
+    <string name="import_ok">Πατήστε ΟΚ για να επανεκκινήσετε το XMRPod</string>
+    <string name="import_no_downgrade">Η βάση δεδομένων εξήχθη από μία νεότερη έκδοση του XMRPod. Η τρέχουσα εγκατεστημένη έκδοση δεν μπορεί, ακόμα, να διαχειριστεί το αρχείο.</string>
     <string name="favorites_export_label">Εξαγωγή αγαπημένων</string>
     <string name="favorites_export_summary">Εξήγαγε τα αγαπημένα σε ένα αρχείο</string>
     <!--Sleep timer-->
@@ -539,12 +539,12 @@
   <string name="synchronization_choose_title">Επιλέξτε πάροχο συγχρονισμού</string>
     <string name="synchronization_summary_unchoosen">Μπορείτε να επιλέξετε μεταξύ πολλαπλών παρόχων για να συγχρονίσετε τις συνδρομές και την κατάσταση αναπαραγωγής επεισοδίου</string>
     <string name="dialog_choose_sync_service_title">Επιλέξτε πάροχο συγχρονισμού</string>
-    <string name="gpodnet_description">Το Gpodder.net είναι μια ανοικτού κώδικα υπηρεσία podcast που μπορείτε να εγκαταστήσετε στον δικό σας διακομιστή. Το Gpodder.net είναι ανεξάρτητο από το προτζεκτ του AntennaPod.</string>
-    <string name="synchronization_summary_nextcloud">Το Gpoddersync.net είναι μια ανοικτού κώδικα εφαρμογή του NextCloud που μπορείτε εύκολα να εγκαταστήσετε στον δικό σας διακομιστή. Η εφαρμογή είναι ανεξάρτητη από το προτζεκτ του AntennaPod.</string>
+    <string name="gpodnet_description">Το Gpodder.net είναι μια ανοικτού κώδικα υπηρεσία podcast που μπορείτε να εγκαταστήσετε στον δικό σας διακομιστή. Το Gpodder.net είναι ανεξάρτητο από το προτζεκτ του XMRPod.</string>
+    <string name="synchronization_summary_nextcloud">Το Gpoddersync.net είναι μια ανοικτού κώδικα εφαρμογή του NextCloud που μπορείτε εύκολα να εγκαταστήσετε στον δικό σας διακομιστή. Η εφαρμογή είναι ανεξάρτητη από το προτζεκτ του XMRPod.</string>
     <string name="synchronization_host_explanation">Μπορείτε να διαλέξετε το συγχρονισμό με τον δικό σας διακομιστή. Όταν ταυτοποιήσετε τον προτιμητέο διακομιστή για συγχρονισμό, παρακαλώ εισάγετε τη διεύθυνσή του εδώ.</string>
     <string name="synchronization_host_label">Διεύθυνση διακομιστή</string>
     <string name="proceed_to_login_butLabel">Συνέχεια για είσοδο</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Επιτρέψτε την πρόσβαση χρησιμοποιώντας το ανοικτό παράθυρο του περιηγητή και επιστρέψτε στο AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Επιτρέψτε την πρόσβαση χρησιμοποιώντας το ανοικτό παράθυρο του περιηγητή και επιστρέψτε στο XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Σύνδεση</string>
     <string name="synchronization_credentials_explanation">Παρακαλώ παρέχετε τα διαπιστευτήρια του λογαριασμού σας στον διακομιστή συγχρονισμού.</string>
     <string name="gpodnetauth_encryption_warning">Οι κωδικοί και τα δεδομένα δεν είναι κρυπτογραφημένα!</string>
@@ -553,10 +553,10 @@
     <string name="synchronization_login_butLabel">Σύνδεση</string>
     <string name="synchronization_selectDevice_explanation">Παρακαλώ επιλέξτε τη συσκευή που δημιουργήσατε στον διακομιστή συγχρονισμού ή δημιουργήστε νέα.</string>
     <string name="gpodnetauth_device_name">Όνομα συσκευής</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod στο %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod στο %1$s</string>
     <string name="gpodnetauth_existing_devices">Ήδη υπάρχουσες συσκευές</string>
     <string name="gpodnetauth_create_device">Δημιουργία συσκευής</string>
-    <string name="gpodnetauth_finish_descr">Συγχαρητήρια! Ο λογαριασμός σας στο gpodder.net συνδέεται πλέον με τη συσκευή σας. Το AntennaPod θα συγχρονίζει αυτόματα τις συνδρομές στην συσκευή σας με το λογαριασμό σας στο gpodder.net.</string>
+    <string name="gpodnetauth_finish_descr">Συγχαρητήρια! Ο λογαριασμός σας στο gpodder.net συνδέεται πλέον με τη συσκευή σας. Το XMRPod θα συγχρονίζει αυτόματα τις συνδρομές στην συσκευή σας με το λογαριασμό σας στο gpodder.net.</string>
     <string name="pref_gpodnet_setlogin_information_title">Αλλαγή στοιχείων σύνδεσης</string>
     <string name="pref_gpodnet_setlogin_information_sum">Αλλαγή στοιχείων σύνδεσης για το λογαριασμό σας στο gpodder.net.</string>
     <string name="synchronization_sync_changes_title">Συγχρονισμός τώρα</string>
@@ -573,14 +573,14 @@
     <string name="gpodnetsync_username_characters_error">Το Όνομα χρήστη μπορεί να περιέχει μονάχα γράμματα, αριθμούς, παύλες και κάτω παύλες.</string>
     <!--Directory chooser-->
   <string name="choose_data_directory">Επιλογή φακέλου δεδομένων</string>
-    <string name="choose_data_directory_message">Επιλέξτε τη βάση του φακέλου δεδομένων σας. Το AntennaPod θα δημιουργήσει τους κατάλληλους υποκαταλόγους.</string>
+    <string name="choose_data_directory_message">Επιλέξτε τη βάση του φακέλου δεδομένων σας. Το XMRPod θα δημιουργήσει τους κατάλληλους υποκαταλόγους.</string>
     <string name="choose_data_directory_available_space">%1$sαπό τα %2$sελεύθερα</string>
     <!--Rating dialog-->
   <string name="rating_tagline">Από τις %1$s, έχετε ακούσει %2$s%3$d%4$s ώρες podcasts.</string>
     <string name="rating_contribute_label">Θέλετε να συμμετέχετε; Είτε θέλετε να μεταφράσετε, να υποστηρίξετε, να σχεδιάσετε ή να γράψετε κώδικα, θα χαρούμε να σας έχουμε μαζί μας!</string>
     <string name="rating_contribute_button">Ανακαλύψετε τρόπους να συνεισφέρετε</string>
-    <string name="rating_volunteers_label">Το AntennaPod δημιουργήθηκε από εθελοντές στον ελεύθερο τους χρόνο. Θα χαρούμε αν εκτιμήσετε τη δουλειά μας αφήνοντας μια ωραία αξιολόγηση.</string>
-    <string name="rating_rate">Βαθμολογήστε το AntennaPod</string>
+    <string name="rating_volunteers_label">Το XMRPod δημιουργήθηκε από εθελοντές στον ελεύθερο τους χρόνο. Θα χαρούμε αν εκτιμήσετε τη δουλειά μας αφήνοντας μια ωραία αξιολόγηση.</string>
+    <string name="rating_rate">Βαθμολογήστε το XMRPod</string>
     <string name="rating_later">Αργότερα</string>
     <!--Online feed view-->
   <string name="subscribe_label">Εγγραφή</string>
@@ -657,7 +657,7 @@
     <string name="local_folder">Τοπικός φάκελος</string>
     <string name="reconnect_local_folder">Επανασύνδεση τοπικού φακέλου</string>
     <string name="reconnect_local_folder_warning">Σε περίπτωση άρνησης άδειας, μπορείτε να το χρησιμοποιήσετε για να επανασυνδεθείτε στον ίδιο ακριβώς φάκελο. Μη διαλέξετε άλλο φάκελο.</string>
-    <string name="local_feed_description">Αυτό το εικονικό podcast δημιουργήθηκε μέσω της προσθήκης φακέλου στο AntennaPod.</string>
+    <string name="local_feed_description">Αυτό το εικονικό podcast δημιουργήθηκε μέσω της προσθήκης φακέλου στο XMRPod.</string>
     <string name="unable_to_start_system_file_manager">Δεν είναι δυνατόν να εκκινήσει η διαχείριση φακέλων συστήματος</string>
     <string name="filter">Φίλτρο</string>
     <string name="hide_is_favorite_label">Αγαπημένο</string>
@@ -764,7 +764,7 @@
     <string name="echo_hoarder_comment_clean">Έχετε παίξει επεισόδια από το %1$d%% των %2$d ενεργών συνδρομών σας φέτος. Στοιχηματίζουμε ότι κρατάτε και το γραφείο σας καθαρό!</string>
     <string name="echo_thanks_now_favorite">Τώρα, ας ρίξουμε μια ματιά στα αγαπημένα σας podcasts…</string>
     <string name="echo_share_heading">Τα αγαπημένα μου podcasts</string>
-    <string name="echo_share">Το έτος μου %d σε podcasts. #AntennaPodEcho</string>
+    <string name="echo_share">Το έτος μου %d σε podcasts. #XMRPodEcho</string>
     <string name="add_feed_label_short">Προσθέστε</string>
     <string name="episodes_label_short">επεισόδια</string>
     <string name="home_label_short">Αρχική</string>
@@ -832,7 +832,7 @@
     <string name="overflow_more">Περισσότερα</string>
     <string name="statistics_release_next">επόμενο επεισόδιο (εκτίμηση)</string>
     <string name="report_bug_title">Αναφορά προβλήματος</string>
-    <string name="report_bug_message">Λυπούμαστε πως κάτι δεν λειτουργεί. Θα θέλαμε τη βοήθειά σας για τη βελτίωση του AntennaPod. Ελέγξτε το φόρουμ μας ή το GitHub για να δείτε εάν το πρόβλημα έχει ήδη αναφερθεί. Αν όχι, ενημερώστε μας και θα ερευνήσουμε.</string>
+    <string name="report_bug_message">Λυπούμαστε πως κάτι δεν λειτουργεί. Θα θέλαμε τη βοήθειά σας για τη βελτίωση του XMRPod. Ελέγξτε το φόρουμ μας ή το GitHub για να δείτε εάν το πρόβλημα έχει ήδη αναφερθεί. Αν όχι, ενημερώστε μας και θα ερευνήσουμε.</string>
     <string name="report_bug_forum_title">Φόρουμ</string>
     <string name="report_bug_github_title">GitHub</string>
     <string name="pref_global_default_episode_list_sort_order_title">Προεπιλεγμένη σειρά ταξινόμησης</string>

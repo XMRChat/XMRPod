@@ -140,13 +140,13 @@
     <string name="download_notification_title_episodes">Atsiunčiami epizodai</string>
     <string name="download_type_feed">Sklaidos kanalas</string>
     <string name="download_type_media">Medijos failas</string>
-    <string name="no_feed_url_podcast_found_by_search">Pasiūlyta tinklalaidė neturi RSS nuorodos, „AntennaPod“ rado galimą tinklalaidės atitikmenį</string>
+    <string name="no_feed_url_podcast_found_by_search">Pasiūlyta tinklalaidė neturi RSS nuorodos, „XMRPod“ rado galimą tinklalaidės atitikmenį</string>
     <string name="authentication_notification_title">Reikalingas tapatumo nustatymas</string>
     <string name="confirm_mobile_streaming_notification_message">Tiesioginis klausymasis mobiliuoju internetu išjungtas nustatymuose. Palieskite, jei vis tiek norite klausytis tiesiogiai.</string>
     <string name="confirm_mobile_streaming_button_always">Visada</string>
     <string name="confirm_mobile_streaming_button_once">Vienąkart</string>
     <string name="no_media_playing_label">Atkūrimas nevyksta</string>
-    <string name="unknown_media_key">„AntennaPod“ – nežinomas medijos klavišas: %1$d</string>
+    <string name="unknown_media_key">„XMRPod“ – nežinomas medijos klavišas: %1$d</string>
     <string name="error_file_not_found">Failas nerastas</string>
     <string name="no_media_label">Elementas neturi medijos failo</string>
     <string name="queue_locked">Eilė užrakinta</string>
@@ -255,15 +255,15 @@
     <string name="pref_contribute">Prisidėti</string>
     <!--About screen-->
   <string name="about_pref">Apie</string>
-    <string name="antennapod_version">„AntennaPod“ versija</string>
+    <string name="xmrpod_version">„XMRPod“ versija</string>
     <string name="contributors">Autoriai</string>
-    <string name="contributors_summary">Visi gali prisidėti prie „AntennaPod“ gerinimo – programiniu kodu, vertimais ar pagalba naudotojams mūsų forume</string>
+    <string name="contributors_summary">Visi gali prisidėti prie „XMRPod“ gerinimo – programiniu kodu, vertimais ar pagalba naudotojams mūsų forume</string>
     <string name="developers">Kūrėjai</string>
     <string name="translators">Vertėjai</string>
     <string name="special_thanks">Ypatinga padėka</string>
     <string name="privacy_policy">Privatumo politika</string>
     <string name="licenses">Licencijos</string>
-    <string name="licenses_summary">„AntennaPod“ naudojama kita puiki programinė įranga</string>
+    <string name="licenses_summary">„XMRPod“ naudojama kita puiki programinė įranga</string>
     <!--Search-->
   <string name="search_status_no_results">Nieko nerasta</string>
     <string name="type_to_search">Įveskite užklausą paieškai pradėti</string>
@@ -285,8 +285,8 @@
     <string name="html_export_summary">Parodyti prenumeratas draugui</string>
     <string name="opml_export_summary">Perkelti prenumeratas į kitą tinklalaidžių programėlę</string>
     <string name="opml_import_summary">Importuoti prenumeratas iš kitos tinklalaidžių programėlės</string>
-    <string name="database_export_summary">Perkelti prenumeratas, perklausytus epizodus ir eilę į „AntennaPod“ kitame įrenginyje</string>
-    <string name="database_import_summary">Importuoti „AntennaPod“ duomenų bazę iš kito įrenginio</string>
+    <string name="database_export_summary">Perkelti prenumeratas, perklausytus epizodus ir eilę į „XMRPod“ kitame įrenginyje</string>
+    <string name="database_import_summary">Importuoti „XMRPod“ duomenų bazę iš kito įrenginio</string>
     <string name="opml_import_label">OPML importas</string>
     <string name="opml_add_podcast_label">Importuoti tinklalaidžių sąrašą (OPML)</string>
     <string name="opml_import_error_no_file">Nepasirinktas failas!</string>
@@ -302,8 +302,8 @@
     <string name="export_success_title">Sėkmingai eksportuota</string>
     <string name="opml_import_ask_read_permission">Norint nuskaityti OPML failą reikalinga prieiga prie išorinės laikmenos</string>
     <string name="successful_import_label">Sėkmingai importuota</string>
-    <string name="import_ok">Spauskite „OK“, kad paleisti „AntennaPod“ iš naujo</string>
-    <string name="import_no_downgrade">Ši duomenų bazė buvo eksportuota naudojant naujesnę „AntennaPod“ versija. Dabartinė įdiegtis nežino, kaip apdorotį šį failą.</string>
+    <string name="import_ok">Spauskite „OK“, kad paleisti „XMRPod“ iš naujo</string>
+    <string name="import_no_downgrade">Ši duomenų bazė buvo eksportuota naudojant naujesnę „XMRPod“ versija. Dabartinė įdiegtis nežino, kaip apdorotį šį failą.</string>
     <string name="favorites_export_label">Mėgstamųjų eksportas</string>
     <string name="favorites_export_summary">Mėgstamieji išsaugoti faile</string>
     <!--Sleep timer-->
@@ -322,17 +322,17 @@
   <string name="synchronization_choose_title">Pasirinkite sinchronizavimo teikėją</string>
     <string name="synchronization_summary_unchoosen">Galite pasirinkti iš keleto teikėjų prenumeratų ir epizodų atkūrimo būsenai sinchronizuoti</string>
     <string name="dialog_choose_sync_service_title">Pasirinkite sinchronizavimo teikėją</string>
-    <string name="synchronization_summary_nextcloud">„Gpodder Sync“ yra atvirojo kodo „Nextcloud“ programėlė, kurią galite nesunkiai įdiegti savo serveryje. „Gpodder Sync“ yra nepriklausoma nuo „AntennaPod“ projekto.</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Suteikite prieigą atsivėrusioje interneto naršyklėje ir sugrįžkite į „AntennaPod“.</string>
+    <string name="synchronization_summary_nextcloud">„Gpodder Sync“ yra atvirojo kodo „Nextcloud“ programėlė, kurią galite nesunkiai įdiegti savo serveryje. „Gpodder Sync“ yra nepriklausoma nuo „XMRPod“ projekto.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Suteikite prieigą atsivėrusioje interneto naršyklėje ir sugrįžkite į „XMRPod“.</string>
     <string name="gpodnetauth_login_butLabel">Prisijungti</string>
     <string name="gpodnetauth_encryption_warning">Slaptažodis ir duomenys nėra užšifruojami!</string>
     <string name="username_label">Vartotojo vardas</string>
     <string name="password_label">Slaptažodis</string>
     <string name="gpodnetauth_device_name">Įrenginio pavadinimas</string>
-    <string name="gpodnetauth_device_name_default">„AntennaPod“ %1$s įrenginyje</string>
+    <string name="gpodnetauth_device_name_default">„XMRPod“ %1$s įrenginyje</string>
     <string name="gpodnetauth_existing_devices">Esami įrenginiai</string>
     <string name="gpodnetauth_create_device">Sukurti įrenginį</string>
-    <string name="gpodnetauth_finish_descr">Sveikiname! Jūsų „gpodder.net“ paskyra susieta su šiuo įrenginiu. Nuo šiol „AntennaPod“ automatiškai sinchronizuos prenumeratas šiame įrenginyje su Jūsų „gpodder.net“ paskyra.</string>
+    <string name="gpodnetauth_finish_descr">Sveikiname! Jūsų „gpodder.net“ paskyra susieta su šiuo įrenginiu. Nuo šiol „XMRPod“ automatiškai sinchronizuos prenumeratas šiame įrenginyje su Jūsų „gpodder.net“ paskyra.</string>
     <string name="pref_gpodnet_setlogin_information_title">Keisti prisijungimo duomenis</string>
     <string name="pref_gpodnet_setlogin_information_sum">Keisti prisijungimo prie „gpodder.net“ paskyros duomenis.</string>
     <string name="synchronization_sync_changes_title">Sinchronizuoti dabar</string>
@@ -381,7 +381,7 @@
     <string name="local_folder">Vietinis aplankas</string>
     <string name="reconnect_local_folder">Prijungti vietinį aplanką iš naujo</string>
     <string name="reconnect_local_folder_warning">Atmetus leidimą, galite naudoti tai prijungti tam pačiam aplankui. Nenustatykite kito aplanko.</string>
-    <string name="local_feed_description">Ši virtuali tinklalaidė sukurta į „AntennaPod“ pridėjus aplanką.</string>
+    <string name="local_feed_description">Ši virtuali tinklalaidė sukurta į „XMRPod“ pridėjus aplanką.</string>
     <string name="unable_to_start_system_file_manager">Nepavyko paleisti sistemos failų tvarkytuvės</string>
     <string name="filter">Filtruoti</string>
     <string name="hide_is_favorite_label">Mėgstami</string>
@@ -453,10 +453,10 @@
     <string name="synchronization_host_label">Serverio adresas</string>
     <string name="synchronization_credentials_explanation">Pateikite savo paskyros sinchronizavimo serveryje prisijungimo duomenis.</string>
     <string name="synchronization_selectDevice_explanation">Pasirinkite įrenginį, kurį sukūrėte sinchronizavimo serveryje, arba sukurkite naują.</string>
-    <string name="choose_data_directory_message">Pasirinkite duomenų aplanko pagrindą. AntennaPod sukurs atitinkamus pakatalogius.</string>
+    <string name="choose_data_directory_message">Pasirinkite duomenų aplanko pagrindą. XMRPod sukurs atitinkamus pakatalogius.</string>
     <string name="in_queue_label">Eilėje</string>
     <string name="is_favorite_label">Kaip mėgstamiausią pažymėti</string>
-    <string name="rating_volunteers_label">AntennaPod kuria savanoriai laisvalaikiu. Pasidalykite savo dėkingumu už jų darbą palikdami gražų įvertinimą.</string>
+    <string name="rating_volunteers_label">XMRPod kuria savanoriai laisvalaikiu. Pasidalykite savo dėkingumu už jų darbą palikdami gražų įvertinimą.</string>
     <string name="preview_episodes">Epizodo peržiūra</string>
     <string name="state_deleted_not_subscribed">Dar nesate užsiprenumeravę šio podkasto. Užsiprenumeruokite nemokamai, kad galėtumėte lengviau jį pasiekti ir išsaugoti jo atkūrimo istoriją.</string>
     <string name="is_played">grojo</string>
@@ -490,7 +490,7 @@
     <string name="home_welcome_text">Dar nesate užsiprenumeravę jokių podcast\'ų. Atidarykite šoninį meniu ir pridėkite podkastą.</string>
     <string name="download_error_error_unknown">Nežinoma klaida</string>
     <string name="download_error_unsupported_type">Nepalaikomas pašaro tipas</string>
-    <string name="automatic_database_export_summary">Kas 3 dienas sukurkite atsarginę „AntennaPod“ duomenų bazės kopiją. Saugokite tik 5 naujausias atsargines kopijas.</string>
+    <string name="automatic_database_export_summary">Kas 3 dienas sukurkite atsarginę „XMRPod“ duomenų bazės kopiją. Saugokite tik 5 naujausias atsargines kopijas.</string>
     <string name="automatic_database_export_error">Automatinio duomenų bazės atsarginės kopijos kūrimo klaida</string>
     <string name="automatic_database_export_label">Automatinis duomenų bazės eksportavimas</string>
     <string name="no_all_episodes_head_label">Nėra epizodų</string>
@@ -503,7 +503,7 @@
     <string name="share_file_label">Dalytis failu</string>
     <string name="statistics_release_next">Kitas epizodas (apytikriai)</string>
     <string name="download_completed_talkback">Atsisiuntimas baigtas %1$s</string>
-    <string name="feed_refresh_sum">Nurodykite intervalą, kuriuo „AntennaPod“ automatiškai ieško naujų epizodų</string>
+    <string name="feed_refresh_sum">Nurodykite intervalą, kuriuo „XMRPod“ automatiškai ieško naujų epizodų</string>
     <string name="rating_tagline">Nuo %1$s klausėtės %2$s%3$d%4$s valandų tinklalaidžių.</string>
     <string name="download_started_talkback">Atsisiuntimas pradėtas %1$s</string>
     <string name="pref_persistNotify_title">Nuolatiniai atkūrimo valdikliai</string>
@@ -525,7 +525,7 @@
     <string name="home_continue_title">Toliau klausytis</string>
     <string name="home_new_title">Peržiūrėkite, kas naujo</string>
     <string name="home_downloads_title">Tvarkyti atsisiuntimus</string>
-    <string name="home_welcome_title">Sveiki atvykę į AntennaPod!</string>
+    <string name="home_welcome_title">Sveiki atvykę į XMRPod!</string>
     <string name="drawer_feed_counter_downloaded_unplayed">Atsisiųstų ir nepaleistų epizodų skaičius</string>
     <string name="drawer_feed_counter_inbox">Epizodų skaičius gautuosiuose</string>
     <string name="open_in_browser_label">Atidaryti naršyklėje</string>
@@ -636,16 +636,16 @@
     <string name="pref_back_button_opens_drawer">Atidarykite šoninę juostą mygtuku Atgal</string>
     <string name="pref_back_button_opens_drawer_summary">Paspaudus mygtuką atgal numatytajame puslapyje atidaromas naršymo stalčius</string>
     <string name="pref_delete_removes_from_queue_title">Ištrinti pašalina iš eilės</string>
-    <string name="pref_default_page_sum">Ekranas, atveriamas paleidžiant AntennaPod</string>
+    <string name="pref_default_page_sum">Ekranas, atveriamas paleidžiant XMRPod</string>
     <string name="pref_delete_removes_from_queue_sum">Automatiškai pašalinti epizodą iš eilės, kai jis ištrinamas</string>
     <string name="sleep_timer_always">Visada</string>
     <string name="auto_enable_label_with_times">Automatiškai įjungiamas miego laikmatis, kai paspaudžiamas atkūrimas tarp %1$s ir %2$s</string>
-    <string name="gpodnet_description">Gpodder.net yra atvirojo kodo podkastų sinchronizavimo paslauga, kurią galite įdiegti savo serveryje. Gpodder.net nepriklauso nuo AntennaPod projekto.</string>
+    <string name="gpodnet_description">Gpodder.net yra atvirojo kodo podkastų sinchronizavimo paslauga, kurią galite įdiegti savo serveryje. Gpodder.net nepriklauso nuo XMRPod projekto.</string>
     <string name="synchronization_host_explanation">Galite pasirinkti savo serverį sinchronizavimui. Nustatę pageidaujamą sinchronizavimo serverį, čia įveskite jo adresą.</string>
     <string name="proceed_to_login_butLabel">Tęsti prie prisijungimo</string>
     <string name="choose_data_directory">Pasirinkite duomenų aplanką</string>
     <string name="rating_contribute_button">Atraskite būdų, kaip prisidėti</string>
-    <string name="rating_rate">Įvertinkite AntennaPod</string>
+    <string name="rating_rate">Įvertinkite XMRPod</string>
     <string name="fast_forward_label">greitai pirmyn</string>
     <string name="add_preset">Pridėti išankstinį nustatymą</string>
     <string name="multi_feed_common_tags_info">Rodomos tik bendros visų pasirinktų prenumeratų žymės. Kitos žymės lieka nepaveiktos.</string>
@@ -693,12 +693,12 @@
     <string name="feed_folders_include_root">Rodyti aukščiau esančias žymes (tik, kai navigacijos skydelis yra šone)</string>
     <string name="cancel_download_label">Atšaukti atsisiuntimą</string>
     <string name="pref_theme_title_automatic">Automatinis</string>
-    <string name="confirm_mobile_download_dialog_message">Nustatymuose išjungtas atsisiuntimas per mobilųjį duomenų ryšį. Vėliau AntennaPod gali automatiškai atsisiųsti epizodą, kai bus prieinamas Wi-Fi ryšys.</string>
+    <string name="confirm_mobile_download_dialog_message">Nustatymuose išjungtas atsisiuntimas per mobilųjį duomenų ryšį. Vėliau XMRPod gali automatiškai atsisiųsti epizodą, kai bus prieinamas Wi-Fi ryšys.</string>
     <string name="no_chapters_label">Nėra skyrių</string>
     <string name="confirm_mobile_feed_refresh_dialog_message_vpn">VPN programa apsimeta mobiliuoju tinklu (matuojamas ryšys). Nustatymuose išjungtas podkastų atnaujinimas naudojant mobiliųjų duomenų ryšį.\n\nAr vis dėlto norite atnaujinti? Jei norite, kad ši problema būtų išspręsta, kreipkitės į savo VPN programėlės kūrėjus.</string>
     <string name="pref_auto_local_delete_title">Automatinis ištrynimas iš vietinių aplankų</string>
     <string name="rating_contribute_label">Norite prisijungti? Nesvarbu, ar norite versti, palaikyti, kurti ar programuoti, mes mielai jus priimtume!</string>
-    <string name="pref_auto_local_delete_dialog_body">Atkreipkite dėmesį, kad vietinių aplankų atveju tai pašalins epizodus iš „AntennaPod“ ir ištrins jų medijos failus iš įrenginio saugyklos. Jų nebus galima vėl atsisiųsti per „AntennaPod“. įjungti automatinį ištrynimą?</string>
+    <string name="pref_auto_local_delete_dialog_body">Atkreipkite dėmesį, kad vietinių aplankų atveju tai pašalins epizodus iš „XMRPod“ ir ištrins jų medijos failus iš įrenginio saugyklos. Jų nebus galima vėl atsisiųsti per „XMRPod“. įjungti automatinį ištrynimą?</string>
     <string name="pref_auto_delete_sum">Ištrinkite epizodus po atkūrimo arba kai reikia vietos automatiškai atsisiunčiant</string>
     <string name="bottom_navigation_summary">Vienu bakstelėjimu pasiekite svarbiausius ekranus bet kur</string>
     <string name="pref_auto_local_delete_sum">Taip pat ištrina per funkciją „pridėti vietinį aplanką“ įtrauktus failus. Atkreipiame dėmesį, kad jie nėra atsiųsti AntennaPod ir negali būti atsisiųsti iš naujo</string>
@@ -783,11 +783,11 @@
     </plurals>
     <string name="transcript_follow_audio_label">Sekti garso įrašą</string>
     <string name="visit_social_interact_label">Rodyti komentarus</string>
-    <string name="visit_social_interact_confirm_dialog_title">Išeinate iš AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Išeinate iš XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Įsitikinkite, kad pasitikite „%1$s“ svetaine.</string>
     <string name="reset_playback_position_label">Atstatyti atkūrimo poziciją</string>
     <string name="no_items_selected_message">Nepasirinktas joks elementas</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Ištrynus, epizodas pašalinamas iš AntennaPod ir ištrinamas medijos failas iš jūsų įrenginio saugyklos. Jo negalima atsisiųsti iš naujo per AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Ištrynus, epizodas pašalinamas iš XMRPod ir ištrinamas medijos failas iš jūsų įrenginio saugyklos. Jo negalima atsisiųsti iš naujo per XMRPod.</string>
     <string name="download_log_details_message">%1$s \n\nTechninė priežastis: \n%2$s \n\nFailo URL:\n%3$s</string>
     <string name="download_error_unsupported_type_html_manual">Jūsų įvestas adresas yra svetainės, o ne tinklalaidės RSS adresas.</string>
     <string name="notification_channel_refreshing">Atnaujiname tinklalaides</string>
@@ -873,7 +873,7 @@
     <string name="echo_thanks_we_are_glad_new">kad šiemet prisijungėte prie mūsų!\n\nNesvarbu, ar persikėlėte čia iš kitos programos, ar pradėjo savo tinklalaidžių odisėją su mumis – džiaugiamės turėdami jus!</string>
     <string name="echo_thanks_now_favorite">O dabar žvilgtelėkime į jūsų pamėgtas tinklalaides…</string>
     <string name="echo_share_heading">Mano mėgstamiausios tinklalaidės</string>
-    <string name="echo_share">Mano %d metai su tinklalaidėmis. #AntennaPodEcho</string>
+    <string name="echo_share">Mano %d metai su tinklalaidėmis. #XMRPodEcho</string>
     <string name="please_wait_before_refreshing">Šiek tiek palaukite prieš vėl atnaujindami tinklalaides.</string>
     <string name="already_downloaded">Epizodas jau atsisiųstas</string>
     <string name="tag_all">Visos</string>

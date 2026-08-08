@@ -47,7 +47,7 @@
     <string name="home_continue_title">Dinlemeye devam et</string>
     <string name="home_new_title">Yenilikleri görün</string>
     <string name="home_downloads_title">İndirmeleri yönet</string>
-    <string name="home_welcome_title">AntennaPod\'a hoşgeldin!</string>
+    <string name="home_welcome_title">XMRPod\'a hoşgeldin!</string>
     <string name="home_welcome_text">Henüz hiçbir podcast\'e abone olmadın. Menüyü aç ve bir podcast ekle.</string>
     <string name="notification_permission_denied">İzni reddettiniz.</string>
     <string name="configure_home">Ana ekranı özelleştir</string>
@@ -239,10 +239,10 @@
     <string name="download_log_title_unknown">Bilinmeyen başlık</string>
     <string name="download_type_feed">Besleme</string>
     <string name="download_type_media">Medya dosyası</string>
-    <string name="no_feed_url_podcast_found_by_search">Önerilen Podcast\'in bir RSS bağlantısı yoktu, AntennaPod eşleşebilecek bir Podcast buldu</string>
+    <string name="no_feed_url_podcast_found_by_search">Önerilen Podcast\'in bir RSS bağlantısı yoktu, XMRPod eşleşebilecek bir Podcast buldu</string>
     <string name="authentication_notification_title">Yetkilendirme gerekiyor</string>
     <string name="confirm_mobile_download_dialog_title">Mobil indirmeyi onaylayın</string>
-    <string name="confirm_mobile_download_dialog_message">Mobil veri bağlantısı üzerinden indirme ayarlarda devre dışı bırakılmıştır. AntennaPod, Wi-Fi kullanılabilir olduğunda bölüm daha sonra otomatik olarak indirebilir.</string>
+    <string name="confirm_mobile_download_dialog_message">Mobil veri bağlantısı üzerinden indirme ayarlarda devre dışı bırakılmıştır. XMRPod, Wi-Fi kullanılabilir olduğunda bölüm daha sonra otomatik olarak indirebilir.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- VPN mi kullanıyorsunuz? VPN uygulamanız bir mobil ağ gibi davranıyor (mobil veri). Bu sorunun çözülmesini istiyorsanız, VPN uygulamanızın geliştiricileriyle iletişime geçin.\n- VPN kullanmıyor musunuz? Android Wi-Fi ayarlarını açın ve Wi-Fi tipinizi mobil veri olmayacak şekilde ayarlayın.</string>
     <string name="confirm_mobile_download_dialog_download_later">Daha sonra indir</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Yine de İndir</string>
@@ -253,7 +253,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Medya dosyası oynatılamadı.\n\n- Bölümü silip yeniden indirmeyi deneyin.\n-Ağ bağlantınızı kontrol edin ve VPN veya giriş sayfasının erişimi engellemediğinden emin olun.\n-\"Medya adresi\"ne uzun basıp web tarayıcınızda paylaşmayı deneyin ve orada oynatılıp oynatılamayacağını görün. Değilse, podcast yapımcısı ile iletişime geçin.</string>
     <string name="no_media_playing_label">Çalınan medya yok</string>
-    <string name="unknown_media_key">AntennaPod - Bilinmeyen medya anahtarı: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Bilinmeyen medya anahtarı: %1$d</string>
     <string name="error_file_not_found">Dosya bulunamadı</string>
     <string name="no_media_label">Öğe, bir medya dosyası içermiyor</string>
     <!--Queue operations-->
@@ -332,7 +332,7 @@
     <string name="pref_auto_delete_sum">Bölümleri oynattıktan sonra veya otomatik indirme için yer gerektiğinde sil</string>
     <string name="pref_auto_local_delete_title">Yerel klasörlerden otomatik sil</string>
     <string name="pref_auto_local_delete_sum">Yerel klasörleri Otomatik silme işlevine dahil et</string>
-    <string name="pref_auto_local_delete_dialog_body">Bu işlemin, bölümleri AntennaPod\'dan kaldıracağını ve medya dosyalarını cihazınızın depolama alanından sileceğini unutmayın. Bu bölümler AntennaPod aracılığıyla tekrar indirilemezler. Otomatik silmeyi etkinleştirmek istiyor musunuz?</string>
+    <string name="pref_auto_local_delete_dialog_body">Bu işlemin, bölümleri XMRPod\'dan kaldıracağını ve medya dosyalarını cihazınızın depolama alanından sileceğini unutmayın. Bu bölümler XMRPod aracılığıyla tekrar indirilemezler. Otomatik silmeyi etkinleştirmek istiyor musunuz?</string>
     <string name="pref_smart_mark_as_played_sum">Bitmesine birkaç saniye kalmış olsa da bölümleri oynatıldı olarak işaretle</string>
     <string name="pref_smart_mark_as_played_title">Oynatıldı olarak işaretle</string>
     <string name="pref_skip_keeps_episodes_sum">Bölümler atlandığında tutmaya devam et</string>
@@ -344,7 +344,7 @@
     <string name="downloads_pref">İndirilenler</string>
     <string name="downloads_pref_sum">Güncelleme aralığı, Mobil veri, Otomatik indirme, Otomatik silme</string>
     <string name="feed_refresh_title">Podcastleri güncelle</string>
-    <string name="feed_refresh_sum">AntennaPod\'un yeni bölümleri otomatik olarak arayacağı zaman aralığını belirtin</string>
+    <string name="feed_refresh_sum">XMRPod\'un yeni bölümleri otomatik olarak arayacağı zaman aralığını belirtin</string>
     <string name="feed_refresh_never">Hiçbir zaman</string>
     <string name="feed_every_hour">Saatte bir</string>
     <string name="feed_every_2_hours">2 saatte bir</string>
@@ -426,7 +426,7 @@
     <string name="pref_skip_silence_title">Sesteki boşlukları atla</string>
     <string name="behavior">Davranış</string>
     <string name="pref_default_page">Varsayılan sayfa</string>
-    <string name="pref_default_page_sum">AntennaPod başlatıldığında açılan ekran</string>
+    <string name="pref_default_page_sum">XMRPod başlatıldığında açılan ekran</string>
     <string name="pref_back_button_opens_drawer">Geri düğmesi çekmeceyi açar</string>
     <string name="pref_back_button_opens_drawer_summary">Varsayılan sayfada geri düğmesine basmak, gezinme çekmecesini açar</string>
     <string name="remember_last_page">Kaldığım hatırlat</string>
@@ -447,15 +447,15 @@
     <string name="episode_information">Bölüm bilgisi</string>
     <!--About screen-->
   <string name="about_pref">Hakkında</string>
-    <string name="antennapod_version">AntennaPod sürümü</string>
+    <string name="xmrpod_version">XMRPod sürümü</string>
     <string name="contributors">Katkıda bulunanlar</string>
-    <string name="contributors_summary">Herkes AntennaPod\'u daha iyi hale getirmek için yardımda bulunabilir, gerek kod yazarak gerek tercüme ederek, gerekse forumda kullanıcılara yardım ederek</string>
+    <string name="contributors_summary">Herkes XMRPod\'u daha iyi hale getirmek için yardımda bulunabilir, gerek kod yazarak gerek tercüme ederek, gerekse forumda kullanıcılara yardım ederek</string>
     <string name="developers">Geliştiriciler</string>
     <string name="translators">Tercüme edenler</string>
     <string name="special_thanks">Özel teşekkürler</string>
     <string name="privacy_policy">Gizlilik Politikası</string>
     <string name="licenses">Lisanslar</string>
-    <string name="licenses_summary">AntennaPod başka yazılımlardan da faydalanıyor</string>
+    <string name="licenses_summary">XMRPod başka yazılımlardan da faydalanıyor</string>
     <!--Search-->
   <string name="search_status_no_results">Sonuç bulunamadı</string>
     <string name="type_to_search">Aramak için bir kelime yazın</string>
@@ -478,8 +478,8 @@
     <string name="html_export_summary">Aboneliklerinizi bir arkadaşınıza gösterin</string>
     <string name="opml_export_summary">Aboneliklerinizi başka bir podcast uygulamasına aktarma</string>
     <string name="opml_import_summary">Aboneliklerinizi başka bir podcast uygulamasından içe aktarın</string>
-    <string name="database_export_summary">Abonelikleri, dinlenen bölümleri ve kuyruğu başka bir cihazdaki AntennaPod\'a aktarın</string>
-    <string name="database_import_summary">AntennaPod veritabanını başka bir cihazdan içe aktarma</string>
+    <string name="database_export_summary">Abonelikleri, dinlenen bölümleri ve kuyruğu başka bir cihazdaki XMRPod\'a aktarın</string>
+    <string name="database_import_summary">XMRPod veritabanını başka bir cihazdan içe aktarma</string>
     <string name="opml_import_label">OPML içe aktar</string>
     <string name="opml_add_podcast_label">Podcast listesini içe aktar (OPML)</string>
     <string name="opml_reader_error">Dosya okunurken bir hata oluştu. Gerçekten bir OPML dosyası seçtiğinizden ve dosyanın geçerli olduğundan emin olun.</string>
@@ -490,7 +490,7 @@
     <string name="html_export_label">HTML Dışa aktarma</string>
     <string name="database_export_label">Veri tabanını dışarı aktarma</string>
     <string name="automatic_database_export_label">Otomatik veritabanı dışa aktarımı</string>
-    <string name="automatic_database_export_summary">Her 3 günde bir AntennaPod veritabanının yedeğini oluşturun. Sadece en son 5 yedeği saklayın.</string>
+    <string name="automatic_database_export_summary">Her 3 günde bir XMRPod veritabanının yedeğini oluşturun. Sadece en son 5 yedeği saklayın.</string>
     <string name="automatic_database_export_error">Otomatşk veritabanı yedeklemesi sırasında hata</string>
     <string name="database_import_label">Veri tabanını içe aktarma</string>
     <string name="database_import_warning">Bir veritabanını içe aktarmak, mevcut tüm aboneliklerinizi ve çalma geçmişinizi değiştirecektir. Mevcut veritabanınızı yedek olarak dışa aktarmalısınız. Yerini değiştirmek istiyor musunuz?</string>
@@ -499,8 +499,8 @@
     <string name="export_success_title">Dışa aktarma başarılı</string>
     <string name="opml_import_ask_read_permission">OPML dosyasını okumak için harici depolama alanına erişim gereklidir</string>
     <string name="successful_import_label">İçe aktarma başarılı</string>
-    <string name="import_ok">AntennaPod\'u yeniden başlatmak için lütfen OK tuşuna basın</string>
-    <string name="import_no_downgrade">Bu veritabanı AntennaPod\'un daha yeni bir sürümü ile dışa aktarıldı. Mevcut kurulumunuz henüz bu dosyayı nasıl işleyeceğini bilmiyor.</string>
+    <string name="import_ok">XMRPod\'u yeniden başlatmak için lütfen OK tuşuna basın</string>
+    <string name="import_no_downgrade">Bu veritabanı XMRPod\'un daha yeni bir sürümü ile dışa aktarıldı. Mevcut kurulumunuz henüz bu dosyayı nasıl işleyeceğini bilmiyor.</string>
     <string name="favorites_export_label">Favorileri dışa aktarma</string>
     <string name="favorites_export_summary">Kayıtlı favorileri dosyaya aktarma</string>
     <!--Sleep timer-->
@@ -539,12 +539,12 @@
   <string name="synchronization_choose_title">Senkronizasyon sağlayıcınızı seçin</string>
     <string name="synchronization_summary_unchoosen">Aboneliklerinizi ve bölüm oynatma durumunuzu senkronize etmek için birden fazla sağlayıcı arasından seçim yapabilirsiniz</string>
     <string name="dialog_choose_sync_service_title">Senkronizasyon sağlayıcınızı seçin</string>
-    <string name="gpodnet_description">Gpodder.net, kendi sunucunuza yükleyebileceğiniz açık kaynaklı bir podcast senkronizasyon hizmetidir. Gpodder.net, AntennaPod projesinden bağımsızdır.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync, kendi sunucunuza kolayca yükleyebileceğiniz açık kaynaklı bir Nextcloud uygulamasıdır. Gpodder Sync, AntennaPod projesinden bağımsızdır.</string>
+    <string name="gpodnet_description">Gpodder.net, kendi sunucunuza yükleyebileceğiniz açık kaynaklı bir podcast senkronizasyon hizmetidir. Gpodder.net, XMRPod projesinden bağımsızdır.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync, kendi sunucunuza kolayca yükleyebileceğiniz açık kaynaklı bir Nextcloud uygulamasıdır. Gpodder Sync, XMRPod projesinden bağımsızdır.</string>
     <string name="synchronization_host_explanation">Senkronize etmek için kendi sunucunuzu seçebilirsiniz. Tercih ettiğiniz senkronizasyon sunucusu adresini lütfen buraya girin.</string>
     <string name="synchronization_host_label">Sunucu adresi</string>
     <string name="proceed_to_login_butLabel">Oturum açmak için ilerleyin</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Açılan web tarayıcısını kullanarak erişim izni verin ve AntennaPod\'a geri dönün.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Açılan web tarayıcısını kullanarak erişim izni verin ve XMRPod\'a geri dönün.</string>
     <string name="gpodnetauth_login_butLabel">Giriş</string>
     <string name="synchronization_credentials_explanation">Lütfen senkronizasyon sunucusundaki hesabınızın kimlik bilgilerini girin.</string>
     <string name="gpodnetauth_encryption_warning">Parola ve veri şifrelenmedi!</string>
@@ -553,10 +553,10 @@
     <string name="synchronization_login_butLabel">Giriş yap</string>
     <string name="synchronization_selectDevice_explanation">Lütfen senkronizasyon sunucusunda oluşturduğunuz cihazı seçin veya yenisini oluşturun.</string>
     <string name="gpodnetauth_device_name">Cihaz ismi</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod\'da %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod\'da %1$s</string>
     <string name="gpodnetauth_existing_devices">Mevcut cihazlar</string>
     <string name="gpodnetauth_create_device">Cihaz oluştur</string>
-    <string name="gpodnetauth_finish_descr">Tebrikler! gpodder.net hesabınız cihazınızla ilişkilendirildi. AntennaPod bundan sonra gpodder.net hesabınızla üyeliklerinizi otomatik olarak senkronize edecek.</string>
+    <string name="gpodnetauth_finish_descr">Tebrikler! gpodder.net hesabınız cihazınızla ilişkilendirildi. XMRPod bundan sonra gpodder.net hesabınızla üyeliklerinizi otomatik olarak senkronize edecek.</string>
     <string name="pref_gpodnet_setlogin_information_title">Giriş bilgisini değiştir</string>
     <string name="pref_gpodnet_setlogin_information_sum">gpodder.net hesabınız için giriş bilgisini değiştirin.</string>
     <string name="synchronization_sync_changes_title">Şimdi senkronize et</string>
@@ -573,14 +573,14 @@
     <string name="gpodnetsync_username_characters_error">Kullanıcı adları yalnızca harfleri, rakamları, kısa çizgileri ve alt çizgileri içerebilir.</string>
     <!--Directory chooser-->
   <string name="choose_data_directory">Veri klasörünü seçin</string>
-    <string name="choose_data_directory_message">Lütfen veri klasörünüzün tabanını seçin. AntennaPod uygun alt dizinleri oluşturacaktır.</string>
+    <string name="choose_data_directory_message">Lütfen veri klasörünüzün tabanını seçin. XMRPod uygun alt dizinleri oluşturacaktır.</string>
     <string name="choose_data_directory_available_space">%1$s of %2$s free</string>
     <!--Rating dialog-->
   <string name="rating_tagline">%1$s\'den beri, %2$s%3$d%4$s saat podcast dinlediniz.</string>
     <string name="rating_contribute_label">Katılmak ister misiniz? İster çeviri, ister destek, ister tasarım veya kodlama yapmak isteyin, sizi aramızda görmekten mutluluk duyarız!</string>
     <string name="rating_contribute_button">Katkıda bulunmanın yollarını keşfedin</string>
-    <string name="rating_volunteers_label">AntennaPod, gönüllüler tarafından boş zamanlarında geliştirilir. Güzel bir puan bırakarak çalışmalarına olan takdirinizi paylaşın.</string>
-    <string name="rating_rate">AntennaPod\'u değerlendir</string>
+    <string name="rating_volunteers_label">XMRPod, gönüllüler tarafından boş zamanlarında geliştirilir. Güzel bir puan bırakarak çalışmalarına olan takdirinizi paylaşın.</string>
+    <string name="rating_rate">XMRPod\'u değerlendir</string>
     <string name="rating_later">Sonra</string>
     <!--Online feed view-->
   <string name="subscribe_label">Üye ol</string>
@@ -658,7 +658,7 @@
     <string name="local_folder">Yerel klasör</string>
     <string name="reconnect_local_folder">Yerel klasöre tekrar bağlan</string>
     <string name="reconnect_local_folder_warning">İzin reddi durumunda, aynı klasöre yeniden bağlanmak için bunu kullanabilirsiniz. Başka bir klasör seçmeyin.</string>
-    <string name="local_feed_description">Bu sanal podcast, antennaPode bir klasör eklenerek oluşturulmuştur.</string>
+    <string name="local_feed_description">Bu sanal podcast, XMRPod'a bir klasör eklenerek oluşturulmuştur.</string>
     <string name="unable_to_start_system_file_manager">Sistem dosya yöneticisi başlatılamıyor</string>
     <string name="filter">Filtre</string>
     <string name="hide_is_favorite_label">Favori</string>
@@ -827,7 +827,7 @@
     <string name="echo_thanks_large">Teşekkürler</string>
     <string name="echo_thanks_now_favorite">Şimdi en sevdiğin podcastlere bir göz atalım…</string>
     <string name="echo_share_heading">En sevdiğim podcastler</string>
-    <string name="echo_share">Podcastlerde %d yılım. #AntennaPodEcho</string>
+    <string name="echo_share">Podcastlerde %d yılım. #XMRPodEcho</string>
     <string name="echo_thanks_we_are_glad_new">bu yıl bize katıldığın için!\n\nBaşka bir uygulamadan gelmiş ya da podcast macerana bizimle başlamış olsanda seninle olduğumuz için mutluyuz!</string>
     <string name="echo_listened_after_time">Bir bölümü genellikle yayınlandıktan %1$s sonra tamamladın.</string>
     <string name="echo_hoarder_comment_medium">Bu yıl %2$d aktif aboneliğinden %1$d%% bölüm oynattın. Şunu tekrar kontrol etmeye ne dersin \"%3$s\" ?</string>
@@ -837,7 +837,7 @@
         <item quantity="one">%d bölüm sıraya eklendi.</item>
         <item quantity="other">%d bölüm sıraya eklendi.</item>
     </plurals>
-    <string name="visit_social_interact_confirm_dialog_title">AntennaPod\'dan ayrılıyorsunuz</string>
+    <string name="visit_social_interact_confirm_dialog_title">XMRPod\'dan ayrılıyorsunuz</string>
     <string name="no_items_selected_message">Hiçbir öğe seçilmedi</string>
     <plurals name="marked_as_played_message">
         <item quantity="one">%d bölüm oynatıldı olarak işaretlendi.</item>
@@ -875,7 +875,7 @@
     <string name="transcript_follow_audio_label">Sesi takip et</string>
     <string name="visit_social_interact_confirm_dialog_message">Lütfen \"%1$s\" web sitesine güvendiğinizden emin olun.</string>
     <string name="reset_playback_position_label">Oynatma konumunu sıfırla</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Silme işlemi, bölümü AntennaPod\'dan kaldırır ve medya dosyasını aygıtınızın depolama alanından siler. AntennaPod üzerinden tekrar indirilemez.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Silme işlemi, bölümü XMRPod\'dan kaldırır ve medya dosyasını aygıtınızın depolama alanından siler. XMRPod üzerinden tekrar indirilemez.</string>
     <string name="already_downloaded">Bölüm zaten indirildi</string>
     <plurals name="move_to_top_message">
         <item quantity="one">%d bölüm yukarı taşındı.</item>

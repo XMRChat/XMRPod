@@ -483,7 +483,7 @@
     <string name="episode_information">معلومات الحلقة</string>
     <!--About screen-->
   <string name="about_pref">حول</string>
-    <string name="antennapod_version">اصدار أنتنابد</string>
+    <string name="xmrpod_version">اصدار أنتنابد</string>
     <string name="contributors">المساهمون</string>
     <string name="contributors_summary">يمكن للجميع المساعدة في تحسين أنتنابد - من خلال البرمجة أو الترجمات أو من خلال مساعدة المستخدمين في منتدانا</string>
     <string name="developers">المطورين</string>
@@ -873,7 +873,7 @@
     <string name="echo_thanks_we_are_glad_old">شكرًا لالتزامك معنا هذا العام!\n\nلقد قمت بتشغيل أول حلقة معنا في %1$s. كان من دواعي شرفنا خدمتك منذ ذلك الحين.</string>
     <string name="echo_hoarder_comment_hoarder">يقولون إن الأرقام لا تكذب. ومع وجود%1$d%% فقط من اشتراكاتك النشطة %2$d التي تم تشغيلها هذا العام، ربما نكون على حق.</string>
     <string name="echo_thanks_we_are_glad_new">لانضمامك إلينا هذا العام!\n\nسواء كنت قد انتقلت إلينا من تطبيق آخر، أو بدأت مغامرة البودكاست معنا: نحن سعداء بانضمامك إلينا!</string>
-    <string name="echo_share">سنتي ال %d في البودكاست #AntennaPodEcho</string>
+    <string name="echo_share">سنتي ال %d في البودكاست #XMRPodEcho</string>
     <string name="echo_hoarder_subtitle_medium">تحقق من ذلك. لا اكتناز هنا.</string>
     <string name="echo_hoarder_comment_medium">لقد قمت بتشغيل حلقات %1$d%% من اشتراكاتك النشطة البالغ عددها %2$d هذا العام. ماذا عن إعادة زيارة \"%3$s\"؟</string>
     <string name="echo_hoarder_subtitle_clean">نظيف!</string>

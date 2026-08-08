@@ -10,6 +10,10 @@ import sys
 HEADING_RE = re.compile(r"^## \[(?P<version>[^\]]+)\](?: - (?P<date>\d{4}-\d{2}-\d{2}|TBD|Unreleased))?\s*$")
 VERSION_CODE_RE = re.compile(r"(?m)^(\s*versionCode\s+)\d+\s*$")
 VERSION_NAME_RE = re.compile(r'(?m)^(\s*versionName\s+")[^"]+("\s*)$')
+VERSION_CODE_VALUE_RE = re.compile(r"(?m)^\s*versionCode\s+(\d+)\s*$")
+VERSION_NAME_VALUE_RE = re.compile(r'(?m)^\s*versionName\s+"([^"]+)"\s*$')
+STALE_METADATA_RE = re.compile(r"Antenna\s*Pod|AntennaPod", re.IGNORECASE)
+FASTLANE_TEXT_EXTENSIONS = {".txt"}
 
 
 def read_text(path):
@@ -55,6 +59,14 @@ def update_section_date(lines, start, release_date):
     lines[start] = f"## [{version}] - {release_date}"
 
 
+def section_date(lines, start):
+    match = HEADING_RE.match(lines[start])
+    if not match:
+        raise ValueError("Version heading is not in the expected changelog format")
+    date = match.group("date")
+    return date if date and date not in {"TBD", "Unreleased"} else None
+
+
 def section_body(lines, start, end):
     body = "\n".join(lines[start + 1:end]).strip()
     return body if body else "- No release notes provided."
@@ -88,6 +100,34 @@ def update_android_version(path, version, version_code):
     write_text(path, content)
 
 
+def current_android_version(path):
+    content = read_text(path)
+    code_match = VERSION_CODE_VALUE_RE.search(content)
+    name_match = VERSION_NAME_VALUE_RE.search(content)
+    if not code_match or not name_match:
+        raise ValueError(f"Could not read Android version from {path}")
+    return name_match.group(1), int(code_match.group(1))
+
+
+def inferred_version_code(path, version):
+    current_version, current_code = current_android_version(path)
+    return current_code if current_version == version else current_code + 1
+
+
+def validate_fastlane_metadata(root):
+    if not root.exists():
+        return
+    stale_files = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file() or path.suffix not in FASTLANE_TEXT_EXTENSIONS:
+            continue
+        if STALE_METADATA_RE.search(read_text(path)):
+            stale_files.append(path)
+    if stale_files:
+        formatted = "\n".join(f"  - {path}" for path in stale_files)
+        raise ValueError(f"Fastlane metadata still references AntennaPod:\n{formatted}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Prepare changelog release metadata.")
     parser.add_argument("--version", help="Version section to release, for example 0.1.0")
@@ -102,7 +142,13 @@ def main():
     parser.add_argument("--full-changelog-url", default="")
     parser.add_argument("--fastlane-changelog", help="Write Fastlane changelog text for this version code")
     parser.add_argument("--fastlane-changelogs-dir", default="fastlane/metadata/android/en-US/changelogs")
+    parser.add_argument("--fastlane-metadata-dir", default="fastlane/metadata/android")
     args = parser.parse_args()
+
+    default_release_update = len(sys.argv) == 1
+    if default_release_update:
+        args.latest = True
+        args.write = True
 
     changelog_path = pathlib.Path(args.changelog)
     lines = read_text(changelog_path).splitlines()
@@ -112,18 +158,18 @@ def main():
     if args.print_version:
         print(version)
         return 0
-    if args.write and args.version_code is None:
-        parser.error("--version-code is required with --write")
-
     start, end = find_version_section(lines, version)
+    release_date = section_date(lines, start) or args.date
 
     if args.write:
-        update_section_date(lines, start, args.date)
+        update_section_date(lines, start, release_date)
         write_text(changelog_path, "\n".join(lines).rstrip() + "\n")
         lines = read_text(changelog_path).splitlines()
         start, end = find_version_section(lines, version)
-        if args.version_code is not None:
-            update_android_version(pathlib.Path(args.app_build_gradle), version, args.version_code)
+        app_build_gradle = pathlib.Path(args.app_build_gradle)
+        version_code = args.version_code or inferred_version_code(app_build_gradle, version)
+        update_android_version(app_build_gradle, version, version_code)
+        args.version_code = version_code
 
     body = section_body(lines, start, end)
     if args.write and args.version_code is not None and not args.fastlane_changelog:
@@ -132,6 +178,7 @@ def main():
         write_text(pathlib.Path(args.release_notes), release_notes(version, body, args.full_changelog_url))
     if args.fastlane_changelog:
         write_text(pathlib.Path(args.fastlane_changelog), fastlane_text(body))
+    validate_fastlane_metadata(pathlib.Path(args.fastlane_metadata_dir))
 
     return 0
 

@@ -47,7 +47,7 @@
     <string name="home_continue_title">Jätka kuulamist</string>
     <string name="home_new_title">Mis on uut</string>
     <string name="home_downloads_title">Halda allalaadimisi</string>
-    <string name="home_welcome_title">Tere tulemast AntennaPodi!</string>
+    <string name="home_welcome_title">Tere tulemast XMRPodi!</string>
     <string name="home_welcome_text">Sul ei ole veel ühtegi taskuhäälingu tellimust. Ava menüü, et lisada taskuhääling.</string>
     <string name="notification_permission_denied">Keelasid loa.</string>
     <string name="configure_home">Seadista avalehte</string>
@@ -227,10 +227,10 @@
     <string name="download_log_title_unknown">Pealkirjata</string>
     <string name="download_type_feed">Uudisvoog</string>
     <string name="download_type_media">Meediafail</string>
-    <string name="no_feed_url_podcast_found_by_search">Soovitud taskuhääling ei paku RSS voogu, AntennaPod leidis taskuhäälingu, mis võib sobida</string>
+    <string name="no_feed_url_podcast_found_by_search">Soovitud taskuhääling ei paku RSS voogu, XMRPod leidis taskuhäälingu, mis võib sobida</string>
     <string name="authentication_notification_title">Autentimine on nõutud</string>
     <string name="confirm_mobile_download_dialog_title">Kinnita mobiilse andmeside kasutamine allalaadimiseks</string>
-    <string name="confirm_mobile_download_dialog_message">Mobiilse andmeside kaudu allalaadimine on seadetest keelatud. AntennaPod saab saate hiljem Wi-Fi võrgus olles alla laadida.</string>
+    <string name="confirm_mobile_download_dialog_message">Mobiilse andmeside kaudu allalaadimine on seadetest keelatud. XMRPod saab saate hiljem Wi-Fi võrgus olles alla laadida.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Kas kasutad VPN-i? Sinu VPN ühendus paistab mobiilse andmeside võrguna (mahupõhine hinnastamine). Probleemi lahendamiseks pöördu oma VPN rakenduse arendajate poole..\n- Kas ei kasuta VPN-i? Ava Androidi Wi-Fi seaded ja muuda Wi-Fi tüüp mittemahupõhiseks.</string>
     <string name="confirm_mobile_download_dialog_download_later">Laadi hiljem</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Laadi ikkagi</string>
@@ -241,7 +241,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Meediafaili esitamine polnud võimalik.\n\n- Proovi osa kustutada ja uuesti alla laadida.\n- Kontrolli oma nutiseadme võrguühendust ja veendu, et ükski VPN või sisselogimisleht ei blokeeri juurdepääsu.\n- Proovi avada brauseris pikalt vajutades ja jagades valikut „Meedia aadress“. Kui see ei tööta, kontakteeru taskuhäälingu autoritega.</string>
     <string name="no_media_playing_label">Mingit faili ei esitata</string>
-    <string name="unknown_media_key">AntennaPod - Tundmatu meedia võti: %1$d</string>
+    <string name="unknown_media_key">XMRPod - Tundmatu meedia võti: %1$d</string>
     <string name="error_file_not_found">Faili ei leitud</string>
     <string name="no_media_label">Element ei sisalda meediafaili</string>
     <!--Queue operations-->
@@ -311,8 +311,8 @@
     <string name="button_action_restart_episode">Alusta osa algusest</string>
     <string name="pref_followQueue_sum">Kui osa lõpeb, siis esita kohe järgmine järjekorras olev osa</string>
     <string name="pref_auto_local_delete_title">Automaatne kustutamine kohalikest kaustadest</string>
-    <string name="pref_auto_local_delete_sum">Lisaks kustuta failid, mis on lisatud „Lisa kohalikust kaustast“ meetodiga. Palun arvesta, et need pole AntennaPodi poolt allalaaditud ja neid seega uuesti alla laadida ei saa</string>
-    <string name="pref_auto_local_delete_dialog_body">Kohalike kaustade puhul kustutamine eemaldab saate AntennaPodist ja meedia faili seadme salvestusruumist. Seda ei saa uuesti AntennaPodi kaudu alla laadida. Luba automaatne kustutamine?</string>
+    <string name="pref_auto_local_delete_sum">Lisaks kustuta failid, mis on lisatud „Lisa kohalikust kaustast“ meetodiga. Palun arvesta, et need pole XMRPodi poolt allalaaditud ja neid seega uuesti alla laadida ei saa</string>
+    <string name="pref_auto_local_delete_dialog_body">Kohalike kaustade puhul kustutamine eemaldab saate XMRPodist ja meedia faili seadme salvestusruumist. Seda ei saa uuesti XMRPodi kaudu alla laadida. Luba automaatne kustutamine?</string>
     <string name="pref_smart_mark_as_played_sum">Märgi saated kuulatuks ka siis, kui vähem kui määratud arv sekundeid on jäänud saate lõpuni</string>
     <string name="pref_smart_mark_as_played_title">Nutikas kuulatuks märkmine</string>
     <string name="pref_skip_keeps_episodes_sum">Hoia saated alles, kui need jäetakse vahele</string>
@@ -324,7 +324,7 @@
     <string name="downloads_pref">Allalaadimised</string>
     <string name="downloads_pref_sum">Uuendamise sagedus, mobiilne andmeside, automaatne allalaadimine, automaatne kustutamine</string>
     <string name="feed_refresh_title">Värskenda taskuhäälinguid</string>
-    <string name="feed_refresh_sum">Määra kui tihti AntennaPod otsib uusi saateid</string>
+    <string name="feed_refresh_sum">Määra kui tihti XMRPod otsib uusi saateid</string>
     <string name="feed_refresh_never">Mitte kunagi</string>
     <string name="feed_every_hour">Iga tund</string>
     <string name="feed_every_2_hours">Iga 2 tunni järel</string>
@@ -402,7 +402,7 @@
     <string name="pref_skip_silence_title">Helis vaikuse vahele jätmine</string>
     <string name="behavior">Käitumine</string>
     <string name="pref_default_page">Vaikevaade</string>
-    <string name="pref_default_page_sum">Ekraan, mis kuvatakse AntennaPodi avamisel</string>
+    <string name="pref_default_page_sum">Ekraan, mis kuvatakse XMRPodi avamisel</string>
     <string name="pref_back_button_opens_drawer">Tagasi nupp avab menüü</string>
     <string name="pref_back_button_opens_drawer_summary">Tagasi nupu vajutamisel vaikevaates avatakse navigatsioonimenüü</string>
     <string name="remember_last_page">Jäta viimane leht meelde</string>
@@ -421,15 +421,15 @@
     <string name="pref_new_episodes_action_sum">Tegevus, mis tehakse uute osade jaoks</string>
     <!--About screen-->
   <string name="about_pref">Info</string>
-    <string name="antennapod_version">AntennaPodi versioon</string>
+    <string name="xmrpod_version">XMRPodi versioon</string>
     <string name="contributors">Kaastöölised</string>
-    <string name="contributors_summary">Igaüks võib aidata teha AntennaPodi paremaks - kirjutades koodi, tõlkides või aidates foorumis teisi kasutajaid</string>
+    <string name="contributors_summary">Igaüks võib aidata teha XMRPodi paremaks - kirjutades koodi, tõlkides või aidates foorumis teisi kasutajaid</string>
     <string name="developers">Arendajad</string>
     <string name="translators">Tõlkijad</string>
     <string name="special_thanks">Eritänu</string>
     <string name="privacy_policy">Privaatsus</string>
     <string name="licenses">Litsentsid</string>
-    <string name="licenses_summary">AntennaPod kasutab teiste suurepärast tarkvara</string>
+    <string name="licenses_summary">XMRPod kasutab teiste suurepärast tarkvara</string>
     <!--Search-->
   <string name="search_status_no_results">Ei leitud midagi</string>
     <string name="type_to_search">Otsimiseks sisesta päring</string>
@@ -452,8 +452,8 @@
     <string name="html_export_summary">Näita oma tellimusi sõbrale</string>
     <string name="opml_export_summary">Tellimuste liigutamine teise taskuhäälingu äppi</string>
     <string name="opml_import_summary">Tellimuste importimine teisest taskuhäälingu äpist</string>
-    <string name="database_export_summary">Tõsta tellimused, kuulatud osad ja esitusjärjekord AntennaPodi mõnes teises nutiseadmes</string>
-    <string name="database_import_summary">AntennaPodi andmebaasi import teisest seadmest</string>
+    <string name="database_export_summary">Tõsta tellimused, kuulatud osad ja esitusjärjekord XMRPodi mõnes teises nutiseadmes</string>
+    <string name="database_import_summary">XMRPodi andmebaasi import teisest seadmest</string>
     <string name="opml_import_label">OPML import</string>
     <string name="opml_add_podcast_label">Impordi taskuhäälingute nimekiri (OPML)</string>
     <string name="opml_reader_error">Faili lugemisel tekkis tõrge. Veendu, et valisid OPML faili ja et see on korrektne.</string>
@@ -464,7 +464,7 @@
     <string name="html_export_label">HTML eksport</string>
     <string name="database_export_label">Andmebaasi eksport</string>
     <string name="automatic_database_export_label">Automaatne andmebaasi eksport</string>
-    <string name="automatic_database_export_summary">Varunda AntennaPodi andmebaas iga 3 päeva järel. Hoia 5 viimast varukoopiat.</string>
+    <string name="automatic_database_export_summary">Varunda XMRPodi andmebaas iga 3 päeva järel. Hoia 5 viimast varukoopiat.</string>
     <string name="automatic_database_export_error">Viga andmebaasi automaatsel varundamisel</string>
     <string name="database_import_label">Andmebaasi import</string>
     <string name="database_import_warning">Andmebaasi importimine asendab kõik sinu praegused tellimused ja kuulamiste ajaloo. Peaksid oma praeguse andmebaasi varundamise eesmärgil enne eksportima. Kas soovid andmed asendada?</string>
@@ -473,8 +473,8 @@
     <string name="export_success_title">Eksportimine edukas</string>
     <string name="opml_import_ask_read_permission">OPML faili lugemiseks on vajalik ligipääs välisele salvestusruumile</string>
     <string name="successful_import_label">Importimine oli edukas</string>
-    <string name="import_ok">Vajuta OK, et AntennaPod taaskäivitada</string>
-    <string name="import_no_downgrade">See andmebaas on eksporditud AntennaPodi uuemast versioonist. Sinu praegune äpp ei oska seda faili käsitseda.</string>
+    <string name="import_ok">Vajuta OK, et XMRPod taaskäivitada</string>
+    <string name="import_no_downgrade">See andmebaas on eksporditud XMRPodi uuemast versioonist. Sinu praegune äpp ei oska seda faili käsitseda.</string>
     <string name="favorites_export_label">Lemmikute eksport</string>
     <string name="favorites_export_summary">Ekspordi salvestatud lemmikud faili</string>
     <!--Sleep timer-->
@@ -497,12 +497,12 @@
   <string name="synchronization_choose_title">Vali sünkroonimise pakkuja</string>
     <string name="synchronization_summary_unchoosen">Võid valida erinevate pakkujate vahel oma tellimuste ja osade esitatud olekute sünkroonimiseks</string>
     <string name="dialog_choose_sync_service_title">Vali sünkroonimise pakkuja</string>
-    <string name="gpodnet_description">Gpodder.net on avatud lähtekoodiga taskuhäälingute sünkroniseerimise teenus, mida on võimalik ka ise majutada. Gpodder.net on sõltumatu AntennaPod projektist.</string>
-    <string name="synchronization_summary_nextcloud">Gpoddersync on avatud lähtekoodiga Nextcloudi rakendus, mille võid oma serverile lihtsalt paigaldada. Rakendus on AntennaPodist sõltumatu projekt.</string>
+    <string name="gpodnet_description">Gpodder.net on avatud lähtekoodiga taskuhäälingute sünkroniseerimise teenus, mida on võimalik ka ise majutada. Gpodder.net on sõltumatu XMRPod projektist.</string>
+    <string name="synchronization_summary_nextcloud">Gpoddersync on avatud lähtekoodiga Nextcloudi rakendus, mille võid oma serverile lihtsalt paigaldada. Rakendus on XMRPodist sõltumatu projekt.</string>
     <string name="synchronization_host_explanation">Võid sünkroonimiseks valida oma serveri. Sisesta oma eelistatud sünkroonimisserveri aadress siia.</string>
     <string name="synchronization_host_label">Serveri aadress</string>
     <string name="proceed_to_login_butLabel">Jätka sisselogimisega</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Luba avatud brauserist juurdepääs ja tule tagasi AntennaPodi.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Luba avatud brauserist juurdepääs ja tule tagasi XMRPodi.</string>
     <string name="gpodnetauth_login_butLabel">Logi sisse</string>
     <string name="synchronization_credentials_explanation">Sisesta oma sünkroonimisserveri ligipääsu andmed.</string>
     <string name="gpodnetauth_encryption_warning">Salasõna ja andmed ei ole krüptitud!</string>
@@ -511,10 +511,10 @@
     <string name="synchronization_login_butLabel">Logi sisse</string>
     <string name="synchronization_selectDevice_explanation">Vali sünkroonimisserveril olev seade või loo uus.</string>
     <string name="gpodnetauth_device_name">Seadme nimi</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod %1$s seadmel</string>
+    <string name="gpodnetauth_device_name_default">XMRPod %1$s seadmel</string>
     <string name="gpodnetauth_existing_devices">Olemasolevad seadmed</string>
     <string name="gpodnetauth_create_device">Loo uus seade</string>
-    <string name="gpodnetauth_finish_descr">Palju õnne! Sinu gpodder.net konto on nüüd lingitud sinu seadmega. AntennaPod süngib nüüdsest tellimused sinu seadmes gpodder.net-i kontoga.</string>
+    <string name="gpodnetauth_finish_descr">Palju õnne! Sinu gpodder.net konto on nüüd lingitud sinu seadmega. XMRPod süngib nüüdsest tellimused sinu seadmes gpodder.net-i kontoga.</string>
     <string name="pref_gpodnet_setlogin_information_title">Muuda kasutajakonto infot</string>
     <string name="pref_gpodnet_setlogin_information_sum">Muuda oma gpodder.net konto sisselogimise andmeid.</string>
     <string name="synchronization_sync_changes_title">Sünkrooni nüüd</string>
@@ -536,7 +536,7 @@
   <string name="rating_tagline">Alates %1$s oled kuulanud %2$s %3$d %4$s tundi taskuhäälinguid.</string>
     <string name="rating_contribute_label">Soovid kaasa lüüa? Ükskõik kas tahad tõlkida, pakkuda tuge, disainida, kodeerida, meil on sinu üle hea meel!</string>
     <string name="rating_contribute_button">Vaata, kuidas saad kaasa aidata</string>
-    <string name="rating_rate">Hinda AntennaPodi</string>
+    <string name="rating_rate">Hinda XMRPodi</string>
     <string name="rating_later">Hiljem</string>
     <!--Online feed view-->
   <string name="subscribe_label">Telli</string>
@@ -608,7 +608,7 @@
     <string name="local_folder">Kohalik kaust</string>
     <string name="reconnect_local_folder">Ühenda kohalik kaust uuesti</string>
     <string name="reconnect_local_folder_warning">Ligipääsuõiguste keelamise puhul võid kasutada seda, et täpselt sama kausta uuesti ühendada. Ära valli mõnda teist kausta.</string>
-    <string name="local_feed_description">See virtuaalne taskuhääling loodi kausta lisamisega AntennaPodi.</string>
+    <string name="local_feed_description">See virtuaalne taskuhääling loodi kausta lisamisega XMRPodi.</string>
     <string name="unable_to_start_system_file_manager">Süsteemi failihalduri käivitamine ebaõnnestus</string>
     <string name="filter">Filter</string>
     <string name="hide_is_favorite_label">On lemmik</string>
@@ -692,7 +692,7 @@
     <string name="global_default_with_value">Globaalne vaikeväärtus (%1$s)</string>
     <string name="delete_tag_label">Kustuta silt</string>
     <string name="delete_tag_confirmation">Kinnita, et soovid kustutada sildi \"%1$s\".</string>
-    <string name="echo_share">Minu aasta %d taskuhäälingutes. #AntennaPodEcho</string>
+    <string name="echo_share">Minu aasta %d taskuhäälingutes. #XMRPodEcho</string>
     <string name="pref_nav_drawer_items_title">Kohanda navigeerimist</string>
     <string name="statistics_release_next">järgmine osa (tõenäoliselt)</string>
     <string name="episode_information">Saate teave</string>
@@ -809,11 +809,11 @@
     <string name="button_action_fast_forward">Edasikerimine</string>
     <string name="pref_auto_delete_playback_title">Kustuta pärast esitamist</string>
     <string name="pref_nav_drawer_items_sum">Vali, millised üksused kuvatakse navigeerimissahtlis või all navigeerimisel</string>
-    <string name="rating_volunteers_label">AntennaPodi arendavad vabatahtlikud oma vabast ajast. Näita, et hindad nende tööd ja anna hea hinne.</string>
+    <string name="rating_volunteers_label">XMRPodi arendavad vabatahtlikud oma vabast ajast. Näita, et hindad nende tööd ja anna hea hinne.</string>
     <string name="fast_forward_label">Edasikerimine</string>
     <string name="statistics_time_total">kokku</string>
     <string name="statistics_time_played">kuulatud</string>
-    <string name="choose_data_directory_message">Määra andmete salvestamiseks juurkataloog. AntennaPod loob vajalikud alamkataloogid.</string>
+    <string name="choose_data_directory_message">Määra andmete salvestamiseks juurkataloog. XMRPod loob vajalikud alamkataloogid.</string>
     <string name="statistics_years_barchart_description">Kuulamise aeg kuus</string>
     <string name="discover_more">Avasta rohkem »</string>
     <string name="subscription_display_list">Nimekiri</string>
@@ -852,11 +852,11 @@
         <item quantity="other">%d osa on eemaldatud esitusjärjekorrast.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Jälgi heli</string>
-    <string name="visit_social_interact_confirm_dialog_title">Oled lahkumas AntennaPodist</string>
+    <string name="visit_social_interact_confirm_dialog_title">Oled lahkumas XMRPodist</string>
     <string name="visit_social_interact_confirm_dialog_message">Veendu, et usaldad veebilehte \"%1$s\".</string>
     <string name="reset_playback_position_label">Lähtesta taasesituse asukoht</string>
     <string name="no_items_selected_message">Ühtegi üksust pole valitud</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Kustutamine eemaldab saate AntennaPodist ja kustutab meediafaili seadme salvestusruumist. Seda ei saa AntennaPodi kaudu uuesti alla laadida.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Kustutamine eemaldab saate XMRPodist ja kustutab meediafaili seadme salvestusruumist. Seda ei saa XMRPodi kaudu uuesti alla laadida.</string>
     <plurals name="move_to_top_message">
         <item quantity="one">%d osa on liigutatud üles.</item>
         <item quantity="other">%d osa on liigutatud üles.</item>
@@ -927,7 +927,7 @@
         <item quantity="other">Esitusjärjekorda on jäänud ainult %1$d osa</item>
     </plurals>
     <string name="tag_untagged">Sildistamata</string>
-    <string name="report_bug_message">Kahju kuulda, et mingi asi ei tööta. Sinu abi AntennaPodi täiustamisel on väga oodatud. Palun kontrolli meie foorumist või GitHubist, ega sellest probleemist pole juba teatatud. Kui mitte, anna meile teada ja me uurime asja.</string>
+    <string name="report_bug_message">Kahju kuulda, et mingi asi ei tööta. Sinu abi XMRPodi täiustamisel on väga oodatud. Palun kontrolli meie foorumist või GitHubist, ega sellest probleemist pole juba teatatud. Kui mitte, anna meile teada ja me uurime asja.</string>
     <string name="statistics_label_short">Statistika</string>
     <string name="favorite_episodes_label_short">Lemmikud</string>
     <string name="feed_new_episodes_action_snackbar">Kui automaatne allalaadimine on kasutusel, siis seda muuta ei saa.</string>
@@ -950,7 +950,7 @@
     <string name="no_fav_episodes_label">Klõpsides tähekese ikoonile saad osa märkida lemmikuks.</string>
     <string name="pref_advanced">Täiendavad seadistused</string>
     <string name="pref_display">Ekraanivaade</string>
-    <string name="bottom_navigation_deprecation_warning">Kahjuks peame tulevasest versioonist külgmenüü eemaldama. AntennaPodi arendab väike vabatahtlike rühm ning kuna oleme aastaid mõlemat menüülahendust toetanud, on see muutunud liiga koormavaks.\n\nKui sa absoluutselt sõltud külgmenüüst, palun lülita oma rakendustepoes AntennaPodi uuendamine välja.</string>
+    <string name="bottom_navigation_deprecation_warning">Kahjuks peame tulevasest versioonist külgmenüü eemaldama. XMRPodi arendab väike vabatahtlike rühm ning kuna oleme aastaid mõlemat menüülahendust toetanud, on see muutunud liiga koormavaks.\n\nKui sa absoluutselt sõltud külgmenüüst, palun lülita oma rakendustepoes XMRPodi uuendamine välja.</string>
     <string name="import_error_label">Viga importimisel</string>
     <string name="sleep_timer_without_continuous_playback_change_hours">Muuda tunde</string>
     <string name="show_password_accessibility">Näita salasõna</string>
@@ -958,9 +958,9 @@
     <string name="rss_address_invalid">Sinu sisestatud RSS-aadress pole korrektne.</string>
     <string name="wearos_connected_to" tools:ignore="UnusedResources">Ühendatud seadmega %s</string>
     <string name="wearos_version" tools:ignore="UnusedResources">Versioon %s</string>
-    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">Telefon pole ühilduv. Palun kontrolli, et oled laadinud Google Play rakendustepoest alla viimase AntennaPodi versiooni.</string>
+    <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">Telefon pole ühilduv. Palun kontrolli, et oled laadinud Google Play rakendustepoest alla viimase XMRPodi versiooni.</string>
     <string name="wearos_no_items" tools:ignore="UnusedResources">Objekte pole</string>
-    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">Telefon pole leitav. Palun kontrolli, et telefon on läheduses ja AntennaPod on paigaldatud.</string>
+    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">Telefon pole leitav. Palun kontrolli, et telefon on läheduses ja XMRPod on paigaldatud.</string>
     <string name="wearos_play_on_phone" tools:ignore="UnusedResources">Esita telefonis</string>
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">Sirvi telefonis</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">Ava telefonis</string>

@@ -47,7 +47,7 @@
     <string name="home_continue_title">और सुनें</string>
     <string name="home_new_title">क्या नया है</string>
     <string name="home_downloads_title">डाउनलोड मैनेज करें</string>
-    <string name="home_welcome_title">AntennaPod में वेलकम!</string>
+    <string name="home_welcome_title">XMRPod में वेलकम!</string>
     <string name="home_welcome_text">आपने अभी तक किसी पॉडकास्ट को सब्सक्राइब नहीं किया हैं। पॉडकास्ट जोड़ने के लिए मेन्यू खोलें।</string>
     <string name="notification_permission_denied">आपने अनुमति नहीं दिया।</string>
     <string name="configure_home">होमस्क्रीन बदलें</string>
@@ -230,10 +230,10 @@
     <string name="download_log_title_unknown">अनजान टाइटल</string>
     <string name="download_type_feed">फीड</string>
     <string name="download_type_media">मीडिया फाइल</string>
-    <string name="no_feed_url_podcast_found_by_search">पॉडकास्ट के पास RSS लिंक नहीं है, AntennaPod को एक पॉडकास्ट मिला है जो इससे मैच कर रहा है</string>
+    <string name="no_feed_url_podcast_found_by_search">पॉडकास्ट के पास RSS लिंक नहीं है, XMRPod को एक पॉडकास्ट मिला है जो इससे मैच कर रहा है</string>
     <string name="authentication_notification_title">ऑथेंटिकेशन ज़रूरी</string>
     <string name="confirm_mobile_download_dialog_title">मोबाइल डाउनलोड कंफर्म करें</string>
-    <string name="confirm_mobile_download_dialog_message">सेटिंग में मोबाइल डाटा कनेक्शन पर डाउनलोड करना बंद हैं। Wi-Fi मिलने पर AntennaPod बाद में एपिसोड को अपने-आप डाउनलोड कर सकता है।</string>
+    <string name="confirm_mobile_download_dialog_message">सेटिंग में मोबाइल डाटा कनेक्शन पर डाउनलोड करना बंद हैं। Wi-Fi मिलने पर XMRPod बाद में एपिसोड को अपने-आप डाउनलोड कर सकता है।</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- VPN इस्तेमाल कर रहे हैं? आपका VPN ऐप एक मोबाइल नेटवर्क (मीटर्ड कनेक्शन) होने का नाटक कर रहा है। दिक्कत ठीक करने के लिए VPN बनाने वालों से बात करें।\n- VPN इस्तेमाल नहीं कर रहें? Android का Wi-Fi सेटिंग खोलें और अपने Wi-Fi से मीटर हटा दें।</string>
     <string name="confirm_mobile_download_dialog_download_later">बाद में डाउनलोड करें</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">फिर भी डाउनलोड करें</string>
@@ -244,7 +244,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">मीडिया फाइल नहीं चल रहा।\n\n- एपिसोड मिटाकर वापस डाउनलोड करके देखें।\n- अपना कनेक्शन देखें, और चेक करें कि कोई VPN या लॉगइन पेज तो दिक्कत नहीं दे रहा।\n- देर तक दबाकर \"मीडिया पता\" ब्राउज़र को शेयर करके चेक करें कि क्या उसमें एपिसोड ठीक से चल रहा हैं या नहीं। अगर नहीं, पॉडकास्ट बनाने वाले से बात करें।</string>
     <string name="no_media_playing_label">कोई मीडिया नहीं चल रहा</string>
-    <string name="unknown_media_key">AntennaPod - अनजान मीडिया चाबी: %1$d</string>
+    <string name="unknown_media_key">XMRPod - अनजान मीडिया चाबी: %1$d</string>
     <string name="error_file_not_found">फाइल नहीं मिला</string>
     <string name="no_media_label">आइटम में मीडिया फाइल नहीं है</string>
     <!--Queue operations-->
@@ -315,7 +315,7 @@
     <string name="pref_followQueue_sum">प्लेबैक के खत्म होने पर कतार के अगले आइटम पर जाएं</string>
     <string name="pref_auto_local_delete_title">लोकल फोल्डर से अपने-आप मिटाएं</string>
     <string name="pref_auto_local_delete_sum">ऑटोमैटिक मिटानेवाले फीचर में लोकल फोल्डर शामिल करें</string>
-    <string name="pref_auto_local_delete_dialog_body">ध्यान रखें कि लोकल फोल्डर के लिए ये AntennaPod से एपिसोड हटा देगा और डिवाइस स्टोरेज से उनका मीडिया फाइल मिटा देगा। उनको फिर AntennaPod से डाउनलोड नहीं किया जा सकता। ऑटोमैटिक मिटाना ऑन करें?</string>
+    <string name="pref_auto_local_delete_dialog_body">ध्यान रखें कि लोकल फोल्डर के लिए ये XMRPod से एपिसोड हटा देगा और डिवाइस स्टोरेज से उनका मीडिया फाइल मिटा देगा। उनको फिर XMRPod से डाउनलोड नहीं किया जा सकता। ऑटोमैटिक मिटाना ऑन करें?</string>
     <string name="pref_smart_mark_as_played_sum">जब सुनने के लिए कुछ सेकंड से कम टाइम बचा है तब भी एपिसोड को सुना हुआ मार्क करें</string>
     <string name="pref_smart_mark_as_played_title">सुने गए को स्मार्ट तरीके से मार्क करें</string>
     <string name="pref_skip_keeps_episodes_sum">जब एपिसोड को स्किप किया जाता है तब उनको वैसे का वैसा रखें</string>
@@ -327,7 +327,7 @@
     <string name="downloads_pref">डाउनलोड</string>
     <string name="downloads_pref_sum">अपडेट इंटरवल, मोबाइल डाटा, ऑटोमैटिक डाउनलोड, ऑटोमैटिक मिटाना</string>
     <string name="feed_refresh_title">पॉडकास्ट रिफ्रेश करें</string>
-    <string name="feed_refresh_sum">चुनें कि AntennaPod कितने-कितने इंटरवल पर नए एपिसोड ढूंढेगा</string>
+    <string name="feed_refresh_sum">चुनें कि XMRPod कितने-कितने इंटरवल पर नए एपिसोड ढूंढेगा</string>
     <string name="feed_refresh_never">कभी नहीं</string>
     <string name="feed_every_hour">हर घंटे</string>
     <string name="feed_every_2_hours">हर 2 घंटे</string>
@@ -402,7 +402,7 @@
     <string name="pref_skip_silence_title">ऑडियो में सन्नाटा स्किप करें</string>
     <string name="behavior">बर्ताव</string>
     <string name="pref_default_page">डिफॉल्ट पेज</string>
-    <string name="pref_default_page_sum">चुनें कि AntennaPod खुलने पर कौनसा स्क्रीन दिखेगा</string>
+    <string name="pref_default_page_sum">चुनें कि XMRPod खुलने पर कौनसा स्क्रीन दिखेगा</string>
     <string name="pref_back_button_opens_drawer">बैक बटन ड्रायर खोलेगा</string>
     <string name="pref_back_button_opens_drawer_summary">डिफॉल्ट पेज पर बैक बटन दबाने पर नेविगेशन दराज़ खुलेगा</string>
     <string name="remember_last_page">आखिरी पेज याद रखें</string>
@@ -421,15 +421,15 @@
     <string name="pref_new_episodes_action_sum">नए एपिसोड के लिए क्या करें</string>
     <!--About screen-->
   <string name="about_pref">हमारे बारे में</string>
-    <string name="antennapod_version">AntennaPod वर्ज़न</string>
+    <string name="xmrpod_version">XMRPod वर्ज़न</string>
     <string name="contributors">मदद करनेवाले दोस्त</string>
-    <string name="contributors_summary">हर कोई AntennaPod को बेहतर करने में मदद कर सकता हैं - कोड करके, अनुवाद करके, या फॉरम पर दूसरे लोगों की मदद करके</string>
+    <string name="contributors_summary">हर कोई XMRPod को बेहतर करने में मदद कर सकता हैं - कोड करके, अनुवाद करके, या फॉरम पर दूसरे लोगों की मदद करके</string>
     <string name="developers">डेवलपर</string>
     <string name="translators">अनुवादक</string>
     <string name="special_thanks">स्पेशल थैंक्स</string>
     <string name="privacy_policy">निजता नीति</string>
     <string name="licenses">लाइसेंस</string>
-    <string name="licenses_summary">AntennaPod कई लाजवाब सॉफ्टवेयर का इस्तेमाल करता है</string>
+    <string name="licenses_summary">XMRPod कई लाजवाब सॉफ्टवेयर का इस्तेमाल करता है</string>
     <!--Search-->
   <string name="search_status_no_results">कोई नतीजा नहीं मिला</string>
     <string name="type_to_search">खोजने के लिए सवाल लिखें</string>
@@ -452,8 +452,8 @@
     <string name="html_export_summary">अपने सब्सक्रिप्शन दोस्त को दिखाएं</string>
     <string name="opml_export_summary">अपनी सब्सक्रिप्शन को दूसरे पॉडकास्ट ऐप में ट्रांस्फर करें</string>
     <string name="opml_import_summary">अपनी सब्सक्रिप्शन को दूसरे पॉडकास्ट ऐप से लाएं</string>
-    <string name="database_export_summary">सब्सक्रिप्शन, सुने गए एपिसोड, और कतार को किसी दूसरे डिवाइस के AntennaPod में ट्रांस्फर करें</string>
-    <string name="database_import_summary">दूसरे डिवाइस से AntennaPod डाटाबेस लाएं</string>
+    <string name="database_export_summary">सब्सक्रिप्शन, सुने गए एपिसोड, और कतार को किसी दूसरे डिवाइस के XMRPod में ट्रांस्फर करें</string>
+    <string name="database_import_summary">दूसरे डिवाइस से XMRPod डाटाबेस लाएं</string>
     <string name="opml_import_label">OPML आयात</string>
     <string name="opml_add_podcast_label">पॉडकास्ट लिस्ट (OPML) आयात करें</string>
     <string name="opml_import_error_no_file">कोई फाइल नहीं चुना गया!</string>
@@ -469,8 +469,8 @@
     <string name="export_success_title">निर्यात हो गया</string>
     <string name="opml_import_ask_read_permission">OPML फाइल पढ़ने के लिए एक्सटर्नल स्टोरेज का एक्सेस चाहिए</string>
     <string name="successful_import_label">आयात हो गया</string>
-    <string name="import_ok">AntennaPod बंद करके वापस ऑन करने के लिए ठीक है दबाएं</string>
-    <string name="import_no_downgrade">इस डाटाबेस को AntennaPod के एक नए वर्ज़न ने निर्यात किया था। आपका वर्ज़न इस फाइल को इस्तेमाल नहीं कर सकता।</string>
+    <string name="import_ok">XMRPod बंद करके वापस ऑन करने के लिए ठीक है दबाएं</string>
+    <string name="import_no_downgrade">इस डाटाबेस को XMRPod के एक नए वर्ज़न ने निर्यात किया था। आपका वर्ज़न इस फाइल को इस्तेमाल नहीं कर सकता।</string>
     <string name="favorites_export_label">मनपसंद का निर्यात</string>
     <string name="favorites_export_summary">सेव किए गए मनपसंद को फाइल में निर्यात करें</string>
     <!--Sleep timer-->
@@ -497,7 +497,7 @@
     <string name="synchronization_host_explanation">अपने पसंद के सर्वर के साथ सिंक करें। जब मनपसंद सिंक सर्वर मिल जाए, तब उसका पता यहां डालें।</string>
     <string name="synchronization_host_label">सर्वर पता</string>
     <string name="proceed_to_login_butLabel">लॉगइन करें</string>
-    <string name="synchronization_nextcloud_authenticate_browser">खुले हुए वेब ब्राउज़र से अनुमति दें और AntennaPod पर वापस आएं।</string>
+    <string name="synchronization_nextcloud_authenticate_browser">खुले हुए वेब ब्राउज़र से अनुमति दें और XMRPod पर वापस आएं।</string>
     <string name="gpodnetauth_login_butLabel">लॉगइन करें</string>
     <string name="synchronization_credentials_explanation">सिंक सर्वर के अपने खाते का क्रेडेंशियल दें।</string>
     <string name="gpodnetauth_encryption_warning">पासवर्ड और डाटा पर एन्क्रिप्शन नहीं है!</string>
@@ -506,10 +506,10 @@
     <string name="synchronization_login_butLabel">लॉगइन करें</string>
     <string name="synchronization_selectDevice_explanation">आपने सिंक सर्वर पर जो डिवाइस बनाया था वो चुनें या एक नया बनाएं।</string>
     <string name="gpodnetauth_device_name">डिवाइस नाम</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod %1$s पर</string>
+    <string name="gpodnetauth_device_name_default">XMRPod %1$s पर</string>
     <string name="gpodnetauth_existing_devices">मौजूदा डिवाइस</string>
     <string name="gpodnetauth_create_device">डिवाइस बनाएं</string>
-    <string name="gpodnetauth_finish_descr">बधाई हो! आपका gpodder.net अकाउंट अब आपके डिवाइस के साथ लिंक हो चुका हैं। अब AntennaPod आपके डिवाइस पर सब्सक्रिप्शन को अपने-आप gpodder.net अकाउंट के साथ सिंक करेगा।</string>
+    <string name="gpodnetauth_finish_descr">बधाई हो! आपका gpodder.net अकाउंट अब आपके डिवाइस के साथ लिंक हो चुका हैं। अब XMRPod आपके डिवाइस पर सब्सक्रिप्शन को अपने-आप gpodder.net अकाउंट के साथ सिंक करेगा।</string>
     <string name="pref_gpodnet_setlogin_information_title">लॉगइन जानकारी बदलें</string>
     <string name="pref_gpodnet_setlogin_information_sum">अपने gpodder.net खाते के लिए लॉगइन जानकारी बदलें।</string>
     <string name="synchronization_sync_changes_title">अभी सिंक करें</string>
@@ -580,7 +580,7 @@
     <string name="local_folder">लोकल फोल्डर</string>
     <string name="reconnect_local_folder">लोकल फोल्डर से वापस जुड़ें</string>
     <string name="reconnect_local_folder_warning">अनुमित ना मिलने पर, इसका इस्तेमाल उसी फोल्डर से वापस जुड़ने के लिए किया जा सकता है। दूसरा फोल्डर ना चुनें।</string>
-    <string name="local_feed_description">ये वर्चुअल पॉडकास्ट AntennaPod में एक फोल्डर जोड़कर बनाया गया था।</string>
+    <string name="local_feed_description">ये वर्चुअल पॉडकास्ट XMRPod में एक फोल्डर जोड़कर बनाया गया था।</string>
     <string name="unable_to_start_system_file_manager">सिस्टम फाइल मैनेजर शुरू नहीं कर सके</string>
     <string name="filter">फिल्टर करें</string>
     <string name="hide_is_favorite_label">मनपसंद है</string>
@@ -724,11 +724,11 @@
     <string name="transcript_follow_audio_label">ऑडियो फॉलो करें</string>
     <string name="no_transcript_label">कोई ट्रांस्क्रिप्ट नहीं</string>
     <string name="visit_social_interact_label">कमेंट दिखाएं</string>
-    <string name="visit_social_interact_confirm_dialog_title">आप AntennaPod से बाहर जा रहे हैं</string>
+    <string name="visit_social_interact_confirm_dialog_title">आप XMRPod से बाहर जा रहे हैं</string>
     <string name="visit_social_interact_confirm_dialog_message">ध्यान रखें कि आप वेबसाइट \"%1$s\" पर भरोसा करते हैं या नहीं।</string>
     <string name="reset_playback_position_label">प्लेबैक पोज़ीशन रिसेट करें</string>
     <string name="no_items_selected_message">कोई आइटम नहीं चुना गया</string>
-    <string name="delete_local_feed_confirmation_dialog_message">मिटाने से एपिसोड AntennaPod से हटा दिया जाता है और डिवाइस स्टोरेज से मिटा दिया जाता है। उसको फिर वापस AntennaPod से डाउनलोड नहीं किया जा सकता।</string>
+    <string name="delete_local_feed_confirmation_dialog_message">मिटाने से एपिसोड XMRPod से हटा दिया जाता है और डिवाइस स्टोरेज से मिटा दिया जाता है। उसको फिर वापस XMRPod से डाउनलोड नहीं किया जा सकता।</string>
     <string name="download_log_details_human_readable_reason_title">स्टेटस</string>
     <string name="download_log_details_technical_reason_title">तकनीकी जानकारी</string>
     <string name="download_log_details_file_url_title">फाइल URL</string>
@@ -788,7 +788,7 @@
     <string name="pref_global_default_episode_list_sort_order_title">डिफॉल्ट सॉर्ट ऑर्डर</string>
     <string name="pref_global_default_episode_list_sort_order_sum">पॉडकास्ट स्क्रीन पर एपिसोड के लिए डिफॉल्ट ऑर्डर चुनें</string>
     <string name="report_bug_title">बग रिपोर्ट करें</string>
-    <string name="report_bug_message">ये सुनकर बुरा लगा कि आपको दिक्कत का सामना करना पर रहा हैं। अगर आप हमें AntennaPod बेहतर करने में मदद करेंगे तो हमें खुशी होगी। हमारा फॉरम चेक करें या GitHub पर देखें कि दिक्कत रिपोर्ट कि गई हैं या नहीं।</string>
+    <string name="report_bug_message">ये सुनकर बुरा लगा कि आपको दिक्कत का सामना करना पर रहा हैं। अगर आप हमें XMRPod बेहतर करने में मदद करेंगे तो हमें खुशी होगी। हमारा फॉरम चेक करें या GitHub पर देखें कि दिक्कत रिपोर्ट कि गई हैं या नहीं।</string>
     <string name="report_bug_device_info_title">डिवाइस</string>
     <string name="report_bug_attrib_app_version">ऐप वर्ज़न</string>
     <string name="report_bug_attrib_android_version">Android वर्ज़न</string>
@@ -800,7 +800,7 @@
     <string name="sync_status_wait_for_downloads">सब्सक्रिप्शन रिफ्रेश करने का इंतज़ार कर रहे…</string>
     <string name="opml_reader_error">फाइल पढ़ते वक्त गड़बड़ हुई। देखें कि आपने OPML फाइल ही चुना हैं या और कि फाइल सही हैं या नहीं।</string>
     <string name="automatic_database_export_label">ऑटोमैटिक डाटाबेस निर्यात</string>
-    <string name="automatic_database_export_summary">हर 3 दिन में AntennaPod डाटाबेस का बैकअप लें। लेटेस्ट 5 बैकअप रखे जाएंगे।</string>
+    <string name="automatic_database_export_summary">हर 3 दिन में XMRPod डाटाबेस का बैकअप लें। लेटेस्ट 5 बैकअप रखे जाएंगे।</string>
     <string name="automatic_database_export_error">ऑटोमैटिक डाटाबेस बैकअप में गड़बड़</string>
     <string name="sleep_timer_episodes_label">एपिसोड</string>
     <string name="sleep_timer_without_continuous_playback">लगातार प्लेबैक बंद करें</string>
@@ -833,12 +833,12 @@
     </plurals>
     <string name="auto_enable_label_with_times">%1$s से %2$s के बीच में प्ले बटन दबाने पर अपने-आप नींद घड़ी ऑन करें</string>
     <string name="nextcloud_login_error_generic">आपके Nextcloud में लॉगइन नहीं कर पा रहे\n\n- अपना इंटरनेट कनेक्शन देखें।\n- देखें कि आप सही सर्वर सर्टिफिकेट इस्तेमाल कर रहे हैं या नहीं।\n- देखें कि आपने Gpodder Sync का Nextcloud प्लगइन इंस्टाल किया हैं या नहीं।</string>
-    <string name="choose_data_directory_message">अपने डाटा फोल्डर का बेस चुनें। AntennaPod ज़रूरी सबफोल्डर बना देगा।</string>
+    <string name="choose_data_directory_message">अपने डाटा फोल्डर का बेस चुनें। XMRPod ज़रूरी सबफोल्डर बना देगा।</string>
     <string name="rating_tagline">%1$s से, आपने %2$s%3$d%4$s घंटे पॉडकास्ट सुना हैं।</string>
     <string name="rating_contribute_label">जुड़ना चाहते हैं? चाहे आपको अनुवाद करना है, सपोर्ट देना है, डिज़ाइन बनाना है, या कोड करना है, हमें हर तरह से खुशी होगी!</string>
     <string name="rating_contribute_button">मदद करने के तरीके देखें</string>
-    <string name="rating_volunteers_label">AntennaPod को आपके जैसे लोग अपने फ्री टाइम में बनाते है। अगर आपको ऐप अच्छा लगा तो हमको एक अच्छी रेटिंग देकर थैंक्स बोलें।</string>
-    <string name="rating_rate">AntennaPod को रेटिंग दें</string>
+    <string name="rating_volunteers_label">XMRPod को आपके जैसे लोग अपने फ्री टाइम में बनाते है। अगर आपको ऐप अच्छा लगा तो हमको एक अच्छी रेटिंग देकर थैंक्स बोलें।</string>
+    <string name="rating_rate">XMRPod को रेटिंग दें</string>
     <string name="rating_later">बाद में</string>
     <string name="preview_episodes">एपिसोड प्रीव्यू</string>
     <string name="state_deleted_not_subscribed">आपने इस पॉडकास्ट को अभी तक सब्सक्राइब नहीं किया हैं। फ्री में सब्सक्राइब करके इसकी प्लेबैक इतिहास सेव करें और आसानी से एक्सेस करें।</string>
@@ -927,5 +927,5 @@
     <string name="echo_thanks_we_are_glad_new">इस साल हमारे साथ रहने के लिए!\n\nचाहे आप किसी दूसरे ऐप से इधर आए हो, या फिर आपने अपना पॉडकास्ट का सफर हमारे साथ शुरू किया हुआ हो: हम हर तरह से आपको यहां देखकर खुश हैं!</string>
     <string name="echo_thanks_now_favorite">चलो, अब आपके मनपसंद पॉडकास्ट देखते है…</string>
     <string name="echo_share_heading">मेरे मनपसंद पॉडकास्ट</string>
-    <string name="echo_share">पॉडकास्ट में मेरा %d। #AntennaPodEcho</string>
+    <string name="echo_share">पॉडकास्ट में मेरा %d। #XMRPodEcho</string>
 </resources>

@@ -47,7 +47,7 @@
     <string name="home_continue_title">Luister verder</string>
     <string name="home_new_title">Bekijk wat er nieuw is</string>
     <string name="home_downloads_title">Downloads beheren</string>
-    <string name="home_welcome_title">Welkom bij AntennaPod!</string>
+    <string name="home_welcome_title">Welkom bij XMRPod!</string>
     <string name="home_welcome_text">Je bent nog niet geabonneerd op een podcast. Open het menu om er een toe te voegen.</string>
     <string name="notification_permission_denied">Toestemming geweigerd.</string>
     <string name="configure_home">Startscherm instellen</string>
@@ -227,10 +227,10 @@
     <string name="download_log_title_unknown">Onbekende titel</string>
     <string name="download_type_feed">Feed</string>
     <string name="download_type_media">Mediabestand</string>
-    <string name="no_feed_url_podcast_found_by_search">De voorgestelde podcast bevat geen RSS link, Antennapod vond mogelijk een alternatief</string>
+    <string name="no_feed_url_podcast_found_by_search">De voorgestelde podcast bevat geen RSS link, XMRPod vond mogelijk een alternatief</string>
     <string name="authentication_notification_title">Authenticatie vereist</string>
     <string name="confirm_mobile_download_dialog_title">Bevestig downloaden via mobiel internet</string>
-    <string name="confirm_mobile_download_dialog_message">Downloaden via mobiel internet is uitgeschakeld in de instellingen. AntennaPod kan de aflevering later downloaden is Wi-Fi beschikbaar is.</string>
+    <string name="confirm_mobile_download_dialog_message">Downloaden via mobiel internet is uitgeschakeld in de instellingen. XMRPod kan de aflevering later downloaden is Wi-Fi beschikbaar is.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- Gebruik je een VPN? Je VPN-app doet zich voor als een mobiel netwerk (betaalde verbinding). Neem contact op met de makers van je VPN-app om ze te vragen dit op te lossen.\n- Gebruik je geen VPN? Pas dan de Wifi-instellingen van Android aan om je netwerk niet meer als betaald te behandelen.</string>
     <string name="confirm_mobile_download_dialog_download_later">Later downloaden</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">Toch downloaden</string>
@@ -241,7 +241,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">Het mediabestand kon niet worden afgespeeld.\n\n- Probeer de aflevering te verwijderen en opnieuw te downloaden.\n- Controleer je netwerkverbinding en zorg dat geen VPN of inlogpagina je toegang blokkeert.\n- Probeer lang te drukken en het \"Media-adres\" naar je webbrowser te delen om te zien of het daar afgespeeld kan worden. Zo niet, neem contact op met de podcastmakers.</string>
     <string name="no_media_playing_label">Er wordt geen media afgespeeld</string>
-    <string name="unknown_media_key">AntennaPod - onbekende mediasleutel: %1$d</string>
+    <string name="unknown_media_key">XMRPod - onbekende mediasleutel: %1$d</string>
     <string name="error_file_not_found">Bestand niet aangetroffen</string>
     <string name="no_media_label">Het item bevat geen mediabestand</string>
     <!--Queue operations-->
@@ -312,7 +312,7 @@
     <string name="pref_followQueue_sum">Als afspelen is voltooid naar volgend item in de wachtrij gaan</string>
     <string name="pref_auto_local_delete_title">Automatisch verwijderen uit lokale mappen</string>
     <string name="pref_auto_local_delete_sum">Lokale mappen meenemen bij automatisch verwijderen</string>
-    <string name="pref_auto_local_delete_dialog_body">Let op: voor lokale mappen zal dit de afleveringen uit AntennaPod verwijderen en de bijbehorende bestanden van uw apparaat verwijderen. Ze kunnen niet opnieuw gedownload worden met AntennaPod. Automatisch verwijderen aanzetten?</string>
+    <string name="pref_auto_local_delete_dialog_body">Let op: voor lokale mappen zal dit de afleveringen uit XMRPod verwijderen en de bijbehorende bestanden van uw apparaat verwijderen. Ze kunnen niet opnieuw gedownload worden met XMRPod. Automatisch verwijderen aanzetten?</string>
     <string name="pref_smart_mark_as_played_sum">Afleveringen als afgespeeld markeren als ze hooguit een hier nog op te geven aantal seconden duren</string>
     <string name="pref_smart_mark_as_played_title">Slim markeren als afgespeeld</string>
     <string name="pref_skip_keeps_episodes_sum">Bewaar afleveringen wanneer ze worden overgeslagen</string>
@@ -324,7 +324,7 @@
     <string name="downloads_pref">Downloads</string>
     <string name="downloads_pref_sum">Update-interval, Mobiele data, Automatisch downloaden, Automatisch verwijderen</string>
     <string name="feed_refresh_title">Podcasts verversen</string>
-    <string name="feed_refresh_sum">Geef een interval waarop AntennaPod automatisch naar nieuwe afleveringen zoekt</string>
+    <string name="feed_refresh_sum">Geef een interval waarop XMRPod automatisch naar nieuwe afleveringen zoekt</string>
     <string name="feed_refresh_never">Nooit</string>
     <string name="feed_every_hour">Elk uur</string>
     <string name="feed_every_2_hours">Elke 2 uur</string>
@@ -402,7 +402,7 @@
     <string name="pref_skip_silence_title">Stiltes in audio overslaan</string>
     <string name="behavior">Gedrag</string>
     <string name="pref_default_page">Standaardpagina</string>
-    <string name="pref_default_page_sum">Scherm dat wordt geopend na het starten van AntennaPod</string>
+    <string name="pref_default_page_sum">Scherm dat wordt geopend na het starten van XMRPod</string>
     <string name="pref_back_button_opens_drawer">Terugknop opent het menu</string>
     <string name="pref_back_button_opens_drawer_summary">De terugknop klikken op de standaardpagina opent het navigatie-menu</string>
     <string name="remember_last_page">Vorige pagina onthouden</string>
@@ -420,16 +420,16 @@
     <string name="pref_new_episodes_action_title">Actie nieuwe aflevering</string>
     <string name="pref_new_episodes_action_sum">Actie om te nemen bij nieuwe afleveringen</string>
     <!--About screen-->
-  <string name="about_pref">Over AntennaPod</string>
-    <string name="antennapod_version">AntennaPod-versie</string>
+  <string name="about_pref">Over XMRPod</string>
+    <string name="xmrpod_version">XMRPod-versie</string>
     <string name="contributors">Bijdragers</string>
-    <string name="contributors_summary">Iedereen kan helpen AntennaPod te verbeteren middels programmeren, vertalen of het helpen van gebruikers op het forum</string>
+    <string name="contributors_summary">Iedereen kan helpen XMRPod te verbeteren middels programmeren, vertalen of het helpen van gebruikers op het forum</string>
     <string name="developers">Ontwikkelaars</string>
     <string name="translators">Vertalers</string>
     <string name="special_thanks">Met dank aan</string>
     <string name="privacy_policy">Privacybeleid</string>
     <string name="licenses">Licenties</string>
-    <string name="licenses_summary">AntennaPod maakt gebruik van andere geweldige software</string>
+    <string name="licenses_summary">XMRPod maakt gebruik van andere geweldige software</string>
     <!--Search-->
   <string name="search_status_no_results">Er zijn geen resultaten gevonden</string>
     <string name="type_to_search">Typ een zoekopdracht</string>
@@ -452,8 +452,8 @@
     <string name="html_export_summary">Abonnementen delen met een ander</string>
     <string name="opml_export_summary">Abonnementen overzetten naar een andere podcast-app</string>
     <string name="opml_import_summary">Abonnementen importeren uit andere podcast-app</string>
-    <string name="database_export_summary">Abonnementen, beluisterde afleveringen en wachtrij overzetten naar AntennaPod op een ander toestel</string>
-    <string name="database_import_summary">AntennaPod database van een ander toestel importeren</string>
+    <string name="database_export_summary">Abonnementen, beluisterde afleveringen en wachtrij overzetten naar XMRPod op een ander toestel</string>
+    <string name="database_import_summary">XMRPod database van een ander toestel importeren</string>
     <string name="opml_import_label">OPML importeren</string>
     <string name="opml_add_podcast_label">Podcastlijst (opml) importeren</string>
     <string name="opml_reader_error">Er is een fout opgetreden tijdens het uitlezen. Controleer of je een opml-bestand hebt gekozen en dat het bestand werkt.</string>
@@ -464,7 +464,7 @@
     <string name="html_export_label">HTML exporteren</string>
     <string name="database_export_label">Database exporteren</string>
     <string name="automatic_database_export_label">Databank automatisch exporteren</string>
-    <string name="automatic_database_export_summary">Maak elke 3 dagen automatisch een reservekopie van de AntennaPod-databank. Let op: alleen de recentste 5 worden bewaard.</string>
+    <string name="automatic_database_export_summary">Maak elke 3 dagen automatisch een reservekopie van de XMRPod-databank. Let op: alleen de recentste 5 worden bewaard.</string>
     <string name="automatic_database_export_error">De databank kan niet worden geëxporteerd</string>
     <string name="database_import_label">Database importeren</string>
     <string name="database_import_warning">Bij het importeren van een database worden alle huidige abonnementen en de afspeelgeschiedenis vervangen. Exporteer ter back-up de huidige database. Doorgaan?</string>
@@ -473,8 +473,8 @@
     <string name="export_success_title">Geëxporteerd</string>
     <string name="opml_import_ask_read_permission">Toegang tot externe locaties is nodig om het OPML-bestand te kunnen lezen</string>
     <string name="successful_import_label">Importeren voltooid</string>
-    <string name="import_ok">Druk op \'OK\' om AntennaPod opnieuw te starten</string>
-    <string name="import_no_downgrade">Deze database is geëxporteerd door een nieuwere versie van Antennapod. De huidige versie weet nog niet hoe daar mee om te gaan.</string>
+    <string name="import_ok">Druk op \'OK\' om XMRPod opnieuw te starten</string>
+    <string name="import_no_downgrade">Deze database is geëxporteerd door een nieuwere versie van XMRPod. De huidige versie weet nog niet hoe daar mee om te gaan.</string>
     <string name="favorites_export_label">Favorieten exporteren</string>
     <string name="favorites_export_summary">Exporteer opgeslagen favorieten naar een bestand</string>
     <!--Sleep timer-->
@@ -497,12 +497,12 @@
   <string name="synchronization_choose_title">Kies een synchronisatiedienst</string>
     <string name="synchronization_summary_unchoosen">Er is keuze uit meerdere aanbieders om de abonnementen en aflevering-stand mee te synchroniseren</string>
     <string name="dialog_choose_sync_service_title">Kies een synchronisatiedienst</string>
-    <string name="gpodnet_description">Gpodder.net is een opensource-podcastsynchronisatiedienst die je op je eigen server kunt installeren. Let op: Gpodder.net is niet verbonden aan het AntennaPod-project.</string>
-    <string name="synchronization_summary_nextcloud">Gpodder Sync kan als open source Nextcloud-app op een eigen server geïnstalleerd worden. Gpodder Sync is niet betrokken bij het AntennaPod-project.</string>
+    <string name="gpodnet_description">Gpodder.net is een opensource-podcastsynchronisatiedienst die je op je eigen server kunt installeren. Let op: Gpodder.net is niet verbonden aan het XMRPod-project.</string>
+    <string name="synchronization_summary_nextcloud">Gpodder Sync kan als open source Nextcloud-app op een eigen server geïnstalleerd worden. Gpodder Sync is niet betrokken bij het XMRPod-project.</string>
     <string name="synchronization_host_explanation">Je kunt je eigen synchronisatieserver kiezen. Als je voorkeur voor een bepaalde server hebt, voer dan hier het adres ervan in.</string>
     <string name="synchronization_host_label">Serveradres</string>
     <string name="proceed_to_login_butLabel">Doorgaan met inloggen</string>
-    <string name="synchronization_nextcloud_authenticate_browser">Verleen toegang in de geopende webbrowser en keer terug naar AntennaPod.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">Verleen toegang in de geopende webbrowser en keer terug naar XMRPod.</string>
     <string name="gpodnetauth_login_butLabel">Inloggen</string>
     <string name="synchronization_credentials_explanation">Voer de inloggegevens van je serveraccount in.</string>
     <string name="gpodnetauth_encryption_warning">Het wachtwoord en de gegevens zijn onversleuteld!</string>
@@ -511,10 +511,10 @@
     <string name="synchronization_login_butLabel">Inloggen</string>
     <string name="synchronization_selectDevice_explanation">Kies het op de server toegevoegde apparaat of voeg een nieuw apparaat toe.</string>
     <string name="gpodnetauth_device_name">Toestelnaam</string>
-    <string name="gpodnetauth_device_name_default">AntennaPod op %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod op %1$s</string>
     <string name="gpodnetauth_existing_devices">Bestaande toestellen</string>
     <string name="gpodnetauth_create_device">Toestel toevoegen</string>
-    <string name="gpodnetauth_finish_descr">Gefeliciteerd! Je gpodder.net-account is nu gekoppeld met dit apparaat. AntennaPod synchroniseert voortaan de abonnementen op dit apparaat automatisch met je gpodder.net-account.</string>
+    <string name="gpodnetauth_finish_descr">Gefeliciteerd! Je gpodder.net-account is nu gekoppeld met dit apparaat. XMRPod synchroniseert voortaan de abonnementen op dit apparaat automatisch met je gpodder.net-account.</string>
     <string name="pref_gpodnet_setlogin_information_title">Inloggegevens wijzigen</string>
     <string name="pref_gpodnet_setlogin_information_sum">Wijzig de inloggegevens van je gpodder.net-account.</string>
     <string name="synchronization_sync_changes_title">Nu synchroniseren</string>
@@ -536,7 +536,7 @@
   <string name="rating_tagline">Sinds %1$s heb je %2$s%3$d%4$s uur aan podcasts afgespeeld.</string>
     <string name="rating_contribute_label">Wil je helpen? Of je nu wilt vertalen, ondersteunen, ontwerpen of programmeren, we zijn blij met alle bijdragen!</string>
     <string name="rating_contribute_button">Ontdek manieren om bij te dragen</string>
-    <string name="rating_rate">Review AntennaPod</string>
+    <string name="rating_rate">Review XMRPod</string>
     <string name="rating_later">Later</string>
     <!--Online feed view-->
   <string name="subscribe_label">Abonneren</string>
@@ -608,7 +608,7 @@
     <string name="local_folder">Lokale map</string>
     <string name="reconnect_local_folder">Lokale map opnieuw koppelen</string>
     <string name="reconnect_local_folder_warning">Als je geen rechten hebt, gebruik dan dit om de map opnieuw te koppelen. Kies geen andere map.</string>
-    <string name="local_feed_description">De virtuele podcast is aangemaakt door een aan AntennaPod toegevoegde map.</string>
+    <string name="local_feed_description">De virtuele podcast is aangemaakt door een aan XMRPod toegevoegde map.</string>
     <string name="unable_to_start_system_file_manager">Kan systeembestandsbeheer niet openen</string>
     <string name="filter">Filter</string>
     <string name="hide_is_favorite_label">Gemarkeerd als favoriet</string>
@@ -742,8 +742,8 @@
         <item quantity="other">%d dagen</item>
     </plurals>
     <string name="nextcloud_login_error_generic">Kan niet inloggen in je Nextcloud.\n\n- Check je netwerkverbinding.\n- Controleer dat je het juiste server adres gebruikt.\n- Zorg dat de Gpodder Sync Nextcloud plugin is geïnstalleerd.</string>
-    <string name="choose_data_directory_message">Kies de basis van je data-map. AntennaPod zal de passende submappen aanmaken.</string>
-    <string name="rating_volunteers_label">AntennaPod wordt door vrijwilligers ontwikkeld, in hun vrije tijd. Deel je waardering van hun werk door een mooie beoordeling achter te laten.</string>
+    <string name="choose_data_directory_message">Kies de basis van je data-map. XMRPod zal de passende submappen aanmaken.</string>
+    <string name="rating_volunteers_label">XMRPod wordt door vrijwilligers ontwikkeld, in hun vrije tijd. Deel je waardering van hun werk door een mooie beoordeling achter te laten.</string>
     <string name="state_deleted_not_subscribed">Je bent nog niet geabonneerd op deze podcast. Abonneer je gratis om er makkelijker toegang toe te krijgen en afspeelgeschiedenis bij te houden.</string>
     <string name="download_started_talkback">Download gestart voor %1$s</string>
     <string name="statistics_episodes_space">ingenomen opslagruimte</string>
@@ -788,7 +788,7 @@
     <string name="echo_thanks_large">Bedankt</string>
     <string name="echo_thanks_now_favorite">Laten we nu eens kijken naar je favoriete podcasts…</string>
     <string name="echo_share_heading">Mijn favoriete podcasts</string>
-    <string name="echo_share">Mijn %d in podcasts. #AntennaPodEcho</string>
+    <string name="echo_share">Mijn %d in podcasts. #XMRPodEcho</string>
     <string name="downloads_label_short">Downloads</string>
     <string name="delete_tag_confirmation">Bevestig dat je het label \"%1$s\" wilt verwijderen.</string>
     <string name="echo_home_subtitle">Jouw top-podcasts en statistieken uit het afgelopen jaar. Exclusief op jouw telefoon.</string>
@@ -844,7 +844,7 @@
         <item quantity="other">%d afleveringen verwijderd uit de wachtrij.</item>
     </plurals>
     <string name="transcript_follow_audio_label">Volg audio</string>
-    <string name="visit_social_interact_confirm_dialog_title">Je verlaat AntennaPod</string>
+    <string name="visit_social_interact_confirm_dialog_title">Je verlaat XMRPod</string>
     <string name="visit_social_interact_confirm_dialog_message">Let op of je de website \"%1$s\" vertrouwd.</string>
     <string name="reset_playback_position_label">Herstel afspeelpositie</string>
     <string name="no_items_selected_message">Geen items geselecteerd</string>
@@ -858,7 +858,7 @@
     </plurals>
     <string name="no_queue_items_inbox_has_items_label">Geen afleveringen in de wachtrij, maar er staan nieuwe afleveringen in Postvak IN!</string>
     <string name="no_queue_items_inbox_has_items_button_label">Ga naar Postvak IN</string>
-    <string name="delete_local_feed_confirmation_dialog_message">Dit verwijdert de aflevering uit AntennaPod en verwijdert de mediabestanden van de opslag op je apparaat. Het kan niet opnieuw gedownload worden via AntennaPod.</string>
+    <string name="delete_local_feed_confirmation_dialog_message">Dit verwijdert de aflevering uit XMRPod en verwijdert de mediabestanden van de opslag op je apparaat. Het kan niet opnieuw gedownload worden via XMRPod.</string>
     <string name="please_wait_before_refreshing">Wacht even voordat je de podcasts weer ververst.</string>
     <string name="already_downloaded">Aflevering is al gedownload</string>
     <string name="tag_all">Alles</string>
