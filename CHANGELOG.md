@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.11] - 2026-08-08
+
+### Fixed
+
+- Enforce the 255-character limit for XMRChat tip messages.
+
 ## [0.1.10] - 2026-08-08
 
 ### Added
