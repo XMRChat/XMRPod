@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true">
         <activity
-            android:label="@string/antennapod_echo"
+            android:label="@string/xmrpod_echo"
             android:name=".EchoActivity"
             android:exported="false"
             android:theme="@style/Theme.AntennaPod.Dark.NoTitle">

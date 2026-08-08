@@ -15,7 +15,7 @@
 
     <item
         android:id="@+id/show_echo"
-        android:title="@string/antennapod_echo"
+        android:title="@string/xmrpod_echo"
         custom:showAsAction="never"
         android:visible="false" />
 
