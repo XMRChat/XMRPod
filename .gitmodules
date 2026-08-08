@@ -1,5 +1,0 @@
-[submodule "store-metadata"]
-	path = store-metadata
-	url = https://github.com/AntennaPod/StoreMetadata.git
-	branch = main
-	shallow = true
