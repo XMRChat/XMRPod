@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.10] - 2026-08-08
+
+### Added
+
+- Add a compact XMRChat page link icon to the tipping modal.
+
 ## [0.1.9] - 2026-08-08
 
 ### Changed
