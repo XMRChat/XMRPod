@@ -6,7 +6,7 @@
             android:layout="@layout/about_teaser"/>
     <Preference
             android:key="about_version"
-            android:title="@string/antennapod_version"
+            android:title="@string/xmrpod_version"
             android:icon="@drawable/ic_star"
             android:summary="1.7.2 (asd8qs)"/>
     <Preference

@@ -31,7 +31,7 @@ public class EchoSection extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewBinding = HomeSectionEchoBinding.inflate(inflater);
-        viewBinding.titleLabel.setText(getString(R.string.antennapod_echo_year, EchoConfig.RELEASE_YEAR));
+        viewBinding.titleLabel.setText(getString(R.string.xmrpod_echo_year, EchoConfig.RELEASE_YEAR));
         viewBinding.echoButton.setOnClickListener(v -> startActivity(new Intent(getContext(), EchoActivity.class)));
         viewBinding.closeButton.setOnClickListener(v -> hideThisYear());
         updateVisibility();

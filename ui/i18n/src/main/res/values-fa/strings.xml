@@ -47,7 +47,7 @@
     <string name="home_continue_title">ادامه گوش کردن</string>
     <string name="home_new_title">ببینید چه مواردی جدید است</string>
     <string name="home_downloads_title">مدیریت موارد بارگرفته</string>
-    <string name="home_welcome_title">به آنتناپاد خوش‌آمدید!</string>
+    <string name="home_welcome_title">به XMRPod خوش‌آمدید!</string>
     <string name="home_welcome_text">هنوز مشترک پادپخشی نشده‌اید. گشودن فهرست برای افزودن پادپخش.</string>
     <string name="notification_permission_denied">اجازه را رد کردید.</string>
     <string name="configure_home">پیکربندی صفحهٔ اصلی</string>
@@ -227,10 +227,10 @@
     <string name="download_log_title_unknown">عنوان نامعلوم</string>
     <string name="download_type_feed">خوراک</string>
     <string name="download_type_media">پروندهٔ رسانه</string>
-    <string name="no_feed_url_podcast_found_by_search">پادپخش پیشنهادی پیوند RSS نداشت. آنتناپاد پادپخشی یافته که شاید مطابق باشد</string>
+    <string name="no_feed_url_podcast_found_by_search">پادپخش پیشنهادی پیوند RSS نداشت. XMRPod پادپخشی یافته که شاید مطابق باشد</string>
     <string name="authentication_notification_title">هویت‌سنجی مورد نیاز است</string>
     <string name="confirm_mobile_download_dialog_title">تأیید بارگیری همراه</string>
-    <string name="confirm_mobile_download_dialog_message">بارگیری روی دادهٔ همراه در تنظیمات از کار افتاده. آنتناپاد می‌تواند قسمت را بعداً که وای‌فای موجود بود به صورت خودکار بارگیری کند.</string>
+    <string name="confirm_mobile_download_dialog_message">بارگیری روی دادهٔ همراه در تنظیمات از کار افتاده. XMRPod می‌تواند قسمت را بعداً که وای‌فای موجود بود به صورت خودکار بارگیری کند.</string>
     <string name="confirm_mobile_download_dialog_message_vpn">- از فیلترشکن استفاده می‌کنید؟ کارهٔ فیلترشکن‌تان وانمود می کند که شبکهٔ همراه(اندازه‌گیری شده) است. اگر می‌خواهید این مشکل حل شود، با سازندگان برنامه فیلترشکن‌تان تماس بگیرید.\n- از فیلترشکن استفاده نمی‌کنید؟ تنظیمات وای‌فای اندرویدتان را باز کرده و گونهٔ وای‌فایتان را به اندازه‌گیری نشده تغییر دهید.</string>
     <string name="confirm_mobile_download_dialog_download_later">بعداً بار گرفته شود</string>
     <string name="confirm_mobile_download_dialog_allow_this_time">به هر روی بار گرفته شود</string>
@@ -241,7 +241,7 @@
     <!--Mediaplayer messages-->
   <string name="playback_error_generic">پروندهٔ رسانه نتوانست پخش شود.\n\n- پاک‌کردن و بارگیری دوبارهٔ قسمت را بیازمایید.\n- اتصال شبکه‌تان را بررسی کرده و مطمئن شوید صفحهٔ ورود یا فیلترشکن دسترسی را مسدود نکرده باشد.\n- برای بررسی توانایی پخش در مرورگر وب، فشردن طولانی و هم‌رسانی «نشانی رسانه» با مرورگر وب را بیازمایید. در صورت پخش نشدن با سازندگان پادپخش تماس بگیرید.</string>
     <string name="no_media_playing_label">رسانه‌ای در حال پخش نیست</string>
-    <string name="unknown_media_key">آنتناپاد - کلید رسانه‌ای ناشناخته: %1$d</string>
+    <string name="unknown_media_key">XMRPod - کلید رسانه‌ای ناشناخته: %1$d</string>
     <string name="error_file_not_found">پرونده یافت نشد</string>
     <string name="no_media_label">مورد پروندهٔ رسانه‌ای ندارد</string>
     <!--Queue operations-->
@@ -312,7 +312,7 @@
     <string name="pref_followQueue_sum">پس از پایان پخش ، به مورد صف بعدی بروید</string>
     <string name="pref_auto_local_delete_title">پاک‌کردن خودکار از پوشه‌های محلی</string>
     <string name="pref_auto_local_delete_sum">همچنین حذف پرونده‌های افزوده با «افزودن شاخهٔ محلی». به خاطر داشته باشید که این پرونده‌ها با آنتاپاد بارگیری نشده و نمی‌توانند دوباره بارگیری شوند</string>
-    <string name="pref_auto_local_delete_dialog_body">توجه داشته باشید که برای پوشه‌های محلی، این گزینه قسمت‌ها را از آنتناپاد برمی‌دارد و پرونده‌هایشان را از حافظه دستگاه شما پاک می‌کند. طوری که آنها را نمی‌توان دوباره از آنتناپاد بارگیری کرد. آیا پاک‌کردن خودکار فعال شود؟</string>
+    <string name="pref_auto_local_delete_dialog_body">توجه داشته باشید که برای پوشه‌های محلی، این گزینه قسمت‌ها را از XMRPod برمی‌دارد و پرونده‌هایشان را از حافظه دستگاه شما پاک می‌کند. طوری که آنها را نمی‌توان دوباره از XMRPod بارگیری کرد. آیا پاک‌کردن خودکار فعال شود؟</string>
     <string name="pref_smart_mark_as_played_sum">علامت زدن قسمت‌ها به پخش شده حتا اگر کم‌تر از مقدار مشخّصی از آن مانده باشد</string>
     <string name="pref_smart_mark_as_played_title">علامت گذاری هوشمند به پخش شده</string>
     <string name="pref_skip_keeps_episodes_sum">نگه داشتن قسمت‌ها هنگام پریدن از رویشان</string>
@@ -324,7 +324,7 @@
     <string name="downloads_pref">بارگیری‌ها</string>
     <string name="downloads_pref_sum">دورهٔ بارگیری، دادهٔ همراه، بارگیری خودکار، پاک‌کردن خودکار</string>
     <string name="feed_refresh_title">نوسازی پادپخش‌ها</string>
-    <string name="feed_refresh_sum">مشخص کردن دوره برای گشتن خودکار آنتناپاد به دنبال قسمت‌های جدید</string>
+    <string name="feed_refresh_sum">مشخص کردن دوره برای گشتن خودکار XMRPod به دنبال قسمت‌های جدید</string>
     <string name="feed_refresh_never">هرگز</string>
     <string name="feed_every_hour">هر ساعت</string>
     <string name="feed_every_2_hours">هر ۲ ساعت</string>
@@ -402,7 +402,7 @@
     <string name="pref_skip_silence_title">پرش از سکوت در صدا</string>
     <string name="behavior">رفتار</string>
     <string name="pref_default_page">صفحهٔ پیش‌گزیده</string>
-    <string name="pref_default_page_sum">صفحه‌ای که هنگام راه‌اندازی آنتناپاد باز می‌شود</string>
+    <string name="pref_default_page_sum">صفحه‌ای که هنگام راه‌اندازی XMRPod باز می‌شود</string>
     <string name="pref_back_button_opens_drawer">دکمهٔ بارگشت کشو را می‌گشاید</string>
     <string name="pref_back_button_opens_drawer_summary">زدن دکمهٔ بارگگشت روی صفحهٔ پیش‌گزیده، گشوی ناوبری را می‌گشاید</string>
     <string name="remember_last_page">صفحه آخر را به خاطر بسپار</string>
@@ -421,15 +421,15 @@
     <string name="pref_new_episodes_action_sum">کنشی که برای قسمت‌های جدید انجام می‌شود</string>
     <!--About screen-->
   <string name="about_pref">درباره</string>
-    <string name="xmrpod_version">نگارش آنتناپاد</string>
+    <string name="xmrpod_version">نگارش XMRPod</string>
     <string name="contributors">همکاران</string>
-    <string name="contributors_summary">هر کس می تواند به بهتر شدن آنتناپاد کمک کند - با کد ، ترجمه یا با کمک به کاربران در انجمن ما</string>
+    <string name="contributors_summary">هر کس می تواند به بهتر شدن XMRPod کمک کند - با کد ، ترجمه یا با کمک به کاربران در انجمن ما</string>
     <string name="developers">توسعه‌دهندگان</string>
     <string name="translators">مترجمان</string>
     <string name="special_thanks">تشکر ویژه</string>
     <string name="privacy_policy">سیاست حریم شخصی</string>
     <string name="licenses">پروانه‌ها</string>
-    <string name="licenses_summary">آنتناپاد از نرم‌افزارهای عالی دیگری نیز استفاده می‌کند</string>
+    <string name="licenses_summary">XMRPod از نرم‌افزارهای عالی دیگری نیز استفاده می‌کند</string>
     <!--Search-->
   <string name="search_status_no_results">نتیجه‌ای یافت نشد</string>
     <string name="type_to_search">برای جستجو عبارت را وارد نمایید</string>
@@ -452,8 +452,8 @@
     <string name="html_export_summary">اشتراک های خود را به یک دوست نشان دهید</string>
     <string name="opml_export_summary">جابه‌جایی اشتراک‌هایتان به برنامه پادپخشی دیگر</string>
     <string name="opml_import_summary">درون‌ریزی اشتراک‌هایتان از برنامه پادپخشی دیگر</string>
-    <string name="database_export_summary">جابه‌جایی اشتراک‌ها، قسمت‌های شنیده شده و صف را به آنتناپاد در یک دستگاه دیگر ببرید</string>
-    <string name="database_import_summary">پایگاه داده آنتناپاد را از دستگاه دیگری وارد کنید</string>
+    <string name="database_export_summary">جابه‌جایی اشتراک‌ها، قسمت‌های شنیده شده و صف را به XMRPod در یک دستگاه دیگر ببرید</string>
+    <string name="database_import_summary">پایگاه داده XMRPod را از دستگاه دیگری وارد کنید</string>
     <string name="opml_import_label">وارد کردن OPML</string>
     <string name="opml_add_podcast_label">درون‌ریزی فهرست پادپخس (OPML)</string>
     <string name="opml_reader_error">هنگام خواندن پرونده خطایی رخ داده است. مطمئن شوید که واقعاً یک پرونده OPML را انتخاب کرده اید و آن پرونده درست است.</string>
@@ -464,7 +464,7 @@
     <string name="html_export_label">خارج کردن HTML</string>
     <string name="database_export_label">خارج کردن پایگاه داده</string>
     <string name="automatic_database_export_label">برون‌ریزی پایگاه دادهٔ خودکار</string>
-    <string name="automatic_database_export_summary">ساخت پشتیبانی از آنتناپاد هر ۳ روز یک بار. تنها نگه داشتن ۵ پشتیبان اخیر.</string>
+    <string name="automatic_database_export_summary">ساخت پشتیبانی از XMRPod هر ۳ روز یک بار. تنها نگه داشتن ۵ پشتیبان اخیر.</string>
     <string name="automatic_database_export_error">خطا هنگام پشتیبان گیری خودکار پایگاه داده</string>
     <string name="database_import_label">وارد کردن پایگاه داده</string>
     <string name="database_import_warning">وارد کردن یک پایگاه داده باعث جایگزینی تمام اشتراک‌های کنونی و سابقه پخش شما خواهد شد. باید پایگاه داده کنونی خود را به عنوان پشتیبان خارج کنید. آیا میخواهید جایگزین کنید؟</string>
@@ -473,8 +473,8 @@
     <string name="export_success_title">خارج کردن موفقیت آمیز</string>
     <string name="opml_import_ask_read_permission">برای خواندن پروندهٔ OPML نباز به دسترسی حافظهٔ خارجی است</string>
     <string name="successful_import_label">وارد کردن موفقیت آمیز</string>
-    <string name="import_ok">لطفاً OK را فشار دهید تا آنتناپاد دوباره آغاز شود</string>
-    <string name="import_no_downgrade">این پایگاه داده با نگارشی جدیدتر از آنتناپاد برون‌ریزی شده. نصب کنونیتان هنوز نمی‌داند که چگونه باید مدیریتش.</string>
+    <string name="import_ok">لطفاً OK را فشار دهید تا XMRPod دوباره آغاز شود</string>
+    <string name="import_no_downgrade">این پایگاه داده با نگارشی جدیدتر از XMRPod برون‌ریزی شده. نصب کنونیتان هنوز نمی‌داند که چگونه باید مدیریتش.</string>
     <string name="favorites_export_label">خارج کردن برگزیدگان</string>
     <string name="favorites_export_summary">محبوب‌های ذخیره شده در پرونده برون‌ریخته شدند</string>
     <!--Sleep timer-->
@@ -497,12 +497,12 @@
   <string name="synchronization_choose_title">گزینش فراهم‌کننده همگام سازی</string>
     <string name="synchronization_summary_unchoosen">می‌توانید چند فراهم‌کننده را برای همگام سازی اشتراک‌ها و وضعیت پخش قسمت‌هایتان برگزینید</string>
     <string name="dialog_choose_sync_service_title">گزینش فراهم‌کننده همگام سازی</string>
-    <string name="gpodnet_description">Gpodder.net خدمت همگام‌سازی پادپخش آزادی است که می‌توانید روی کارساز خودتان نصبش کنید. جی‌پادر دات نت مستقل از پروژهٔ آنتناپاد است.</string>
-    <string name="synchronization_summary_nextcloud">هم‌گام سازی جی‌پادر کارهٔ نکست‌کلودی آزادیست که می‌توانید به سادگی روی کارساز خودتان نصبش کنید. هم‌گام سازی جی‌پادر مستقل از پروژهٔ آنتناپاد است.</string>
+    <string name="gpodnet_description">Gpodder.net خدمت همگام‌سازی پادپخش آزادی است که می‌توانید روی کارساز خودتان نصبش کنید. جی‌پادر دات نت مستقل از پروژهٔ XMRPod است.</string>
+    <string name="synchronization_summary_nextcloud">هم‌گام سازی جی‌پادر کارهٔ نکست‌کلودی آزادیست که می‌توانید به سادگی روی کارساز خودتان نصبش کنید. هم‌گام سازی جی‌پادر مستقل از پروژهٔ XMRPod است.</string>
     <string name="synchronization_host_explanation">می‌توانید کارساز خودتان را برای همگام‌سازی برگزینید. لطفاً پس از مشخص کردن کارساز همگام‌سازی ترجیحیتان، نشانی‌اش را اینجا وارد کنید.</string>
     <string name="synchronization_host_label">نشانی کارساز</string>
     <string name="proceed_to_login_butLabel">برای ورود به سیستم اقدام کنید</string>
-    <string name="synchronization_nextcloud_authenticate_browser">با استفاده از مرورگر وب باز شده دسترسی بدهید و به آنتناپاد برگردید.</string>
+    <string name="synchronization_nextcloud_authenticate_browser">با استفاده از مرورگر وب باز شده دسترسی بدهید و به XMRPod برگردید.</string>
     <string name="gpodnetauth_login_butLabel">ورود</string>
     <string name="synchronization_credentials_explanation">لطفاً گواهی‌های حسابتان روی کارساز همگام‌سازی را فراهم کنید.</string>
     <string name="gpodnetauth_encryption_warning">گذرواژه و داده‌ها رمزنگاری نمی‌شوند!</string>
@@ -511,10 +511,10 @@
     <string name="synchronization_login_butLabel">وارد شدن</string>
     <string name="synchronization_selectDevice_explanation">لطفاً دستگاهی که روی کارساز همگام‌سازی ساخته‌اید را گزیده یا یکی جدید بسازید.</string>
     <string name="gpodnetauth_device_name">نام دستگاه</string>
-    <string name="gpodnetauth_device_name_default">آنتناپاد برروی %1$s</string>
+    <string name="gpodnetauth_device_name_default">XMRPod برروی %1$s</string>
     <string name="gpodnetauth_existing_devices">دستگاههای موجود</string>
     <string name="gpodnetauth_create_device">ساخت دستگاه</string>
-    <string name="gpodnetauth_finish_descr">تبریک می گویم! حساب gpodder.net شما اکنون با دستگاه شما پیوند داده شده. آنتناپاد از این پس اشتراک های دستگاه شما را با حساب gpodder.net خود به طور خودکار همگام سازی می کند.</string>
+    <string name="gpodnetauth_finish_descr">تبریک می گویم! حساب gpodder.net شما اکنون با دستگاه شما پیوند داده شده. XMRPod از این پس اشتراک های دستگاه شما را با حساب gpodder.net خود به طور خودکار همگام سازی می کند.</string>
     <string name="pref_gpodnet_setlogin_information_title">تغییر اطلاعات ورود</string>
     <string name="pref_gpodnet_setlogin_information_sum">اطلاعات ورود به سیستم حساب gpodder.net خود را تغییر دهید.</string>
     <string name="synchronization_sync_changes_title">اکنون همگام‌سازی کنید</string>
@@ -536,7 +536,7 @@
   <string name="rating_tagline">از %1$s، %2$s%3$d%4$s ساعت پادپخش پخش کرده‌اید.</string>
     <string name="rating_contribute_label">می‌خواهید بپیوندید؟ چه بخواهید ترجمه، پشتیبانی، طراحی یا کدزنی کنید از داشتن‌تان خوشحال خواهیم بود!</string>
     <string name="rating_contribute_button">کشف راه‌هایی برای مشارکت</string>
-    <string name="rating_rate">رتبه‌دهی به آنتناپاد</string>
+    <string name="rating_rate">رتبه‌دهی به XMRPod</string>
     <string name="rating_later">بعداً</string>
     <!--Online feed view-->
   <string name="subscribe_label">اشتراک</string>
@@ -608,7 +608,7 @@
     <string name="local_folder">پوشه محلی</string>
     <string name="reconnect_local_folder">اتصال دوباره پوشه محلی</string>
     <string name="reconnect_local_folder_warning">در صورت نپذیرش اجازه ، می‌توانید این را برای اتصال مجدد به همان پوشه پیشین استفاده کنید. پوشه دیگری را انتخاب نکنید.</string>
-    <string name="local_feed_description">این پادپخش مجازی با افزودن پوشه‌ای به آنتناپاد ساخته شده.</string>
+    <string name="local_feed_description">این پادپخش مجازی با افزودن پوشه‌ای به XMRPod ساخته شده.</string>
     <string name="unable_to_start_system_file_manager">ناتوان در آغاز مدیر پروندهٔ سامانه</string>
     <string name="filter">فیلتر</string>
     <string name="hide_is_favorite_label">برگزیده</string>
@@ -757,13 +757,13 @@
         <item quantity="one">بار گرفتن با دادهٔ همراه برای %d دقیقهٔ آینده</item>
         <item quantity="other">بار گرفتن با دادهٔ همراه برای %d دقیقهٔ آینده</item>
     </plurals>
-    <string name="choose_data_directory_message">لطفاً پوشه پایه داده‌تان را برگزینید. آنتناپاد زیرشاخه‌های مرتبط را خواهد ساخت.</string>
+    <string name="choose_data_directory_message">لطفاً پوشه پایه داده‌تان را برگزینید. XMRPod زیرشاخه‌های مرتبط را خواهد ساخت.</string>
     <string name="home_continue_empty_text">می‌توانید با بارگیری قسمت‌ها یا نگه داشتن طولانی رویشان و گزینش «افزودن به صف» بیفزاییدشان.</string>
     <plurals name="total_size_downloaded_podcasts">
         <item quantity="one">کل حجم %d قسمت روی دستگاه</item>
         <item quantity="other">کل حجم %d قسمت روی دستگاه</item>
     </plurals>
-    <string name="rating_volunteers_label">آنتناپاد به دست داوطلبانی در زمان آزادشان توسعه یافته. با دادن رتبه خوب از آنان قدردانی کنید.</string>
+    <string name="rating_volunteers_label">XMRPod به دست داوطلبانی در زمان آزادشان توسعه یافته. با دادن رتبه خوب از آنان قدردانی کنید.</string>
     <string name="state_deleted_not_subscribed">هنوز مشترک این پادپخش نیستید. برای دسترسی آسان‌تر و نگه‌داشتن تاریخچه پخش‌اش، رایگان مشترک شوید.</string>
     <string name="edit_url_confirmation_msg">تغییر دادن نشانی خوراک می‌تواند وضعیت پخش و فهرست کردن پادپخش را به آسانی خراب کند. تغییرش را توصیه نکرده و در صورت خراب شدن چیزی پشتیبانی ارائه نخواهیم داد. این کار بازگشت‌پذیر نیست. اشتراک‌های خراب نمی‌توانند با تغییر دوبارهٔ نشانی درست شوند. توصیه می‌کنیم پیش از ادامه، پشتیبان بگیرید.</string>
     <string name="notification_channel_refreshing">نو ساختن پادپخش‌ها</string>
@@ -855,7 +855,7 @@
     <string name="reset_playback_position_label">بازنشانی موقعیت پخش</string>
     <string name="no_items_selected_message">هیچ موردی گزیده نشده</string>
     <string name="no_queue_items_inbox_has_items_button_label">رفتن به صندوق ورودی</string>
-    <string name="visit_social_interact_confirm_dialog_title">دارید آنتناپاد را ترک می‌کنید</string>
+    <string name="visit_social_interact_confirm_dialog_title">دارید XMRPod را ترک می‌کنید</string>
     <plurals name="downloading_episodes_message">
         <item quantity="one">بارگرفتن %d قسمت.</item>
         <item quantity="other">بارگرفتن %d قسمت.</item>
@@ -924,7 +924,7 @@
         <item quantity="one">تنها %1$d قسمت در صفتان مانده</item>
         <item quantity="other">تنها %1$d قسمت در صفتان مانده</item>
     </plurals>
-    <string name="report_bug_message">متآسفیم که می‌شنویم چیزی کار نمی‌کند. سپاس از یاریتان در بهبود آنتناپاد. لطفا‌ً انجمن یا گیت‌هابمان را برای بررسی گزارش مشابه دیده و در صورت نبود به ما گزارش دهید تا بررسیش کنیم.</string>
+    <string name="report_bug_message">متآسفیم که می‌شنویم چیزی کار نمی‌کند. سپاس از یاریتان در بهبود XMRPod. لطفا‌ً انجمن یا گیت‌هابمان را برای بررسی گزارش مشابه دیده و در صورت نبود به ما گزارش دهید تا بررسیش کنیم.</string>
     <string name="sleep_timer_without_continuous_playback_message">از کار انداختن «پخش ادامه‌دار» در تنظیمات به‌جای به کار انداختن هربارهٔ زمان‌سنج خواب با یک قسمت.</string>
     <plurals name="timer_exceeds_remaining_time_while_continuous_playback_disabled">
         <item quantity="one">پخش ادامه‌دار از کار افتاده و از قسمت کنونی تنها %1$d دقیقه مانده</item>
@@ -959,7 +959,7 @@
     <string name="wearos_version" tools:ignore="UnusedResources">نگارش %s</string>
     <string name="wearos_phone_not_supported" tools:ignore="UnusedResources">تلفن سازگار نیست. مطمئن شوید جدیدترین نگارش آنتاپاد را نصب کرده‌اید.</string>
     <string name="wearos_no_items" tools:ignore="UnusedResources">بدون مورد</string>
-    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">نمی‌توان به تلفن رسید. مطمئن شوید تلفنتان نزدیک بوده و آنتناپاد نصب شده باشد.</string>
+    <string name="wearos_phone_not_reachable" tools:ignore="UnusedResources">نمی‌توان به تلفن رسید. مطمئن شوید تلفنتان نزدیک بوده و XMRPod نصب شده باشد.</string>
     <string name="wearos_play_on_phone" tools:ignore="UnusedResources">پخش روی تلفن</string>
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">مرور تلفن</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">گشودن روی تلفن</string>
