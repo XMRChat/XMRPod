@@ -114,6 +114,7 @@ public class CoverFragment extends Fragment {
     private static final String CAKE_WALLET_SCHEME = "cakewallet";
     private static final String MONERO_COM_SCHEME = "monerocom";
     private static final int XMR_AMOUNT_SCALE = 12;
+    private static final int TIP_MESSAGE_MAX_LENGTH = 255;
     private static final String TIP_SOURCE = "xmrpod";
     private CoverFragmentBinding viewBinding;
     private Disposable disposable;
@@ -381,11 +382,27 @@ public class CoverFragment extends Fragment {
 
         EditText messageInput = new EditText(requireContext());
         messageInput.setHint(R.string.tip_message_hint);
-        messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(255)});
+        messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(TIP_MESSAGE_MAX_LENGTH)});
         messageInput.setMinLines(2);
         messageInput.setMaxLines(4);
         messageInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE
                 | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        messageInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > TIP_MESSAGE_MAX_LENGTH) {
+                    s.delete(TIP_MESSAGE_MAX_LENGTH, s.length());
+                }
+            }
+        });
         layout.addView(messageInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
         LinearLayout buttons = new LinearLayout(requireContext());
@@ -425,7 +442,7 @@ public class CoverFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
                 return;
             }
-            final String message = messageInput.getText().toString().trim();
+            final String message = limitTipMessage(messageInput.getText().toString().trim());
             final TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
             openWalletButton.setEnabled(false);
             createXmrChatTip(dialog, openWalletButton, tipTarget, name, amount, message, currency, xmrUsdPrice[0]);
@@ -458,11 +475,12 @@ public class CoverFragment extends Fragment {
         Toast.makeText(getContext(), R.string.tip_creating, Toast.LENGTH_SHORT).show();
         tipDisposable = Maybe.<String>create(emitter -> {
             final String xmrAmount = getTipAmountInXmr(amount, currency, cachedXmrUsdPrice);
+            final String limitedMessage = limitTipMessage(message);
             JSONObject payload = new JSONObject();
             payload.put("path", tipTarget.xmrChatPath);
             payload.put("name", name);
-            if (!TextUtils.isEmpty(message)) {
-                payload.put("message", message);
+            if (!TextUtils.isEmpty(limitedMessage)) {
+                payload.put("message", limitedMessage);
             }
             payload.put("amount", xmrAmount);
             payload.put("private", false);
@@ -502,6 +520,13 @@ public class CoverFragment extends Fragment {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private String limitTipMessage(@NonNull String message) {
+        if (message.length() <= TIP_MESSAGE_MAX_LENGTH) {
+            return message;
+        }
+        return message.substring(0, TIP_MESSAGE_MAX_LENGTH);
     }
 
     private String getXmrChatErrorMessage(@NonNull String responseBody, int statusCode) {
