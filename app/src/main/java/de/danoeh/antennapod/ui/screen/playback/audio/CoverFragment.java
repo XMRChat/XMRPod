@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -65,6 +66,7 @@ import de.danoeh.antennapod.ui.appstartintent.MediaButtonStarter;
 import de.danoeh.antennapod.ui.appstartintent.OnlineFeedviewActivityStarter;
 import de.danoeh.antennapod.ui.chapters.ChapterUtils;
 import de.danoeh.antennapod.ui.common.IntentUtils;
+import de.danoeh.antennapod.ui.common.ThemeUtils;
 import de.danoeh.antennapod.ui.screen.chapter.ChaptersFragment;
 import de.danoeh.antennapod.playback.service.PlaybackController;
 import de.danoeh.antennapod.ui.common.DateFormatter;
@@ -298,10 +300,25 @@ public class CoverFragment extends Fragment {
         layout.setPadding(padding, padding, padding, padding);
         scrollView.addView(layout);
 
+        LinearLayout titleRow = new LinearLayout(requireContext());
+        titleRow.setGravity(android.view.Gravity.CENTER_VERTICAL);
+        titleRow.setOrientation(LinearLayout.HORIZONTAL);
+        layout.addView(titleRow, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
         TextView title = new TextView(requireContext());
         title.setText(R.string.tip_label);
         title.setTextAppearance(com.google.android.material.R.style.TextAppearance_Material3_TitleLarge);
-        layout.addView(title, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        titleRow.addView(title, new LinearLayout.LayoutParams(0, WRAP_CONTENT, 1));
+
+        ImageButton viewXmrChatPageButton = new ImageButton(requireContext());
+        viewXmrChatPageButton.setImageResource(R.drawable.ic_web);
+        viewXmrChatPageButton.setColorFilter(ThemeUtils.getColorFromAttr(requireContext(), R.attr.action_icon_color));
+        viewXmrChatPageButton.setBackgroundResource(ThemeUtils.getDrawableFromAttr(requireContext(),
+                android.R.attr.selectableItemBackgroundBorderless));
+        viewXmrChatPageButton.setContentDescription(getString(R.string.tip_view_xmrchat_page));
+        viewXmrChatPageButton.setOnClickListener(v -> IntentUtils.openInBrowser(getContext(), tipTarget.fallbackUrl));
+        titleRow.addView(viewXmrChatPageButton, new LinearLayout.LayoutParams((int) (48 * density),
+                (int) (48 * density)));
 
         EditText nameInput = new EditText(requireContext());
         nameInput.setHint(R.string.tip_name_hint);
