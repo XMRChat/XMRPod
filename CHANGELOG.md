@@ -2,6 +2,20 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.12] - 2026-08-12
+
+### Added
+
+- Show XMRChat tip tiers in the Monero tipping form.
+- Enforce XMRChat page minimum tip amounts and tier-specific message lengths before opening a wallet.
+- Support creator page fiat currencies when previewing tip amounts.
+
+### Fixed
+
+- Open tips with the documented universal Monero URI format and omit unsupported transaction descriptions.
+- Launch wallet deep links with browser-style intent metadata so Cake Wallet opens the send screen reliably.
+- Show clearer XMRChat tip creation errors for network failures and server responses.
+
 ## [0.1.11] - 2026-08-08
 
 ### Fixed

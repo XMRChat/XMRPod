@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -94,10 +95,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
@@ -109,17 +114,19 @@ import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
 public class CoverFragment extends Fragment {
     private static final String TAG = "CoverFragment";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    private static final String XMR_PRICE_URL = "https://nest.xmrchat.com/prices/xmr";
+    private static final String XMR_PRICE_URL = "https://nest.xmrchat.com/prices";
     private static final String MONERO_SCHEME = "monero";
     private static final String CAKE_WALLET_SCHEME = "cakewallet";
     private static final String MONERO_COM_SCHEME = "monerocom";
     private static final int XMR_AMOUNT_SCALE = 12;
-    private static final int TIP_MESSAGE_MAX_LENGTH = 255;
+    private static final int TIP_MESSAGE_DEFAULT_MAX_LENGTH = 255;
+    private static final int TIP_MESSAGE_MAX_SERVER_LENGTH = 1000;
     private static final String TIP_SOURCE = "xmrpod";
     private CoverFragmentBinding viewBinding;
     private Disposable disposable;
     private Disposable tipDisposable;
     private Disposable xmrPriceDisposable;
+    private Disposable xmrChatPageDisposable;
     private int displayedChapterIndex = -1;
     private Playable media;
 
@@ -281,7 +288,8 @@ public class CoverFragment extends Fragment {
             openMoneroUri(tipTarget.moneroUri);
             return;
         }
-        if (TextUtils.isEmpty(tipTarget.xmrChatPath) || TextUtils.isEmpty(tipTarget.xmrChatApiUrl)) {
+        if (TextUtils.isEmpty(tipTarget.xmrChatPath) || TextUtils.isEmpty(tipTarget.xmrChatApiUrl)
+                || TextUtils.isEmpty(tipTarget.xmrChatPageApiUrl)) {
             IntentUtils.openInBrowser(getContext(), tipTarget.fallbackUrl);
             return;
         }
@@ -333,7 +341,7 @@ public class CoverFragment extends Fragment {
         currencyGroup.setOrientation(RadioGroup.HORIZONTAL);
         RadioButton usdButton = new RadioButton(requireContext());
         usdButton.setId(View.generateViewId());
-        usdButton.setText(R.string.tip_currency_usd);
+        usdButton.setText(getString(R.string.tip_currency_fiat, FiatCurrency.USD.label));
         currencyGroup.addView(usdButton, new RadioGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         RadioButton xmrButton = new RadioButton(requireContext());
         xmrButton.setId(View.generateViewId());
@@ -343,17 +351,45 @@ public class CoverFragment extends Fragment {
         layout.addView(currencyGroup, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
         EditText amountInput = new EditText(requireContext());
-        amountInput.setHint(R.string.tip_amount_usd_hint);
+        amountInput.setHint(getString(R.string.tip_amount_fiat_hint, FiatCurrency.USD.label));
         amountInput.setSingleLine(true);
         amountInput.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         layout.addView(amountInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        TextView minimumLabel = new TextView(requireContext());
+        minimumLabel.setTextAppearance(
+                com.google.android.material.R.style.TextAppearance_Material3_BodySmall);
+        minimumLabel.setVisibility(View.GONE);
+        layout.addView(minimumLabel, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
         TextView amountPreview = new TextView(requireContext());
         amountPreview.setVisibility(View.GONE);
         layout.addView(amountPreview, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
         final BigDecimal[] xmrUsdPrice = new BigDecimal[1];
-        TextWatcher amountWatcher = new TextWatcher() {
+        final FiatCurrency[] pageFiat = new FiatCurrency[] {FiatCurrency.USD};
+        final XmrChatPageDetails[] pageDetails = new XmrChatPageDetails[1];
+        final int[] messageMaxLength = new int[] {TIP_MESSAGE_DEFAULT_MAX_LENGTH};
+
+        HorizontalScrollView tierScroll = new HorizontalScrollView(requireContext());
+        tierScroll.setHorizontalScrollBarEnabled(false);
+        tierScroll.setVisibility(View.GONE);
+        LinearLayout tierRow = new LinearLayout(requireContext());
+        tierRow.setGravity(android.view.Gravity.CENTER_VERTICAL);
+        tierRow.setOrientation(LinearLayout.HORIZONTAL);
+        tierScroll.addView(tierRow);
+        layout.addView(tierScroll, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        TextView messageCounter = new TextView(requireContext());
+        messageCounter.setGravity(android.view.Gravity.END);
+        TextView messageError = new TextView(requireContext());
+        messageError.setText(R.string.tip_message_too_short);
+        messageError.setTextColor(Color.RED);
+        messageError.setGravity(android.view.Gravity.END);
+        messageError.setVisibility(View.GONE);
+
+        EditText messageInput = new EditText(requireContext());
+        final TextWatcher amountWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -361,28 +397,34 @@ public class CoverFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateTipAmountPreview(amountInput, amountPreview, getSelectedTipCurrency(currencyGroup, usdButton),
-                        xmrUsdPrice[0]);
+                        xmrUsdPrice[0], pageFiat[0]);
+                updateTipMessageLimit(amountInput, messageInput, messageCounter, pageDetails[0],
+                        getSelectedTipCurrency(currencyGroup, usdButton), xmrUsdPrice[0], messageMaxLength);
+                updateMinimumLabel(minimumLabel, pageDetails[0], getSelectedTipCurrency(currencyGroup, usdButton),
+                        xmrUsdPrice[0], pageFiat[0]);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
             }
         };
-        amountInput.addTextChangedListener(amountWatcher);
         currencyGroup.setOnCheckedChangeListener((group, checkedId) -> {
             TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
             amountInput.setHint(currency == TipCurrency.USD
-                    ? R.string.tip_amount_usd_hint : R.string.tip_amount_xmr_hint);
-            updateTipAmountPreview(amountInput, amountPreview, currency, xmrUsdPrice[0]);
+                    ? getString(R.string.tip_amount_fiat_hint, pageFiat[0].label)
+                    : getString(R.string.tip_amount_xmr_hint));
+            updateTipAmountPreview(amountInput, amountPreview, currency, xmrUsdPrice[0], pageFiat[0]);
+            updateTipMessageLimit(amountInput, messageInput, messageCounter, pageDetails[0], currency,
+                    xmrUsdPrice[0], messageMaxLength);
+            updateMinimumLabel(minimumLabel, pageDetails[0], currency, xmrUsdPrice[0], pageFiat[0]);
             if (xmrUsdPrice[0] == null) {
-                fetchXmrUsdPrice(xmrUsdPrice, amountInput, amountPreview, currencyGroup, usdButton);
+                fetchXmrUsdPrice(xmrUsdPrice, pageFiat[0], amountInput, amountPreview, currencyGroup, usdButton,
+                        pageDetails, tierScroll, tierRow, messageInput, messageCounter, minimumLabel, messageMaxLength);
             }
         });
-        fetchXmrUsdPrice(xmrUsdPrice, amountInput, amountPreview, currencyGroup, usdButton);
 
-        EditText messageInput = new EditText(requireContext());
         messageInput.setHint(R.string.tip_message_hint);
-        messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(TIP_MESSAGE_MAX_LENGTH)});
+        messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(messageMaxLength[0])});
         messageInput.setMinLines(2);
         messageInput.setMaxLines(4);
         messageInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE
@@ -398,12 +440,23 @@ public class CoverFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() > TIP_MESSAGE_MAX_LENGTH) {
-                    s.delete(TIP_MESSAGE_MAX_LENGTH, s.length());
+                if (s.length() > messageMaxLength[0]) {
+                    s.delete(messageMaxLength[0], s.length());
                 }
+                updateTipMessageError(messageInput, messageError);
+                updateTipMessageCounter(messageInput, messageCounter, messageMaxLength[0]);
             }
         });
         layout.addView(messageInput, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        layout.addView(messageError, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        layout.addView(messageCounter, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        updateTipMessageCounter(messageInput, messageCounter, messageMaxLength[0]);
+        amountInput.addTextChangedListener(amountWatcher);
+        fetchXmrUsdPrice(xmrUsdPrice, pageFiat[0], amountInput, amountPreview, currencyGroup, usdButton,
+                pageDetails, tierScroll, tierRow, messageInput, messageCounter, minimumLabel, messageMaxLength);
+        fetchXmrChatPageDetails(tipTarget, pageDetails, tierScroll, tierRow, amountInput, messageInput,
+                messageCounter, amountPreview, minimumLabel, currencyGroup, usdButton, xmrUsdPrice, pageFiat,
+                messageMaxLength);
 
         LinearLayout buttons = new LinearLayout(requireContext());
         buttons.setGravity(android.view.Gravity.END);
@@ -414,11 +467,13 @@ public class CoverFragment extends Fragment {
 
         Button cancelButton = new Button(requireContext());
         cancelButton.setText(android.R.string.cancel);
+        cancelButton.setContentDescription(getString(android.R.string.cancel));
         cancelButton.setOnClickListener(v -> dialog.dismiss());
         buttons.addView(cancelButton, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
 
         Button openWalletButton = new Button(requireContext());
         openWalletButton.setText(R.string.tip_open_wallet);
+        openWalletButton.setContentDescription(getString(R.string.tip_open_wallet));
         TextView nameError = new TextView(requireContext());
         nameError.setText(R.string.tip_name_too_short);
         nameError.setTextColor(Color.RED);
@@ -442,10 +497,23 @@ public class CoverFragment extends Fragment {
                 Toast.makeText(getContext(), R.string.tip_invalid_input, Toast.LENGTH_LONG).show();
                 return;
             }
-            final String message = limitTipMessage(messageInput.getText().toString().trim());
             final TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
+            BigDecimal minimum = pageDetails[0] == null ? null : pageDetails[0].minTipAmount;
+            BigDecimal xmrAmount = getEnteredXmrAmount(amountInput, currency, xmrUsdPrice[0]);
+            if (minimum != null && isBelowMinimum(xmrAmount, minimum)) {
+                showTipErrorDialog(getString(R.string.tip_amount_below_minimum,
+                        formatMinimumForDisplay(minimum, currency, xmrUsdPrice[0], pageFiat[0])));
+                return;
+            }
+            final String message = limitTipMessage(messageInput.getText().toString().trim(), messageMaxLength[0]);
+            if (!isValidOptionalTipMessage(message)) {
+                messageError.setVisibility(View.VISIBLE);
+                return;
+            }
+            messageError.setVisibility(View.GONE);
             openWalletButton.setEnabled(false);
-            createXmrChatTip(dialog, openWalletButton, tipTarget, name, amount, message, currency, xmrUsdPrice[0]);
+            createXmrChatTip(dialog, openWalletButton, tipTarget, name, amount, message, currency, xmrUsdPrice[0],
+                    pageFiat[0]);
         });
         buttons.addView(openWalletButton, new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         layout.addView(nameError, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
@@ -468,14 +536,15 @@ public class CoverFragment extends Fragment {
     private void createXmrChatTip(@NonNull BottomSheetDialog dialog, @NonNull Button openWalletButton,
                                   @NonNull TipTarget tipTarget, @NonNull String name,
                                   @NonNull String amount, @NonNull String message,
-                                  @NonNull TipCurrency currency, @Nullable BigDecimal cachedXmrUsdPrice) {
+                                  @NonNull TipCurrency currency, @Nullable BigDecimal cachedXmrUsdPrice,
+                                  @NonNull FiatCurrency fiat) {
         if (tipDisposable != null) {
             tipDisposable.dispose();
         }
         Toast.makeText(getContext(), R.string.tip_creating, Toast.LENGTH_SHORT).show();
         tipDisposable = Maybe.<String>create(emitter -> {
-            final String xmrAmount = getTipAmountInXmr(amount, currency, cachedXmrUsdPrice);
-            final String limitedMessage = limitTipMessage(message);
+            final String xmrAmount = getTipAmountInXmr(amount, currency, cachedXmrUsdPrice, fiat);
+            final String limitedMessage = limitTipMessage(message, TIP_MESSAGE_MAX_SERVER_LENGTH);
             JSONObject payload = new JSONObject();
             payload.put("path", tipTarget.xmrChatPath);
             payload.put("name", name);
@@ -500,9 +569,9 @@ public class CoverFragment extends Fragment {
                 if (TextUtils.isEmpty(paymentAddress)) {
                     throw new IOException("XMRChat tip response did not include a payment address");
                 }
-                emitter.onSuccess("monero:" + paymentAddress
-                        + "?tx_amount=" + Uri.encode(xmrAmount)
-                        + "&tx_description=" + Uri.encode("XMRPod tip"));
+                String moneroUri = "monero:" + paymentAddress
+                        + "?tx_amount=" + Uri.encode(xmrAmount);
+                emitter.onSuccess(moneroUri);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -512,21 +581,380 @@ public class CoverFragment extends Fragment {
                 }, error -> {
                     openWalletButton.setEnabled(true);
                     Log.e(TAG, Log.getStackTraceString(error));
-                    String errorMessage = error.getMessage();
-                    if (TextUtils.isEmpty(errorMessage)) {
-                        Toast.makeText(getContext(), R.string.tip_create_failed, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getContext(), getString(R.string.tip_create_failed_with_reason, errorMessage),
-                                Toast.LENGTH_LONG).show();
-                    }
+                    showTipErrorDialog(friendlyTipErrorMessage(error));
                 });
     }
 
-    private String limitTipMessage(@NonNull String message) {
-        if (message.length() <= TIP_MESSAGE_MAX_LENGTH) {
+    @Nullable
+    private String friendlyTipErrorMessage(@NonNull Throwable error) {
+        if (error instanceof SocketTimeoutException
+                || error instanceof UnknownHostException
+                || error instanceof ConnectException) {
+            return getString(R.string.tip_create_failed_timeout);
+        }
+        String message = error.getMessage();
+        return TextUtils.isEmpty(message) ? null : message;
+    }
+
+    private void showTipErrorDialog(@Nullable String message) {
+        ScrollView scrollView = new ScrollView(requireContext());
+        LinearLayout layout = new LinearLayout(requireContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        int padding = (int) (20 * getResources().getDisplayMetrics().density);
+        layout.setPadding(padding, padding, padding, padding);
+        scrollView.addView(layout, new ScrollView.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        TextView messageText = new TextView(requireContext());
+        messageText.setTextIsSelectable(true);
+        if (TextUtils.isEmpty(message)) {
+            messageText.setText(R.string.tip_create_failed_generic);
+        } else {
+            messageText.setText(message);
+        }
+        layout.addView(messageText, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.tip_create_failed)
+                .setView(scrollView)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+    private void fetchXmrChatPageDetails(@NonNull TipTarget tipTarget,
+                                         @NonNull XmrChatPageDetails[] pageDetails,
+                                         @NonNull HorizontalScrollView tierScroll,
+                                         @NonNull LinearLayout tierRow,
+                                         @NonNull EditText amountInput,
+                                         @NonNull EditText messageInput,
+                                         @NonNull TextView messageCounter,
+                                         @NonNull TextView amountPreview,
+                                         @NonNull TextView minimumLabel,
+                                         @NonNull RadioGroup currencyGroup,
+                                         @NonNull RadioButton usdButton,
+                                         @NonNull BigDecimal[] xmrUsdPrice,
+                                         @NonNull FiatCurrency[] pageFiat,
+                                         @NonNull int[] messageMaxLength) {
+        if (xmrChatPageDisposable != null) {
+            xmrChatPageDisposable.dispose();
+        }
+        xmrChatPageDisposable = Maybe.<XmrChatPageDetails>create(emitter -> {
+            Request request = new Request.Builder().url(tipTarget.xmrChatPageApiUrl).get().build();
+            try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
+                ResponseBody body = response.body();
+                String responseBody = body == null ? "" : body.string();
+                if (!response.isSuccessful()) {
+                    throw new IOException("XMRChat page request failed: " + response.code());
+                }
+                emitter.onSuccess(parseXmrChatPageDetails(responseBody));
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(details -> {
+                    pageDetails[0] = details;
+                    pageFiat[0] = details.fiat;
+                    xmrUsdPrice[0] = null;
+                    usdButton.setText(getString(R.string.tip_currency_fiat, details.fiat.label));
+                    if (getSelectedTipCurrency(currencyGroup, usdButton) == TipCurrency.USD) {
+                        amountInput.setHint(getString(R.string.tip_amount_fiat_hint, details.fiat.label));
+                    }
+                    updateTipAmountPreview(amountInput, amountPreview, getSelectedTipCurrency(currencyGroup, usdButton),
+                            null, details.fiat);
+                    fetchXmrUsdPrice(xmrUsdPrice, details.fiat, amountInput, amountPreview, currencyGroup, usdButton,
+                            pageDetails, tierScroll, tierRow, messageInput, messageCounter, minimumLabel,
+                            messageMaxLength);
+                    updateTipTierControls(details, tierScroll, tierRow, amountInput, currencyGroup, usdButton,
+                            xmrUsdPrice, details.fiat);
+                    updateTipMessageLimit(amountInput, messageInput, messageCounter, details,
+                            getSelectedTipCurrency(currencyGroup, usdButton), xmrUsdPrice[0], messageMaxLength);
+                    updateMinimumLabel(minimumLabel, details, getSelectedTipCurrency(currencyGroup, usdButton),
+                            xmrUsdPrice[0], details.fiat);
+                }, error -> Log.e(TAG, Log.getStackTraceString(error)));
+    }
+
+    private XmrChatPageDetails parseXmrChatPageDetails(@NonNull String responseBody) throws JSONException {
+        JSONObject page = new JSONObject(responseBody);
+        JSONArray tierArray = page.optJSONArray("pageTipTiers");
+        List<PageTipTier> tiers = new ArrayList<>();
+        if (tierArray != null) {
+            for (int i = 0; i < tierArray.length(); i++) {
+                JSONObject tier = tierArray.optJSONObject(i);
+                if (tier == null) {
+                    continue;
+                }
+                tiers.add(new PageTipTier(
+                        tier.optString("name"),
+                        tier.optString("description"),
+                        parseNullableDecimal(tier, "minAmount"),
+                        tier.has("messageLength") && !tier.isNull("messageLength")
+                                ? tier.optInt("messageLength") : null,
+                        tier.optString("color")));
+            }
+        }
+        return new XmrChatPageDetails(tiers, FiatCurrency.fromCode(page.optString("fiat")),
+                parseNullableDecimal(page, "minTipAmount"));
+    }
+
+    @Nullable
+    private BigDecimal parseNullableDecimal(@NonNull JSONObject object, @NonNull String key) {
+        if (!object.has(key) || object.isNull(key)) {
+            return null;
+        }
+        try {
+            return new BigDecimal(String.valueOf(object.get(key)));
+        } catch (JSONException | NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private void updateTipTierControls(@NonNull XmrChatPageDetails details,
+                                       @NonNull HorizontalScrollView tierScroll,
+                                       @NonNull LinearLayout tierRow,
+                                       @NonNull EditText amountInput,
+                                       @NonNull RadioGroup currencyGroup,
+                                       @NonNull RadioButton usdButton,
+                                       @NonNull BigDecimal[] xmrUsdPrice,
+                                       @NonNull FiatCurrency fiat) {
+        tierRow.removeAllViews();
+        if (details.pageTipTiers.isEmpty()) {
+            tierScroll.setVisibility(View.GONE);
+            return;
+        }
+        float density = getResources().getDisplayMetrics().density;
+        int horizontalPadding = (int) (12 * density);
+        int verticalPadding = (int) (4 * density);
+        for (PageTipTier tier : details.pageTipTiers) {
+            if (tier.minAmount == null) {
+                continue;
+            }
+            Button tierButton = new Button(requireContext());
+            tierButton.setAllCaps(false);
+            tierButton.setText(getTierButtonText(tier, getSelectedTipCurrency(currencyGroup, usdButton),
+                    xmrUsdPrice[0], fiat));
+            tierButton.setContentDescription(getTierButtonContentDescription(tier,
+                    getSelectedTipCurrency(currencyGroup, usdButton), xmrUsdPrice[0], fiat));
+            tierButton.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
+            applyTierColor(tierButton, tier.color);
+            tierButton.setOnClickListener(v -> {
+                TipCurrency currency = getSelectedTipCurrency(currencyGroup, usdButton);
+                BigDecimal price = xmrUsdPrice[0];
+                if (currency == TipCurrency.USD && price != null) {
+                    amountInput.setText(formatFiatAmount(tier.minAmount.multiply(price)));
+                } else {
+                    currencyGroup.check(getXmrCurrencyButtonId(currencyGroup, usdButton));
+                    amountInput.setText(formatXmrAmount(tier.minAmount));
+                }
+                amountInput.setSelection(amountInput.getText().length());
+            });
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+            buttonParams.setMarginEnd((int) (8 * density));
+            tierRow.addView(tierButton, buttonParams);
+        }
+        ImageButton infoButton = new ImageButton(requireContext());
+        infoButton.setImageResource(R.drawable.ic_info);
+        infoButton.setColorFilter(ThemeUtils.getColorFromAttr(requireContext(), R.attr.action_icon_color));
+        infoButton.setBackgroundResource(ThemeUtils.getDrawableFromAttr(requireContext(),
+                android.R.attr.selectableItemBackgroundBorderless));
+        infoButton.setContentDescription(getString(R.string.tip_tiers_info));
+        infoButton.setOnClickListener(v -> showTipTiersInfo(details, xmrUsdPrice[0], fiat));
+        tierRow.addView(infoButton, new LinearLayout.LayoutParams((int) (48 * density), (int) (48 * density)));
+        tierScroll.setVisibility(tierRow.getChildCount() > 1 ? View.VISIBLE : View.GONE);
+    }
+
+    private void applyTierColor(@NonNull Button button, @Nullable String color) {
+        if (TextUtils.isEmpty(color)) {
+            return;
+        }
+        try {
+            int parsedColor = Color.parseColor(color);
+            button.setBackgroundColor(parsedColor);
+            button.setTextColor(isDarkColor(parsedColor) ? Color.WHITE : Color.BLACK);
+        } catch (IllegalArgumentException e) {
+            Log.d(TAG, "Ignoring invalid XMRChat tier color: " + color);
+        }
+    }
+
+    private boolean isDarkColor(int color) {
+        double luminance = (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
+        return luminance < 0.5;
+    }
+
+    private String getTierButtonText(@NonNull PageTipTier tier, @NonNull TipCurrency currency,
+                                     @Nullable BigDecimal xmrUsdPrice, @NonNull FiatCurrency fiat) {
+        if (tier.minAmount == null) {
+            return "";
+        }
+        if (currency == TipCurrency.USD && xmrUsdPrice != null) {
+            return fiat.symbol + formatFiatAmount(tier.minAmount.multiply(xmrUsdPrice));
+        }
+        return formatXmrAmount(tier.minAmount) + " XMR";
+    }
+
+    private String getTierButtonContentDescription(@NonNull PageTipTier tier, @NonNull TipCurrency currency,
+                                                   @Nullable BigDecimal xmrUsdPrice, @NonNull FiatCurrency fiat) {
+        String name = TextUtils.isEmpty(tier.name) ? getString(R.string.tip_tier_unnamed) : tier.name;
+        return getString(R.string.tip_tier_select, name, getTierButtonText(tier, currency, xmrUsdPrice, fiat));
+    }
+
+    private void showTipTiersInfo(@NonNull XmrChatPageDetails details, @Nullable BigDecimal xmrUsdPrice,
+                                  @NonNull FiatCurrency fiat) {
+        ScrollView scrollView = new ScrollView(requireContext());
+        LinearLayout layout = new LinearLayout(requireContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        int padding = (int) (20 * getResources().getDisplayMetrics().density);
+        layout.setPadding(padding, padding, padding, padding);
+        scrollView.addView(layout, new ScrollView.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        for (PageTipTier tier : details.pageTipTiers) {
+            TextView tierText = new TextView(requireContext());
+            tierText.setText(buildTierInfoText(tier, xmrUsdPrice, fiat));
+            tierText.setTextIsSelectable(true);
+            layout.addView(tierText, new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        }
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.tip_tiers_title)
+                .setView(scrollView)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+    private String buildTierInfoText(@NonNull PageTipTier tier, @Nullable BigDecimal xmrUsdPrice,
+                                     @NonNull FiatCurrency fiat) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(TextUtils.isEmpty(tier.name) ? getString(R.string.tip_tier_unnamed) : tier.name);
+        if (tier.minAmount != null) {
+            builder.append('\n').append(getString(R.string.tip_tier_min_amount, formatXmrAmount(tier.minAmount)));
+            if (xmrUsdPrice != null) {
+                builder.append(" (").append(fiat.symbol)
+                        .append(formatFiatAmount(tier.minAmount.multiply(xmrUsdPrice))).append(')');
+            }
+        }
+        if (tier.messageLength != null) {
+            builder.append('\n').append(getString(R.string.tip_tier_message_length, tier.messageLength));
+        }
+        if (!TextUtils.isEmpty(tier.description)) {
+            builder.append('\n').append(tier.description);
+        }
+        builder.append("\n\n");
+        return builder.toString();
+    }
+
+    private void updateTipMessageLimit(@NonNull EditText amountInput,
+                                       @NonNull EditText messageInput,
+                                       @NonNull TextView messageCounter,
+                                       @Nullable XmrChatPageDetails pageDetails,
+                                       @NonNull TipCurrency currency,
+                                       @Nullable BigDecimal xmrUsdPrice,
+                                       @NonNull int[] messageMaxLength) {
+        BigDecimal xmrAmount = getEnteredXmrAmount(amountInput, currency, xmrUsdPrice);
+        int nextMaxLength = getTipMessageLength(xmrAmount,
+                pageDetails == null ? null : pageDetails.pageTipTiers);
+        if (messageMaxLength[0] != nextMaxLength) {
+            messageMaxLength[0] = nextMaxLength;
+            messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(nextMaxLength)});
+            Editable message = messageInput.getText();
+            if (message.length() > nextMaxLength) {
+                message.delete(nextMaxLength, message.length());
+            }
+        }
+        updateTipMessageCounter(messageInput, messageCounter, nextMaxLength);
+    }
+
+    private void updateMinimumLabel(@NonNull TextView minimumLabel, @Nullable XmrChatPageDetails pageDetails,
+                                    @NonNull TipCurrency currency, @Nullable BigDecimal xmrUsdPrice,
+                                    @NonNull FiatCurrency fiat) {
+        if (pageDetails == null || pageDetails.minTipAmount == null
+                || pageDetails.minTipAmount.compareTo(BigDecimal.ZERO) <= 0) {
+            minimumLabel.setVisibility(View.GONE);
+            return;
+        }
+        minimumLabel.setText(getString(R.string.tip_minimum_label,
+                formatMinimumForDisplay(pageDetails.minTipAmount, currency, xmrUsdPrice, fiat)));
+        minimumLabel.setVisibility(View.VISIBLE);
+    }
+
+    private String formatMinimumForDisplay(@NonNull BigDecimal minimum, @NonNull TipCurrency currency,
+                                           @Nullable BigDecimal xmrUsdPrice, @NonNull FiatCurrency fiat) {
+        if (currency == TipCurrency.USD && xmrUsdPrice != null) {
+            return fiat.symbol + formatFiatAmount(minimum.multiply(xmrUsdPrice));
+        }
+        // XMR mode, or fiat selected but price not loaded yet.
+        return formatXmrAmount(minimum) + " XMR";
+    }
+
+    @Nullable
+    private BigDecimal getEnteredXmrAmount(@NonNull EditText amountInput, @NonNull TipCurrency currency,
+                                           @Nullable BigDecimal xmrUsdPrice) {
+        try {
+            BigDecimal amount = parsePositiveDecimal(amountInput.getText().toString().trim());
+            if (currency == TipCurrency.XMR) {
+                return amount;
+            }
+            if (xmrUsdPrice == null) {
+                return null;
+            }
+            return amount.divide(xmrUsdPrice, XMR_AMOUNT_SCALE, RoundingMode.HALF_UP);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private void updateTipMessageCounter(@NonNull EditText messageInput, @NonNull TextView messageCounter,
+                                         int maxLength) {
+        messageCounter.setText(getString(R.string.tip_message_counter, messageInput.length(), maxLength));
+    }
+
+    private void updateTipMessageError(@NonNull EditText messageInput, @NonNull TextView messageError) {
+        String message = messageInput.getText().toString().trim();
+        messageError.setVisibility(isValidOptionalTipMessage(message) ? View.GONE : View.VISIBLE);
+    }
+
+    private boolean isValidOptionalTipMessage(@NonNull String message) {
+        return message.isEmpty() || message.length() >= 3;
+    }
+
+    static int getTipMessageLength(@Nullable BigDecimal xmrAmount, @Nullable List<PageTipTier> tiers) {
+        if (tiers == null || tiers.isEmpty() || xmrAmount == null) {
+            return getDefaultTipMessageLength(tiers);
+        }
+        PageTipTier activeTier = null;
+        for (PageTipTier tier : tiers) {
+            BigDecimal minAmount = tier.minAmount == null ? BigDecimal.ZERO : tier.minAmount;
+            BigDecimal activeMinAmount = activeTier == null || activeTier.minAmount == null
+                    ? BigDecimal.ZERO : activeTier.minAmount;
+            if (xmrAmount.compareTo(minAmount) >= 0
+                    && (activeTier == null || minAmount.compareTo(activeMinAmount) > 0)) {
+                activeTier = tier;
+            }
+        }
+        if (activeTier != null && activeTier.messageLength != null && activeTier.messageLength > 0) {
+            return Math.min(activeTier.messageLength, TIP_MESSAGE_MAX_SERVER_LENGTH);
+        }
+        return getDefaultTipMessageLength(tiers);
+    }
+
+    static boolean isBelowMinimum(@Nullable BigDecimal xmrAmount, @Nullable BigDecimal minTipAmount) {
+        if (xmrAmount == null || minTipAmount == null || minTipAmount.compareTo(BigDecimal.ZERO) <= 0) {
+            return false;
+        }
+        return xmrAmount.compareTo(minTipAmount) < 0;
+    }
+
+    private static int getDefaultTipMessageLength(@Nullable List<PageTipTier> tiers) {
+        int defaultLength = TIP_MESSAGE_DEFAULT_MAX_LENGTH;
+        if (tiers != null) {
+            for (PageTipTier tier : tiers) {
+                if (tier.messageLength != null && tier.messageLength > 0) {
+                    defaultLength = Math.min(defaultLength, tier.messageLength);
+                }
+            }
+        }
+        return Math.min(defaultLength, TIP_MESSAGE_DEFAULT_MAX_LENGTH);
+    }
+
+    private String limitTipMessage(@NonNull String message, int maxLength) {
+        if (message.length() <= maxLength) {
             return message;
         }
-        return message.substring(0, TIP_MESSAGE_MAX_LENGTH);
+        return message.substring(0, maxLength);
     }
 
     private String getXmrChatErrorMessage(@NonNull String responseBody, int statusCode) {
@@ -552,9 +980,17 @@ public class CoverFragment extends Fragment {
         }
     }
 
-    private void fetchXmrUsdPrice(@NonNull BigDecimal[] xmrUsdPrice, @NonNull EditText amountInput,
-                                  @NonNull TextView amountPreview, @NonNull RadioGroup currencyGroup,
-                                  @NonNull RadioButton usdButton) {
+    private void fetchXmrUsdPrice(@NonNull BigDecimal[] xmrUsdPrice, @NonNull FiatCurrency fiat,
+                                  @NonNull EditText amountInput, @Nullable TextView amountPreview,
+                                  @NonNull RadioGroup currencyGroup,
+                                  @NonNull RadioButton usdButton,
+                                  @Nullable XmrChatPageDetails[] pageDetails,
+                                  @Nullable HorizontalScrollView tierScroll,
+                                  @Nullable LinearLayout tierRow,
+                                  @Nullable EditText messageInput,
+                                  @Nullable TextView messageCounter,
+                                  @Nullable TextView minimumLabel,
+                                  @Nullable int[] messageMaxLength) {
         if (xmrPriceDisposable != null) {
             xmrPriceDisposable.dispose();
         }
@@ -566,33 +1002,50 @@ public class CoverFragment extends Fragment {
                 if (!response.isSuccessful()) {
                     throw new IOException("XMR price request failed: " + response.code());
                 }
-                emitter.onSuccess(parseXmrUsdPrice(responseBody));
+                emitter.onSuccess(parseXmrUsdPrice(responseBody, fiat));
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(price -> {
                     xmrUsdPrice[0] = price;
-                    updateTipAmountPreview(amountInput, amountPreview,
-                            getSelectedTipCurrency(currencyGroup, usdButton), price);
+                    if (amountPreview != null) {
+                        updateTipAmountPreview(amountInput, amountPreview,
+                                getSelectedTipCurrency(currencyGroup, usdButton), price, fiat);
+                    }
+                    if (pageDetails != null && pageDetails[0] != null && tierScroll != null && tierRow != null) {
+                        updateTipTierControls(pageDetails[0], tierScroll, tierRow, amountInput, currencyGroup,
+                                usdButton, xmrUsdPrice, fiat);
+                    }
+                    if (pageDetails != null && messageInput != null && messageCounter != null
+                            && messageMaxLength != null) {
+                        updateTipMessageLimit(amountInput, messageInput, messageCounter, pageDetails[0],
+                                getSelectedTipCurrency(currencyGroup, usdButton), price, messageMaxLength);
+                    }
+                    if (pageDetails != null && minimumLabel != null) {
+                        updateMinimumLabel(minimumLabel, pageDetails[0],
+                                getSelectedTipCurrency(currencyGroup, usdButton), price, fiat);
+                    }
                 }, error -> {
                     Log.e(TAG, Log.getStackTraceString(error));
-                    updateTipAmountPreview(amountInput, amountPreview,
-                            getSelectedTipCurrency(currencyGroup, usdButton), null);
+                    if (amountPreview != null) {
+                        updateTipAmountPreview(amountInput, amountPreview,
+                                getSelectedTipCurrency(currencyGroup, usdButton), null, fiat);
+                    }
                 });
     }
 
     private String getTipAmountInXmr(@NonNull String amount, @NonNull TipCurrency currency,
-                                     @Nullable BigDecimal cachedXmrUsdPrice)
+                                     @Nullable BigDecimal cachedXmrUsdPrice, @NonNull FiatCurrency fiat)
             throws IOException, JSONException {
         BigDecimal amountValue = parsePositiveDecimal(amount);
         if (currency == TipCurrency.XMR) {
             return formatXmrAmount(amountValue);
         }
-        BigDecimal price = cachedXmrUsdPrice == null ? fetchXmrUsdPrice() : cachedXmrUsdPrice;
+        BigDecimal price = cachedXmrUsdPrice == null ? fetchXmrUsdPrice(fiat) : cachedXmrUsdPrice;
         return formatXmrAmount(amountValue.divide(price, XMR_AMOUNT_SCALE, RoundingMode.HALF_UP));
     }
 
-    private BigDecimal fetchXmrUsdPrice() throws IOException, JSONException {
+    private BigDecimal fetchXmrUsdPrice(@NonNull FiatCurrency fiat) throws IOException, JSONException {
         Request request = new Request.Builder().url(XMR_PRICE_URL).get().build();
         try (Response response = AntennapodHttpClient.getHttpClient().newCall(request).execute()) {
             ResponseBody body = response.body();
@@ -600,16 +1053,19 @@ public class CoverFragment extends Fragment {
             if (!response.isSuccessful()) {
                 throw new IOException("XMR price request failed: " + response.code());
             }
-            return parseXmrUsdPrice(responseBody);
+            return parseXmrUsdPrice(responseBody, fiat);
         }
     }
 
-    private BigDecimal parseXmrUsdPrice(@NonNull String responseBody) throws JSONException, IOException {
+    private BigDecimal parseXmrUsdPrice(@NonNull String responseBody, @NonNull FiatCurrency fiat)
+            throws JSONException, IOException {
         String trimmedBody = responseBody.trim();
         BigDecimal price;
         if (trimmedBody.startsWith("{")) {
             JSONObject response = new JSONObject(trimmedBody);
-            price = new BigDecimal(response.optString("usd", response.optString("price")));
+            JSONObject xmr = response.optJSONObject("xmr");
+            JSONObject prices = xmr == null ? response : xmr;
+            price = new BigDecimal(prices.optString(fiat.code, prices.optString("price")));
         } else {
             price = new BigDecimal(trimmedBody);
         }
@@ -620,7 +1076,8 @@ public class CoverFragment extends Fragment {
     }
 
     private void updateTipAmountPreview(@NonNull EditText amountInput, @NonNull TextView amountPreview,
-                                        @NonNull TipCurrency currency, @Nullable BigDecimal xmrUsdPrice) {
+                                        @NonNull TipCurrency currency, @Nullable BigDecimal xmrUsdPrice,
+                                        @NonNull FiatCurrency fiat) {
         String amount = amountInput.getText().toString().trim();
         if (TextUtils.isEmpty(amount)) {
             amountPreview.setVisibility(View.GONE);
@@ -634,12 +1091,14 @@ public class CoverFragment extends Fragment {
         try {
             BigDecimal amountValue = parsePositiveDecimal(amount);
             if (currency == TipCurrency.XMR) {
-                String usdAmount = formatUsdAmount(amountValue.multiply(xmrUsdPrice));
-                amountPreview.setText(getString(R.string.tip_amount_xmr_conversion_preview, amount, usdAmount));
+                String fiatAmount = formatFiatAmount(amountValue.multiply(xmrUsdPrice));
+                amountPreview.setText(getString(R.string.tip_amount_xmr_conversion_preview, amount, fiat.symbol,
+                        fiatAmount));
             } else {
                 String xmrAmount = formatXmrAmount(amountValue.divide(xmrUsdPrice, XMR_AMOUNT_SCALE,
                         RoundingMode.HALF_UP));
-                amountPreview.setText(getString(R.string.tip_amount_conversion_preview, amount, xmrAmount));
+                amountPreview.setText(getString(R.string.tip_amount_conversion_preview, fiat.symbol, amount,
+                        xmrAmount));
             }
             amountPreview.setVisibility(View.VISIBLE);
         } catch (NumberFormatException e) {
@@ -659,7 +1118,7 @@ public class CoverFragment extends Fragment {
         return amount.setScale(XMR_AMOUNT_SCALE, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString();
     }
 
-    private String formatUsdAmount(@NonNull BigDecimal amount) {
+    private String formatFiatAmount(@NonNull BigDecimal amount) {
         return amount.setScale(2, RoundingMode.HALF_UP).toPlainString();
     }
 
@@ -667,12 +1126,21 @@ public class CoverFragment extends Fragment {
         return currencyGroup.getCheckedRadioButtonId() == usdButton.getId() ? TipCurrency.USD : TipCurrency.XMR;
     }
 
+    private int getXmrCurrencyButtonId(@NonNull RadioGroup currencyGroup, @NonNull RadioButton usdButton) {
+        for (int i = 0; i < currencyGroup.getChildCount(); i++) {
+            View child = currencyGroup.getChildAt(i);
+            if (child instanceof RadioButton && child.getId() != usdButton.getId()) {
+                return child.getId();
+            }
+        }
+        return usdButton.getId();
+    }
+
     private void openMoneroUri(@NonNull String moneroUri) {
-        if (openWalletUri(buildCakeWalletMoneroUri(CAKE_WALLET_SCHEME, moneroUri))
-                || openWalletUri(buildCakeWalletMoneroUri(MONERO_COM_SCHEME, moneroUri))
-                || openWalletUri(moneroUri)) {
+        if (openWalletUri(moneroUri)) {
             return;
         }
+        Log.w(TAG, "No wallet accepted Monero URI=" + moneroUri);
         Toast.makeText(getContext(), R.string.tip_no_wallet, Toast.LENGTH_LONG).show();
     }
 
@@ -681,7 +1149,10 @@ public class CoverFragment extends Fragment {
             return false;
         }
         try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(walletUri)));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(walletUri));
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             return true;
         } catch (ActivityNotFoundException e) {
             return false;
@@ -717,8 +1188,9 @@ public class CoverFragment extends Fragment {
                     ? fragmentStart : schemeSpecificPart.length();
             query = schemeSpecificPart.substring(queryStart + 1, queryEnd);
         }
-        return scheme + ":" + MONERO_SCHEME + "?address=" + address
+        String walletUri = scheme + ":" + MONERO_SCHEME + "?address=" + address
                 + (TextUtils.isEmpty(query) ? "" : "&" + query);
+        return walletUri;
     }
 
     private void openFeed(Feed feed) {
@@ -831,6 +1303,9 @@ public class CoverFragment extends Fragment {
         if (xmrPriceDisposable != null) {
             xmrPriceDisposable.dispose();
         }
+        if (xmrChatPageDisposable != null) {
+            xmrChatPageDisposable.dispose();
+        }
         viewBinding = null;
     }
 
@@ -839,22 +1314,50 @@ public class CoverFragment extends Fragment {
         XMR
     }
 
+    private enum FiatCurrency {
+        USD("usd", "USD", "$"),
+        EUR("eur", "EUR", "€"),
+        MXN("mxn", "MXN", "MXN$");
+
+        private final String code;
+        private final String label;
+        private final String symbol;
+
+        FiatCurrency(@NonNull String code, @NonNull String label, @NonNull String symbol) {
+            this.code = code;
+            this.label = label;
+            this.symbol = symbol;
+        }
+
+        private static FiatCurrency fromCode(@Nullable String code) {
+            for (FiatCurrency currency : values()) {
+                if (currency.code.equalsIgnoreCase(code)) {
+                    return currency;
+                }
+            }
+            return USD;
+        }
+    }
+
     private static class TipTarget {
         private final String moneroUri;
         private final String fallbackUrl;
         private final String xmrChatApiUrl;
+        private final String xmrChatPageApiUrl;
         private final String xmrChatPath;
 
         private TipTarget(@Nullable String moneroUri, @Nullable String fallbackUrl,
-                          @Nullable String xmrChatApiUrl, @Nullable String xmrChatPath) {
+                          @Nullable String xmrChatApiUrl, @Nullable String xmrChatPageApiUrl,
+                          @Nullable String xmrChatPath) {
             this.moneroUri = moneroUri;
             this.fallbackUrl = fallbackUrl;
             this.xmrChatApiUrl = xmrChatApiUrl;
+            this.xmrChatPageApiUrl = xmrChatPageApiUrl;
             this.xmrChatPath = xmrChatPath;
         }
 
         private static TipTarget forMoneroUri(@NonNull String moneroUri) {
-            return new TipTarget(moneroUri, null, null, null);
+            return new TipTarget(moneroUri, null, null, null, null);
         }
 
         @Nullable
@@ -874,18 +1377,55 @@ public class CoverFragment extends Fragment {
                 }
             }
             if (TextUtils.isEmpty(path)) {
-                return new TipTarget(null, normalizedUrl, null, null);
+                return new TipTarget(null, normalizedUrl, null, null, null);
             }
 
             String apiUrl;
+            String pageApiUrl;
             String lowerHost = host.toLowerCase(Locale.US);
             if ("xmrchat.com".equals(lowerHost) || "www.xmrchat.com".equals(lowerHost)) {
                 apiUrl = "https://nest.xmrchat.com/tips";
+                pageApiUrl = "https://nest.xmrchat.com/pages/" + Uri.encode(path);
             } else {
                 String scheme = TextUtils.isEmpty(uri.getScheme()) ? "https" : uri.getScheme();
                 apiUrl = scheme + "://" + uri.getEncodedAuthority() + "/tips";
+                pageApiUrl = scheme + "://" + uri.getEncodedAuthority() + "/pages/" + Uri.encode(path);
             }
-            return new TipTarget(null, normalizedUrl, apiUrl, path);
+            return new TipTarget(null, normalizedUrl, apiUrl, pageApiUrl, path);
+        }
+    }
+
+    static class XmrChatPageDetails {
+        private final List<PageTipTier> pageTipTiers;
+        private final FiatCurrency fiat;
+        private final BigDecimal minTipAmount;
+
+        XmrChatPageDetails(@NonNull List<PageTipTier> pageTipTiers, @NonNull FiatCurrency fiat) {
+            this(pageTipTiers, fiat, null);
+        }
+
+        XmrChatPageDetails(@NonNull List<PageTipTier> pageTipTiers, @NonNull FiatCurrency fiat,
+                           @Nullable BigDecimal minTipAmount) {
+            this.pageTipTiers = pageTipTiers;
+            this.fiat = fiat;
+            this.minTipAmount = minTipAmount;
+        }
+    }
+
+    static class PageTipTier {
+        private final String name;
+        private final String description;
+        private final BigDecimal minAmount;
+        private final Integer messageLength;
+        private final String color;
+
+        PageTipTier(@Nullable String name, @Nullable String description, @Nullable BigDecimal minAmount,
+                    @Nullable Integer messageLength, @Nullable String color) {
+            this.name = name;
+            this.description = description;
+            this.minAmount = minAmount;
+            this.messageLength = messageLength;
+            this.color = color;
         }
     }
 
