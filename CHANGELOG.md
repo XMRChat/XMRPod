@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.13] - 2026-08-13
+
+### Fixed
+
+- Fix release builds crashing immediately on launch by keeping WorkManager's database implementation from being removed during minification.
+
 ## [0.1.12] - 2026-08-12
 
 ### Added
