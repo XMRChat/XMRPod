@@ -76,6 +76,7 @@ import de.danoeh.antennapod.ui.screen.feed.FeedItemlistFragment;
 import de.danoeh.antennapod.ui.screen.home.HomeFragment;
 import de.danoeh.antennapod.ui.screen.playback.audio.AudioPlayerFragment;
 import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatDisclosureManager;
+import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
 import de.danoeh.antennapod.ui.screen.preferences.PreferenceActivity;
 import de.danoeh.antennapod.ui.screen.queue.QueueFragment;
 import de.danoeh.antennapod.ui.screen.rating.RatingDialogManager;
@@ -587,6 +588,7 @@ public class MainActivity extends CastEnabledActivity implements NavigationToolb
     protected void onResume() {
         super.onResume();
         handleNavIntent();
+        XmrChatPageDirectory.getInstance().refreshIfNeeded();
 
         boolean hasBottomNavigation = bottomNavigation != null;
         if (lastTheme != ThemeSwitcher.getNoTitleTheme(this)

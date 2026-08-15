@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.14] - 2026-08-15
+
+### Changed
+
+- Refresh the XMRChat creator directory at most once every 15 minutes while the app is in use, instead of only once per day at app start, so newly registered podcast pages show up sooner.
+
 ## [0.1.13] - 2026-08-13
 
 ### Fixed

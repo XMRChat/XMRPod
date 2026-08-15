@@ -1,0 +1,1 @@
+- Refresh the XMRChat creator directory every 15 minutes while using the app, so new podcast pages appear sooner.

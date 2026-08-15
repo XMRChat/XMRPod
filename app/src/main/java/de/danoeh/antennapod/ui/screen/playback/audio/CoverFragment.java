@@ -265,6 +265,7 @@ public class CoverFragment extends Fragment {
         if (feed == null) {
             return null;
         }
+        XmrChatPageDirectory.getInstance().refreshIfNeeded();
         String path = XmrChatPageDirectory.getInstance().pathForFeed(feed);
         if (TextUtils.isEmpty(path)) {
             path = XmrChatPageDirectory.getInstance().pathForFeedWebsite(feed);

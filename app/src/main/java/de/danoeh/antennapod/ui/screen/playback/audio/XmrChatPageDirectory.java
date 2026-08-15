@@ -37,7 +37,7 @@ import org.greenrobot.eventbus.EventBus;
  * <p>Instead of sending podcast metadata to the server, this downloads a generic list of public
  * XMRChat pages that have a registered {@code podcast-rss} content link, then matches the user's
  * subscribed feed URLs against that list entirely on the device. The only outbound call is a
- * single generic fetch (cached and refreshed at most once per day); no information about which
+ * single generic fetch (cached and refreshed at most once every 15 minutes); no information about which
  * podcasts the user listens to or is subscribed to ever leaves the device.
  */
 public final class XmrChatPageDirectory {
@@ -50,7 +50,7 @@ public final class XmrChatPageDirectory {
     private static final String CACHE_KEY_WEBSITES = "websites";
     private static final String CACHE_KEY_WEBSITES_AMBIGUOUS = "websitesAmbiguous";
     private static final String CACHE_KEY_UPDATED_AT = "updatedAt";
-    private static final long REFRESH_INTERVAL_MS = 24L * 60L * 60L * 1000L;
+    private static final long REFRESH_INTERVAL_MS = 15L * 60L * 1000L;
     private static final int PAGE_SIZE = 100;
 
     @android.annotation.SuppressLint("StaticFieldLeak")
