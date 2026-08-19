@@ -6,6 +6,36 @@ XMRPod is an open-source podcast app for Android with Monero tipping support for
 
 XMRPod adds a `Tip` action to the playback screen for podcasts whose creators have an XMRChat page. When you send a tip, XMRPod creates a tip payment address with the listener name, amount, and optional message, then hands the payment URI to a compatible Monero wallet such as Cake Wallet.
 
+## Making Your Podcast Tippable
+
+XMRPod detects tippable podcasts by matching URLs locally on the listener's device — no special tags are added to your feed. Register one or both of these links on your XMRChat page:
+
+### 1. `podcast-rss` (recommended)
+
+Add your feed URL, for example `https://example.com/feed.xml`. XMRPod compares it against the URL your feed is served from, so this is the most reliable match.
+
+### 2. `website` (fallback)
+
+Add your site URL, for example `https://example.com`. XMRPod compares it against the website link declared inside your feed:
+
+RSS 2.0 — the channel-level `<link>` tag:
+
+```xml
+<channel>
+  <link>https://example.com</link>
+</channel>
+```
+
+Atom — a feed-level alternate HTML link:
+
+```xml
+<link rel="alternate" type="text/html" href="https://example.com"/>
+```
+
+If the `podcast-rss` link matches, it wins and the website check is skipped.
+
+Matching ignores case, `www.` prefixes, query strings, `#fragments`, and trailing slashes — everything else must match exactly. A website URL claimed by more than one XMRChat page is ignored, so listeners never tip the wrong creator. The page list is cached and refreshed at most every 15 minutes, so new registrations can take a moment to appear.
+
 ## Privacy
 
 Discovery happens entirely on your device. XMRPod downloads a single generic list of public XMRChat creator pages and matches your subscribed feeds against it locally. Your podcast titles, feed URLs, and listening activity are never transmitted.
@@ -36,12 +66,6 @@ Build a debug APK with:
 
 ```sh
 ./gradlew :app:assembleDebug
-```
-
-On this FreeBSD workstation, use the local AAPT2 override:
-
-```sh
-JAVA_HOME=/usr/local/openjdk21 ./gradlew :app:assembleDebug -Pandroid.aapt2FromMavenOverride=/home/wao/Android/Sdk/build-tools/35.0.0/aapt2
 ```
 
 Debug APKs are written under:
