@@ -12,11 +12,11 @@ XMRPod detects tippable podcasts by matching URLs locally on the listener's devi
 
 ### 1. `podcast-rss` (recommended)
 
-Add your feed URL, for example `https://example.com/feed.xml`. XMRPod compares it against the URL your feed is served from, so this is the most reliable match.
+Add a Content Link on your XMRChat tip page for your feed URL, for example `https://example.com/feed.xml`. XMRPod compares it against the URL your feed is served from, so this is the most reliable match.
 
 ### 2. `website` (fallback)
 
-Add your site URL, for example `https://example.com`. XMRPod compares it against the website link declared inside your feed:
+Add a Content Link on your XMRChat tip page for your site URL, for example `https://example.com`. XMRPod compares it against the website link declared inside your feed:
 
 RSS 2.0 — the channel-level `<link>` tag:
 
