@@ -1,0 +1,1 @@
+- Refresh XMRChat tip tier preset amounts when switching between fiat and XMR entry modes.

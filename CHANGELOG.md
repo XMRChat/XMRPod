@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.15] - 2026-08-21
+
+### Fixed
+
+- Refresh XMRChat tip tier preset amounts when switching between fiat and XMR entry modes.
+
 ## [0.1.14] - 2026-08-15
 
 ### Changed

@@ -418,6 +418,10 @@ public class CoverFragment extends Fragment {
             updateTipMessageLimit(amountInput, messageInput, messageCounter, pageDetails[0], currency,
                     xmrUsdPrice[0], messageMaxLength);
             updateMinimumLabel(minimumLabel, pageDetails[0], currency, xmrUsdPrice[0], pageFiat[0]);
+            if (pageDetails[0] != null) {
+                updateTipTierControls(pageDetails[0], tierScroll, tierRow, amountInput, currencyGroup, usdButton,
+                        xmrUsdPrice, pageFiat[0]);
+            }
             if (xmrUsdPrice[0] == null) {
                 fetchXmrUsdPrice(xmrUsdPrice, pageFiat[0], amountInput, amountPreview, currencyGroup, usdButton,
                         pageDetails, tierScroll, tierRow, messageInput, messageCounter, minimumLabel, messageMaxLength);
