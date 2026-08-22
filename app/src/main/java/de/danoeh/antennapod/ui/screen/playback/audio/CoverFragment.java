@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -432,8 +433,25 @@ public class CoverFragment extends Fragment {
         messageInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(messageMaxLength[0])});
         messageInput.setMinLines(2);
         messageInput.setMaxLines(4);
+        messageInput.setGravity(android.view.Gravity.START | android.view.Gravity.TOP);
+        messageInput.setVerticalScrollBarEnabled(true);
+        messageInput.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+        messageInput.setOverScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS);
         messageInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE
                 | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        messageInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                expandTipBottomSheet(dialog);
+            }
+        });
+        messageInput.setOnTouchListener((v, event) -> {
+            if (messageInput.canScrollVertically(-1) || messageInput.canScrollVertically(1)) {
+                int action = event.getActionMasked();
+                v.getParent().requestDisallowInterceptTouchEvent(action == MotionEvent.ACTION_DOWN
+                        || action == MotionEvent.ACTION_MOVE);
+            }
+            return false;
+        });
         messageInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -525,17 +543,29 @@ public class CoverFragment extends Fragment {
 
         dialog.setContentView(scrollView);
         dialog.setOnShowListener(dialogInterface -> {
-            FrameLayout bottomSheet = dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            if (bottomSheet != null) {
-                BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
-                behavior.setSkipCollapsed(true);
-                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
+            expandTipBottomSheet(dialog);
             if (dialog.getWindow() != null) {
                 dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
             }
         });
         dialog.show();
+    }
+
+    private void expandTipBottomSheet(@NonNull BottomSheetDialog dialog) {
+        FrameLayout bottomSheet = dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+        if (bottomSheet == null) {
+            return;
+        }
+        ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+        if (layoutParams != null && layoutParams.height != MATCH_PARENT) {
+            layoutParams.height = MATCH_PARENT;
+            bottomSheet.setLayoutParams(layoutParams);
+        }
+        BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+        behavior.setSkipCollapsed(true);
+        behavior.setFitToContents(false);
+        behavior.setExpandedOffset(0);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     private void createXmrChatTip(@NonNull BottomSheetDialog dialog, @NonNull Button openWalletButton,

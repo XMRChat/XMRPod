@@ -1,0 +1,1 @@
+- Make long XMRChat tip messages easier to review by expanding the tip sheet and allowing the message field to scroll while typing.

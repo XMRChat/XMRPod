@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.16] - 2026-08-22
+
+### Fixed
+
+- Make long XMRChat tip messages easier to review by expanding the tip sheet and allowing the message field to scroll while typing.
+
 ## [0.1.15] - 2026-08-21
 
 ### Fixed
