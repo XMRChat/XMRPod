@@ -1,0 +1,1 @@
+- Fix XMRPod updates re-running inherited preference migrations and crashing on launch after the feed refresh interval was multiplied repeatedly.

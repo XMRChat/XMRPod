@@ -79,8 +79,8 @@ public class CastUtils {
         MediaMetadata metadata = media.getMetadata();
         int version = metadata.getInt(KEY_FORMAT_VERSION);
         if (version <= 0 || version > MAX_VERSION_FORWARD_COMPATIBILITY) {
-            Log.w(TAG, "MediaInfo object obtained from the cast device is not compatible with this"
-                    + "version of AntennaPod CastUtils, curVer=" + FORMAT_VERSION_VALUE
+            Log.w(TAG, "MediaInfo object obtained from the cast device is not compatible with this "
+                    + "version of XMRPod CastUtils, curVer=" + FORMAT_VERSION_VALUE
                     + ", object version=" + version);
             return null;
         }

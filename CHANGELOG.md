@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.17] - 2026-08-23
+
+### Fixed
+
+- Fix XMRPod updates re-running inherited preference migrations and crashing on launch after the feed refresh interval was multiplied repeatedly.
+
 ## [0.1.16] - 2026-08-22
 
 ### Fixed

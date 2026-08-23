@@ -95,6 +95,9 @@ jobs:
             echo "releaseKeyPassword=$KEY_PASSWORD"
           } >> gradle.properties
 
+      - name: Run release verification
+        run: ./gradlew checkstyle lint testPlayReleaseUnitTest testReleaseUnitTest
+
       - name: Build Free release APK
         run: ./gradlew assembleFreeRelease
 

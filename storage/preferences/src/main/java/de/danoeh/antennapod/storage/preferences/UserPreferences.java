@@ -142,6 +142,8 @@ public abstract class UserPreferences {
 
     private static Context context;
     private static SharedPreferences prefs;
+    private static final long DEFAULT_UPDATE_INTERVAL_MINUTES = 720;
+    private static final long[] VALID_UPDATE_INTERVAL_MINUTES = {0, 60, 120, 240, 480, 720, 1440, 4320};
 
     /**
      * Sets up the UserPreferences class.
@@ -479,11 +481,50 @@ public abstract class UserPreferences {
     }
 
     public static long getUpdateInterval() {
-        return Integer.parseInt(prefs.getString(PREF_UPDATE_INTERVAL_MINUTES, "720"));
+        String value = prefs.getString(PREF_UPDATE_INTERVAL_MINUTES, String.valueOf(DEFAULT_UPDATE_INTERVAL_MINUTES));
+        long interval;
+        try {
+            interval = Long.parseLong(value);
+        } catch (NumberFormatException e) {
+            Log.e(TAG, Log.getStackTraceString(e));
+            setUpdateInterval(DEFAULT_UPDATE_INTERVAL_MINUTES);
+            return DEFAULT_UPDATE_INTERVAL_MINUTES;
+        }
+
+        long normalizedInterval = normalizeUpdateInterval(interval);
+        if (normalizedInterval != interval) {
+            setUpdateInterval(normalizedInterval);
+        }
+        return normalizedInterval;
     }
 
     public static void setUpdateInterval(long interval) {
         prefs.edit().putString(PREF_UPDATE_INTERVAL_MINUTES, String.valueOf(interval)).apply();
+    }
+
+    private static long normalizeUpdateInterval(long interval) {
+        if (isValidUpdateInterval(interval)) {
+            return interval;
+        }
+
+        long normalizedInterval = interval;
+        while (normalizedInterval > 0 && normalizedInterval % 60 == 0) {
+            normalizedInterval /= 60;
+            if (isValidUpdateInterval(normalizedInterval)) {
+                return normalizedInterval;
+            }
+        }
+
+        return DEFAULT_UPDATE_INTERVAL_MINUTES;
+    }
+
+    private static boolean isValidUpdateInterval(long interval) {
+        for (long validInterval : VALID_UPDATE_INTERVAL_MINUTES) {
+            if (validInterval == interval) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isAutoUpdateDisabled() {

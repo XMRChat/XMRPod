@@ -23,6 +23,7 @@ import de.danoeh.antennapod.ui.swipeactions.SwipeActions;
 public class PreferenceUpgrader {
     private static final String PREF_CONFIGURED_VERSION = "version_code";
     private static final String PREF_NAME = "app_version";
+    private static final int ANTENNAPOD_VERSION_CODE_BASE = 1000000;
 
     private static SharedPreferences prefs;
 
@@ -43,6 +44,10 @@ public class PreferenceUpgrader {
     private static void upgrade(int oldVersion, int newVersion, Context context) {
         if (oldVersion == -1) {
             //New installation
+            return;
+        }
+        if (isXmrPodVersionCode(oldVersion) && isXmrPodVersionCode(newVersion)) {
+            UserPreferences.getUpdateInterval();
             return;
         }
         if (oldVersion < 1070196) {
@@ -184,5 +189,9 @@ public class PreferenceUpgrader {
             UserPreferences.setUpdateInterval(60L * UserPreferences.getUpdateInterval());
             FeedUpdateManager.getInstance().restartUpdateAlarm(context, true);
         }
+    }
+
+    private static boolean isXmrPodVersionCode(int versionCode) {
+        return versionCode > 0 && versionCode < ANTENNAPOD_VERSION_CODE_BASE;
     }
 }
