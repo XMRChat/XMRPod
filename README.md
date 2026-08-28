@@ -1,3 +1,13 @@
+<p align="center">
+  <img src="assets/readme-header.png" alt="XMRPod - Podcast player with Monero tips" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://f-droid.org/packages/com.xmrchat.xmrpod/">
+    <img src="assets/get-it-on-f-droid.png" alt="Get it on F-Droid" height="80">
+  </a>
+</p>
+
 # XMRPod
 
 XMRPod is an open-source podcast app for Android with Monero tipping support for creators on XMRChat. No tracking, no analytics, no ads.
