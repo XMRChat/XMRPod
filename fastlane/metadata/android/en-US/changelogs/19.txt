@@ -1,0 +1,1 @@
+- Add "Search Monero enabled podcasts" to the Add podcast screen, listing every XMRChat creator page with a podcast RSS feed so listeners can browse, filter, and subscribe to Monero tipping enabled podcasts.

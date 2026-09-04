@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.18] - 2026-09-04
+
+### Added
+
+- Add "Search Monero enabled podcasts" to the Add podcast screen, listing every XMRChat creator page with a podcast RSS feed so listeners can browse, filter, and subscribe to Monero tipping enabled podcasts.
+
 ## [0.1.17] - 2026-08-23
 
 ### Fixed
