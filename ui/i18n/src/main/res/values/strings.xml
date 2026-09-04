@@ -915,6 +915,8 @@
 
     <!-- Add podcast fragment -->
     <string name="search_podcast_hint">Search podcast…</string>
+    <string name="search_monero_podcasts_label">Search Monero enabled podcasts</string>
+    <string name="monero_podcasts_title">Monero enabled podcasts</string>
     <string name="search_itunes_label">Search Apple Podcasts</string>
     <string name="search_podcastindex_label">Search Podcast Index</string>
     <string name="search_fyyd_label">Search fyyd</string>

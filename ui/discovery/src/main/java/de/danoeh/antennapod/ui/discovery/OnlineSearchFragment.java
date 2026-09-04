@@ -32,6 +32,7 @@ public class OnlineSearchFragment extends Fragment {
     private static final String TAG = "FyydSearchFragment";
     private static final String ARG_SEARCHER = "searcher";
     private static final String ARG_QUERY = "query";
+    private static final String ARG_TITLE = "title";
 
     /**
      * Adapter responsible with the search results
@@ -60,6 +61,13 @@ public class OnlineSearchFragment extends Fragment {
         arguments.putString(ARG_SEARCHER, searchProvider.getName());
         arguments.putString(ARG_QUERY, query);
         fragment.setArguments(arguments);
+        return fragment;
+    }
+
+    public static OnlineSearchFragment newInstance(Class<? extends PodcastSearcher> searchProvider,
+                                                   String query, String title) {
+        OnlineSearchFragment fragment = newInstance(searchProvider, query);
+        fragment.getArguments().putString(ARG_TITLE, title);
         return fragment;
     }
 
@@ -134,6 +142,11 @@ public class OnlineSearchFragment extends Fragment {
         toolbar.inflateMenu(R.menu.online_search);
         toolbar.setNavigationOnClickListener(v -> getParentFragmentManager().popBackStack());
 
+        String title = getArguments().getString(ARG_TITLE, null);
+        if (title != null) {
+            toolbar.setTitle(title);
+        }
+
         MenuItem searchItem = toolbar.getMenu().findItem(R.id.action_search);
         final SearchView sv = (SearchView) searchItem.getActionView();
         sv.setQueryHint(getString(R.string.search_podcast_hint));
@@ -167,10 +180,16 @@ public class OnlineSearchFragment extends Fragment {
                 return true;
             }
         });
-        searchItem.expandActionView();
-
-        if (getArguments().getString(ARG_QUERY, null) != null) {
-            sv.setQuery(getArguments().getString(ARG_QUERY, null), true);
+        String query = getArguments().getString(ARG_QUERY, null);
+        if (query != null && query.isEmpty()) {
+            // An empty query means browse-all: show everything immediately, without the keyboard.
+            // SearchView ignores empty submissions, so the search has to be started explicitly.
+            search(query);
+        } else {
+            searchItem.expandActionView();
+            if (query != null) {
+                sv.setQuery(query, true);
+            }
         }
     }
 

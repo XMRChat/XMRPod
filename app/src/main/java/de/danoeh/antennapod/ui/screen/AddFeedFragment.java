@@ -40,6 +40,7 @@ import de.danoeh.antennapod.ui.common.databinding.EditTextDialogBinding;
 import de.danoeh.antennapod.net.discovery.CombinedSearcher;
 import de.danoeh.antennapod.net.discovery.FyydPodcastSearcher;
 import de.danoeh.antennapod.net.discovery.ItunesPodcastSearcher;
+import de.danoeh.antennapod.net.discovery.MoneroPodcastSearcher;
 import de.danoeh.antennapod.net.discovery.PodcastIndexPodcastSearcher;
 import de.danoeh.antennapod.ui.appstartintent.OnlineFeedviewActivityStarter;
 import de.danoeh.antennapod.ui.common.Keyboard;
@@ -90,6 +91,9 @@ public class AddFeedFragment extends Fragment {
         NestedScrollView scrollView = viewBinding.getRoot().findViewById(R.id.scrollView);
         scrollView.setOnScrollChangeListener(new LiftOnScrollListener(viewBinding.appbar));
 
+        viewBinding.searchMoneroButton.setOnClickListener(v -> activity.loadChildFragment(
+                OnlineSearchFragment.newInstance(MoneroPodcastSearcher.class, "",
+                        getString(R.string.monero_podcasts_title))));
         viewBinding.searchItunesButton.setOnClickListener(v
                 -> activity.loadChildFragment(OnlineSearchFragment.newInstance(ItunesPodcastSearcher.class)));
         viewBinding.searchFyydButton.setOnClickListener(v
