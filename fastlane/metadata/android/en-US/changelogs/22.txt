@@ -1,0 +1,1 @@
+- Re-check Monero enabled podcast feeds more often: a fixed feed reappears in the directory within about 6 hours, and a broken one is dropped within about 3 days.

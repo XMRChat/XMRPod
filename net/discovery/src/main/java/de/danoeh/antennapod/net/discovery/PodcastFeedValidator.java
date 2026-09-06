@@ -43,8 +43,8 @@ import okhttp3.ResponseBody;
  *     <li>the feed has a title and at least one item with an audio enclosure.</li>
  * </ul>
  *
- * <p>Verdicts are cached on disk: valid feeds are re-checked at most every 7 days, broken ones
- * once a day, so repeat searches do not re-probe everything. Probes run in parallel, download
+ * <p>Verdicts are cached on disk: valid feeds are re-checked at most every 3 days, broken ones
+ * every 6 hours, so repeat searches do not re-probe everything. Probes run in parallel, download
  * at most {@link #MAX_PROBE_BYTES} per feed and never block longer than the per-call timeout.
  * If validation itself fails unexpectedly, feeds are shown anyway (fail open).
  */
@@ -58,9 +58,12 @@ public final class PodcastFeedValidator {
     private static final String CACHE_KEY_CHECKED_AT = "checkedAt";
 
     /** How long a "feed is playable" verdict is trusted without re-checking. */
-    static final long OK_TTL_MS = 7L * 24L * 60L * 60L * 1000L;
-    /** How long a "feed is broken" verdict is trusted; broken feeds are hidden until re-check. */
-    static final long BROKEN_TTL_MS = 24L * 60L * 60L * 1000L;
+    static final long OK_TTL_MS = 3L * 24L * 60L * 60L * 1000L;
+    /**
+     * How long a "feed is broken" verdict is trusted; broken feeds are hidden until the next
+     * re-check, so this bounds how long a creator's fix takes to reappear in the directory.
+     */
+    static final long BROKEN_TTL_MS = 6L * 60L * 60L * 1000L;
 
     /** Maximum number of bytes read from a feed while looking for the first enclosure. */
     static final int MAX_PROBE_BYTES = 256 * 1024;

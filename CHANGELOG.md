@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.21] - 2026-09-06
+
+### Changed
+
+- Re-check Monero enabled podcast feeds more often, so a fixed feed reappears in the directory within about 6 hours and a feed that breaks is dropped within about 3 days instead of 7.
+
 ## [0.1.20] - 2026-09-06
 
 ### Fixed
