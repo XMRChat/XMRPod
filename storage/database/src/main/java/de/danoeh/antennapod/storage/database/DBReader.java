@@ -337,7 +337,14 @@ public final class DBReader {
                 feed = cursor.getFeed();
                 FeedItemFilter filter = (filtered && feed.getItemFilter() != null)
                         ? feed.getItemFilter() : FeedItemFilter.unfiltered();
-                filter = new FeedItemFilter(filter, FeedItemFilter.INCLUDE_ALL_FEED_STATES);
+                if (filtered) {
+                    // Feed episode lists only show playable episodes: mixed blog feeds can carry
+                    // text-only posts that would otherwise clutter the list with unplayable rows.
+                    filter = new FeedItemFilter(filter, FeedItemFilter.INCLUDE_ALL_FEED_STATES,
+                            FeedItemFilter.HAS_MEDIA);
+                } else {
+                    filter = new FeedItemFilter(filter, FeedItemFilter.INCLUDE_ALL_FEED_STATES);
+                }
                 List<FeedItem> items = getFeedItemList(feed, filter, feed.getSortOrder(), offset, limit);
                 for (FeedItem item : items) {
                     item.setFeed(feed);

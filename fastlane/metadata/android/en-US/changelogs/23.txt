@@ -1,0 +1,1 @@
+- Hide text-only posts in podcast episode lists automatically, so mixed feeds that also publish blog articles only show playable episodes.

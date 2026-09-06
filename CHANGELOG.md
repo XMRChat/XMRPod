@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.22] - 2026-09-06
+
+### Changed
+
+- Hide text-only posts in podcast episode lists automatically, so mixed feeds that also publish blog articles only show playable episodes.
+
 ## [0.1.21] - 2026-09-06
 
 ### Changed
