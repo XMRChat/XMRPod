@@ -84,7 +84,9 @@ public class MoneroPodcastSearcher implements PodcastSearcher {
                 }
             }
         }
-        return searchResults;
+        // The directory contains creator-entered links that may be dead domains, webpages or
+        // blog feeds; only entries whose feed is actually playable are shown.
+        return PodcastFeedValidator.getInstance().filterPlayable(searchResults);
     }
 
     static PodcastSearchResult parsePage(JSONObject page) {

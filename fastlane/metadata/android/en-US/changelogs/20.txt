@@ -1,0 +1,1 @@
+- Validate Monero enabled podcast feeds on the device before showing them, so dead links, regular webpages and blog feeds without episodes no longer appear in the directory.

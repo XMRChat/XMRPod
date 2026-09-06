@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.19] - 2026-09-05
+
+### Fixed
+
+- Validate Monero enabled podcast feeds on the device before showing them, so dead links, regular webpages and blog feeds without episodes no longer appear in the directory. Feed checks are cached and re-run at most every 7 days (daily for broken feeds).
+
 ## [0.1.18] - 2026-09-04
 
 ### Added
