@@ -1,0 +1,1 @@
+- Also hide Monero enabled podcasts whose recent episodes are articles instead of audio, and podcasts whose episode audio files no longer exist on the server.

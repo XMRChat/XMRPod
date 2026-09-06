@@ -47,41 +47,112 @@ public class PodcastFeedValidatorTest {
             "<?xml version=\"1.0\"?>\n"
             + "<smil><body><par><audio src=\"x.mp3\"/></par></body></smil>";
 
+    private static String rssItems(String... itemBodies) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<?xml version=\"1.0\"?><rss version=\"2.0\"><channel><title>Feed</title>");
+        for (String item : itemBodies) {
+            sb.append("<item>").append(item).append("</item>");
+        }
+        sb.append("</channel></rss>");
+        return sb.toString();
+    }
+
+    private static String audioItem(String url, String type) {
+        return "<title>Episode</title><enclosure url=\"" + url + "\"" + type + " length=\"1\"/>";
+    }
+
+    private static String articleItem() {
+        return "<title>Article</title><description>Text only</description>";
+    }
+
     @Test
     public void testRssFeedWithEnclosureIsValid() {
-        PodcastFeedValidator.Verdict verdict = classify(RSS_WITH_ENCLOSURE, 200);
-        assertTrue(verdict.ok);
-        assertEquals(PodcastFeedValidator.REASON_OK, verdict.reason);
+        PodcastFeedValidator.Classification result = classify(RSS_WITH_ENCLOSURE, 200);
+        assertTrue(result.verdict.ok);
+        assertEquals(PodcastFeedValidator.REASON_OK, result.verdict.reason);
+        assertEquals(java.util.Collections.singletonList("https://example.com/ep1.mp3"), result.mediaUrls);
     }
 
     @Test
     public void testAtomFeedWithEnclosureIsValid() {
-        PodcastFeedValidator.Verdict verdict = classify(ATOM_WITH_ENCLOSURE, 200);
-        assertTrue(verdict.ok);
+        PodcastFeedValidator.Classification result = classify(ATOM_WITH_ENCLOSURE, 200);
+        assertTrue(result.verdict.ok);
+        assertEquals(java.util.Collections.singletonList("https://example.com/ep1.ogg"), result.mediaUrls);
     }
 
     @Test
     public void testBlogRssWithoutEnclosuresIsRejected() {
-        PodcastFeedValidator.Verdict verdict = classify(RSS_WITHOUT_ENCLOSURE, 200);
-        assertEquals(PodcastFeedValidator.REASON_NO_ENCLOSURES, verdict.reason);
+        assertEquals(PodcastFeedValidator.REASON_NO_ENCLOSURES, classify(RSS_WITHOUT_ENCLOSURE, 200).verdict.reason);
+    }
+
+    @Test
+    public void testArticleHeavyFeedIsRejectedAsNoRecentAudio() {
+        // Enclosure exists, but only after RECENT_ITEM_LIMIT article-only items.
+        String[] items = new String[PodcastFeedValidator.RECENT_ITEM_LIMIT + 4];
+        for (int i = 0; i < items.length - 1; i++) {
+            items[i] = articleItem();
+        }
+        items[items.length - 1] = audioItem("https://example.com/old.mp3", " type=\"audio/mpeg\"");
+        assertEquals(PodcastFeedValidator.REASON_NO_RECENT_AUDIO,
+                classify(rssItems(items), 200).verdict.reason);
+    }
+
+    @Test
+    public void testEnclosureWithinRecentItemsIsValid() {
+        String feed = rssItems(articleItem(), articleItem(),
+                audioItem("https://example.com/ep1.mp3", " type=\"audio/mpeg\""));
+        PodcastFeedValidator.Classification result = classify(feed, 200);
+        assertTrue(result.verdict.ok);
+        assertEquals(java.util.Collections.singletonList("https://example.com/ep1.mp3"), result.mediaUrls);
+    }
+
+    @Test
+    public void testNonAudioEnclosureIsSkippedInFavorOfAudio() {
+        String feed = rssItems(
+                "<title>Show notes</title><enclosure url=\"https://example.com/cover.jpeg\""
+                        + " type=\"image/jpeg\" length=\"1\"/>",
+                audioItem("https://example.com/ep1.mp3", " type=\"audio/mpeg\""));
+        PodcastFeedValidator.Classification result = classify(feed, 200);
+        assertTrue(result.verdict.ok);
+        assertEquals(java.util.Collections.singletonList("https://example.com/ep1.mp3"), result.mediaUrls);
+    }
+
+    @Test
+    public void testEnclosureUrlCaseIsPreserved() {
+        String feed = rssItems(audioItem("https://example.com/Eps/Episode_1.MP3", " type=\"audio/mpeg\""));
+        assertEquals(java.util.Collections.singletonList("https://example.com/Eps/Episode_1.MP3"), classify(feed, 200).mediaUrls);
+    }
+
+    @Test
+    public void testMultipleEnclosureUrlsAreSampled() {
+        // Feeds can carry a dead live-stream entry before the real episodes; the media check
+        // needs several candidate URLs so a single dead one does not reject the feed.
+        String feed = rssItems(
+                audioItem("http://stream.example.com/live", " type=\"audio/mpeg\""),
+                audioItem("https://example.com/ep1.mp3", " type=\"audio/mpeg\""),
+                audioItem("https://example.com/ep2.mp3", " type=\"audio/mpeg\""),
+                audioItem("https://example.com/ep3.mp3", " type=\"audio/mpeg\""));
+        assertEquals(java.util.Arrays.asList(
+                "http://stream.example.com/live",
+                "https://example.com/ep1.mp3",
+                "https://example.com/ep2.mp3"),
+                classify(feed, 200).mediaUrls);
     }
 
     @Test
     public void testHtmlPageIsRejectedAsWebsite() {
-        PodcastFeedValidator.Verdict verdict = classify(HTML_PAGE, 200);
-        assertEquals(PodcastFeedValidator.REASON_WEBSITE, verdict.reason);
+        assertEquals(PodcastFeedValidator.REASON_WEBSITE, classify(HTML_PAGE, 200).verdict.reason);
     }
 
     @Test
     public void testNonFeedXmlIsRejected() {
-        PodcastFeedValidator.Verdict verdict = classify(NON_FEED_XML, 200);
-        assertEquals(PodcastFeedValidator.REASON_NOT_A_FEED, verdict.reason);
+        assertEquals(PodcastFeedValidator.REASON_NOT_A_FEED, classify(NON_FEED_XML, 200).verdict.reason);
     }
 
     @Test
     public void testHttpErrorIsRejected() {
-        PodcastFeedValidator.Verdict verdict = classify(HTML_PAGE, 403);
-        assertEquals(PodcastFeedValidator.REASON_HTTP_ERROR + "_403", verdict.reason);
+        assertEquals(PodcastFeedValidator.REASON_HTTP_ERROR + "_403",
+                classify(HTML_PAGE, 403).verdict.reason);
     }
 
     @Test
@@ -89,7 +160,7 @@ public class PodcastFeedValidatorTest {
         String feed = "<?xml version=\"1.0\"?><rss version=\"2.0\"><channel>"
                 + "<item><title>Episode 1</title>"
                 + "<enclosure url=\"https://example.com/ep1.mp3\"/></item></channel></rss>";
-        assertEquals(PodcastFeedValidator.REASON_NO_TITLE, classify(feed, 200).reason);
+        assertEquals(PodcastFeedValidator.REASON_NO_TITLE, classify(feed, 200).verdict.reason);
     }
 
     @Test
@@ -97,7 +168,7 @@ public class PodcastFeedValidatorTest {
         String feed = "\ufeff<!-- generated --><?xml version=\"1.0\"?>\n<!-- hi -->"
                 + "<rss version=\"2.0\"><channel><title>Podcast</title>"
                 + "<item><enclosure url=\"https://example.com/ep1.mp3\"/></item></channel></rss>";
-        assertTrue(classify(feed, 200).ok);
+        assertTrue(classify(feed, 200).verdict.ok);
     }
 
     @Test
@@ -108,6 +179,30 @@ public class PodcastFeedValidatorTest {
         assertEquals("html", PodcastFeedValidator.rootElementName("  <!DOCTYPE html>\n<html>"));
         assertNull(PodcastFeedValidator.rootElementName("no xml here"));
         assertNull(PodcastFeedValidator.rootElementName("<?xml version=\"1.0\""));
+    }
+
+    @Test
+    public void testPlayableEnclosureTypes() {
+        assertTrue(PodcastFeedValidator.isPlayableEnclosure("audio/mpeg", null));
+        assertTrue(PodcastFeedValidator.isPlayableEnclosure("video/mp4", null));
+        assertTrue(PodcastFeedValidator.isPlayableEnclosure(null, "https://x.com/a/b/ep.OPUS?token=1"));
+        assertTrue(PodcastFeedValidator.isPlayableEnclosure("", "https://x.com/ep.mp3"));
+        assertEquals(false, PodcastFeedValidator.isPlayableEnclosure("application/pdf", null));
+        assertEquals(false, PodcastFeedValidator.isPlayableEnclosure("image/jpeg", null));
+        assertEquals(false, PodcastFeedValidator.isPlayableEnclosure(null, "https://x.com/doc.pdf"));
+    }
+
+    @Test
+    public void testRecentAudioBoundary() {
+        String lower = "<rss><channel><title>t</title>"
+                + "<item>1</item><item>2</item><item>3</item><item>4</item><item>5</item><item>6</item>"
+                + "</channel></rss>";
+        // Boundary is the start of the 6th item: end of the 5th item's closing tag.
+        int boundary = PodcastFeedValidator.recentAudioBoundary(lower);
+        assertEquals(lower.indexOf("<item>6</item>"), boundary);
+        // Fewer items than the limit: boundary is the end of the body.
+        String small = "<rss><channel><title>t</title><item>1</item></channel></rss>";
+        assertEquals(small.length(), PodcastFeedValidator.recentAudioBoundary(small));
     }
 
     @Test
@@ -162,7 +257,7 @@ public class PodcastFeedValidatorTest {
         assertTrue(new java.io.File(context.getFilesDir(), "monero_feed_validation_cache.json").exists());
     }
 
-    private static PodcastFeedValidator.Verdict classify(String body, int httpCode) {
+    private static PodcastFeedValidator.Classification classify(String body, int httpCode) {
         return PodcastFeedValidator.classify("https://example.com/feed", httpCode,
                 body.getBytes(StandardCharsets.UTF_8), false);
     }

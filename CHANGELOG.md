@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.20] - 2026-09-06
+
+### Fixed
+
+- Also hide Monero enabled podcasts whose recent episodes are articles instead of audio (blog feeds with an old episode archive) and podcasts whose episode audio files no longer exist on the server, in addition to the existing dead-link and webpage checks.
+
 ## [0.1.19] - 2026-09-05
 
 ### Fixed
