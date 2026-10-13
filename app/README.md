@@ -9,6 +9,11 @@ It is hosted in `MainActivity` as a bottom sheet. `MainActivity` controls its vi
 XMRChat tip wallet launches use Cake Wallet's app-specific `cakewallet:` and `monerocom:` Monero send
 URI formats before falling back to the standard `monero:` URI.
 
+XMRChat live stream status comes from the generic `/live-streams` list in `XmrChatLiveStreams` and is matched to feeds
+locally through `XmrChatPageDirectory`, so no per-podcast request reveals which feed the user is viewing.
+
+The XMRChat tip sheet lives in `XmrChatTipFragment`; screens that offer tipping extend it and call `openXmrChatTip()`.
+
 ## Wear OS Communication (play flavor only)
 
 `WearListenerService` is a `WearableListenerService` that handles `DataLayer` messages from connected watches.

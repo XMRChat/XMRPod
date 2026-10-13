@@ -1,0 +1,1 @@
+- Watch podcasters' live streams right in XMRPod. When a podcast is live, a LIVE row shows at the top of its episodes, and you can send a Monero tip while you watch.

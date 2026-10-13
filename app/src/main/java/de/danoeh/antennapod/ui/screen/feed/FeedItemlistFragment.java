@@ -3,6 +3,7 @@ package de.danoeh.antennapod.ui.screen.feed;
 import android.content.res.Configuration;
 import android.graphics.LightingColorFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.material.appbar.MaterialToolbar;
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.activity.MainActivity;
@@ -59,6 +61,8 @@ import de.danoeh.antennapod.ui.screen.download.DownloadLogDetailsDialog;
 import de.danoeh.antennapod.ui.screen.download.DownloadLogFragment;
 import de.danoeh.antennapod.ui.screen.episode.ItemPagerFragment;
 import de.danoeh.antennapod.ui.screen.feed.preferences.FeedSettingsFragment;
+import de.danoeh.antennapod.ui.screen.livestream.LiveStreamFragment;
+import de.danoeh.antennapod.ui.screen.livestream.XmrChatLiveStreams;
 import de.danoeh.antennapod.ui.screen.subscriptions.FeedMenuHandler;
 import de.danoeh.antennapod.ui.swipeactions.SwipeActions;
 import io.reactivex.rxjava3.core.Completable;
@@ -76,6 +80,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Displays a list of FeedItems.
@@ -86,6 +91,7 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
     private static final String ARGUMENT_FEED_ID = "argument.de.danoeh.antennapod.feed_id";
     private static final String KEY_UP_ARROW = "up_arrow";
     protected static final int EPISODES_PER_PAGE = 150;
+    private static final long LIVE_STREAM_REFRESH_MINUTES = 5;
     protected int page = 1;
     protected boolean isLoadingMore = false;
     protected boolean hasMoreItems = false;
@@ -97,6 +103,8 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
     private long feedID;
     private Feed feed;
     private Disposable disposable;
+    private Disposable liveStreamDisposable;
+    private XmrChatLiveStreams.LiveStream liveStream;
     private FeedItemListFragmentBinding viewBinding;
     private Pair<Integer, Integer> scrollPosition = null;
 
@@ -243,9 +251,18 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        startLiveStreamUpdates();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         scrollPosition = viewBinding.recyclerView.getScrollPosition();
+        if (liveStreamDisposable != null) {
+            liveStreamDisposable.dispose();
+        }
     }
 
     @Override
@@ -574,6 +591,8 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
             FeedItemFilterDialog.newInstance(feed).show(getChildFragmentManager(), null);
         });
         viewBinding.header.txtvFailure.setOnClickListener(v -> showErrorDetails());
+        viewBinding.header.liveItem.setOnClickListener(v -> openLiveStream());
+        viewBinding.header.butWatchLive.setOnClickListener(v -> openLiveStream());
         viewBinding.header.txtvAuthor.setOnLongClickListener(view -> {
             ClipboardUtils.copyText(viewBinding.header.txtvAuthor);
             return true;
@@ -619,14 +638,28 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
     }
 
     private void loadFeedImage() {
-        Glide.with(this)
-                .load(feed.getImageUrl())
-                .apply(new RequestOptions()
-                    .placeholder(R.color.image_readability_tint)
-                    .error(R.color.image_readability_tint)
-                    .transform(new FastBlurTransformation())
-                    .dontAnimate())
-                .into(viewBinding.imgvBackground);
+        RequestOptions blurredFeedImageOptions = new RequestOptions()
+                .placeholder(R.color.image_readability_tint)
+                .error(R.color.image_readability_tint)
+                .transform(new FastBlurTransformation())
+                .dontAnimate();
+        String liveImageUrl = liveStream != null ? liveStream.getImageUrl() : null;
+        if (liveImageUrl != null) {
+            Glide.with(this)
+                    .load(liveImageUrl)
+                    .apply(new RequestOptions()
+                        .placeholder(R.color.image_readability_tint)
+                        .centerCrop()
+                        .signature(new ObjectKey(liveStream.fetchedAt))
+                        .dontAnimate())
+                    .error(Glide.with(this).load(feed.getImageUrl()).apply(blurredFeedImageOptions))
+                    .into(viewBinding.imgvBackground);
+        } else {
+            Glide.with(this)
+                    .load(feed.getImageUrl())
+                    .apply(blurredFeedImageOptions)
+                    .into(viewBinding.imgvBackground);
+        }
 
         Glide.with(this)
                 .load(feed.getImageUrl())
@@ -636,6 +669,60 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
                     .fitCenter()
                     .dontAnimate())
                 .into(viewBinding.header.imgvCover);
+    }
+
+    private void startLiveStreamUpdates() {
+        if (feed == null || (liveStreamDisposable != null && !liveStreamDisposable.isDisposed())) {
+            return;
+        }
+        Feed liveStreamFeed = feed;
+        liveStreamDisposable = Observable.interval(0, LIVE_STREAM_REFRESH_MINUTES, TimeUnit.MINUTES)
+                .flatMapSingle(tick -> XmrChatLiveStreams.getForFeed(liveStreamFeed)
+                        .map(Collections::singletonList)
+                        .defaultIfEmpty(Collections.emptyList())
+                        .subscribeOn(Schedulers.io()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(streams -> showLiveStream(streams.isEmpty() ? null : streams.get(0)),
+                        error -> Log.e(TAG, Log.getStackTraceString(error)));
+    }
+
+    private void showLiveStream(@Nullable XmrChatLiveStreams.LiveStream stream) {
+        liveStream = stream;
+        if (viewBinding == null || feed == null) {
+            return;
+        }
+        loadFeedImage();
+        viewBinding.header.liveItemContainer.setVisibility(stream == null ? View.GONE : View.VISIBLE);
+        if (stream == null) {
+            return;
+        }
+        viewBinding.header.txtvLivePlatform.setText(stream.getPlatformName());
+        viewBinding.header.txtvLiveTitle.setText(TextUtils.isEmpty(stream.title) ? feed.getTitle() : stream.title);
+        Glide.with(this)
+                .load(stream.getImageUrl())
+                .apply(new RequestOptions()
+                    .centerCrop()
+                    .signature(new ObjectKey(stream.fetchedAt))
+                    .dontAnimate())
+                .error(Glide.with(this).load(feed.getImageUrl()).apply(new RequestOptions().fitCenter().dontAnimate()))
+                .into(viewBinding.header.imgvLiveCover);
+    }
+
+    private void openLiveStream() {
+        if (liveStream == null || feed == null) {
+            return;
+        }
+        LiveStreamFragment fragment = LiveStreamFragment.newInstance(feed.getTitle(), liveStream,
+                feed.getState() == Feed.STATE_NOT_SUBSCRIBED);
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).loadChildFragment(fragment);
+        } else {
+            startActivity(new MainActivityStarter(getActivity())
+                    .withFragmentLoaded(LiveStreamFragment.TAG)
+                    .getIntent()
+                    .putExtra(MainActivityStarter.EXTRA_FRAGMENT_ARGS, fragment.getArguments()));
+            getActivity().finish();
+        }
     }
 
     private void loadItems() {
@@ -662,6 +749,9 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
                         updateToolbar();
                         viewBinding.recyclerView.restoreScrollPosition(scrollPosition);
                         scrollPosition = null;
+                        if (isResumed()) {
+                            startLiveStreamUpdates();
+                        }
                     }, error -> {
                         feed = null;
                         refreshHeaderView();

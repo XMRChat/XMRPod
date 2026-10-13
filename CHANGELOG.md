@@ -2,6 +2,12 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.23] - 2026-10-13
+
+### Added
+
+- Watch podcasters' live streams right in XMRPod. When a podcast is live, a LIVE row shows at the top of its episodes, and you can send a Monero tip while you watch.
+
 ## [0.1.22] - 2026-09-06
 
 ### Changed

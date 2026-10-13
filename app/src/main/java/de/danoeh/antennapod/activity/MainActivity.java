@@ -74,6 +74,7 @@ import de.danoeh.antennapod.ui.screen.drawer.NavigationNames;
 import de.danoeh.antennapod.ui.screen.episode.ItemPagerFragment;
 import de.danoeh.antennapod.ui.screen.feed.FeedItemlistFragment;
 import de.danoeh.antennapod.ui.screen.home.HomeFragment;
+import de.danoeh.antennapod.ui.screen.livestream.LiveStreamFragment;
 import de.danoeh.antennapod.ui.screen.playback.audio.AudioPlayerFragment;
 import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatDisclosureManager;
 import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
@@ -729,6 +730,11 @@ public class MainActivity extends CastEnabledActivity implements NavigationToolb
                     loadChildFragment(FeedItemlistFragment.newInstance(feedId));
                 }
             }
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        } else if (LiveStreamFragment.TAG.equals(intent.getStringExtra(MainActivityStarter.EXTRA_FRAGMENT_TAG))) {
+            Fragment fragment = new LiveStreamFragment();
+            fragment.setArguments(intent.getBundleExtra(MainActivityStarter.EXTRA_FRAGMENT_ARGS));
+            loadChildFragment(fragment);
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else if (intent.hasExtra(MainActivityStarter.EXTRA_FRAGMENT_TAG)) {
             String tag = intent.getStringExtra(MainActivityStarter.EXTRA_FRAGMENT_TAG);
