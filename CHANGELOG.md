@@ -2,6 +2,22 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [0.1.24] - 2026-10-22
+
+### Added
+
+- Keep listening to live streams while browsing XMRPod, using another app, or with the screen off.
+- Pause, resume, or stop live streams from Android media controls, and tap the notification to return to the player.
+
+### Fixed
+
+- Preserve live playback when leaving fullscreen or returning to the player.
+- Pause live streams when starting a podcast or disconnecting headphones.
+
+### Known issues
+
+- Some live streams may still pause or stall with the screen off, depending on the streaming provider and Android WebView version.
+
 ## [0.1.23] - 2026-10-13
 
 ### Added

@@ -71,6 +71,7 @@
     <string name="xmrchat_disclosure_button">Got it</string>
     <string name="live_label">LIVE</string>
     <string name="live_stream_watch">Watch live stream</string>
+    <string name="live_stream_stop">Stop live stream</string>
     <string name="live_stream_on_platform">Live on %1$s</string>
     <string name="live_stream_not_subscribed">You are not subscribed to this podcast yet. Subscribe for free to access it more easily.</string>
     <string name="live_platform_twitch" translatable="false">Twitch</string>

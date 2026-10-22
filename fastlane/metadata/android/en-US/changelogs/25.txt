@@ -1,0 +1,7 @@
+- Keep listening to live streams while browsing XMRPod, using another app, or with the screen off.
+- Pause, resume, or stop live streams from Android media controls, and tap the notification to return to the player.
+
+- Preserve live playback when leaving fullscreen or returning to the player.
+- Pause live streams when starting a podcast or disconnecting headphones.
+
+- Some live streams may still pause or stall with the screen off, depending on the streaming provider and Android WebView version.

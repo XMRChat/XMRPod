@@ -732,9 +732,11 @@ public class MainActivity extends CastEnabledActivity implements NavigationToolb
             }
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else if (LiveStreamFragment.TAG.equals(intent.getStringExtra(MainActivityStarter.EXTRA_FRAGMENT_TAG))) {
-            Fragment fragment = new LiveStreamFragment();
-            fragment.setArguments(intent.getBundleExtra(MainActivityStarter.EXTRA_FRAGMENT_ARGS));
-            loadChildFragment(fragment);
+            if (!(getSupportFragmentManager().findFragmentById(R.id.main_content_view) instanceof LiveStreamFragment)) {
+                Fragment fragment = new LiveStreamFragment();
+                fragment.setArguments(intent.getBundleExtra(MainActivityStarter.EXTRA_FRAGMENT_ARGS));
+                loadChildFragment(fragment);
+            }
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else if (intent.hasExtra(MainActivityStarter.EXTRA_FRAGMENT_TAG)) {
             String tag = intent.getStringExtra(MainActivityStarter.EXTRA_FRAGMENT_TAG);
