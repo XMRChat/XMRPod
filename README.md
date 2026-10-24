@@ -12,6 +12,8 @@
 
 XMRPod is an open-source podcast app for Android with Monero tipping support for creators on XMRChat. No tracking, no analytics, no ads.
 
+XMRPod is a fork of the excellent [AntennaPod](https://github.com/AntennaPod/AntennaPod), the open-source podcast player built by its community of contributors. XMRPod keeps AntennaPod's podcast features and adds its XMRChat tipping and live stream support on top.
+
 ## Monero Tipping
 
 XMRPod adds a `Tip` action to the playback screen for podcasts whose creators have an XMRChat page. When you send a tip, XMRPod creates a tip payment address with the listener name, amount, and optional message, then hands the payment URI to a compatible Monero wallet such as Cake Wallet.
@@ -46,6 +48,23 @@ If the `podcast-rss` link matches, it wins and the website check is skipped.
 
 Matching ignores case, `www.` prefixes, query strings, `#fragments`, and trailing slashes — everything else must match exactly. A website URL claimed by more than one XMRChat page is ignored, so listeners never tip the wrong creator. The page list is cached and refreshed at most every 15 minutes, so new registrations can take a moment to appear.
 
+## Live Streams
+
+When a podcast's creator is live, XMRPod shows a `LIVE` row at the top of the podcast's episode list. Tap it to watch the stream right inside XMRPod, go fullscreen, and send a Monero tip with the `Tip` button while you watch.
+
+- Works with streams on Twitch, Kick, YouTube, Rumble, and PeerTube.
+- Keeps playing while you browse XMRPod, use another app, or turn the screen off.
+- Pause, resume, or stop the stream from Android's media controls, and tap the notification to return to the player.
+- Starting a podcast episode or disconnecting headphones pauses the stream.
+
+Live status is checked when you open a podcast's page and refreshed every few minutes while it stays open.
+
+Some streams may still pause or stall with the screen off, depending on the streaming provider and your Android WebView version.
+
+### Showing Your Live Stream in XMRPod
+
+Live streams use the same matching as tips. Once your podcast is tippable (see [Making Your Podcast Tippable](#making-your-podcast-tippable)), add your Twitch, Kick, YouTube, Rumble, or PeerTube channel to your XMRChat page. When XMRChat sees you live, XMRPod listeners get the `LIVE` row on your podcast page automatically.
+
 ## Privacy
 
 Discovery happens entirely on your device. XMRPod downloads a single generic list of public XMRChat creator pages and matches your subscribed feeds against it locally. Your podcast titles, feed URLs, and listening activity are never transmitted.
@@ -55,6 +74,8 @@ The only network calls XMRPod makes:
 - One generic download of the public creator page list (cached, refreshed at most daily).
 - A public Monero price fetch when you open the tip form.
 - The tip request — only when you explicitly send a tip. It carries just the tip details plus a `source=xmrpod` marker.
+- One generic download of the list of creators who are live right now, when you open the page of a podcast that has an XMRChat page. It never says which podcast you are viewing.
+- The streaming provider's embedded player (Twitch, Kick, YouTube, Rumble, or PeerTube) — only when you choose to watch a live stream. That provider sees your connection the same way it would on its own website.
 
 ## Package Name
 
