@@ -65,6 +65,17 @@ Some streams may still pause or stall with the screen off, depending on the stre
 
 Live streams use the same matching as tips. Once your podcast is tippable (see [Making Your Podcast Tippable](#making-your-podcast-tippable)), add your Twitch, Kick, YouTube, Rumble, or PeerTube channel to your XMRChat page. When XMRChat sees you live, XMRPod listeners get the `LIVE` row on your podcast page automatically.
 
+## Live Stream Notifications
+
+Get a notification when a podcast you follow goes live. Tap the bell on a podcast's page to turn on alerts for that podcast. The bell shows on subscribed podcasts that have an XMRChat page, and it starts off.
+
+The first time you turn on a bell, XMRPod sets up notifications for you. It picks your push app, registers it, and sends a test notification so you know it works. You only choose a push app yourself if you have more than one.
+
+- You need a UnifiedPush app such as [Sunup](https://f-droid.org/packages/org.unifiedpush.distributor.sunup/). If you don't have one, XMRPod offers to install Sunup. Open Sunup once and finish its setup.
+- Until push notifications work, XMRPod checks for live podcasts about once an hour instead, so alerts can come late or miss short streams.
+- Tap a notification to open the podcast's page. Playback doesn't start on its own.
+- Check the status, send a test, or retry setup in Settings → Notifications. New episode notifications work the same as before.
+
 ## Privacy
 
 Discovery happens entirely on your device. XMRPod downloads a single generic list of public XMRChat creator pages and matches your subscribed feeds against it locally. Your podcast titles, feed URLs, and listening activity are never transmitted.
@@ -75,6 +86,8 @@ The only network calls XMRPod makes:
 - A public Monero price fetch when you open the tip form.
 - The tip request — only when you explicitly send a tip. It carries just the tip details plus a `source=xmrpod` marker.
 - One generic download of the list of creators who are live right now, when you open the page of a podcast that has an XMRChat page. It never says which podcast you are viewing.
+- When you turn on notifications, an anonymous registration with XMRChat's notification server, renewed once a day, plus test notifications. XMRPod gets alerts for every creator who goes live and keeps only the ones for your podcasts on your device, so your subscriptions are never sent.
+- Until push notifications work, the same generic live list download about once an hour, only while at least one bell is on.
 - The streaming provider's embedded player (Twitch, Kick, YouTube, Rumble, or PeerTube) — only when you choose to watch a live stream. That provider sees your connection the same way it would on its own website.
 
 ## Package Name
