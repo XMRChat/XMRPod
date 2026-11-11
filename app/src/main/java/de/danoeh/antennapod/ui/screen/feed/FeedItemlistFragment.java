@@ -1,6 +1,9 @@
 package de.danoeh.antennapod.ui.screen.feed;
 
+import android.content.Intent;
+import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
 import android.content.res.Configuration;
+import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +18,8 @@ import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +27,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.activity.MainActivity;
 import de.danoeh.antennapod.databinding.FeedItemListFragmentBinding;
+import de.danoeh.antennapod.databinding.LiveNotificationsDialogBinding;
 import de.danoeh.antennapod.event.EpisodeDownloadEvent;
 import de.danoeh.antennapod.event.FeedEvent;
 import de.danoeh.antennapod.event.FeedItemEvent;
@@ -39,6 +47,9 @@ import de.danoeh.antennapod.model.feed.Feed;
 import de.danoeh.antennapod.model.feed.FeedItem;
 import de.danoeh.antennapod.model.feed.FeedItemFilter;
 import de.danoeh.antennapod.net.download.serviceinterface.FeedUpdateManager;
+import de.danoeh.antennapod.net.push.LiveNotifications;
+import de.danoeh.antennapod.ui.screen.preferences.PreferenceActivity;
+import de.danoeh.antennapod.ui.preferences.screen.NotificationPreferencesFragment;
 import de.danoeh.antennapod.storage.database.DBReader;
 import de.danoeh.antennapod.storage.database.DBWriter;
 import de.danoeh.antennapod.storage.preferences.UserPreferences;
@@ -286,6 +297,17 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         if (feed == null) {
             return;
         }
+        String creator = XmrChatPageDirectory.getInstance().pathForFeed(feed);
+        if (TextUtils.isEmpty(creator)) {
+            creator = XmrChatPageDirectory.getInstance().pathForFeedWebsite(feed);
+        }
+        MenuItem bell = viewBinding.toolbar.getMenu().findItem(R.id.live_notifications);
+        boolean alertsEnabled = feed.getPreferences().getLiveNotificationSince() > 0;
+        bell.setVisible(feed.getState() == Feed.STATE_SUBSCRIBED && !TextUtils.isEmpty(creator));
+        ColorFilter bellColor = bell.getIcon() == null ? null : bell.getIcon().getColorFilter();
+        bell.setIcon(alertsEnabled ? R.drawable.ic_live_bell_on : R.drawable.ic_live_bell_off);
+        bell.getIcon().setColorFilter(bellColor);
+        bell.setTitle(alertsEnabled ? R.string.live_push_bell_on : R.string.live_push_bell_off);
         viewBinding.toolbar.getMenu().findItem(R.id.visit_website_item).setVisible(feed.getLink() != null);
         viewBinding.toolbar.getMenu().findItem(R.id.refresh_complete_item).setVisible(feed.isPaged());
         if (StringUtils.isBlank(feed.getLink())) {
@@ -316,7 +338,10 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
             EventBus.getDefault().post(getString(R.string.please_wait_for_data));
             return true;
         }
-        if (item.getItemId() == R.id.visit_website_item) {
+        if (item.getItemId() == R.id.live_notifications) {
+            showLiveNotificationsDialog();
+            return true;
+        } else if (item.getItemId() == R.id.visit_website_item) {
             IntentUtils.openInBrowser(getContext(), feed.getLink());
             return true;
         } else if (item.getItemId() == R.id.refresh_item) {
@@ -346,6 +371,58 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         }
 
         return FeedMenuHandler.onMenuItemClicked(this, item.getItemId(), feed);
+    }
+
+    private void showLiveNotificationsDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        LiveNotificationsDialogBinding binding = LiveNotificationsDialogBinding.inflate(getLayoutInflater());
+        boolean enabled = feed.getPreferences().getLiveNotificationSince() > 0;
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomInset);
+            return insets;
+        });
+        binding.enableCheck.setVisibility(enabled ? View.VISIBLE : View.INVISIBLE);
+        binding.noneCheck.setVisibility(enabled ? View.INVISIBLE : View.VISIBLE);
+        binding.enableRow.setOnClickListener(view -> {
+            dialog.dismiss();
+            setLiveNotificationsEnabled(true);
+        });
+        binding.noneRow.setOnClickListener(view -> {
+            dialog.dismiss();
+            setLiveNotificationsEnabled(false);
+        });
+        dialog.setContentView(binding.getRoot());
+        dialog.setOnShowListener(dialogInterface ->
+                dialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED));
+        dialog.show();
+    }
+
+    private void setLiveNotificationsEnabled(boolean enable) {
+        if (enable == (feed.getPreferences().getLiveNotificationSince() > 0)) {
+            return;
+        }
+        feed.getPreferences().setLiveNotificationSince(enable ? System.currentTimeMillis() : 0);
+        updateToolbar();
+        Feed changedFeed = feed;
+        LiveNotifications notifications = LiveNotifications.get(requireContext());
+        new Thread(() -> {
+            try {
+                DBWriter.setFeedPreferences(changedFeed.getPreferences()).get();
+                notifications.enqueue("sync", null);
+                notifications.enqueue("poll", null);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } catch (ExecutionException e) {
+                Log.e(TAG, "Unable to save live notification preference", e);
+            }
+        }).start();
+        if (enable && (!notifications.isEnabled()
+                || notifications.getPreferences().getLong("tested_at", 0) == 0)) {
+            startActivity(new Intent(requireContext(), PreferenceActivity.class)
+                    .putExtra(PreferenceActivity.OPEN_NOTIFICATION_SETTINGS, true)
+                    .putExtra(NotificationPreferencesFragment.EXTRA_START_PUSH_SETUP, true));
+        }
     }
 
     public static class RemoveFeedDialogClose extends RemoveFeedDialog {
@@ -691,6 +768,7 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         if (viewBinding == null || feed == null) {
             return;
         }
+        updateToolbar();
         loadFeedImage();
         viewBinding.header.liveItemContainer.setVisibility(stream == null ? View.GONE : View.VISIBLE);
         if (stream == null) {

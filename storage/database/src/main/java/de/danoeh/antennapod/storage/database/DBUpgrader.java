@@ -17,6 +17,14 @@ class DBUpgrader {
      * Upgrades the given database to a new schema version
      */
     static void upgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
+        if (oldVersion < 3110001) {
+            try (Cursor cursor = db.rawQuery("SELECT * FROM " + PodDBAdapter.TABLE_NAME_FEEDS + " LIMIT 0", null)) {
+                if (cursor.getColumnIndex(PodDBAdapter.KEY_LIVE_NOTIFICATION_SINCE) < 0) {
+                    db.execSQL("ALTER TABLE " + PodDBAdapter.TABLE_NAME_FEEDS
+                            + " ADD COLUMN " + PodDBAdapter.KEY_LIVE_NOTIFICATION_SINCE + " INTEGER DEFAULT 0");
+                }
+            }
+        }
         if (oldVersion <= 1) {
             db.execSQL("ALTER TABLE " + PodDBAdapter.TABLE_NAME_FEEDS + " ADD COLUMN "
                     + PodDBAdapter.KEY_TYPE + " TEXT");

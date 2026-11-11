@@ -26,6 +26,7 @@ import de.danoeh.antennapod.storage.database.PodDBAdapter;
 import de.danoeh.antennapod.ui.notifications.NotificationUtils;
 import de.danoeh.antennapod.net.discovery.PodcastFeedValidator;
 import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
+import de.danoeh.antennapod.net.push.LiveNotifications;
 import java.io.File;
 
 public class ClientConfigurator {
@@ -60,6 +61,10 @@ public class ClientConfigurator {
         PodcastFeedValidator.getInstance().init(context);
         XmrChatPageDirectory.getInstance().init(context);
         XmrChatPageDirectory.getInstance().refreshIfNeeded();
+        LiveNotifications.get(context).initialize(feed -> {
+            String path = XmrChatPageDirectory.getInstance().pathForFeed(feed);
+            return path != null && !path.isEmpty() ? path : XmrChatPageDirectory.getInstance().pathForFeedWebsite(feed);
+        });
         initialized = true;
     }
 }

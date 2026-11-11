@@ -1,0 +1,6 @@
+<full-backup-content>
+    <exclude domain="sharedpref" path="xmrpod-live-push.xml" />
+    <exclude domain="sharedpref" path="unifiedpush.connector.xml" />
+    <exclude domain="database" path="unifiedpush-connector" />
+    <exclude domain="database" path="unifiedpush-connector-journal" />
+</full-backup-content>
