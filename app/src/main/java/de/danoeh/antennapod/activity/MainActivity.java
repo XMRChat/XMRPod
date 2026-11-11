@@ -1,5 +1,8 @@
 package de.danoeh.antennapod.activity;
 
+import android.view.Gravity;
+import android.widget.PopupWindow;
+import de.danoeh.antennapod.net.push.LiveNotifications;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -79,6 +82,7 @@ import de.danoeh.antennapod.ui.screen.playback.audio.AudioPlayerFragment;
 import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatDisclosureManager;
 import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
 import de.danoeh.antennapod.ui.screen.preferences.PreferenceActivity;
+import de.danoeh.antennapod.ui.preferences.screen.NotificationPreferencesFragment;
 import de.danoeh.antennapod.ui.screen.queue.QueueFragment;
 import de.danoeh.antennapod.ui.screen.rating.RatingDialogManager;
 import de.danoeh.antennapod.ui.screen.subscriptions.SubscriptionFragment;
@@ -590,6 +594,8 @@ public class MainActivity extends CastEnabledActivity implements NavigationToolb
         super.onResume();
         handleNavIntent();
         XmrChatPageDirectory.getInstance().refreshIfNeeded();
+        LiveNotifications.get(this).resume();
+        showLiveNotificationReminder();
 
         boolean hasBottomNavigation = bottomNavigation != null;
         if (lastTheme != ThemeSwitcher.getNoTitleTheme(this)
@@ -599,6 +605,40 @@ public class MainActivity extends CastEnabledActivity implements NavigationToolb
         if (UserPreferences.getHiddenDrawerItems().contains(NavDrawerFragment.getLastNavFragment(this))) {
             loadFragment(UserPreferences.getDefaultPage(), null);
         }
+    }
+
+    private boolean liveReminderShown;
+
+    private void showLiveNotificationReminder() {
+        LiveNotifications notifications = LiveNotifications.get(this);
+        if (liveReminderShown || notifications.getPreferences().getBoolean("reminder_dismissed", false)
+                || notifications.getPreferences().getLong("tested_at", 0) > 0) {
+            return;
+        }
+        liveReminderShown = true;
+        View root = findViewById(android.R.id.content);
+        root.post(() -> {
+            if (isFinishing() || isDestroyed()) {
+                return;
+            }
+            View reminder = getLayoutInflater().inflate(R.layout.live_notification_reminder, null);
+            float density = getResources().getDisplayMetrics().density;
+            int width = Math.min(getResources().getDisplayMetrics().widthPixels - (int) (32 * density),
+                    (int) (480 * density));
+            PopupWindow popup = new PopupWindow(reminder, width, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+            popup.setOutsideTouchable(true);
+            reminder.findViewById(R.id.push_dismiss).setOnClickListener(view -> {
+                notifications.getPreferences().edit().putBoolean("reminder_dismissed", true).apply();
+                popup.dismiss();
+            });
+            reminder.findViewById(R.id.push_setup).setOnClickListener(view -> {
+                popup.dismiss();
+                startActivity(new Intent(this, PreferenceActivity.class)
+                        .putExtra(PreferenceActivity.OPEN_NOTIFICATION_SETTINGS, true)
+                        .putExtra(NotificationPreferencesFragment.EXTRA_START_PUSH_SETUP, true));
+            });
+            popup.showAtLocation(root, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, (int) (80 * density));
+        });
     }
 
     @Override

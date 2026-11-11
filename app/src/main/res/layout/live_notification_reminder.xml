@@ -1,0 +1,19 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp" app:cardElevation="8dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="16dp" android:orientation="vertical">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/live_push_reminder" android:textAppearance="?attr/textAppearanceBodyLarge" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="end" android:orientation="vertical">
+            <com.google.android.material.button.MaterialButton android:id="@+id/push_dismiss"
+                style="?attr/borderlessButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/live_push_dismiss" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/push_setup"
+                style="?attr/borderlessButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/live_push_setup" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

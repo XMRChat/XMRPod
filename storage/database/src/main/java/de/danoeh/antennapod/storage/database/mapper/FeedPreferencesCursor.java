@@ -64,7 +64,7 @@ public class FeedPreferencesCursor extends CursorWrapper {
         if (TextUtils.isEmpty(tagsString)) {
             tagsString = FeedPreferences.TAG_ROOT;
         }
-        return new FeedPreferences(
+        FeedPreferences preferences = new FeedPreferences(
                 getLong(indexId),
                 FeedPreferences.AutoDownloadSetting.fromInteger(getInt(indexAutoDownload)),
                 getInt(indexAutoRefresh) > 0,
@@ -81,5 +81,7 @@ public class FeedPreferencesCursor extends CursorWrapper {
                 getInt(indexEpisodeNotification) > 0,
                 FeedPreferences.NewEpisodesAction.fromCode(getInt(indexNewEpisodesAction)),
                 new HashSet<>(Arrays.asList(tagsString.split(FeedPreferences.TAG_SEPARATOR))));
+        preferences.setLiveNotificationSince(getLong(getColumnIndexOrThrow(PodDBAdapter.KEY_LIVE_NOTIFICATION_SINCE)));
+        return preferences;
     }
 }

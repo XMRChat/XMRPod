@@ -1,0 +1,14 @@
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="xmrpod-live-push.xml" />
+        <exclude domain="sharedpref" path="unifiedpush.connector.xml" />
+        <exclude domain="database" path="unifiedpush-connector" />
+        <exclude domain="database" path="unifiedpush-connector-journal" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="xmrpod-live-push.xml" />
+        <exclude domain="sharedpref" path="unifiedpush.connector.xml" />
+        <exclude domain="database" path="unifiedpush-connector" />
+        <exclude domain="database" path="unifiedpush-connector-journal" />
+    </device-transfer>
+</data-extraction-rules>

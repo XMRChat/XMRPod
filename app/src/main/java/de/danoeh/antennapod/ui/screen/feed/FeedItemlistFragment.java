@@ -1,6 +1,9 @@
 package de.danoeh.antennapod.ui.screen.feed;
 
+import android.content.Intent;
+import de.danoeh.antennapod.ui.screen.playback.audio.XmrChatPageDirectory;
 import android.content.res.Configuration;
+import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,6 +42,9 @@ import de.danoeh.antennapod.model.feed.Feed;
 import de.danoeh.antennapod.model.feed.FeedItem;
 import de.danoeh.antennapod.model.feed.FeedItemFilter;
 import de.danoeh.antennapod.net.download.serviceinterface.FeedUpdateManager;
+import de.danoeh.antennapod.net.push.LiveNotifications;
+import de.danoeh.antennapod.ui.screen.preferences.PreferenceActivity;
+import de.danoeh.antennapod.ui.preferences.screen.NotificationPreferencesFragment;
 import de.danoeh.antennapod.storage.database.DBReader;
 import de.danoeh.antennapod.storage.database.DBWriter;
 import de.danoeh.antennapod.storage.preferences.UserPreferences;
@@ -286,6 +292,17 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         if (feed == null) {
             return;
         }
+        String creator = XmrChatPageDirectory.getInstance().pathForFeed(feed);
+        if (TextUtils.isEmpty(creator)) {
+            creator = XmrChatPageDirectory.getInstance().pathForFeedWebsite(feed);
+        }
+        MenuItem bell = viewBinding.toolbar.getMenu().findItem(R.id.live_notifications);
+        boolean alertsEnabled = feed.getPreferences().getLiveNotificationSince() > 0;
+        bell.setVisible(feed.getState() == Feed.STATE_SUBSCRIBED && !TextUtils.isEmpty(creator));
+        ColorFilter bellColor = bell.getIcon() == null ? null : bell.getIcon().getColorFilter();
+        bell.setIcon(alertsEnabled ? R.drawable.ic_live_bell_on : R.drawable.ic_live_bell_off);
+        bell.getIcon().setColorFilter(bellColor);
+        bell.setTitle(alertsEnabled ? R.string.live_push_bell_on : R.string.live_push_bell_off);
         viewBinding.toolbar.getMenu().findItem(R.id.visit_website_item).setVisible(feed.getLink() != null);
         viewBinding.toolbar.getMenu().findItem(R.id.refresh_complete_item).setVisible(feed.isPaged());
         if (StringUtils.isBlank(feed.getLink())) {
@@ -316,7 +333,31 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
             EventBus.getDefault().post(getString(R.string.please_wait_for_data));
             return true;
         }
-        if (item.getItemId() == R.id.visit_website_item) {
+        if (item.getItemId() == R.id.live_notifications) {
+            boolean enable = feed.getPreferences().getLiveNotificationSince() == 0;
+            feed.getPreferences().setLiveNotificationSince(enable ? System.currentTimeMillis() : 0);
+            updateToolbar();
+            Feed changedFeed = feed;
+            LiveNotifications notifications = LiveNotifications.get(requireContext());
+            new Thread(() -> {
+                try {
+                    DBWriter.setFeedPreferences(changedFeed.getPreferences()).get();
+                    notifications.enqueue("sync", null);
+                    notifications.enqueue("poll", null);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                } catch (ExecutionException e) {
+                    Log.e(TAG, "Unable to save live notification preference", e);
+                }
+            }).start();
+            if (enable && (!notifications.isEnabled()
+                    || notifications.getPreferences().getLong("tested_at", 0) == 0)) {
+                startActivity(new Intent(requireContext(), PreferenceActivity.class)
+                        .putExtra(PreferenceActivity.OPEN_NOTIFICATION_SETTINGS, true)
+                        .putExtra(NotificationPreferencesFragment.EXTRA_START_PUSH_SETUP, true));
+            }
+            return true;
+        } else if (item.getItemId() == R.id.visit_website_item) {
             IntentUtils.openInBrowser(getContext(), feed.getLink());
             return true;
         } else if (item.getItemId() == R.id.refresh_item) {
@@ -691,6 +732,7 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         if (viewBinding == null || feed == null) {
             return;
         }
+        updateToolbar();
         loadFeedImage();
         viewBinding.header.liveItemContainer.setVisibility(stream == null ? View.GONE : View.VISIBLE);
         if (stream == null) {

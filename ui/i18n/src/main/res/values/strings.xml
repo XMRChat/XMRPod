@@ -1101,4 +1101,36 @@
     <string name="wearos_play_on_phone" tools:ignore="UnusedResources">Play on phone</string>
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">Browse phone</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">Open on phone</string>
+    <string name="live_push_channel">Live streams</string>
+    <string name="live_push_channel_description">Alerts for podcasts whose live notification bell you enabled</string>
+    <string name="live_push_title">Live stream notifications</string>
+    <string name="live_push_enabled">Use UnifiedPush</string>
+    <string name="live_push_enabled_summary">Receive live alerts through Sunup or another installed push service</string>
+    <string name="live_push_choose_provider">Choose push service</string>
+    <string name="live_push_no_provider">No push service installed</string>
+    <string name="live_push_install_help">Install and open Sunup, complete its setup, then return here to choose it. Other UnifiedPush services are supported too. Without a push service, enabled podcast bells use hourly checks that may be delayed.</string>
+    <string name="live_push_install">Get Sunup</string>
+    <string name="live_push_help">Push setup instructions</string>
+    <string name="live_push_setup_guide">Sunup guide</string>
+    <string name="live_push_test">Send test notification</string>
+    <string name="live_push_test_title">XMRPod notifications work</string>
+    <string name="live_push_test_body">This test travelled through your push service to XMRPod.</string>
+    <string name="live_push_live_body">Live now. Tap to open this podcast.</string>
+    <string name="live_push_retry">Retry push setup</string>
+    <string name="live_push_status">Notification status</string>
+    <string name="live_push_android_settings">Android notification settings</string>
+    <string name="live_push_android_settings_summary">Manage notification permission, channels and sounds</string>
+    <string name="live_push_status_off">Push delivery is off. Enabled podcast bells use hourly checks. Bells are off by default.</string>
+    <string name="live_push_status_registering">Registering with your push service… Hourly checks remain available.</string>
+    <string name="live_push_status_registered">Registered. Send a test to confirm delivery.</string>
+    <string name="live_push_status_tested">Test received: %1$s</string>
+    <string name="live_push_status_testing">Waiting for the test notification…</string>
+    <string name="live_push_status_action_required">Open your selected push service and complete its setup, then retry here.</string>
+    <string name="live_push_status_fallback">Push unavailable. Enabled bells use hourly checks. Retry setup when connected.</string>
+    <string name="live_push_status_blocked">Notifications are blocked in Android settings.</string>
+    <string name="live_push_bell_on">Turn off live alerts</string>
+    <string name="live_push_bell_off">Turn on live alerts</string>
+    <string name="live_push_reminder">Set up live notifications for your podcasts</string>
+    <string name="live_push_setup">Set up notifications</string>
+    <string name="live_push_dismiss">Don\'t show again</string>
 </resources>
