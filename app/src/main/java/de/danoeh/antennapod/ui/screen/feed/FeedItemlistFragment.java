@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,9 +27,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.activity.MainActivity;
 import de.danoeh.antennapod.databinding.FeedItemListFragmentBinding;
+import de.danoeh.antennapod.databinding.LiveNotificationsDialogBinding;
 import de.danoeh.antennapod.event.EpisodeDownloadEvent;
 import de.danoeh.antennapod.event.FeedEvent;
 import de.danoeh.antennapod.event.FeedItemEvent;
@@ -334,28 +339,7 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
             return true;
         }
         if (item.getItemId() == R.id.live_notifications) {
-            boolean enable = feed.getPreferences().getLiveNotificationSince() == 0;
-            feed.getPreferences().setLiveNotificationSince(enable ? System.currentTimeMillis() : 0);
-            updateToolbar();
-            Feed changedFeed = feed;
-            LiveNotifications notifications = LiveNotifications.get(requireContext());
-            new Thread(() -> {
-                try {
-                    DBWriter.setFeedPreferences(changedFeed.getPreferences()).get();
-                    notifications.enqueue("sync", null);
-                    notifications.enqueue("poll", null);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                } catch (ExecutionException e) {
-                    Log.e(TAG, "Unable to save live notification preference", e);
-                }
-            }).start();
-            if (enable && (!notifications.isEnabled()
-                    || notifications.getPreferences().getLong("tested_at", 0) == 0)) {
-                startActivity(new Intent(requireContext(), PreferenceActivity.class)
-                        .putExtra(PreferenceActivity.OPEN_NOTIFICATION_SETTINGS, true)
-                        .putExtra(NotificationPreferencesFragment.EXTRA_START_PUSH_SETUP, true));
-            }
+            showLiveNotificationsDialog();
             return true;
         } else if (item.getItemId() == R.id.visit_website_item) {
             IntentUtils.openInBrowser(getContext(), feed.getLink());
@@ -387,6 +371,58 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         }
 
         return FeedMenuHandler.onMenuItemClicked(this, item.getItemId(), feed);
+    }
+
+    private void showLiveNotificationsDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        LiveNotificationsDialogBinding binding = LiveNotificationsDialogBinding.inflate(getLayoutInflater());
+        boolean enabled = feed.getPreferences().getLiveNotificationSince() > 0;
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomInset);
+            return insets;
+        });
+        binding.enableCheck.setVisibility(enabled ? View.VISIBLE : View.INVISIBLE);
+        binding.noneCheck.setVisibility(enabled ? View.INVISIBLE : View.VISIBLE);
+        binding.enableRow.setOnClickListener(view -> {
+            dialog.dismiss();
+            setLiveNotificationsEnabled(true);
+        });
+        binding.noneRow.setOnClickListener(view -> {
+            dialog.dismiss();
+            setLiveNotificationsEnabled(false);
+        });
+        dialog.setContentView(binding.getRoot());
+        dialog.setOnShowListener(dialogInterface ->
+                dialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED));
+        dialog.show();
+    }
+
+    private void setLiveNotificationsEnabled(boolean enable) {
+        if (enable == (feed.getPreferences().getLiveNotificationSince() > 0)) {
+            return;
+        }
+        feed.getPreferences().setLiveNotificationSince(enable ? System.currentTimeMillis() : 0);
+        updateToolbar();
+        Feed changedFeed = feed;
+        LiveNotifications notifications = LiveNotifications.get(requireContext());
+        new Thread(() -> {
+            try {
+                DBWriter.setFeedPreferences(changedFeed.getPreferences()).get();
+                notifications.enqueue("sync", null);
+                notifications.enqueue("poll", null);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } catch (ExecutionException e) {
+                Log.e(TAG, "Unable to save live notification preference", e);
+            }
+        }).start();
+        if (enable && (!notifications.isEnabled()
+                || notifications.getPreferences().getLong("tested_at", 0) == 0)) {
+            startActivity(new Intent(requireContext(), PreferenceActivity.class)
+                    .putExtra(PreferenceActivity.OPEN_NOTIFICATION_SETTINGS, true)
+                    .putExtra(NotificationPreferencesFragment.EXTRA_START_PUSH_SETUP, true));
+        }
     }
 
     public static class RemoveFeedDialogClose extends RemoveFeedDialog {

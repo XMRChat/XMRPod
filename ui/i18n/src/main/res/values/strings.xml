@@ -1130,6 +1130,9 @@
     <string name="live_push_status_blocked">Notifications are blocked in Android settings.</string>
     <string name="live_push_bell_on">Turn off live alerts</string>
     <string name="live_push_bell_off">Turn on live alerts</string>
+    <string name="live_push_dialog_description">Receive notifications when this channel goes live.</string>
+    <string name="live_push_enable">Enable</string>
+    <string name="live_push_none">None</string>
     <string name="live_push_reminder">Set up live notifications for your podcasts</string>
     <string name="live_push_setup">Set up notifications</string>
     <string name="live_push_dismiss">Don\'t show again</string>
