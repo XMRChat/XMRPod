@@ -19,7 +19,7 @@ public class NotificationUtils {
     public static final String CHANNEL_ID_DOWNLOAD_ERROR = "error";
     public static final String CHANNEL_ID_SYNC_ERROR = "sync_error";
     public static final String CHANNEL_ID_EPISODE_NOTIFICATIONS = "episode_notifications";
-    public static final String CHANNEL_ID_LIVE_NOTIFICATIONS = "live_notifications";
+    public static final String CHANNEL_ID_LIVE_NOTIFICATIONS = "live_notifications_v2";
 
     public static final String GROUP_ID_ERRORS = "group_errors";
     public static final String GROUP_ID_NEWS = "group_news";
@@ -44,7 +44,9 @@ public class NotificationUtils {
                         NotificationManagerCompat.IMPORTANCE_DEFAULT)
                         .setName(context.getString(R.string.live_push_channel))
                         .setDescription(context.getString(R.string.live_push_channel_description))
+                        .setVibrationEnabled(true)
                         .setGroup(GROUP_ID_NEWS).build());
+        mNotificationManager.deleteNotificationChannel("live_notifications");
         mNotificationManager.createNotificationChannelsCompat(channels);
     }
 

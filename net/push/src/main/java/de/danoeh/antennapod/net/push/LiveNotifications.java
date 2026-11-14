@@ -435,6 +435,7 @@ public final class LiveNotifications {
             manager.notify("xmrpod-live-" + tag, 1, new NotificationCompat.Builder(context,
                     NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS)
                     .setSmallIcon(R.drawable.ic_notification).setContentTitle(title).setContentText(body)
+                    .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
                     .setContentIntent(pending).setAutoCancel(true).setOnlyAlertOnce(true).build());
             return true;
         } catch (SecurityException e) {

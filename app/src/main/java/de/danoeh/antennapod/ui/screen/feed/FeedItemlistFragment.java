@@ -374,7 +374,7 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
     }
 
     private void showLiveNotificationsDialog() {
-        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        final BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
         LiveNotificationsDialogBinding binding = LiveNotificationsDialogBinding.inflate(getLayoutInflater());
         boolean enabled = feed.getPreferences().getLiveNotificationSince() > 0;
         ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, insets) -> {

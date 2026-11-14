@@ -1,5 +1,6 @@
 package de.danoeh.antennapod.net.push;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import de.danoeh.antennapod.model.feed.Feed;
@@ -20,10 +21,26 @@ import org.robolectric.annotation.Config;
 import java.time.Instant;
 import java.util.Collections;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 28)
 public class LiveNotificationDeliveryTest {
+    @Test
+    public void liveChannelVibratesAndReplacesOldChannel() {
+        Context context = RuntimeEnvironment.getApplication();
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(new NotificationChannel("live_notifications", "Live streams",
+                NotificationManager.IMPORTANCE_DEFAULT));
+        NotificationUtils.createChannels(context);
+        assertNull(manager.getNotificationChannel("live_notifications"));
+        NotificationChannel channel = manager.getNotificationChannel(NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS);
+        assertTrue(channel.shouldVibrate());
+        assertNotNull(channel.getSound());
+    }
+
     @Test
     public void baselineIsSilentAndPushPollingShareDeduplicationAndRespectDisabledBells() throws Exception {
         Context context = RuntimeEnvironment.getApplication();
