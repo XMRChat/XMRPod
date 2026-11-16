@@ -28,9 +28,6 @@ public class AboutFragment extends AnimatedPreferenceFragment {
             e.printStackTrace();
         }
         //noinspection ConstantValue
-        if ("free".equals(BuildConfig.FLAVOR)) {
-            versionName += "f";
-        }
 
         findPreference("about_version").setSummary(String.format(
                 "%s (%s)", versionName, BuildConfig.COMMIT_HASH));

@@ -7,3 +7,5 @@ This is only needed for notification icons - for the icons within the app, appco
 
 This module is not meant for all notification handling (this should be done in the respective modules), just generic setup code and icons.
 Actual notification posting is done in each respective module.
+
+Android fixes a channel's importance, sound and vibration when the channel is first created, so changing those defaults needs a new channel ID; delete the old ID in `NotificationUtils.createChannels`.

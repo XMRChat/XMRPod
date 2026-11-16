@@ -78,7 +78,7 @@ ONLY USE THE EXACT COMMANDS GIVEN IN THIS FILE!
 Only then run the application or the tests to verify it.
 Usually you will need to run the application, but if there are existing tests that cover the code you wrote, you can run those instead.
 For installing and running the application, use the command
-`./gradlew --console=plain :app:installPlayDebug && adb shell monkey -p de.danoeh.antennapod.debug 1`.
+`./gradlew --console=plain :app:installDebug && adb shell monkey -p com.xmrchat.xmrpod.debug 1`.
 If needed, you can grab a textual representation of the screen using `adb shell uiautomator dump /sdcard/ui.xml; adb shell cat /sdcard/ui.xml`.
 You can even control connected devices using `adb shell input tap <x> <y>` and `adb shell input swipe <x1> <y1> <x2> <y2> <duration ms>`.
 If there is a crash, read the logs using `adb logcat -d | grep "de.danoeh.antennapod" | tail -20` and fix the issue.

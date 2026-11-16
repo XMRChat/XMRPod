@@ -2,6 +2,21 @@
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Preference android:key="live_push_android_settings" android:title="@string/live_push_android_settings"
+            android:summary="@string/live_push_android_settings_summary" />
+
+    <PreferenceCategory
+            android:title="@string/live_push_title">
+        <SwitchPreferenceCompat android:key="live_push_enabled" android:defaultValue="false"
+                android:persistent="false" android:title="@string/live_push_enabled"
+                android:summary="@string/live_push_enabled_summary" />
+        <Preference android:key="live_push_provider" android:title="@string/live_push_choose_provider" />
+        <Preference android:key="live_push_status" android:title="@string/live_push_status" />
+        <Preference android:key="live_push_test" android:title="@string/live_push_test" />
+        <Preference android:key="live_push_retry" android:title="@string/live_push_retry" />
+        <Preference android:key="live_push_help" android:title="@string/live_push_help" />
+    </PreferenceCategory>
+
     <PreferenceCategory
             android:title="@string/notification_group_errors">
         <SwitchPreferenceCompat

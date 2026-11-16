@@ -42,7 +42,7 @@ Submit a pull request
   - If possible, add unit tests for your pull request and make sure that they pass.
   - Please do not upgrade dependencies or build tools unless you have a good reason for it. Doing so can easily introduce bugs that are hard to track down.
   - Please follow our [code style](https://antennapod.org/contribute/develop/app/code-style). You can use Checkstyle within Android Studio using our [configuration file](https://github.com/AntennaPod/AntennaPod/blob/develop/config/checkstyle/checkstyle.xml).
-  - To check the code style locally, run `./gradlew checkstyle lint spotbugsPlayDebug spotbugsDebug`
+  - To check the code style locally, run `./gradlew checkstyle lint spotbugsDebug`
   - Please only change the English string resources. Translations are handled on [Weblate](https://antennapod.org/contribute/translate).
 - Open the PR
   - Mention the corresponding issue in the pull request text, so that it can be closed when your pull request is merged. If you use [special keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue), GitHub will close the issue(s) automatically.
@@ -70,8 +70,8 @@ Testing and verifying
 As a developer contributing to AntennaPod, we ask that you [test](https://antennapod.org/contribute/develop/app/test-builds) the feature yourself manually and better yet, add unit and functional tests to any feature you add or bug you fix.
 
 ### Running unit tests
-* `./gradlew testPlayDebugUnitTest`       # all projects
-* `./gradlew :app:testPlayDebugUnitTest`  # specific project - list project names with `./gradlew projects`
+* `./gradlew testDebugUnitTest`       # all projects
+* `./gradlew :app:testDebugUnitTest`  # specific project - list project names with `./gradlew projects`
 
 ### Running integration tests
 

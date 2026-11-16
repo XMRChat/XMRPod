@@ -59,17 +59,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - variant: "PlayDebug"
-            base-variant: "Debug"
-            execute-tests: true
+          - variant: "Debug"
             upload-artifact: true
-          - variant: "PlayRelease"
-            base-variant: "Release"
-            execute-tests: true
-            upload-artifact: false
-          - variant: "FreeRelease"
-            base-variant: "Release"
-            execute-tests: false
+          - variant: "Release"
             upload-artifact: false
     steps:
       - uses: actions/checkout@v5
@@ -92,15 +84,14 @@ jobs:
           keytool -noprompt -genkey -v -keystore "app/keystore" -alias alias -storepass password -keypass password -keyalg RSA -validity 10 -dname "CN=antennapod.org, OU=dummy, O=dummy, L=dummy, S=dummy, C=US"
           cp app/keystore app-wearos/keystore
       - name: Build
-        run: ./gradlew assemble${{ matrix.variant }}
+        run: ./gradlew :app:assemble${{ matrix.variant }}
       - name: Test
-        if: matrix.execute-tests == true
-        run: ./gradlew test${{ matrix.variant }}UnitTest test${{ matrix.base-variant }}UnitTest
+        run: ./gradlew test${{ matrix.variant }}UnitTest
       - uses: actions/upload-artifact@v4
         if: matrix.upload-artifact == true
         with:
-          name: app-play-debug.apk
-          path: app/build/outputs/apk/play/debug/app-play-debug.apk
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
 
   ci-summary:
     name: "CI Summary"

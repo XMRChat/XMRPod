@@ -24,6 +24,7 @@ include ':model'
 include ':system'
 
 include ':net:common'
+include ':net:push'
 include ':net:discovery'
 include ':net:download:service-interface'
 include ':net:download:service'

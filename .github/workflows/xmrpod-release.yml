@@ -96,15 +96,15 @@ jobs:
           } >> gradle.properties
 
       - name: Run release verification
-        run: ./gradlew checkstyle lint testPlayReleaseUnitTest testReleaseUnitTest
+        run: ./gradlew checkstyle lint testReleaseUnitTest
 
-      - name: Build Free release APK
-        run: ./gradlew assembleFreeRelease
+      - name: Build release APK
+        run: ./gradlew :app:assembleRelease
 
       - name: Verify and rename APK
         run: |
           version="${RELEASE_TAG#xmrpod-v}"
-          release_apk="$(find app/build/outputs/apk/free/release -name '*.apk' -print -quit)"
+          release_apk="app/build/outputs/apk/release/app-release.apk"
           test -n "$release_apk"
           apksigner="$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -n 1)"
           test -n "$apksigner"

@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
 }
 apply from: "../../common.gradle"
-apply from: "../../playFlavor.gradle"
 
 android {
     namespace "de.danoeh.antennapod.net.ssl"
@@ -14,7 +13,6 @@ dependencies {
 
     implementation libs.okhttp
 
-    playImplementation libs.google.play.services.base
     // This version should be updated regularly.
-    freeImplementation libs.conscrypt.android
+    implementation libs.conscrypt.android
 }

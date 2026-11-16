@@ -1,9 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.triplet.play) apply false
 }
 apply from: "../common.gradle"
-apply from: "../playFlavor.gradle"
 
 android {
     namespace "de.danoeh.antennapod"
@@ -67,12 +65,12 @@ dependencies {
     implementation project(":event")
     implementation project(':model')
     implementation project(':net:common')
+    implementation project(':net:push')
     implementation project(':net:discovery')
     implementation project(':net:download:service-interface')
     implementation project(':net:download:service')
     implementation project(':net:ssl')
     implementation project(':net:sync:service')
-    playImplementation project(':net:sync:wear-interface')
     implementation project(':parser:feed')
     implementation project(':parser:transcript')
     implementation project(':playback:base')
@@ -117,7 +115,6 @@ dependencies {
     implementation libs.androidx.media3.common
     implementation libs.androidx.media3.session
     implementation libs.androidx.media3.ui
-    playImplementation libs.google.play.services.wearable
 
     implementation libs.commons.lang3
     implementation libs.commons.io
@@ -146,15 +143,4 @@ dependencies {
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.hamcrest
     androidTestImplementation libs.hamcrest.library
-}
-
-if (project.hasProperty("antennaPodPlayPublisherCredentials")) {
-    apply plugin: 'com.github.triplet.play'
-    play {
-        track.set('beta')
-        //noinspection UnnecessaryQualifiedReference
-        releaseStatus.set(com.github.triplet.gradle.androidpublisher.ReleaseStatus.IN_PROGRESS)
-        userFraction.set(0.01d)
-        serviceAccountCredentials.set(file(antennaPodPlayPublisherCredentials))
-    }
 }

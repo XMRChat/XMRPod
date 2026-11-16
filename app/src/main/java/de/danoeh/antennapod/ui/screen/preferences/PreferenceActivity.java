@@ -1,9 +1,7 @@
 package de.danoeh.antennapod.ui.screen.preferences;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
@@ -33,6 +31,7 @@ public class PreferenceActivity extends ToolbarActivity implements SearchPrefere
     private static final String FRAGMENT_TAG = "tag_preferences";
     public static final String OPEN_AUTO_DOWNLOAD_SETTINGS = "OpenAutoDownloadSettings";
     public static final String OPEN_PLAYBACK_SETTINGS = "OpenPlaybackSettings";
+    public static final String OPEN_NOTIFICATION_SETTINGS = "OpenNotificationSettings";
     private SettingsActivityBinding binding;
 
     @Override
@@ -53,6 +52,9 @@ public class PreferenceActivity extends ToolbarActivity implements SearchPrefere
                     .commit();
         }
         Intent intent = getIntent();
+        if (intent.getBooleanExtra(OPEN_NOTIFICATION_SETTINGS, false)) {
+            openScreen(R.xml.preferences_notifications);
+        }
         if (intent.getBooleanExtra(OPEN_AUTO_DOWNLOAD_SETTINGS, false)) {
             openScreen(R.xml.preferences_autodownload);
         }
@@ -117,16 +119,9 @@ public class PreferenceActivity extends ToolbarActivity implements SearchPrefere
 
     public PreferenceFragmentCompat openScreen(int screen) {
         PreferenceFragmentCompat fragment = getPreferenceScreen(screen);
-        if (screen == R.xml.preferences_notifications && Build.VERSION.SDK_INT >= 26) {
-            Intent intent = new Intent();
-            intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
-            startActivity(intent);
-        } else {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(binding.settingsContainer.getId(), fragment)
-                    .addToBackStack(getString(getTitleOfPage(screen))).commit();
-        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(binding.settingsContainer.getId(), fragment)
+                .addToBackStack(getString(getTitleOfPage(screen))).commit();
 
 
         return fragment;

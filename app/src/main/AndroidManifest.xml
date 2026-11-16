@@ -34,6 +34,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:backupAgent=".storage.importexport.OpmlBackupAgent"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:restoreAnyVersion="true"
         android:theme="@style/Theme.AntennaPod.Splash"
         android:usesCleartextTraffic="true"
@@ -67,9 +69,6 @@
         <meta-data
             android:name="com.google.android.backup.api_key"
             android:value="AEdPqrEAAAAI3a05VToCTlqBymJrbFGaKQMvF-bBAuLsOdavBA"/>
-        <meta-data
-            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="de.danoeh.antennapod.playback.cast.CastOptionsProvider" />
 
         <service
             android:name=".ui.screen.livestream.LiveStreamPlaybackService"

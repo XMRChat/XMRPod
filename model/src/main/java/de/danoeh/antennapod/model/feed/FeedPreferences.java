@@ -122,6 +122,8 @@ public class FeedPreferences implements Serializable {
     private int feedSkipEnding;
     private SkipSilence feedSkipSilence;
     private boolean showEpisodeNotification;
+    private long liveNotificationSince;
+    private boolean liveNotificationVibrateOnly;
     private final Set<String> tags = new HashSet<>();
 
     public FeedPreferences(long feedID, AutoDownloadSetting autoDownload, AutoDeleteAction autoDeleteAction,
@@ -316,6 +318,22 @@ public class FeedPreferences implements Serializable {
      */
     public boolean getShowEpisodeNotification() {
         return showEpisodeNotification;
+    }
+
+    public long getLiveNotificationSince() {
+        return liveNotificationSince;
+    }
+
+    public void setLiveNotificationSince(long since) {
+        liveNotificationSince = since;
+    }
+
+    public boolean getLiveNotificationVibrateOnly() {
+        return liveNotificationVibrateOnly;
+    }
+
+    public void setLiveNotificationVibrateOnly(boolean vibrate) {
+        liveNotificationVibrateOnly = vibrate;
     }
 
     public void setShowEpisodeNotification(boolean showEpisodeNotification) {

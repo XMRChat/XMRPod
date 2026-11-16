@@ -26,7 +26,7 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 adb root
 
 adb uninstall de.danoeh.antennapod.debug
-./gradlew :app:installPlayDebug
+./gradlew :app:installDebug
 adb shell am start -n "de.danoeh.antennapod.debug/de.danoeh.antennapod.activity.MainActivity"
 sleep 1
 adb shell am force-stop de.danoeh.antennapod.debug

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import androidx.fragment.app.Fragment;
-import de.danoeh.antennapod.net.discovery.BuildConfig;
 import de.danoeh.antennapod.storage.database.DBReader;
 import de.danoeh.antennapod.event.DiscoveryDefaultUpdateEvent;
 import de.danoeh.antennapod.net.discovery.ItunesTopListLoader;
@@ -110,7 +109,7 @@ public class QuickFeedDiscoveryFragment extends Fragment implements AdapterView.
             return;
         }
         //noinspection ConstantConditions
-        if (BuildConfig.FLAVOR.equals("free") && prefs.getBoolean(ItunesTopListLoader.PREF_KEY_NEEDS_CONFIRM, true)) {
+        if (prefs.getBoolean(ItunesTopListLoader.PREF_KEY_NEEDS_CONFIRM, true)) {
             viewBinding.errorLabel.setText("");
             viewBinding.errorContainer.setVisibility(View.VISIBLE);
             viewBinding.discoverGrid.setVisibility(View.VISIBLE);

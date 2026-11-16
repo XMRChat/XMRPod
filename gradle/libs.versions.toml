@@ -11,6 +11,7 @@ espresso = "3.5.0"
 androidx-test = "1.5.0"
 
 [libraries]
+unifiedpush-connector = { module = "org.unifiedpush.android:connector", version = "3.3.5" }
 androidx-annotation = { module = "androidx.annotation:annotation", version = "1.9.1" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version = "1.7.1" }
 androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version = "1.1.0" }

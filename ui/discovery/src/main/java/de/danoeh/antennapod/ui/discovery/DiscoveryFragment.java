@@ -20,7 +20,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputLayout;
-import de.danoeh.antennapod.net.discovery.BuildConfig;
 import de.danoeh.antennapod.storage.database.DBReader;
 import de.danoeh.antennapod.event.DiscoveryDefaultUpdateEvent;
 import de.danoeh.antennapod.net.discovery.ItunesTopListLoader;
@@ -167,7 +166,7 @@ public class DiscoveryFragment extends Fragment implements Toolbar.OnMenuItemCli
             return;
         }
         //noinspection ConstantConditions
-        if (BuildConfig.FLAVOR.equals("free") && needsConfirm) {
+        if (needsConfirm) {
             txtvError.setVisibility(View.VISIBLE);
             txtvError.setText("");
             butRetry.setVisibility(View.VISIBLE);
