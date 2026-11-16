@@ -25,8 +25,7 @@ WebView requests and handles audio focus for embedded media itself; the service 
 
 The XMRChat tip sheet lives in `XmrChatTipFragment`; screens that offer tipping extend it and call `openXmrChatTip()`.
 
-## Wear OS Communication (play flavor only)
+## Build configuration
 
-`WearListenerService` is a `WearableListenerService` that handles `DataLayer` messages from connected watches.
-It responds to watch-initiated requests.
-The service is kept alive by the Android framework while at least one watch is connected.
+XMRPod always uses the free configuration, with standard `debug` and `release` builds.
+The phone app does not include Google Play services, Google Cast, or the Wear OS listener.

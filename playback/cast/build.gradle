@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
 }
 apply from: "../../common.gradle"
-apply from: "../../playFlavor.gradle"
 
 android {
     namespace "de.danoeh.antennapod.playback.cast"
@@ -18,8 +17,5 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.eventbus
 
-    playApi libs.androidx.mediarouter
-    playApi libs.google.play.services.cast.framework
     implementation libs.androidx.media3.exoplayer
-    playImplementation libs.androidx.media3.cast
 }

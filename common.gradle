@@ -100,13 +100,9 @@ gradle.taskGraph.whenReady { taskGraph ->
         if (task.name.toLowerCase().contains('spotbugs')) {
             task.doLast {
                 def reportFile = task.project.file("build/reports/spotbugs/debug.xml")
-                def reportFilePlay = task.project.file("build/reports/spotbugs/playDebug.xml")
 
                 if (reportFile.exists()) {
                     parseSpotBugsXml(task, reportFile)
-                }
-                if (reportFilePlay.exists()) {
-                    parseSpotBugsXml(task, reportFilePlay)
                 }
             }
         }
@@ -142,7 +138,6 @@ checkstyle {
 afterEvaluate {
     tasks.matching { it.name == 'lint' }.configureEach {
         dependsOn tasks.matching { t -> t.name == 'spotbugsDebug' }
-        dependsOn tasks.matching { t -> t.name == 'spotbugsPlayDebug' }
     }
 }
 
@@ -151,8 +146,6 @@ tasks.register('checkstyle', Checkstyle) {
 
     classpath = files()
     source = fileTree('src/main/java') { include '**/*.java' }
-    if (file("src/free/java").exists()) source += fileTree("src/free/java") { include '**/*.java' }
-    if (file("src/play/java").exists()) source += fileTree("src/play/java") { include '**/*.java' }
 
     exclude '**/gen/**'
     exclude '**/R.java'

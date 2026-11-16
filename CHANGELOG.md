@@ -2,6 +2,13 @@
 
 All notable changes to XMRPod are documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- Label podcast notification choices as Sound + Vibrate, Vibrate, and None.
+- Build only the free configuration, with no Play/Free variants or labels in APK names.
+
 ## [0.1.24] - 2026-10-22
 
 ### Added

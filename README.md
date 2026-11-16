@@ -115,7 +115,7 @@ Build a debug APK with:
 Debug APKs are written under:
 
 ```text
-app/build/outputs/apk/
+app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ## Releases
@@ -123,7 +123,7 @@ app/build/outputs/apk/
 Release notes come from [CHANGELOG.md](CHANGELOG.md), not from generated commit summaries.
 
 To publish a new XMRPod release, add a new topmost `## [version] - YYYY-MM-DD` section to `CHANGELOG.md`, run the release metadata step locally, commit the result, and push it to `develop`.
-GitHub Actions will read the latest changelog version, create the `xmrpod-vversion` tag if it does not exist, build the Free release APK, and publish a GitHub release that links back to the full changelog.
+GitHub Actions will read the latest changelog version, create the `xmrpod-vversion` tag if it does not exist, build the release APK, and publish a GitHub release that links back to the full changelog.
 
 You can run the release metadata step locally with:
 
