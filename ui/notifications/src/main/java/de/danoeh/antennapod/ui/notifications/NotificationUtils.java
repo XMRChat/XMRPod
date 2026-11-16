@@ -20,6 +20,7 @@ public class NotificationUtils {
     public static final String CHANNEL_ID_SYNC_ERROR = "sync_error";
     public static final String CHANNEL_ID_EPISODE_NOTIFICATIONS = "episode_notifications";
     public static final String CHANNEL_ID_LIVE_NOTIFICATIONS = "live_notifications_v2";
+    public static final String CHANNEL_ID_LIVE_NOTIFICATIONS_VIBRATE_ONLY = "live_notifications_vibrate_only";
 
     public static final String GROUP_ID_ERRORS = "group_errors";
     public static final String GROUP_ID_NEWS = "group_news";
@@ -45,6 +46,13 @@ public class NotificationUtils {
                         .setName(context.getString(R.string.live_push_channel))
                         .setDescription(context.getString(R.string.live_push_channel_description))
                         .setVibrationEnabled(true)
+                        .setGroup(GROUP_ID_NEWS).build(),
+                new NotificationChannelCompat.Builder(CHANNEL_ID_LIVE_NOTIFICATIONS_VIBRATE_ONLY,
+                        NotificationManagerCompat.IMPORTANCE_DEFAULT)
+                        .setName(context.getString(R.string.live_push_channel_vibrate_only))
+                        .setDescription(context.getString(R.string.live_push_channel_description))
+                        .setVibrationEnabled(true)
+                        .setSound(null, null)
                         .setGroup(GROUP_ID_NEWS).build());
         mNotificationManager.deleteNotificationChannel("live_notifications");
         mNotificationManager.createNotificationChannelsCompat(channels);

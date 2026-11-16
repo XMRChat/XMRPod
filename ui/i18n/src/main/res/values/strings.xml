@@ -1102,6 +1102,7 @@
     <string name="wearos_browse_phone" tools:ignore="UnusedResources">Browse phone</string>
     <string name="wearos_open_on_phone" tools:ignore="UnusedResources">Open on phone</string>
     <string name="live_push_channel">Live streams</string>
+    <string name="live_push_channel_vibrate_only">Live streams with vibration only</string>
     <string name="live_push_channel_description">Alerts for podcasts whose live notification bell you enabled</string>
     <string name="live_push_title">Live stream notifications</string>
     <string name="live_push_enabled">Use UnifiedPush</string>
@@ -1130,6 +1131,7 @@
     <string name="live_push_status_blocked">Notifications are blocked in Android settings.</string>
     <string name="live_push_bell_on">Turn off live alerts</string>
     <string name="live_push_bell_off">Turn on live alerts</string>
+    <string name="live_push_vibrate">Vibrate</string>
     <string name="live_push_dialog_description">Receive notifications when this channel goes live.</string>
     <string name="live_push_enable">Enable</string>
     <string name="live_push_none">None</string>

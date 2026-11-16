@@ -25,6 +25,14 @@ class DBUpgrader {
                 }
             }
         }
+        if (oldVersion < 3110003) {
+            try (Cursor cursor = db.rawQuery("SELECT * FROM " + PodDBAdapter.TABLE_NAME_FEEDS + " LIMIT 0", null)) {
+                if (cursor.getColumnIndex(PodDBAdapter.KEY_LIVE_NOTIFICATION_VIBRATE_ONLY) < 0) {
+                    db.execSQL("ALTER TABLE " + PodDBAdapter.TABLE_NAME_FEEDS
+                            + " ADD COLUMN " + PodDBAdapter.KEY_LIVE_NOTIFICATION_VIBRATE_ONLY + " INTEGER DEFAULT 0");
+                }
+            }
+        }
         if (oldVersion <= 1) {
             db.execSQL("ALTER TABLE " + PodDBAdapter.TABLE_NAME_FEEDS + " ADD COLUMN "
                     + PodDBAdapter.KEY_TYPE + " TEXT");

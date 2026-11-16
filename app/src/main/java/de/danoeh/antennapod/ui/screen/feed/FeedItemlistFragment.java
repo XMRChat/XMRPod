@@ -382,15 +382,21 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
             view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomInset);
             return insets;
         });
-        binding.enableCheck.setVisibility(enabled ? View.VISIBLE : View.INVISIBLE);
+        boolean vibrateOnly = feed.getPreferences().getLiveNotificationVibrateOnly();
+        binding.enableCheck.setVisibility(enabled && !vibrateOnly ? View.VISIBLE : View.INVISIBLE);
+        binding.vibrateCheck.setVisibility(enabled && vibrateOnly ? View.VISIBLE : View.INVISIBLE);
         binding.noneCheck.setVisibility(enabled ? View.INVISIBLE : View.VISIBLE);
         binding.enableRow.setOnClickListener(view -> {
             dialog.dismiss();
-            setLiveNotificationsEnabled(true);
+            setLiveNotificationsEnabled(true, false);
+        });
+        binding.vibrateRow.setOnClickListener(view -> {
+            dialog.dismiss();
+            setLiveNotificationsEnabled(true, true);
         });
         binding.noneRow.setOnClickListener(view -> {
             dialog.dismiss();
-            setLiveNotificationsEnabled(false);
+            setLiveNotificationsEnabled(false, false);
         });
         dialog.setContentView(binding.getRoot());
         dialog.setOnShowListener(dialogInterface ->
@@ -398,11 +404,18 @@ public class FeedItemlistFragment extends Fragment implements AdapterView.OnItem
         dialog.show();
     }
 
-    private void setLiveNotificationsEnabled(boolean enable) {
-        if (enable == (feed.getPreferences().getLiveNotificationSince() > 0)) {
+    private void setLiveNotificationsEnabled(boolean enable, boolean vibrateOnly) {
+        boolean wasEnabled = feed.getPreferences().getLiveNotificationSince() > 0;
+        if (enable == wasEnabled && (!enable
+                || vibrateOnly == feed.getPreferences().getLiveNotificationVibrateOnly())) {
             return;
         }
-        feed.getPreferences().setLiveNotificationSince(enable ? System.currentTimeMillis() : 0);
+        if (enable != wasEnabled) {
+            feed.getPreferences().setLiveNotificationSince(enable ? System.currentTimeMillis() : 0);
+        }
+        if (enable) {
+            feed.getPreferences().setLiveNotificationVibrateOnly(vibrateOnly);
+        }
         updateToolbar();
         Feed changedFeed = feed;
         LiveNotifications notifications = LiveNotifications.get(requireContext());

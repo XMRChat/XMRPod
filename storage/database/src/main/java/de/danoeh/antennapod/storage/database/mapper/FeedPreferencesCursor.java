@@ -82,6 +82,8 @@ public class FeedPreferencesCursor extends CursorWrapper {
                 FeedPreferences.NewEpisodesAction.fromCode(getInt(indexNewEpisodesAction)),
                 new HashSet<>(Arrays.asList(tagsString.split(FeedPreferences.TAG_SEPARATOR))));
         preferences.setLiveNotificationSince(getLong(getColumnIndexOrThrow(PodDBAdapter.KEY_LIVE_NOTIFICATION_SINCE)));
+        preferences.setLiveNotificationVibrateOnly(
+                getInt(getColumnIndexOrThrow(PodDBAdapter.KEY_LIVE_NOTIFICATION_VIBRATE_ONLY)) > 0);
         return preferences;
     }
 }

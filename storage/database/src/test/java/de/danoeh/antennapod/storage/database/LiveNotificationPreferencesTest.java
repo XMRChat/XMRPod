@@ -14,6 +14,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import java.util.Collections;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
@@ -35,6 +36,7 @@ public class LiveNotificationPreferencesTest {
         feed.setItems(Collections.emptyList());
         feed = FeedDatabaseWriter.updateFeed(context, feed, false);
         assertEquals(0, DBReader.getFeed(feed.getId(), false, 0, 0).getPreferences().getLiveNotificationSince());
+        assertFalse(DBReader.getFeed(feed.getId(), false, 0, 0).getPreferences().getLiveNotificationVibrateOnly());
         feed.getPreferences().setShowEpisodeNotification(true);
         feed.getPreferences().setLiveNotificationSince(123456789);
         DBWriter.setFeedPreferences(feed.getPreferences()).get();
@@ -50,6 +52,26 @@ public class LiveNotificationPreferencesTest {
         stored.getPreferences().setLiveNotificationSince(0);
         DBWriter.setFeedPreferences(stored.getPreferences()).get();
         assertTrue(DBReader.getFeed(feed.getId(), false, 0, 0).getPreferences().getShowEpisodeNotification());
+        stored.getPreferences().setLiveNotificationVibrateOnly(true);
+        DBWriter.setFeedPreferences(stored.getPreferences()).get();
+        assertTrue(DBReader.getFeed(feed.getId(), false, 0, 0).getPreferences().getLiveNotificationVibrateOnly());
+    }
+
+    @Test
+    public void upgradePreservesSoundForExistingBells() {
+        for (int version : new int[] {3110001, 3110002}) {
+            try (SQLiteDatabase database = SQLiteDatabase.create(null)) {
+                database.execSQL("CREATE TABLE Feeds (_id INTEGER PRIMARY KEY, live_notification_since INTEGER DEFAULT 0)");
+                database.execSQL("INSERT INTO Feeds (_id, live_notification_since) VALUES (1, 123456789)");
+                DBUpgrader.upgrade(database, version, 3110003);
+                try (Cursor cursor = database.rawQuery(
+                        "SELECT live_notification_since, live_notification_vibrate_only FROM Feeds", null)) {
+                    assertTrue(cursor.moveToFirst());
+                    assertEquals(123456789, cursor.getLong(0));
+                    assertEquals(0, cursor.getInt(1));
+                }
+            }
+        }
     }
 
     @Test

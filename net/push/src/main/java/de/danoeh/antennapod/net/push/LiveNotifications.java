@@ -320,7 +320,8 @@ public final class LiveNotifications {
             if ("test".equals(type)
                     && System.currentTimeMillis() - preferences.getLong("test_requested_at", 0) < 10 * 60_000
                     && postNotification("test", context.getString(R.string.live_push_test_title),
-                    context.getString(R.string.live_push_test_body), new MainActivityStarter(context).getIntent())) {
+                    context.getString(R.string.live_push_test_body), new MainActivityStarter(context).getIntent(),
+                    false)) {
                 preferences.edit().putLong("tested_at", System.currentTimeMillis())
                         .putString("status", "registered").apply();
             } else if ("verify".equals(type)) {
@@ -408,14 +409,15 @@ public final class LiveNotifications {
                     preferences.getString(notifiedKey, ""))) {
                 if (postNotification(path + ":" + session, feed.getTitle(),
                         context.getString(R.string.live_push_live_body),
-                        new MainActivityStarter(context).withOpenFeed(feed.getId()).getIntent())) {
+                        new MainActivityStarter(context).withOpenFeed(feed.getId()).getIntent(),
+                        feed.getPreferences().getLiveNotificationVibrateOnly())) {
                     preferences.edit().putString(notifiedKey, session).commit();
                 }
             }
         }
     }
 
-    private boolean postNotification(String tag, String title, String body, Intent intent) {
+    private boolean postNotification(String tag, String title, String body, Intent intent, boolean vibrateOnly) {
         if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context,
                 Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             return false;
@@ -424,18 +426,20 @@ public final class LiveNotifications {
         if (!manager.areNotificationsEnabled()) {
             return false;
         }
-        if (manager.getNotificationChannelCompat(NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS) != null
-                && manager.getNotificationChannelCompat(NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS).getImportance()
+        String channel = vibrateOnly ? NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS_VIBRATE_ONLY
+                : NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS;
+        if (manager.getNotificationChannelCompat(channel) != null
+                && manager.getNotificationChannelCompat(channel).getImportance()
                     == NotificationManagerCompat.IMPORTANCE_NONE) {
             return false;
         }
         try {
             PendingIntent pending = PendingIntent.getActivity(context, tag.hashCode(), intent,
                     PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-            manager.notify("xmrpod-live-" + tag, 1, new NotificationCompat.Builder(context,
-                    NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS)
+            manager.notify("xmrpod-live-" + tag, 1, new NotificationCompat.Builder(context, channel)
                     .setSmallIcon(R.drawable.ic_notification).setContentTitle(title).setContentText(body)
-                    .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
+                    .setDefaults(vibrateOnly ? NotificationCompat.DEFAULT_VIBRATE
+                            : NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
                     .setContentIntent(pending).setAutoCancel(true).setOnlyAlertOnce(true).build());
             return true;
         } catch (SecurityException e) {

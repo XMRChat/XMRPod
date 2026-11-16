@@ -3,6 +3,7 @@ package de.danoeh.antennapod.net.push;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.service.notification.StatusBarNotification;
 import de.danoeh.antennapod.model.feed.Feed;
 import de.danoeh.antennapod.net.sync.serviceinterface.SynchronizationQueue;
 import de.danoeh.antennapod.net.sync.serviceinterface.SynchronizationQueueStub;
@@ -39,6 +40,10 @@ public class LiveNotificationDeliveryTest {
         NotificationChannel channel = manager.getNotificationChannel(NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS);
         assertTrue(channel.shouldVibrate());
         assertNotNull(channel.getSound());
+        NotificationChannel vibrationOnly = manager.getNotificationChannel(
+                NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS_VIBRATE_ONLY);
+        assertTrue(vibrationOnly.shouldVibrate());
+        assertNull(vibrationOnly.getSound());
     }
 
     @Test
@@ -74,11 +79,28 @@ public class LiveNotificationDeliveryTest {
         JSONArray later = snapshot("later-broadcast", since + 3000);
         notifications.checkSnapshot(later, "creator", "later-broadcast");
         assertEquals(2, manager.getActiveNotifications().length);
+        for (StatusBarNotification posted : manager.getActiveNotifications()) {
+            assertEquals(NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS, posted.getNotification().getChannelId());
+        }
+
+        feed.getPreferences().setLiveNotificationVibrateOnly(true);
+        DBWriter.setFeedPreferences(feed.getPreferences()).get();
+        notifications.checkSnapshot(snapshot("quiet-broadcast", since + 3500), "creator", "quiet-broadcast");
+        assertEquals(3, manager.getActiveNotifications().length);
+        int quiet = 0;
+        for (StatusBarNotification posted : manager.getActiveNotifications()) {
+            if (NotificationUtils.CHANNEL_ID_LIVE_NOTIFICATIONS_VIBRATE_ONLY.equals(
+                    posted.getNotification().getChannelId())) {
+                assertNull(posted.getNotification().sound);
+                quiet++;
+            }
+        }
+        assertEquals(1, quiet);
 
         feed.getPreferences().setLiveNotificationSince(0);
         DBWriter.setFeedPreferences(feed.getPreferences()).get();
         notifications.checkSnapshot(snapshot("disabled", since + 4000), "creator", "disabled");
-        assertEquals(2, manager.getActiveNotifications().length);
+        assertEquals(3, manager.getActiveNotifications().length);
     }
 
     private JSONArray snapshot(String session, long started) throws Exception {
